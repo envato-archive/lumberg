@@ -1,8 +1,11 @@
 $:.unshift(File.dirname(__FILE__))
 
-require 'lumberg/version'
 require 'json'
+require 'uri'
+
+require 'lumberg/version'
+require 'lumberg/whm'
+
 
 module Lumberg
-  # Your code goes here...
 end
