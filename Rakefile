@@ -2,7 +2,7 @@ require 'bundler'
 begin
   require 'rspec/core/rake_task'
 rescue LoadError
-  puts "please install rspec"
+  puts "Please install rspec (bundle install)"
   exit
 end
 
