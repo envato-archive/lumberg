@@ -1,5 +1,10 @@
 require 'bundler'
-require 'rspec/core/rake_task'
+begin
+  require 'rspec/core/rake_task'
+rescue LoadError
+  puts "please install rspec"
+  exit
+end
 
 RSpec::Core::RakeTask.new :spec
 Bundler::GemHelper.install_tasks
