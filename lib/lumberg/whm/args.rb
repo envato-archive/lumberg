@@ -19,10 +19,10 @@ module Whm
       params.each do |param| 
         if param.is_a?(Array)
           raise Whm::ArgumentError.new("Missing required parameter: #{param.first}") unless hash.has_key?(param.first) 
-          raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param.first}") if hash[param.first].blank?
+          raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param.first}") if (hash[param.first].nil? || hash[param.first].empty?)
         else
           raise Whm::ArgumentError.new("Missing required parameter: #{param}") unless hash.has_key?(param) 
-          raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param}") if hash[param].blank?
+          raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param}") if (hash[param].nil? || hash[param].empty?)
         end
       end
     end
