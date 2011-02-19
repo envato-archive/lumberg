@@ -9,17 +9,17 @@ describe Whm::Server do
 
   context "Setting up the server host, username, url, and hash" do
     it "should setup host and hash" do
-      whm = Whm::Server.new(@login)
+      whm = Whm::Server.new(@login.dup)
       whm.hash.should == @login[:hash]
     end
 
     it "should set the url" do
-      whm = Whm::Server.new(@login)
+      whm = Whm::Server.new(@login.dup)
       whm.url.should == "https://#{@login[:host]}:2087/json-api/"
     end
 
     it "should default to 'root' as the username" do
-      whm = Whm::Server.new(@login)
+      whm = Whm::Server.new(@login.dup)
       whm.user.should == 'root'
     end
   end

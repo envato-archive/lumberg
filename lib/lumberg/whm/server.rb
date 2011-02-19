@@ -8,13 +8,13 @@ module Whm
     attr_accessor :user
 
     def initialize(options)
-      opts   = options.dup
-      @host  = opts.delete(:host)
-      @hash  = Whm::format_hash(opts.delete(:hash))
-      @user  ||= 'root'
-      opts   ||= {}
+      requires!(options, :host, :hash)
 
-      @url = Whm::format_url(@host, opts)
+      @host  = options.delete(:host)
+      @hash  = Whm::format_hash(options.delete(:hash))
+      @user  ||= 'root'
+
+      @url = Whm::format_url(@host, options)
     end
   end
 end
