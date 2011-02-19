@@ -24,21 +24,4 @@ describe Whm::Server do
     end
   end
 
-  context "Formatting the Hash" do
-    it "should raise an error if hash is not a string" do
-      expect{ Whm::Server.new(@login.merge(hash: nil)) }.to raise_error Lumberg::WhmArgumentError
-    end
-
-    it "should remove \\n's from the hash" do
-      @login = @login.merge(hash: "my\nhash")
-      whm = Whm::Server.new(@login)
-      whm.hash.should == 'myhash'
-    end
-
-    it "should remove whitespace from the hash" do
-      @login = @login.merge(hash: "my hash")
-      whm = Whm::Server.new(@login)
-      whm.hash.should == 'myhash'
-    end
-  end
 end
