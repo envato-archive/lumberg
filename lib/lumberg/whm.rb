@@ -8,7 +8,7 @@ module Whm
       port  = (options[:ssl] ? 2087 : 2086)
       proto = (options[:ssl] ? 'https' : 'http')
 
-      "#{proto}://#{earl}:#{port}"
+      "#{proto}://#{earl}:#{port}/json-api/"
     end
   end
 end
