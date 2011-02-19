@@ -10,24 +10,12 @@ describe Whm::Server do
   context "Setting up the server host, username, url, and hash" do
     it "should setup host and hash" do
       whm = Whm::Server.new(@login)
-    
-      whm.host.should == @login[:host]
       whm.hash.should == @login[:hash]
     end
 
-    it "should transform the host into an SSL URL by default" do
+    it "should set the url" do
       whm = Whm::Server.new(@login)
       whm.url.should == "https://#{@login[:host]}:2087/json-api/"
-    end
-
-    it "should transform the host into an SSL URL when asked" do
-      whm = Whm::Server.new(@login.merge(:ssl => true))
-      whm.url.should == "https://#{@login[:host]}:2087/json-api/"
-    end
-
-    it "should transform the host into a non SSL URL when asked" do
-      whm = Whm::Server.new(@login.merge(:ssl => false))
-      whm.url.should == "http://#{@login[:host]}:2086/json-api/"
     end
 
     it "should default to 'root' as the username" do
