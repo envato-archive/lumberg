@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+# Requests will need an "Authorization" header with 
+# WHM username:hash"
 describe Whm::Server do
   before(:each) do
     @login = { host: 'myhost.com', hash: 'iscool' }
