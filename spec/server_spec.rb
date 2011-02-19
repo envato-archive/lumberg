@@ -5,6 +5,7 @@ require 'spec_helper'
 describe Whm::Server do
   before(:each) do
     @login = { host: 'myhost.com', hash: 'iscool' }
+    @url_base = "https://myhost.com:2087/json-api"
   end
 
   context "Setting up the server host, username, url, and hash" do
@@ -24,4 +25,15 @@ describe Whm::Server do
     end
   end
 
+  context "Performing a HTTP request" do
+    it "should call the proper URL" do
+      whm = Whm::Server.new(@login.dup)
+      whm.perform_request('my_function').should == "#{@url_base}/my_function?"
+    end
+
+    it "should call the proper URL and arguments" do
+      whm = Whm::Server.new(@login.dup)
+      whm.perform_request('my_function', arg1: 1, arg2: 'test').should == "#{@url_base}/my_function?arg1=1&arg2=test"
+    end
+  end
 end

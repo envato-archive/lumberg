@@ -1,3 +1,5 @@
+require 'cgi'
+
 module Whm
   class Server
     include Args
@@ -15,6 +17,19 @@ module Whm
       @user  ||= 'root'
 
       @url = Whm::format_url(@host, options)
+    end
+
+    def perform_request(function, options = {})
+      options = format_query(options)
+      "#{@url}#{function}?#{options}"
+    end
+
+    def format_query(hash)
+      elements = []
+      hash.each do |key, value|
+        elements << "#{CGI::escape(key.to_s)}=#{CGI::escape(value.to_s)}"
+      end
+      elements.sort.join('&')
     end
   end
 end
