@@ -16,17 +16,17 @@ describe Whm::Server do
 
     it "should transform the host into an SSL URL by default" do
       whm = Whm::Server.new(@login)
-      whm.url.should == "https://#{@login[:host]}:2087"
+      whm.url.should == "https://#{@login[:host]}:2087/json-api/"
     end
 
     it "should transform the host into an SSL URL when asked" do
       whm = Whm::Server.new(@login.merge(:ssl => true))
-      whm.url.should == "https://#{@login[:host]}:2087"
+      whm.url.should == "https://#{@login[:host]}:2087/json-api/"
     end
 
     it "should transform the host into a non SSL URL when asked" do
       whm = Whm::Server.new(@login.merge(:ssl => false))
-      whm.url.should == "http://#{@login[:host]}:2086"
+      whm.url.should == "http://#{@login[:host]}:2086/json-api/"
     end
   end
 end
