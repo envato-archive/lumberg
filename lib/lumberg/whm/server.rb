@@ -14,6 +14,5 @@ module Whm
 
       @url = Whm::format_url(@host, opts)
     end
-
   end
 end
