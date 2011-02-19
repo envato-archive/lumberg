@@ -1,6 +1,7 @@
-require 'lumberg/whm/server'
-
 module Whm
+  autoload :Args,   'lumberg/whm/args'
+  autoload :Server, 'lumberg/whm/server'
+
   class << self
     def format_url(earl, options = {})
       options[:ssl] = true if options[:ssl].nil?
