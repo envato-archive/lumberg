@@ -1,5 +1,7 @@
 module Whm
   class Server
+    include Args
+
     attr_accessor :host
     attr_accessor :hash
     attr_accessor :url
