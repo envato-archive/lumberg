@@ -29,7 +29,7 @@ describe Whm do
 
   context "Formatting the Hash" do
     it "should raise an error if hash is not a string" do
-      expect{ Whm::format_hash(nil)}.to raise_error Lumberg::WhmArgumentError
+      expect{ Whm::format_hash(nil)}.to raise_error(Lumberg::WhmArgumentError, "Missing WHM hash")
     end
 
     it "should remove \\n's from the hash" do

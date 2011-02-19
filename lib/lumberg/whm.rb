@@ -12,7 +12,7 @@ module Whm
     end
 
     def format_hash(value)
-      raise Lumberg::WhmArgumentError unless value.is_a?(String)
+      raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless value.is_a?(String)
       value.gsub!(/\n|\s/, '')
       value
     end
