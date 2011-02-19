@@ -3,3 +3,4 @@ pkg/*
 .bundle
 .idea
 *.swp
+test.rb
