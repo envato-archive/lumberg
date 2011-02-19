@@ -31,7 +31,7 @@ describe Whm::Server do
 
   context "Formatting the Hash" do
     it "should raise an error if hash is not a string" do
-      expect{ Whm::Server.new(@login) }.to raise_error Lumberg::WhmArgumentError
+      expect{ Whm::Server.new(@login.merge(hash: nil)) }.to raise_error Lumberg::WhmArgumentError
     end
 
     it "should remove \\n's from the hash" do
