@@ -7,7 +7,7 @@ describe Whm::Server do
     @login = { host: 'myhost.com', hash: 'iscool' }
   end
 
-  context "Setting up the server host, url, and hash" do
+  context "Setting up the server host, username, url, and hash" do
     it "should setup host and hash" do
       whm = Whm::Server.new(@login)
     
@@ -28,6 +28,11 @@ describe Whm::Server do
     it "should transform the host into a non SSL URL when asked" do
       whm = Whm::Server.new(@login.merge(:ssl => false))
       whm.url.should == "http://#{@login[:host]}:2086/json-api/"
+    end
+
+    it "should default to 'root' as the username" do
+      whm = Whm::Server.new(@login)
+      whm.user.should == 'root'
     end
   end
 
