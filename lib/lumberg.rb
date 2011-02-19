@@ -4,6 +4,7 @@ require 'json'
 require 'uri'
 
 require 'lumberg/version'
+require 'lumberg/exceptions'
 require 'lumberg/whm'
 
 
