@@ -1,14 +1,13 @@
 require 'spec_helper'
-require 'lumberg/whm'
 
 describe Whm::Server do
-  context "Setting up the server host, url, and hash" do
-    before(:each) do
-      @login = { host: 'myhost.com', hash: 'iscool' }
-    end
+  before(:each) do
+    @login = { host: 'myhost.com', hash: 'iscool' }
+  end
 
+  context "Setting up the server host, url, and hash" do
     it "should setup host and hash" do
-      whm   = Whm::Server.new(@login)
+      whm = Whm::Server.new(@login)
     
       whm.host.should == @login[:host]
       whm.hash.should == @login[:hash]
@@ -27,6 +26,24 @@ describe Whm::Server do
     it "should transform the host into a non SSL URL when asked" do
       whm = Whm::Server.new(@login.merge(:ssl => false))
       whm.url.should == "http://#{@login[:host]}:2086/json-api/"
+    end
+  end
+
+  context "Formatting the Hash" do
+    it "should raise an error if hash is not a string" do
+      expect{ Whm::Server.new(@login) }.to raise_error Lumberg::WhmArgumentError
+    end
+
+    it "should remove \\n's from the hash" do
+      @login = @login.merge(hash: "my\nhash")
+      whm = Whm::Server.new(@login)
+      whm.hash.should == 'myhash'
+    end
+
+    it "should remove whitespace from the hash" do
+      @login = @login.merge(hash: "my hash")
+      whm = Whm::Server.new(@login)
+      whm.hash.should == 'myhash'
     end
   end
 end
