@@ -2,7 +2,7 @@ require 'spec_helper'
 require 'lumberg/whm'
 
 describe Whm::Server do
-  context "Setting up the server" do
+  context "Setting up the server host, url, and hash" do
     before(:each) do
       @login = { host: 'myhost.com', hash: 'iscool' }
     end
@@ -24,7 +24,7 @@ describe Whm::Server do
       whm.url.should == "https://#{@login[:host]}:2087"
     end
 
-    it "should transform the host into a non SSL URL" do
+    it "should transform the host into a non SSL URL when asked" do
       whm = Whm::Server.new(@login.merge(:ssl => false))
       whm.url.should == "http://#{@login[:host]}:2086"
     end
