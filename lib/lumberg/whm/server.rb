@@ -33,7 +33,7 @@ module Whm
 
       @host  = options.delete(:host)
       @hash  = Whm::format_hash(options.delete(:hash))
-      @user  ||= 'root'
+      @user = (options.has_key?(:user) ? options.delete(:user) : 'root')
 
       @url = Whm::format_url(@host, options)
     end

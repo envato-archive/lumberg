@@ -28,6 +28,11 @@ describe Whm::Server do
     it "should default to 'root' as the username" do
       @whm.user.should == 'root'
     end
+
+    it "should allow setting of the username" do
+      @whm = Whm::Server.new(@login.merge(user: 'bob'))
+      @whm.user.should == 'bob'
+    end
   end
  
   context "Performing an HTTP request" do
