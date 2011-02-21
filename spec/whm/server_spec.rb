@@ -107,6 +107,7 @@ module Lumberg
         @whm.send(:perform_request, 'testing_query')
         response = @whm.send(:format_response)
         response[:success].should be(true)
+        response[:params].should have_key('acct')
       end
 
       it "should return false on :error" do

@@ -92,6 +92,7 @@ module Lumberg
           success = @response['status'] == 1
           message = @response['statusmsg']
 
+          # returns the rest as a params arg
           res = @response.dup
           res.delete('status')
           res.delete('statusmsg')
