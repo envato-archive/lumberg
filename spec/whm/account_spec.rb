@@ -31,12 +31,21 @@ module Lumberg
         expect { @account.createacct}.to raise_error(WhmArgumentError, /Missing required param.* username/)
       end
 
+      it "should require a domain" do
+        expect { @account.createacct(username: 'user')}.to raise_error(WhmArgumentError, /Missing required param.* domain/)
+      end
+
       it "should require a password" do
-        expect { @account.createacct(username: 'user')}.to raise_error(WhmArgumentError, /Missing required param.* password/)
+        expect { @account.createacct(username: 'user', domain: 'example.com')}.to raise_error(WhmArgumentError, /Missing required param.* password/)
       end
 
       use_vcr_cassette "whm/account/createacct", :record => :new_episodes
-      it "should allow account creation with username and password"
+
+      it "should allow account creation" do
+        message = @account.createacct(username: 'validu', password: 'hummingbird123', domain: 'valid-thing.com')
+        message[:success].should be(true)
+        message[:message].should match(/Account Creation Ok/i)
+      end
 
     end
   end

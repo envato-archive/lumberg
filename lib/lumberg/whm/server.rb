@@ -39,14 +39,13 @@ module Lumberg
         @url = Whm::format_url(@host, options)
       end
 
-      protected
       def perform_request(function, options = {})
         @function = function
         @params   = format_query(options)
         uri       = URI.parse("#{@url}#{function}?#{@params}")
 
         # Auth Header
-        req = Net::HTTP::Get.new(uri.path)
+        req = Net::HTTP::Get.new("#{uri.path}?#{uri.query}")
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
         # Do the request
@@ -65,6 +64,7 @@ module Lumberg
         format_response
       end
 
+      protected
       def response_type
         if !@response.respond_to?(:has_key?)
           :unknown

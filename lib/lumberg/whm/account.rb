@@ -13,7 +13,12 @@ module Lumberg
 
       # WHM functions
       def createacct(options = {})
-        requires!(options, :username, :password)
+        requires!(options, :username, :domain, :password)
+        # booleans!(options, :savepkg, :ip, :cgi, :frontpage, :hasshell, :useregns, :reseller, :forcedns)
+        valid_options!(options, :plan, :pkgname, :savepkg, :featurelist, :quota, :password, :ip, :cgi, 
+                       :frontpage, :hasshell, :contactemail, :cpmod, :maxftp, :maxsql, :maxpop, :maxlst, 
+                       :maxsub, :maxpark, :maxaddon, :bwlimit, :customip, :language, :useregns, :hasuseregns, 
+                       :reseller, :forcedns, :mxcheck, :username, :domain)
         server.perform_request('createacct', options)
       end
 
