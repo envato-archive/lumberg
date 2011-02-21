@@ -1,0 +1,85 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/testing
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[ { \"status\": 1, \"statusmsg\": null } ] }"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/testing_error
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"error\":\"Unknown App Requested: testing_error\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/testing_query
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{ \"status\":1, \"statusmsg\":\"Ok\", \"acct\":[ { \"Item\":\"Parameters/Results\", \"Next Item\":\"Parameters/Results\" }, { \"Item\":\"Parameters/Results\", \"Next Item\":\"Parameters/Results\" } ] }"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/testing_unknown
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{ \"wtf\":1 }"
+    http_version: "1.1"

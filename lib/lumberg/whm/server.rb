@@ -59,7 +59,19 @@ module Whm
         h.request(req)
       end
       @raw_response = res
-      @response = JSON.parse(res.body)
+      @response = JSON.parse(@raw_response.body)
+    end
+
+    def determine_response_type
+      if @response.has_key?('error')
+        :error
+      elsif @response.has_key?('result')
+        :action
+      elsif @response.has_key?('status') && @response.has_key?('statusmsg')
+        :query
+      else
+        :unknown
+      end
     end
 
     def format_query(hash)
