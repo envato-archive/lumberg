@@ -4,8 +4,15 @@ require 'spec_helper'
 # WHM username:hash"
 describe Whm::Server do
   before(:each) do
-    @login = { host: 'myhost.com', hash: 'iscool' }
-    @whm = Whm::Server.new(@login.dup)
+    if ENV['WHM_REAL']
+      @whm_hash = ENV['WHM_HASH'].dup
+      @whm_host = ENV['WHM_HOST'].dup
+    else
+      @whm_hash = 'iscool'
+      @whm_host = 'myhost.com'
+    end
+    @login    = { host: @whm_host, hash: @whm_hash }
+    @whm      = Whm::Server.new(@login.dup)
     @url_base = "https://myhost.com:2087/json-api"
   end
 
@@ -22,16 +29,29 @@ describe Whm::Server do
       @whm.user.should == 'root'
     end
   end
-
+ 
   context "Performing an HTTP request" do
+    use_vcr_cassette "my_function", :record => :new_episodes
+
     it "should call the proper URL" do
-      @whm.perform_request('my_function').should == "#{@url_base}/my_function?"
+      @whm.perform_request('my_function')
+      @whm.params.should be_empty
+      @whm.raw_response.should be_a(Net::HTTPOK)
     end
 
     it "should call the proper URL and arguments" do
-      @whm.perform_request('my_function', arg1: 1, arg2: 'test').should == "#{@url_base}/my_function?arg1=1&arg2=test"
+      @whm.perform_request('my_function', arg1: 1, arg2: 'test')
+      @whm.params.should == "arg1=1&arg2=test"
+      @whm.raw_response.should be_a(Net::HTTPOK)
     end
 
-    it "should set a response message"
+    use_vcr_cassette "applist", :record => :new_episodes
+
+    it "should set a response message" do
+      # VCR.use_cassette('applist', :record => :new_episodes) do
+        @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
+        @whm.perform_request('applist')
+      # end
+    end
   end
 end
