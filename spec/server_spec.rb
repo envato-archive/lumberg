@@ -19,6 +19,7 @@ describe Whm::Server do
   context "Setting up the server host, username, url, and hash" do
     it "should setup host and hash" do
       @whm.hash.should == @login[:hash]
+      @whm.host.should == @login[:host]
     end
 
     it "should set the url" do
