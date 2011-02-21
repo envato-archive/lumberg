@@ -31,32 +31,36 @@ describe Whm::Server do
   end
  
   context "Performing an HTTP request" do
-    use_vcr_cassette "my_function", :record => :new_episodes
+    describe "my_function" do
+      use_vcr_cassette "my_function", :record => :new_episodes
 
-    it "should verify SSL certs for HTTP requests"
+      it "should verify SSL certs for HTTP requests"
 
-    it "should call the proper URL" do
-      JSON.should_receive(:parse).with("[]").and_return([])
-      @whm.perform_request('my_function')
-      @whm.function.should == 'my_function'
-      @whm.params.should be_empty
-      @whm.raw_response.should be_a(Net::HTTPOK)
+      it "should call the proper URL" do
+        JSON.should_receive(:parse).with("[]").and_return([])
+        @whm.perform_request('my_function')
+        @whm.function.should == 'my_function'
+        @whm.params.should be_empty
+        @whm.raw_response.should be_a(Net::HTTPOK)
+      end
+
+      it "should call the proper URL and arguments" do
+        JSON.should_receive(:parse).with("[]").and_return([])
+        @whm.perform_request('my_function', arg1: 1, arg2: 'test')
+        @whm.function.should == 'my_function'
+        @whm.params.should == "arg1=1&arg2=test"
+        @whm.raw_response.should be_a(Net::HTTPOK)
+      end
     end
 
-    it "should call the proper URL and arguments" do
-      JSON.should_receive(:parse).with("[]").and_return([])
-      @whm.perform_request('my_function', arg1: 1, arg2: 'test')
-      @whm.function.should == 'my_function'
-      @whm.params.should == "arg1=1&arg2=test"
-      @whm.raw_response.should be_a(Net::HTTPOK)
-    end
+    describe "applist" do
+      use_vcr_cassette "applist", :record => :new_episodes
 
-    use_vcr_cassette "applist", :record => :new_episodes
-
-    it "should set a response message" do
-      @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
-      @whm.perform_request('applist')
-      @whm.function.should == 'applist'
+      it "should set a response message" do
+        @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
+        @whm.perform_request('applist')
+        @whm.function.should == 'applist'
+      end
     end
   end
 end

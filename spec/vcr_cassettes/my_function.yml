@@ -18,5 +18,5 @@
       - chunked
       content-type: 
       - text/plain
-    body: ""
+    body: "[]"
     http_version: "1.1"
