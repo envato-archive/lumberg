@@ -33,6 +33,8 @@ describe Whm::Server do
   context "Performing an HTTP request" do
     use_vcr_cassette "my_function", :record => :new_episodes
 
+    it "should verify SSL certs for HTTP requests"
+
     it "should call the proper URL" do
       JSON.should_receive(:parse).with("[]").and_return([])
       @whm.perform_request('my_function')
