@@ -38,6 +38,7 @@ module Whm
       @url = Whm::format_url(@host, options)
     end
 
+    protected
     def perform_request(function, options = {})
       @function = function
       @params   = format_query(options)

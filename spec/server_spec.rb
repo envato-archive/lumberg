@@ -45,7 +45,7 @@ describe Whm::Server do
 
         it "should call the proper URL" do
           JSON.should_receive(:parse).with("[]").and_return([])
-          @whm.perform_request('my_function')
+          @whm.send(:perform_request, 'my_function')
           @whm.function.should == 'my_function'
           @whm.params.should be_empty
           @whm.raw_response.should be_a(Net::HTTPOK)
@@ -53,7 +53,7 @@ describe Whm::Server do
 
         it "should call the proper URL and arguments" do
           JSON.should_receive(:parse).with("[]").and_return([])
-          @whm.perform_request('my_function', arg1: 1, arg2: 'test')
+          @whm.send(:perform_request, 'my_function', arg1: 1, arg2: 'test')
           @whm.function.should == 'my_function'
           @whm.params.should == "arg1=1&arg2=test"
           @whm.raw_response.should be_a(Net::HTTPOK)
@@ -65,7 +65,7 @@ describe Whm::Server do
 
         it "should set a response message" do
           @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
-          @whm.perform_request('applist')
+          @whm.send(:perform_request, 'applist')
           @whm.function.should == 'applist'
         end
       end
@@ -76,23 +76,23 @@ describe Whm::Server do
     describe "determine_response_type" do
       use_vcr_cassette "whm/server/determine_response_type", :record => :new_episodes
       it "should detect an action function" do
-        @whm.perform_request('testing')
-        @whm.determine_response_type.should == :action
+        @whm.send(:perform_request, 'testing')
+        @whm.send(:determine_response_type).should == :action
       end
 
       it "should detect an error function" do
-        @whm.perform_request('testing_error')
-        @whm.determine_response_type.should == :error
+        @whm.send(:perform_request, 'testing_error')
+        @whm.send(:determine_response_type).should == :error
       end
 
       it "should detect a query function" do
-        @whm.perform_request('testing_query')
-        @whm.determine_response_type.should == :query
+        @whm.send(:perform_request, 'testing_query')
+        @whm.send(:determine_response_type).should == :query
       end
 
       it "should detect an unknown function" do
-        @whm.perform_request('testing_unknown')
-        @whm.determine_response_type.should == :unknown
+        @whm.send(:perform_request, 'testing_unknown')
+        @whm.send(:determine_response_type).should == :unknown
       end
     end
   end
