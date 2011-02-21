@@ -62,7 +62,6 @@ module Lumberg
         end
         @raw_response = res
         @response = JSON.parse(@raw_response.body)
-        response_type
       end
 
       def response_type
