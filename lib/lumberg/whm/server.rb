@@ -21,7 +21,7 @@ module Whm
 
     def perform_request(function, options = {})
       options = format_query(options)
-      "#{@url}#{function}?#{options}"
+      uri = "#{@url}#{function}?#{options}"
     end
 
     def format_query(hash)
