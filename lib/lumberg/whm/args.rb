@@ -19,11 +19,11 @@ module Lumberg
       def requires!(hash, *params)
         params.each do |param| 
           if param.is_a?(Array)
-            raise Whm::ArgumentError.new("Missing required parameter: #{param.first}") unless hash.has_key?(param.first) 
-            raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param.first}") if (hash[param.first].nil? || hash[param.first].empty?)
+            raise WhmArgumentError.new("Missing required parameter: #{param.first}") unless hash.has_key?(param.first) 
+            raise WhmArgumentError.new("Required parameter cannot be blank: #{param.first}") if (hash[param.first].nil? || (hash[param.first].respond_to?(:empty?) && hash[param.first].empty?))
           else
-            raise Whm::ArgumentError.new("Missing required parameter: #{param}") unless hash.has_key?(param) 
-            raise Whm::ArgumentError.new("Required parameter cannot be blank: #{param}") if (hash[param].nil? || hash[param].empty?)
+            raise WhmArgumentError.new("Missing required parameter: #{param}") unless hash.has_key?(param) 
+            raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (hash[param].nil? || (hash[param].respond_to?(:empty?) && hash[param].empty?))
           end
         end
       end
@@ -34,9 +34,9 @@ module Lumberg
       def booleans!(hash, *params)
         params.each do |param|
           if param.is_a?(Array)
-            raise ArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}") unless hash[param.first].to_s.match(/(1|0)/)          
+            raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}") unless hash[param.first].to_s.match(/(1|0)/)          
           else
-            raise ArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}") unless hash[param].to_s.match(/(1|0)/)
+            raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}") unless hash[param].to_s.match(/(1|0)/)
           end
         end
       end
@@ -61,7 +61,7 @@ module Lumberg
         keys = hash.keys
         
         keys.each do |key|
-          raise ArgumentError.new("Not a valid parameter: #{key}") unless params.include?(key)
+          raise WhmArgumentError.new("Not a valid parameter: #{key}") unless params.include?(key)
         end
       end  
     end
