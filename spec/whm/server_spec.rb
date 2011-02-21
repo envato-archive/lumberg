@@ -67,26 +67,26 @@ module Lumberg
     end
 
     context "Determining response type" do
-      describe "determine_response_type" do
-        use_vcr_cassette "whm/server/determine_response_type", :record => :new_episodes
+      describe "response_type" do
+        use_vcr_cassette "whm/server/response_type", :record => :new_episodes
         it "should detect an action function" do
           @whm.send(:perform_request, 'testing')
-          @whm.send(:determine_response_type).should == :action
+          @whm.send(:response_type).should == :action
         end
 
         it "should detect an error function" do
           @whm.send(:perform_request, 'testing_error')
-          @whm.send(:determine_response_type).should == :error
+          @whm.send(:response_type).should == :error
         end
 
         it "should detect a query function" do
           @whm.send(:perform_request, 'testing_query')
-          @whm.send(:determine_response_type).should == :query
+          @whm.send(:response_type).should == :query
         end
 
         it "should detect an unknown function" do
           @whm.send(:perform_request, 'testing_unknown')
-          @whm.send(:determine_response_type).should == :unknown
+          @whm.send(:response_type).should == :unknown
         end
       end
     end

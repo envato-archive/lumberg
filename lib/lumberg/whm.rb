@@ -1,7 +1,8 @@
 module Lumberg
   module Whm
-    autoload :Args,   'lumberg/whm/args'
-    autoload :Server, 'lumberg/whm/server'
+    autoload :Args,    'lumberg/whm/args'
+    autoload :Server,  'lumberg/whm/server'
+    autoload :Account, 'lumberg/whm/account'
 
     class << self
       def format_url(earl, options = {})
