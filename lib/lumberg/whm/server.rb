@@ -4,12 +4,29 @@ module Whm
   class Server
     include Args
 
+    # Server
     attr_accessor :host
+
+    # Remote access hash
     attr_accessor :hash
+
+    # Base URL to the WHM API
     attr_accessor :url
+
+    # API username - default: root
     attr_accessor :user
+
+    # Raw HTTP response from WHM
     attr_accessor :raw_response
+
+    # WHM parsed response
+    attr_reader :response
+
+    # HTTP Params used for API requests
     attr_accessor :params
+
+    # WHM API function name
+    attr_reader :function
 
     def initialize(options)
       requires!(options, :host, :hash)
@@ -22,9 +39,9 @@ module Whm
     end
 
     def perform_request(function, options = {})
-      @params = format_query(options)
-
-      uri = URI.parse("#{@url}#{function}?#{@params}")
+      @function = function
+      @params   = format_query(options)
+      uri       = URI.parse("#{@url}#{function}?#{@params}")
 
       # Auth Header
       req = Net::HTTP::Get.new(uri.path)
@@ -42,6 +59,7 @@ module Whm
         h.request(req)
       end
       @raw_response = res
+      @response = JSON.parse(res.body)
     end
 
     def format_query(hash)
