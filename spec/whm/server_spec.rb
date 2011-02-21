@@ -38,8 +38,9 @@ module Lumberg
           it "should verify SSL certs for HTTP requests"
 
           it "should call the proper URL" do
+            pending
             JSON.should_receive(:parse).with("[]").and_return([])
-            @whm.send(:perform_request, 'my_function')
+            @whm.perform_request('my_function')
             @whm.function.should == 'my_function'
             @whm.params.should be_empty
             @whm.raw_response.should be_a(Net::HTTPOK)
@@ -47,7 +48,7 @@ module Lumberg
 
           it "should call the proper URL and arguments" do
             JSON.should_receive(:parse).with("[]").and_return([])
-            @whm.send(:perform_request, 'my_function', arg1: 1, arg2: 'test')
+            @whm.perform_request('my_function', arg1: 1, arg2: 'test')
             @whm.function.should == 'my_function'
             @whm.params.should == "arg1=1&arg2=test"
             @whm.raw_response.should be_a(Net::HTTPOK)
@@ -59,7 +60,7 @@ module Lumberg
 
           it "should set a response message" do
             @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
-            @whm.send(:perform_request, 'applist')
+            @whm.perform_request('applist')
             @whm.function.should == 'applist'
           end
         end
@@ -72,22 +73,22 @@ module Lumberg
         use_vcr_cassette "whm/server/response_type", :record => :new_episodes
 
         it "should detect an action function" do
-          @whm.send(:perform_request, 'testing')
+          @whm.perform_request('testing')
           @whm.send(:response_type).should == :action
         end
 
         it "should detect an error function" do
-          @whm.send(:perform_request, 'testing_error')
+          @whm.perform_request('testing_error')
           @whm.send(:response_type).should == :error
         end
 
         it "should detect a query function" do
-          @whm.send(:perform_request, 'testing_query')
+          @whm.perform_request('testing_query')
           @whm.send(:response_type).should == :query
         end
 
         it "should detect an unknown function" do
-          @whm.send(:perform_request, 'testing_unknown')
+          @whm.perform_request('testing_unknown')
           @whm.send(:response_type).should == :unknown
         end
       end
@@ -98,27 +99,27 @@ module Lumberg
       use_vcr_cassette "whm/server/response_type", :record => :new_episodes
 
       it "should return true for a successful :action" do
-        @whm.send(:perform_request, 'testing')
+        @whm.perform_request('testing')
         response = @whm.send(:format_response)
         response[:success].should be(true)
       end
 
       it "should return true for a successful :query" do
-        @whm.send(:perform_request, 'testing_query')
+        @whm.perform_request('testing_query')
         response = @whm.send(:format_response)
         response[:success].should be(true)
         response[:params].should have_key('acct')
       end
 
       it "should return false on :error" do
-        @whm.send(:perform_request, 'testing_error')
+        @whm.perform_request('testing_error')
         response = @whm.send(:format_response)
         response[:success].should be(false)
         response[:message].should match(/Unknown App Req/)
       end
 
       it "should return false on :unknown" do
-        @whm.send(:perform_request, 'testing_unknown')
+        @whm.perform_request('testing_unknown')
         response = @whm.send(:format_response)
         response[:success].should be(false)
         response[:message].should match(/Unknown error occurred .*wtf.*/)

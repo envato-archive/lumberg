@@ -45,7 +45,7 @@ module Lumberg
         uri       = URI.parse("#{@url}#{function}?#{@params}")
 
         # Auth Header
-        req = Net::HTTP::Get.new("#{uri.path}?#{uri.query}")
+        req = Net::HTTP::Get.new(uri.to_s)
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
         # Do the request
