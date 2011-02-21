@@ -62,10 +62,13 @@ module Lumberg
         end
         @raw_response = res
         @response = JSON.parse(@raw_response.body)
+        response_type
       end
 
-      def determine_response_type
-        if @response.has_key?('error')
+      def response_type
+        if !@response.respond_to?(:has_key?)
+          :unknown
+        elsif @response.has_key?('error')
           :error
         elsif @response.has_key?('result')
           :action
