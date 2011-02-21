@@ -62,6 +62,7 @@ module Lumberg
         end
         @raw_response = res
         @response = JSON.parse(@raw_response.body)
+        format_response
       end
 
       def response_type
@@ -76,6 +77,31 @@ module Lumberg
         else
           :unknown
         end
+      end
+
+      def format_response
+        success = false
+        message = nil
+        params  = nil
+
+        case response_type
+        when :action
+          success = @response['result'].first['status'] == 1
+          message = @response['result'].first['statusmsg']
+        when :query
+          success = @response['status'] == 1
+          message = @response['statusmsg']
+
+          res = @response.dup
+          res.delete('status')
+          res.delete('statusmsg')
+          params = res
+        when :error
+          message = @response['error']
+        when :unknown
+          message = "Unknown error occurred #{@response.inspect}"
+        end
+        {success: success, message: message, params: params}
       end
 
       def format_query(hash)

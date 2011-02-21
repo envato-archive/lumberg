@@ -66,9 +66,11 @@ module Lumberg
       end
     end
 
-    context "Determining response type" do
+    context "Parsing response" do
       describe "response_type" do
+
         use_vcr_cassette "whm/server/response_type", :record => :new_episodes
+
         it "should detect an action function" do
           @whm.send(:perform_request, 'testing')
           @whm.send(:response_type).should == :action
@@ -88,6 +90,37 @@ module Lumberg
           @whm.send(:perform_request, 'testing_unknown')
           @whm.send(:response_type).should == :unknown
         end
+      end
+    end
+
+    describe "format_response should return true when successful" do
+
+      use_vcr_cassette "whm/server/response_type", :record => :new_episodes
+
+      it "should return true for a successful :action" do
+        @whm.send(:perform_request, 'testing')
+        response = @whm.send(:format_response)
+        response[:success].should be(true)
+      end
+
+      it "should return true for a successful :query" do
+        @whm.send(:perform_request, 'testing_query')
+        response = @whm.send(:format_response)
+        response[:success].should be(true)
+      end
+
+      it "should return false on :error" do
+        @whm.send(:perform_request, 'testing_error')
+        response = @whm.send(:format_response)
+        response[:success].should be(false)
+        response[:message].should match(/Unknown App Req/)
+      end
+
+      it "should return false on :unknown" do
+        @whm.send(:perform_request, 'testing_unknown')
+        response = @whm.send(:format_response)
+        response[:success].should be(false)
+        response[:message].should match(/Unknown error occurred .*wtf.*/)
       end
     end
   end
