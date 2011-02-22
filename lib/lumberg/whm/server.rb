@@ -90,10 +90,11 @@ module Lumberg
         when :action
           success = @response['result'].first['status'].to_i == 1
           message = @response['result'].first['statusmsg']
-          res = @response.dup
-          res['result'].delete('status')
-          res['result'].delete('statusmsg')
-          params = res
+
+          res     = @response['result'].first.dup
+          res.delete('status')
+          res.delete('statusmsg')
+          params  = res
         when :query
           success = @response['status'].to_i == 1
           message = @response['statusmsg']
