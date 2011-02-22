@@ -35,7 +35,7 @@ module Lumberg
       def initialize(options)
         requires!(options, :host, :hash)
 
-        @ssl_verify ||= true
+        @ssl_verify ||= false
         @host       = options.delete(:host)
         @hash       = Whm::format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')

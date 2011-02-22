@@ -57,11 +57,16 @@ module Lumberg
         end
 
         describe "ssl_verify" do
-          it "should verify SSL certs for HTTP requests by default" do
+          it "should no verify SSL certs for HTTP requests by default" do
+            @whm.ssl_verify.should be(false)
+          end
+
+          it "should verify SSL certs for HTTP requests when asked" do
+            @whm.ssl_verify = true
             @whm.ssl_verify.should be(true)
           end
 
-          it "should not verify SSL certs for HTTP requests when the user is irresponsible" do
+          it "should not verify SSL certs for HTTP requests when asked" do
             @whm.ssl_verify = false
             @whm.ssl_verify.should be(false)
           end
