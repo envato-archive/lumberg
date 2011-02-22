@@ -3,8 +3,6 @@ require 'cgi'
 module Lumberg
   module Whm
     class Server
-      include Args
-
       # Server
       attr_accessor :host
 
@@ -33,7 +31,10 @@ module Lumberg
       attr_accessor :ssl_verify
 
       def initialize(options)
-        requires!(options, :host, :hash)
+        Args.new(options) do |c|
+          c.requires  = [:host, :hash]
+          c.optionals = [:user]
+        end
 
         @ssl_verify ||= false
         @host       = options.delete(:host)

@@ -1,6 +1,31 @@
 module Lumberg
   module Whm
-    module Args
+    class Args
+
+      attr_writer :requires
+      attr_writer :optionals
+      attr_writer :booleans
+
+      def requires
+        @requires ||= []
+      end
+
+      def booleans
+        @booleans ||= []
+      end
+
+      def optionals
+        @optionals ||= []
+        @optionals.concat(requires).concat(booleans).uniq
+      end
+
+      def initialize(options)
+        yield self 
+        requires!(options, *requires) unless requires.empty?
+        booleans!(options, *booleans) unless booleans.empty?
+        valid_options!(options, *optionals) unless optionals.empty?
+      end
+
       # Check the included hash for the included parameters, and ensure they aren't blank.
       #
       # ==== Example
