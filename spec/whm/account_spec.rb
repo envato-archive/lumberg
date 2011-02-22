@@ -83,6 +83,12 @@ module Lumberg
         message[:success].should be(true)
         message[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
+
+      it "should return an error when the user doesn't exist" do
+        message = @account.removeacct(user: 'notreal')
+        message[:success].should be(false)
+        message[:message].should match(/notreal does not exist/i)
+      end
     end
   end
 end
