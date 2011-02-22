@@ -12,7 +12,7 @@ module Lumberg
       end
 
       # WHM functions
-      def createacct(options = {})
+      def create(options = {})
         requires!(options, :username, :domain, :password)
         booleans!(options, :savepkg, :ip, :cgi, :frontpage, :hasshell, :useregns, :reseller, :forcedns)
         valid_options!(options, :plan, :pkgname, :savepkg, :featurelist, :quota, :password, :ip, :cgi, 
@@ -22,7 +22,7 @@ module Lumberg
         server.perform_request('createacct', options)
       end
 
-      def removeacct(options = {})
+      def remove(options = {})
         requires!(options, :user)
         valid_options!(options, :user, :keepdns)
         booleans!(options, :keepdns)
@@ -30,7 +30,7 @@ module Lumberg
         server.perform_request('removeacct', options)
       end
 
-      def passwd(options = {})
+      def change_password(options = {})
         requires!(options, :user, :pass)
         valid_options!(options, :user, :pass, :db_pass_update)
         booleans!(options, :db_pass_update)
