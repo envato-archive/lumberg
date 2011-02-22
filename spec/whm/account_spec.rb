@@ -26,7 +26,6 @@ module Lumberg
     end
 
     describe "createacct" do
-
       it "should require a username" do
         expect { @account.createacct}.to raise_error(WhmArgumentError, /Missing required param.* username/)
       end
@@ -42,11 +41,17 @@ module Lumberg
       use_vcr_cassette "whm/account/createacct"
 
       it "should allow account creation" do
-        message = @account.createacct(username: 'validu', password: 'hummingbird123', domain: 'valid-thing.com')
+        message = @account.createacct(username: 'valid', password: 'hummingbird123', domain: 'valid-thing.com')
         message[:success].should be(true)
         message[:message].should match(/Account Creation Ok/i)
       end
 
+      it "should return an error on duplicate account" do
+        @account.createacct(username: 'invalid', password: 'hummingbird123', domain: 'invalid-thing.com')
+        message = @account.createacct(username: 'invalid', password: 'hummingbird123', domain: 'invalid-thing.com')
+        message[:success].should be(false)
+        message[:message].should match(/username already exists/i)
+      end
     end
   end
 end
