@@ -69,6 +69,13 @@ module Lumberg
       it "should remove a user" do
         message = @account.removeacct(user: 'removeme')
         message[:success].should be(true)
+        message[:params][:rawout].should match(/Removing DNS Entries/i)
+      end
+
+      it "should remove a user but keep DNS" do
+        message = @account.removeacct(user: 'removeme', keepdns: 1)
+        message[:success].should be(true)
+        message[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
     end
   end

@@ -14,7 +14,7 @@ module Lumberg
       # WHM functions
       def createacct(options = {})
         requires!(options, :username, :domain, :password)
-        # booleans!(options, :savepkg, :ip, :cgi, :frontpage, :hasshell, :useregns, :reseller, :forcedns)
+        booleans!(options, :savepkg, :ip, :cgi, :frontpage, :hasshell, :useregns, :reseller, :forcedns)
         valid_options!(options, :plan, :pkgname, :savepkg, :featurelist, :quota, :password, :ip, :cgi, 
                        :frontpage, :hasshell, :contactemail, :cpmod, :maxftp, :maxsql, :maxpop, :maxlst, 
                        :maxsub, :maxpark, :maxaddon, :bwlimit, :customip, :language, :useregns, :hasuseregns, 
@@ -24,6 +24,9 @@ module Lumberg
 
       def removeacct(options = {})
         requires!(options, :user)
+        valid_options!(options, :user, :keepdns)
+        booleans!(options, :keepdns)
+
         server.perform_request('removeacct', options)
       end
 
