@@ -32,25 +32,27 @@ module Lumberg
    
     context "Performing an HTTP request" do
       describe "perform_request" do
-        describe "calling my_function" do
-          use_vcr_cassette "whm/server/my_function", :record => :new_episodes
+        unless live_test?
+          describe "calling my_function" do
+            use_vcr_cassette "whm/server/my_function", :record => :new_episodes
 
-          it "should verify SSL certs for HTTP requests"
+            it "should verify SSL certs for HTTP requests"
 
-          it "should call the proper URL" do
-            JSON.should_receive(:parse).with("[]").and_return([])
-            @whm.perform_request('my_function')
-            @whm.function.should == 'my_function'
-            @whm.params.should be_empty
-            @whm.raw_response.should be_a(Net::HTTPOK)
-          end
+            it "should call the proper URL" do
+              JSON.should_receive(:parse).with("[]").and_return([])
+              @whm.perform_request('my_function')
+              @whm.function.should == 'my_function'
+              @whm.params.should be_empty
+              @whm.raw_response.should be_a(Net::HTTPOK)
+            end
 
-          it "should call the proper URL and arguments" do
-            JSON.should_receive(:parse).with("[]").and_return([])
-            @whm.perform_request('my_function', arg1: 1, arg2: 'test')
-            @whm.function.should == 'my_function'
-            @whm.params.should == "arg1=1&arg2=test"
-            @whm.raw_response.should be_a(Net::HTTPOK)
+            it "should call the proper URL and arguments" do
+              JSON.should_receive(:parse).with("[]").and_return([])
+              @whm.perform_request('my_function', arg1: 1, arg2: 'test')
+              @whm.function.should == 'my_function'
+              @whm.params.should == "arg1=1&arg2=test"
+              @whm.raw_response.should be_a(Net::HTTPOK)
+            end
           end
         end
 
