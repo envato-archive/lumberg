@@ -63,30 +63,30 @@ module Lumberg
     describe "remove" do
       use_vcr_cassette "whm/account/removeacct"
 
-      it "should require a 'user' param" do
-        expect { @account.remove }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
+      it "should require a 'username' param" do
+        expect { @account.remove }.to raise_error(WhmArgumentError, /Missing required parameter: username/)
       end
 
       it "should remove a user and keep DNS by default" do
-        message = @account.remove(user: 'removeme')
+        message = @account.remove(username: 'removeme')
         message[:success].should be(true)
         message[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user and remove DNS when asked" do
-        message = @account.remove(user: 'removeme', keepdns: 0)
+        message = @account.remove(username: 'removeme', keepdns: 0)
         message[:success].should be(true)
         message[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user but keep DNS" do
-        message = @account.remove(user: 'removeme', keepdns: 1)
+        message = @account.remove(username: 'removeme', keepdns: 1)
         message[:success].should be(true)
         message[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
 
       it "should return an error when the user doesn't exist" do
-        message = @account.remove(user: 'notreal')
+        message = @account.remove(username: 'notreal')
         message[:success].should be(false)
         message[:message].should match(/notreal does not exist/i)
       end
@@ -96,21 +96,21 @@ module Lumberg
       use_vcr_cassette "whm/account/passwd"
 
       it "should require a user" do
-        expect { @account.change_password }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
+        expect { @account.change_password }.to raise_error(WhmArgumentError, /Missing required parameter: username/)
       end
 
       it "should require a password" do
-        expect { @account.change_password(user: 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pass/)
+        expect { @account.change_password(username: 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pass/)
       end
 
       it "should change the password" do
-        message = @account.change_password(user: 'changeme', pass: 'superpass')
+        message = @account.change_password(username: 'changeme', pass: 'superpass')
         message[:success].should be(true)
         message[:message].should match(/Password changed for user changeme/i)
       end
 
       it "should not be successful when the user doesn't exist" do
-        message = @account.change_password(user: 'dontchangeme', pass: 'superpass')
+        message = @account.change_password(username: 'dontchangeme', pass: 'superpass')
         message[:success].should be(false)
         message[:message].should match(/dontchangeme does not exist/i)
       end

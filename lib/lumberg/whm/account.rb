@@ -1,5 +1,8 @@
 module Lumberg
   module Whm
+    # Some WHM functions require different params for the same 'thing'
+    # e.g. some accept 'username' while others accept 'user' 
+    # Be sure to keep our API consistent and work around those inconsistencies internally 
     class Account
       include Args
 
@@ -23,18 +26,20 @@ module Lumberg
       end
 
       def remove(options = {})
-        requires!(options, :user)
-        valid_options!(options, :user, :keepdns)
+        requires!(options, :username)
+        valid_options!(options, :username, :keepdns)
         booleans!(options, :keepdns)
 
+        options[:user] = options.delete(:username)
         server.perform_request('removeacct', options)
       end
 
       def change_password(options = {})
-        requires!(options, :user, :pass)
-        valid_options!(options, :user, :pass, :db_pass_update)
+        requires!(options, :username, :pass)
+        valid_options!(options, :username, :pass, :db_pass_update)
         booleans!(options, :db_pass_update)
 
+        options[:user] = options.delete(:username)
         server.perform_request('passwd', options.merge(key: 'passwd'))
       end
 
