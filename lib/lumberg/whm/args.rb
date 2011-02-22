@@ -2,9 +2,31 @@ module Lumberg
   module Whm
     class Args
 
+      # Arguments that must be present
       attr_writer :requires
+
+      # Arguments that can be present
       attr_writer :optionals
+
+      # Arguments that must be boolean
       attr_writer :booleans
+
+      # Check the included hash for the included parameters.
+      # Raises WhmArgumentError when it's mising the proper params
+      #
+      # ==== Example
+      # 
+      #    Args.new(options) do |c|
+      #      c.requries  = [:user, :pass]
+      #      c.booleans  = [:name]
+      #      c.optionals = [:whatever]
+      #    end
+      def initialize(options)
+        yield self 
+        requires!(options, requires) unless requires.empty?
+        booleans!(options, booleans) unless booleans.empty?
+        valid_options!(options, optionals) unless optionals.empty?
+      end
 
       def requires
         @requires ||= []
@@ -19,29 +41,9 @@ module Lumberg
         @optionals.concat(requires).concat(booleans).uniq
       end
 
-      def initialize(options)
-        yield self 
-        requires!(options, *requires) unless requires.empty?
-        booleans!(options, *booleans) unless booleans.empty?
-        valid_options!(options, *optionals) unless optionals.empty?
-      end
+      protected
 
-      # Check the included hash for the included parameters, and ensure they aren't blank.
-      #
-      # ==== Example
-      # 
-      #    class User
-      #      def initialize
-      #        requires!(options, :username, :password)
-      #      end
-      #    end
-      #
-      #    >> User.new
-      #    ArgumentError: Missing required parameter: username
-      #
-      #    >> User.new(:username => "john")
-      #    ArgumentError: Missing required parameter: password
-      def requires!(hash, *params)
+      def requires!(hash, params)
         params.each do |param| 
           if param.is_a?(Array)
             raise WhmArgumentError.new("Missing required parameter: #{param.first}") unless hash.has_key?(param.first) 
@@ -56,7 +58,7 @@ module Lumberg
 
       # Checks to see if supplied params (which are booleans) contain
       # either a 1 ("Yes") or 0 ("No") value.
-      def booleans!(hash, *params)
+      def booleans!(hash, params)
         params.each do |param|
           if param.is_a?(Array)
             if hash.include?(param.first) && !hash[param.first].to_s.match(/(1|0)/)
@@ -70,23 +72,7 @@ module Lumberg
         end
       end
 
-      # Checks the hash to see if the hash includes any parameter
-      # which is not included in the list of valid parameters.
-      #
-      # ==== Example
-      #
-      #    class User
-      #      def initialize
-      #        valid_options!(options, :username)
-      #      end
-      #    end
-      #
-      #    >> User.new(:username => "josh")
-      #    => #<User:0x18a1190 @username="josh">
-      #
-      #    >> User.new(:username => "josh", :credit_card => "5105105105105100")
-      #    ArgumentError: Not a valid parameter: credit_card
-      def valid_options!(hash, *params)
+      def valid_options!(hash, params)
         keys = hash.keys
         
         keys.each do |key|
