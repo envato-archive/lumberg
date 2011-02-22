@@ -29,12 +29,16 @@ module Lumberg
       # WHM API function name
       attr_reader :function
 
+      # HTTP SSL verify mode
+      attr_accessor :ssl_verify
+
       def initialize(options)
         requires!(options, :host, :hash)
 
-        @host  = options.delete(:host)
-        @hash  = Whm::format_hash(options.delete(:hash))
-        @user = (options.has_key?(:user) ? options.delete(:user) : 'root')
+        @ssl_verify ||= true
+        @host       = options.delete(:host)
+        @hash       = Whm::format_hash(options.delete(:hash))
+        @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
 
         @url = Whm::format_url(@host, options)
       end
@@ -54,7 +58,12 @@ module Lumberg
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.port == 2087
           # TODO: Install CAs
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          if @ssl_verify
+            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+            http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
+          else
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          end
           http.use_ssl = true 
         end
 

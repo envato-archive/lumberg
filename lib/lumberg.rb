@@ -12,4 +12,9 @@ require 'lumberg/exceptions'
 require 'lumberg/whm'
 
 module Lumberg
+  class << self
+    def base_path
+      File.dirname(__FILE__)
+    end
+  end
 end

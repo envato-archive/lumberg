@@ -38,8 +38,6 @@ module Lumberg
           describe "calling my_function" do
             use_vcr_cassette "whm/server/my_function"
 
-            it "should verify SSL certs for HTTP requests"
-
             it "should call the proper URL" do
               JSON.should_receive(:parse).with("[]").and_return([])
               @whm.perform_request('my_function')
@@ -55,6 +53,17 @@ module Lumberg
               @whm.params.should == "arg1=1&arg2=test"
               @whm.raw_response.should be_a(Net::HTTPOK)
             end
+          end
+        end
+
+        describe "ssl_verify" do
+          it "should verify SSL certs for HTTP requests by default" do
+            @whm.ssl_verify.should be(true)
+          end
+
+          it "should not verify SSL certs for HTTP requests when the user is irresponsible" do
+            @whm.ssl_verify = false
+            @whm.ssl_verify.should be(false)
           end
         end
 
