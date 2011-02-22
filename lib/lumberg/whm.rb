@@ -19,6 +19,13 @@ module Lumberg
         value.gsub!(/\n|\s/, '')
         value
       end
+
+      def symbolize_keys(hash)
+        hash.inject({}) do |options, (key, value)|
+          options[(key.to_sym rescue key) || key] = value
+          options
+        end
+      end
     end
   end
 end

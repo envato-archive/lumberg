@@ -84,12 +84,16 @@ module Lumberg
       def format_response
         success = false
         message = nil
-        params  = nil
+        params  = {}
 
         case response_type
         when :action
           success = @response['result'].first['status'].to_i == 1
           message = @response['result'].first['statusmsg']
+          res = @response.dup
+          res['result'].delete('status')
+          res['result'].delete('statusmsg')
+          params = res
         when :query
           success = @response['status'].to_i == 1
           message = @response['statusmsg']
@@ -104,7 +108,7 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{@response.inspect}"
         end
-        {success: success, message: message, params: params}
+        {success: success, message: message, params: Whm::symbolize_keys(params)}
       end
 
       def format_query(hash)
