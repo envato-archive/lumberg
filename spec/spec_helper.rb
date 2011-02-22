@@ -6,12 +6,17 @@ require 'vcr'
 VCR.config do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.stub_with :fakeweb
+  c.default_cassette_options = {record: :new_episodes}
+end
+
+def live_test?
+  !ENV['WHM_REAL'].nil?
 end
 
 RSpec.configure do |c|
   c.extend VCR::RSpec::Macros
   c.before(:each) do
-    if ENV['WHM_REAL']
+    if live_test?
       @whm_hash = ENV['WHM_HASH'].dup
       @whm_host = ENV['WHM_HOST'].dup
     else
