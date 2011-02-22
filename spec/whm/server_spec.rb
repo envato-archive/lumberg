@@ -38,7 +38,6 @@ module Lumberg
           it "should verify SSL certs for HTTP requests"
 
           it "should call the proper URL" do
-            pending
             JSON.should_receive(:parse).with("[]").and_return([])
             @whm.perform_request('my_function')
             @whm.function.should == 'my_function'
