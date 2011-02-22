@@ -34,9 +34,13 @@ module Lumberg
       def booleans!(hash, *params)
         params.each do |param|
           if param.is_a?(Array)
-            raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}") unless hash[param.first].to_s.match(/(1|0)/)          
+            if hash.include?(param.first) && !hash[param.first].to_s.match(/(1|0)/)
+              raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}")
+            end
           else
-            raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}") unless hash[param].to_s.match(/(1|0)/)
+            if hash.include?(param) && !hash[param].to_s.match(/(1|0)/)
+              raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}")
+            end
           end
         end
       end
