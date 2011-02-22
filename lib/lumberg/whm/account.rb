@@ -8,7 +8,7 @@ module Lumberg
 
       def initialize(options = {})
         Args.new(options) do |c|
-          c.requires  = [:server]
+          c.requires = [:server]
         end
      
         setup_server options.delete(:server) 
