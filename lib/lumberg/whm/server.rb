@@ -86,10 +86,10 @@ module Lumberg
 
         case response_type
         when :action
-          success = @response['result'].first['status'] == 1
+          success = @response['result'].first['status'].to_i == 1
           message = @response['result'].first['statusmsg']
         when :query
-          success = @response['status'] == 1
+          success = @response['status'].to_i == 1
           message = @response['statusmsg']
 
           # returns the rest as a params arg
