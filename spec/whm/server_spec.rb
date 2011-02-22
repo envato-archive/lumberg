@@ -109,7 +109,7 @@ module Lumberg
         end
       end
 
-      describe "format_response should return true when successful" do
+      context "Determining response type" do
 
         use_vcr_cassette "whm/server/response_type"
 
