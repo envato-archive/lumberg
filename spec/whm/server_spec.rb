@@ -38,7 +38,10 @@ module Lumberg
           describe "calling my_function" do
             use_vcr_cassette "whm/server/my_function"
 
-            it "should verify SSL certs for HTTP requests"
+            it "should verify SSL certs for HTTP requests" do
+              pending("verify SSL CA") do
+              end
+            end
 
             it "should call the proper URL" do
               JSON.should_receive(:parse).with("[]").and_return([])
