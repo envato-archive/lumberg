@@ -9,6 +9,7 @@ require 'net/https'
 # Internal Libs
 require 'lumberg/version'
 require 'lumberg/exceptions'
+require 'lumberg/whm/args'
 require 'lumberg/whm'
 
 module Lumberg
