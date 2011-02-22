@@ -62,6 +62,7 @@ module Lumberg
 
     describe "removeacct" do
       use_vcr_cassette "whm/account/removeacct"
+
       it "should require a 'user' param" do
         expect { @account.removeacct }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
       end
@@ -88,6 +89,30 @@ module Lumberg
         message = @account.removeacct(user: 'notreal')
         message[:success].should be(false)
         message[:message].should match(/notreal does not exist/i)
+      end
+    end
+
+    describe "passwd" do
+      use_vcr_cassette "whm/account/passwd"
+
+      it "should require a user" do
+        expect { @account.passwd }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
+      end
+
+      it "should require a password" do
+        expect { @account.passwd(user: 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pass/)
+      end
+
+      it "should change the password" do
+        message = @account.passwd(user: 'changeme', pass: 'superpass')
+        message[:success].should be(true)
+        message[:message].should match(/Password changed for user changeme/i)
+      end
+
+      it "should not be successful when the user doesn't exist" do
+        message = @account.passwd(user: 'dontchangeme', pass: 'superpass')
+        message[:success].should be(false)
+        message[:message].should match(/dontchangeme does not exist/i)
       end
     end
   end

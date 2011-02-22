@@ -45,8 +45,14 @@ module Lumberg
 
       def perform_request(function, options = {})
         @function = function
+        # WHM uses different things for the response keys
+        # Also their docs lie
+        @key      = options.delete(:key)
+        @key    ||= 'result'
+
         @params   = format_query(options)
         uri       = URI.parse("#{@url}#{function}?#{@params}")
+
 
         # Auth Header
         _url = uri.path
@@ -57,7 +63,6 @@ module Lumberg
         # Do the request
         http = Net::HTTP.new(uri.host, uri.port)
         if uri.port == 2087
-          # TODO: Install CAs
           if @ssl_verify
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
             http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
@@ -81,7 +86,7 @@ module Lumberg
           :unknown
         elsif @response.has_key?('error')
           :error
-        elsif @response.has_key?('result')
+        elsif @response.has_key?(@key)
           :action
         elsif @response.has_key?('status') && @response.has_key?('statusmsg')
           :query
@@ -97,10 +102,10 @@ module Lumberg
 
         case response_type
         when :action
-          success = @response['result'].first['status'].to_i == 1
-          message = @response['result'].first['statusmsg']
+          success = @response[@key].first['status'].to_i == 1
+          message = @response[@key].first['statusmsg']
 
-          res     = @response['result'].first.dup
+          res     = @response[@key].first.dup
           res.delete('status')
           res.delete('statusmsg')
           params  = res

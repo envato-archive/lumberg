@@ -30,6 +30,14 @@ module Lumberg
         server.perform_request('removeacct', options)
       end
 
+      def passwd(options = {})
+        requires!(options, :user, :pass)
+        valid_options!(options, :user, :pass, :db_pass_update)
+        booleans!(options, :db_pass_update)
+
+        server.perform_request('passwd', options.merge(key: 'passwd'))
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
