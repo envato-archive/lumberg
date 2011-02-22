@@ -66,8 +66,14 @@ module Lumberg
         expect { @account.removeacct }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
       end
 
-      it "should remove a user" do
+      it "should remove a user and keep DNS by default" do
         message = @account.removeacct(user: 'removeme')
+        message[:success].should be(true)
+        message[:params][:rawout].should match(/Removing DNS Entries/i)
+      end
+
+      it "should remove a user and remove DNS when asked" do
+        message = @account.removeacct(user: 'removeme', keepdns: 0)
         message[:success].should be(true)
         message[:params][:rawout].should match(/Removing DNS Entries/i)
       end
