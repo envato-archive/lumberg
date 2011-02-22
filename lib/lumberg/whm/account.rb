@@ -22,6 +22,11 @@ module Lumberg
         server.perform_request('createacct', options)
       end
 
+      def removeacct(options = {})
+        requires!(options, :user)
+        server.perform_request('removeacct', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 

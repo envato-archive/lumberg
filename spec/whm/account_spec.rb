@@ -29,18 +29,18 @@ module Lumberg
       use_vcr_cassette "whm/account/createacct"
 
       it "should require a username" do
-        expect { @account.createacct}.to raise_error(WhmArgumentError, /Missing required param.* username/)
+        expect { @account.createacct}.to raise_error(WhmArgumentError, /Missing required parameter: username/)
       end
 
       it "should require a domain" do
-        expect { @account.createacct(username: 'user')}.to raise_error(WhmArgumentError, /Missing required param.* domain/)
+        expect { @account.createacct(username: 'user')}.to raise_error(WhmArgumentError, /Missing required parameter: domain/)
       end
 
       it "should require a password" do
-        expect { @account.createacct(username: 'user', domain: 'example.com')}.to raise_error(WhmArgumentError, /Missing required param.* password/)
+        expect { @account.createacct(username: 'user', domain: 'example.com')}.to raise_error(WhmArgumentError, /Missing required parameter: password/)
       end
 
-      it "should allow account creation with proper params" do
+      it "should create the account with proper params" do
         message = @account.createacct(username: 'valid', password: 'hummingbird123', domain: 'valid-thing.com')
         message[:success].should be(true)
         message[:message].should match(/Account Creation Ok/i)
@@ -52,11 +52,23 @@ module Lumberg
                                                   :nameservera, :nameserver3)
       end
 
-      it "should return an error on duplicate account" do
+      it "should return an error on duplicate accounts" do
         @account.createacct(username: 'invalid', password: 'hummingbird123', domain: 'invalid-thing.com')
         message = @account.createacct(username: 'invalid', password: 'hummingbird123', domain: 'invalid-thing.com')
         message[:success].should be(false)
         message[:message].should match(/username already exists/i)
+      end
+    end
+
+    describe "removeacct" do
+      use_vcr_cassette "whm/account/removeacct"
+      it "should require a 'user' param" do
+        expect { @account.removeacct }.to raise_error(WhmArgumentError, /Missing required parameter: user/)
+      end
+
+      it "should remove a user" do
+        message = @account.removeacct(user: 'removeme')
+        message[:success].should be(true)
       end
     end
   end

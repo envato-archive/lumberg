@@ -15,6 +15,7 @@ module Lumberg
       end
 
       def format_hash(value)
+        value = value.dup unless value.nil?
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless value.is_a?(String)
         value.gsub!(/\n|\s/, '')
         value
