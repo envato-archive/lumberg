@@ -7,7 +7,6 @@ module Lumberg
       attr_reader :server
 
       def initialize(options = {})
-        # requires!(options, :server)
         Args.new(options) do |c|
           c.requires  = [:server]
         end
