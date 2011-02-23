@@ -20,9 +20,9 @@ module Lumberg
 
         @options = options
 
-        requires! #(options, @required_params) unless @required_params.empty?
-        booleans!#(options, @boolean_params) unless @boolean_params.empty?
-        valid_options!#(options, @optional_params) unless @optional_params.empty?
+        requires!
+        booleans!
+        valid_options!
       end
 
       def requires(*values)
