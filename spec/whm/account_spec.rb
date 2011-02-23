@@ -133,7 +133,22 @@ module Lumberg
     end 
 
     describe "summary" do
-      pending
+      use_vcr_cassette "whm/account/accountsummary"
+      it "should require a user" do
+        expect { @account.summary }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should return an error for invalid users" do
+        result = @account.summary(username: 'notexists')
+        result[:success].should_not be_true
+        result[:message].should match(/does not exist/i)
+      end
+
+      it "should return a summary" do
+        result = @account.summary(username: 'summary')
+        result[:success].should be_true
+        result[:message].should match(/ok/i)
+      end
     end 
 
     describe "suspend" do
