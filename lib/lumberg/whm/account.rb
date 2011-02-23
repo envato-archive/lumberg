@@ -59,6 +59,7 @@ module Lumberg
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
+          c.optionals :reason
         end
 
         options[:user] = options.delete(:username)

@@ -168,6 +168,13 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/has been suspended/i)
       end
+
+      it "should suspend with a reason" do
+        @account.server.should_receive(:perform_request)
+          .with('suspendacct', hash_including(user: 'suspendme', reason: 'abusive user'))
+
+        result = @account.suspend(username: 'suspendme', reason: 'abusive user')
+      end
     end 
 
     describe "unsuspend" do
