@@ -56,6 +56,15 @@ module Lumberg
         server.perform_request('accountsummary', options)
       end
 
+      def suspend(options ={})
+        Args.new(options) do |c|
+          c.requires  :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('suspendacct', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 

@@ -152,7 +152,22 @@ module Lumberg
     end 
 
     describe "suspend" do
-      pending
+      use_vcr_cassette "whm/account/suspend"
+      it "should require a user" do
+        expect { @account.suspend }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should return an error for invalid users" do
+        result = @account.suspend(username: 'notexists')
+        result[:success].should_not be_true
+        result[:message].should match(/does not exist/i)
+      end
+
+      it "should suspend" do
+        result = @account.suspend(username: 'suspendme')
+        result[:success].should be_true
+        result[:message].should match(/has been suspended/i)
+      end
     end 
 
     describe "unsuspend" do
