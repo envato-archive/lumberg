@@ -65,6 +65,24 @@ module Lumberg
           options[:user] = options.delete(:username)
           server.perform_request('limitbw', options)
         end
+
+      def suspend(options ={})
+        Args.new(options) do |c|
+          c.requires  :username
+          c.optionals :reason
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('suspendacct', options)
+      end
+
+      def unsuspend(options ={})
+        Args.new(options) do |c|
+          c.requires  :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('unsuspendacct', options)
       end
 
       protected 
