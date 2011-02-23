@@ -116,7 +116,7 @@ module Lumberg
       end
     end
 
-    describe "limit bandwidth", :wip => true do
+    describe "limit bandwidth" do
       use_vcr_cassette "whm/account/limitbw"
 
       it "should require a user" do
