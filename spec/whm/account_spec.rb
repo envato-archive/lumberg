@@ -118,6 +118,7 @@ module Lumberg
 
     describe "limit bandwidth", :wip => true do
       use_vcr_cassette "whm/account/limitbw"
+      use_vcr_cassette "whm/account/accountsummary"
 
       it "should require a user" do
         expect { @account.limit_bandwidth(bwlimit: 99999) }.to raise_error(WhmArgumentError, /Missing required parameter: username/)
@@ -134,9 +135,7 @@ module Lumberg
       end
 
       it "should not be successful when the user doesn't exist" do
-        result = @account.limit_bandwidth(username: 'dontchangeme', bwlimit: 99999)
-        result[:success].should be(false)
-        result[:message].should match(/dontchangeme does not exist/)
+        expect { @account.limit_bandwidth(username: 'notexists', bwlimit: 99999) }.to raise_error(WhmInvalidUser, /User notexists does not exist/)
       end
     end 
 

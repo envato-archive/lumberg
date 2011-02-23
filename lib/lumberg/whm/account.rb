@@ -61,8 +61,10 @@ module Lumberg
           c.requires :username, :bwlimit
         end
 
-        options[:user] = options.delete(:username)
-        server.perform_request('limitbw', options)
+        verify_user(options[:username]) do
+          options[:user] = options.delete(:username)
+          server.perform_request('limitbw', options)
+        end
       end
 
       protected 
