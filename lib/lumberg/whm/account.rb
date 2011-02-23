@@ -19,10 +19,10 @@ module Lumberg
         Args.new(options) do |c|
           c.requires  :username, :domain, :password
           c.booleans  :savepkg, :ip, :cgi, :frontpage, :hasshell, :useregns, :reseller, :forcedns
-          c.optionals :plan, :pkgname, :savepkg, :featurelist, :quota, :password, :ip, :cgi, 
+          c.optionals :plan, :pkgname, :savepkg, :featurelist, :quota, :ip, :cgi, 
                        :frontpage, :hasshell, :contactemail, :cpmod, :maxftp, :maxsql, :maxpop, :maxlst, 
                        :maxsub, :maxpark, :maxaddon, :bwlimit, :customip, :language, :useregns, :hasuseregns, 
-                       :reseller, :forcedns, :mxcheck, :username, :domain
+                       :reseller, :forcedns, :mxcheck
         end
         server.perform_request('createacct', options)
       end
@@ -30,7 +30,6 @@ module Lumberg
       def remove(options = {})
         Args.new(options) do |c|
           c.requires  :username
-          c.optionals :username, :keepdns
           c.booleans  :keepdns
         end
 
@@ -41,7 +40,6 @@ module Lumberg
       def change_password(options = {})
         Args.new(options) do |c|
           c.requires  :username, :pass
-          c.optionals :username, :pass, :db_pass_update
           c.booleans  :db_pass_update
         end
 
