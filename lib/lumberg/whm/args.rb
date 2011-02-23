@@ -7,9 +7,9 @@ module Lumberg
       # ==== Example
       # 
       #    Args.new(options) do |c|
-      #      c.requries  = [:user, :pass]
-      #      c.booleans  = [:name]
-      #      c.optionals = [:whatever]
+      #      c.requries  :user, :pass
+      #      c.booleans  :name
+      #      c.optionals :whatever
       #    end
       def initialize(options)
         @required_params ||= []
