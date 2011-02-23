@@ -42,7 +42,7 @@ module Lumberg
 
       it "should create the account with proper params" do
         message = @account.create(username: 'valid', password: 'hummingbird123', domain: 'valid-thing.com')
-        message[:success].should be(true)
+        message[:success].should be_true
         message[:message].should match(/Account Creation Ok/i)
         message[:params].should_not be_empty
         message[:params].should have_key(:options)
@@ -69,19 +69,19 @@ module Lumberg
 
       it "should remove a user and keep DNS by default" do
         message = @account.remove(username: 'removeme')
-        message[:success].should be(true)
+        message[:success].should be_true
         message[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user and remove DNS when asked" do
         message = @account.remove(username: 'removeme', keepdns: 0)
-        message[:success].should be(true)
+        message[:success].should be_true
         message[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user but keep DNS" do
         message = @account.remove(username: 'removeme', keepdns: 1)
-        message[:success].should be(true)
+        message[:success].should be_true
         message[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
 
@@ -105,7 +105,7 @@ module Lumberg
 
       it "should change the password" do
         message = @account.change_password(username: 'changeme', pass: 'superpass')
-        message[:success].should be(true)
+        message[:success].should be_true
         message[:message].should match(/Password changed for user changeme/i)
       end
 
@@ -129,7 +129,7 @@ module Lumberg
 
       it "should set the bandwidth limit" do
         result = @account.limit_bandwidth(username: 'changeme', bwlimit: 99999)
-        result[:success].should be(true)
+        result[:success].should be_true
         result[:message].should match(/Bandwidth Limit for changeme set to 99999/i)
       end
 
@@ -143,13 +143,13 @@ module Lumberg
 
       it "should list all accounts" do
         result = @account.list_accounts
-        result[:success].should be(true)
-        result[:params][:acct].size.should == 10
+        result[:success].should be_true
+        result[:params][:acct].should have(10).accounts
       end
 
       it "should return data for the account" do
         result = @account.list_accounts(searchtype: 'user', search: 'changeme')
-        result[:success].should be(true)
+        result[:success].should be_true
         account = result[:params][:acct].first
         account[:email].should == "*unknown*"
         account[:shell].should == "/usr/local/cpanel/bin/noshell"
@@ -159,20 +159,20 @@ module Lumberg
 
       it "should list accounts that match a regex search for the user" do
         result = @account.list_accounts(searchtype: 'user', search: 'changeme')
-        result[:success].should be(true)
-        result[:params][:acct].size.should == 1
+        result[:success].should be_true
+        result[:params][:acct].should have(1).account
       end
 
       it "should list accounts that match a regex search for the ip" do
         result = @account.list_accounts(searchtype: 'ip', search: '174\..*?\.166\.173')
-        result[:success].should be(true)
-        result[:params][:acct].size.should == 6 
+        result[:success].should be_true
+        result[:params][:acct].should have(6).accounts
       end
 
       it "should list accounts that match a regex search for the domain" do
         result = @account.list_accounts(searchtype: 'domain', search: 'ch.*?e.com')
-        result[:success].should be(true)
-        result[:params][:acct].size.should == 1
+        result[:success].should be_true
+        result[:params][:acct].should have(1).account
       end
     end 
 
