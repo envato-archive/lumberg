@@ -115,5 +115,62 @@ module Lumberg
         message[:message].should match(/dontchangeme does not exist/i)
       end
     end
+
+    describe "limit bandwidth" do
+      pending
+    end 
+
+    describe "list" do
+      pending
+    end 
+
+    describe "modify" do
+      pending
+    end 
+
+    describe "editquota" do
+      pending
+    end 
+
+    describe "summary" do
+      pending
+    end 
+
+    describe "suspend" do
+      pending
+    end 
+
+    describe "unsuspend" do
+      pending
+    end 
+
+    describe "list suspended" do
+      pending
+    end 
+
+    describe "remove" do
+      pending
+    end 
+
+    describe "change package" do
+      pending
+    end 
+
+    describe "privs" do
+      pending
+    end 
+
+    describe "domainuserdata" do
+      pending
+    end 
+
+    describe "setsiteip" do
+      pending
+    end 
+
+    describe "restore" do
+      # 11.27/11.28+ only
+      pending
+    end 
   end
 end
