@@ -178,7 +178,22 @@ module Lumberg
     end 
 
     describe "unsuspend" do
-      pending
+      use_vcr_cassette "whm/account/unsuspend"
+      it "should require a user" do
+        expect { @account.unsuspend }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should return an error for invalid users" do
+        result = @account.unsuspend(username: 'notexists')
+        result[:success].should_not be_true
+        result[:message].should match(/does not exist/i)
+      end
+
+      it "should unsuspend" do
+        result = @account.unsuspend(username: 'asdfasdf')
+        result[:success].should be_true
+        result[:message].should match(/unsuspending .* account/i)
+      end
     end 
 
     describe "list suspended" do
