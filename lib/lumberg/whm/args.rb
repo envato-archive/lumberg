@@ -1,56 +1,55 @@
 module Lumberg
   module Whm
     class Args
-
-      # Arguments that must be present
-      attr_writer :requires
-
-      # Arguments that can be present
-      attr_writer :optionals
-
-      # Arguments that must be boolean
-      attr_writer :booleans
-
+      attr_reader :required_params, :boolean_params, :optional_params
+      attr_reader :options
       # Check the included hash for the included parameters.
       # Raises WhmArgumentError when it's mising the proper params
       #
       # ==== Example
       # 
       #    Args.new(options) do |c|
-      #      c.requries  = [:user, :pass]
-      #      c.booleans  = [:name]
-      #      c.optionals = [:whatever]
+      #      c.requries  :user, :pass
+      #      c.booleans  :name
+      #      c.optionals :whatever
       #    end
       def initialize(options)
+        @required_params ||= []
+        @boolean_params  ||= []
+        @optional_params ||= []
+        @options = options
+
         yield self 
-        requires!(options, requires) unless requires.empty?
-        booleans!(options, booleans) unless booleans.empty?
-        valid_options!(options, optionals) unless optionals.empty?
+
+        requires!
+        booleans!
+        valid_options!
       end
 
-      def requires
-        @requires ||= []
+      def requires(*values)
+        @optional_params.concat(values)
+        @required_params = values
       end
 
-      def booleans
-        @booleans ||= []
+      def booleans(*values)
+        @optional_params.concat(values)
+        @boolean_params = values
       end
 
-      def optionals
-        @optionals ||= []
-        @optionals.concat(requires).concat(booleans).uniq
+      def optionals(*values)
+        @optional_params.concat(values)
       end
 
       protected
 
-      def requires!(hash, params)
-        params.each do |param| 
+      def requires!
+        @required_params.each do |param| 
           if param.is_a?(Array)
-            raise WhmArgumentError.new("Missing required parameter: #{param.first}") unless hash.has_key?(param.first) 
-            raise WhmArgumentError.new("Required parameter cannot be blank: #{param.first}") if (hash[param.first].nil? || (hash[param.first].respond_to?(:empty?) && hash[param.first].empty?))
+            raise WhmArgumentError.new("Missing required parameter: #{param.first}") unless @options.has_key?(param.first) 
+            raise WhmArgumentError.new("Required parameter cannot be blank: #{param.first}") if (@options[param.first].nil? || (@options[param.first].respond_to?(:empty?) && @options[param.first].empty?))
           else
-            raise WhmArgumentError.new("Missing required parameter: #{param}") unless hash.has_key?(param) 
-            raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (hash[param].nil? || (hash[param].respond_to?(:empty?) && hash[param].empty?))
+            raise WhmArgumentError.new("Missing required parameter: #{param}") unless @options.has_key?(param) 
+            raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (@options[param].nil? || (@options[param].respond_to?(:empty?) && @options[param].empty?))
           end
         end
       end
@@ -58,25 +57,23 @@ module Lumberg
 
       # Checks to see if supplied params (which are booleans) contain
       # either a 1 ("Yes") or 0 ("No") value.
-      def booleans!(hash, params)
-        params.each do |param|
+      def booleans!
+        @boolean_params.each do |param|
           if param.is_a?(Array)
-            if hash.include?(param.first) && !hash[param.first].to_s.match(/(1|0)/)
+            if @options.include?(param.first) && !@options[param.first].to_s.match(/(1|0)/)
               raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}")
             end
           else
-            if hash.include?(param) && !hash[param].to_s.match(/(1|0)/)
+            if @options.include?(param) && !@options[param].to_s.match(/(1|0)/)
               raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}")
             end
           end
         end
       end
 
-      def valid_options!(hash, params)
-        keys = hash.keys
-        
-        keys.each do |key|
-          raise WhmArgumentError.new("Not a valid parameter: #{key}") unless params.include?(key)
+      def valid_options!
+        @options.keys.uniq.each do |key|
+          raise WhmArgumentError.new("Not a valid parameter: #{key}") unless @optional_params.include?(key)
         end
       end  
     end

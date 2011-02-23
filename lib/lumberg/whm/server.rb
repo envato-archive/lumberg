@@ -32,8 +32,8 @@ module Lumberg
 
       def initialize(options)
         Args.new(options) do |c|
-          c.requires  = [:host, :hash]
-          c.optionals = [:user]
+          c.requires  :host, :hash
+          c.optionals :user
         end
 
         @ssl_verify ||= false

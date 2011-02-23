@@ -33,3 +33,9 @@ task :sanitize_cassettes do
     puts "I can't sanitize without setting up WHM_HASH and WHM_HOST"
   end
 end
+
+desc  "Run all specs with rcov"
+RSpec::Core::RakeTask.new(:rcov) do |t|
+  t.rcov = true
+  t.rcov_opts = %w{--exclude osx\/objc,gems\/,spec\/,features\/}
+end
