@@ -13,12 +13,11 @@ module Lumberg
       #    end
       def initialize(options)
         @required_params ||= []
-        @boolean_params ||= []
+        @boolean_params  ||= []
         @optional_params ||= []
+        @options = options
 
         yield self 
-
-        @options = options
 
         requires!
         booleans!
