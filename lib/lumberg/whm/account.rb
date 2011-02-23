@@ -67,6 +67,14 @@ module Lumberg
         end
       end
 
+      def list_accounts(options = {})
+        Args.new(options) do |c|
+          c.optionals :searchtype, :search
+        end
+
+        server.perform_request('listaccts', options)
+      end
+
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
