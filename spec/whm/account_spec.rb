@@ -138,8 +138,42 @@ module Lumberg
       end
     end 
 
-    describe "list" do
-      pending
+    describe "list", :wip => true do
+      use_vcr_cassette "whm/account/listaccts"
+
+      it "should list all accounts" do
+        result = @account.list_accounts
+        result[:success].should be(true)
+        result[:params][:acct].size.should == 10
+      end
+
+      it "should return data for the account" do
+        result = @account.list_accounts(searchtype: 'user', search: 'changeme')
+        result[:success].should be(true)
+        account = result[:params][:acct].first
+        account[:email].should == "*unknown*"
+        account[:shell].should == "/usr/local/cpanel/bin/noshell"
+        account[:theme].should == "x3"
+        account[:plan].should == "default"
+      end
+
+      it "should list accounts that match a regex search for the user" do
+        result = @account.list_accounts(searchtype: 'user', search: 'changeme')
+        result[:success].should be(true)
+        result[:params][:acct].size.should == 1
+      end
+
+      it "should list accounts that match a regex search for the ip" do
+        result = @account.list_accounts(searchtype: 'ip', search: '192\..*?\.1\.20')
+        result[:success].should be(true)
+        result[:params][:acct].size.should == 6 
+      end
+
+      it "should list accounts that match a regex search for the domain" do
+        result = @account.list_accounts(searchtype: 'domain', search: 'ch.*?e.com')
+        result[:success].should be(true)
+        result[:params][:acct].size.should == 1
+      end
     end 
 
     describe "modify" do
