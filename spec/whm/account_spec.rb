@@ -133,7 +133,22 @@ module Lumberg
     end 
 
     describe "summary" do
-      pending
+      use_vcr_cassette "whm/account/accountsummary"
+      it "should require a user" do
+        expect { @account.summary }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should return an error for invalid users" do
+        result = @account.summary(username: 'notexists')
+        result[:success].should_not be_true
+        result[:message].should match(/does not exist/i)
+      end
+
+      it "should return a summary" do
+        result = @account.summary(username: 'summary')
+        result[:success].should be_true
+        result[:message].should match(/ok/i)
+      end
     end 
 
     describe "suspend" do
@@ -172,5 +187,27 @@ module Lumberg
       # 11.27/11.28+ only
       pending
     end 
+
+    describe "verify_user" do
+      use_vcr_cassette "whm/account/accountsummary"
+
+      it "should not call the block if the user doesn't exist" do
+        something = double()
+        something.should_not_receive(:gold)
+        expect { 
+          @account.send(:verify_user, 'notexists') do
+            something.gold
+          end
+        }.to raise_error(WhmInvalidUser)
+      end
+
+      it "should call the block if the user does exist" do
+        something = double()
+        something.should_receive(:gold)
+        @account.send(:verify_user, 'summary') do
+          something.gold
+        end
+      end
+    end
   end
 end

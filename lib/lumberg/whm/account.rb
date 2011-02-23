@@ -47,6 +47,15 @@ module Lumberg
         server.perform_request('passwd', options.merge(key: 'passwd'))
       end
 
+      def summary(options = {})
+        Args.new(options) do |c|
+          c.requires  :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('accountsummary', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
@@ -55,6 +64,24 @@ module Lumberg
           @server = Whm::Server.new value
         end
       end
+
+      # Some WHM API methods always return a result, even if the user
+      # doesn't actually exist. This makes it seem like your request 
+      # was successful when it really wasn't
+      #
+      # Example
+      #   verify_user('bob') do
+      #      change_password()
+      #   end
+      def verify_user(username, &block)
+        exists = summary(username: username)
+        if exists[:success]
+          yield
+        else
+          raise WhmInvalidUser, "User #{username} does not exist"
+        end
+      end
+
     end
   end
 end
