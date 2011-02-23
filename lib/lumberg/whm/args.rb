@@ -1,6 +1,8 @@
 module Lumberg
   module Whm
     class Args
+      attr_reader :required_params, :boolean_params, :optional_params
+      attr_reader :options
       # Check the included hash for the included parameters.
       # Raises WhmArgumentError when it's mising the proper params
       #

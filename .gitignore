@@ -5,3 +5,4 @@ pkg/*
 *.swp
 test.rb
 *~
+coverage/
