@@ -56,6 +56,15 @@ module Lumberg
         server.perform_request('accountsummary', options)
       end
 
+      def limit_bandwidth(options = {})
+        Args.new(options) do |c|
+          c.requires :username, :bwlimit
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('limitbw', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
