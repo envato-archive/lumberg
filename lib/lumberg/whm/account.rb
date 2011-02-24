@@ -98,6 +98,19 @@ module Lumberg
         server.perform_request('listsuspended', options)
       end
 
+      def privs(options ={})
+        Args.new(options) do |c|
+          c.requires  :username
+        end
+    
+        verify_user(options[:username]) do
+          resp = server.perform_request('myprivs', options.merge(:key => 'privs', :bool => true))
+          # if you get this far, it's successful
+          resp[:success] = true
+          resp
+        end
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
