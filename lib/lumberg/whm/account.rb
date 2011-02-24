@@ -104,7 +104,8 @@ module Lumberg
         end
     
         verify_user(options[:username]) do
-          resp = server.perform_request('myprivs', options.merge(:key => 'privs'))
+          resp = server.perform_request('myprivs', options.merge(:key => 'privs', :bool => true))
+          # if you get this far, it's successful
           resp[:success] = true
           resp
         end

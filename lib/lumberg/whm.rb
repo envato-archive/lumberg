@@ -27,7 +27,7 @@ module Lumberg
         when Hash
           Hash[
             arg.map { |key, value|  
-              k = key.is_a?(String) ? key.to_sym : key
+              k = key.is_a?(String) ? key.gsub('-', '_').to_sym : key
               v = symbolize_keys value
               [k,v]
             }]
@@ -35,6 +35,19 @@ module Lumberg
           arg
         end
       end
+    
+      def to_bool(hash)
+        if hash.is_a?(Hash)
+          hash = Hash[
+            hash.map {|key, value|
+              value = to_bool(hash) if value.is_a?(Hash)
+              value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
+              [key, value]
+          }]
+        end
+        hash
+      end
+
     end
   end
 end
