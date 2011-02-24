@@ -44,7 +44,7 @@ module Lumberg
         end
 
         options[:user] = options.delete(:username)
-        server.perform_request('passwd', options.merge(key: 'passwd'))
+        server.perform_request('passwd', options.merge(:key => 'passwd'))
       end
 
       def summary(options = {})
@@ -112,7 +112,7 @@ module Lumberg
       #      change_password()
       #   end
       def verify_user(username, &block)
-        exists = summary(username: username)
+        exists = summary(:username => username)
         if exists[:success]
           yield
         else
