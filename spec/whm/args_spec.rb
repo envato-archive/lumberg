@@ -5,7 +5,7 @@ module Lumberg
   describe Whm::Args do
     context "required_parms" do
       it "should raise an error when missing" do
-        options = {arg1: 1}
+        options = {:arg1 => 1}
         args = lambda { 
           Whm::Args.new(options) do |c|
             c.requires :arg2
@@ -15,7 +15,7 @@ module Lumberg
       end
 
       it "should not raise an error with valid params" do
-        options = {arg1: 1}
+        options = {:arg1 => 1}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1
         }
@@ -25,7 +25,7 @@ module Lumberg
       end
 
       it "should set optional_params" do
-        options = {arg1: 1, arg2: 2}
+        options = {:arg1 => 1, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1, :arg2
         }
@@ -37,7 +37,7 @@ module Lumberg
       end
 
       it "should not set boolean_params" do
-        options = {arg1: 1, arg2: 2}
+        options = {:arg1 => 1, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1, :arg2
         }
@@ -48,7 +48,7 @@ module Lumberg
 
     context "boolean_params" do
       it "should raise an error when the param is not boolean" do
-        options = {arg1: 'string'}
+        options = {:arg1 => 'string'}
         args = lambda { 
           Whm::Args.new(options) do |c|
             c.booleans :arg1
@@ -58,7 +58,7 @@ module Lumberg
       end
 
       it "should not raise an error with boolean params" do
-        options = {arg1: 1}
+        options = {:arg1 => 1}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1
         }
@@ -68,7 +68,7 @@ module Lumberg
       end
 
       it "should set optional_params" do
-        options = {arg1: 1, arg2: 0}
+        options = {:arg1 => 1, :arg2 => 0}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1, :arg2
         }
@@ -80,7 +80,7 @@ module Lumberg
       end
 
       it "should not set required_params" do
-        options = {arg1: 1, arg2: 0}
+        options = {:arg1 => 1, :arg2 => 0}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1, :arg2
         }
@@ -91,7 +91,7 @@ module Lumberg
 
     context "optional_params" do
       it "should raise an error with unknown params" do
-        options = {arg1: 1}
+        options = {:arg1 => 1}
         args = lambda { 
           Whm::Args.new(options) do |c|
             c.optionals :arg2
@@ -102,7 +102,7 @@ module Lumberg
       end
 
       it "should not raise an error with known params" do
-        options = {arg1: 1, arg2: 2}
+        options = {:arg1 => 1, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
         }
@@ -112,7 +112,7 @@ module Lumberg
       end
 
       it "should not set required_params" do
-        options = {arg1: 1, arg2: 2}
+        options = {:arg1 => 1, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
         }
@@ -121,7 +121,7 @@ module Lumberg
       end
 
       it "should not set boolean_params" do
-        options = {arg1: 1, arg2: 2}
+        options = {:arg1 => 1, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
         }

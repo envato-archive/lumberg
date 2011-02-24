@@ -12,7 +12,7 @@ module Lumberg
       # Base URL to the WHM API
       attr_accessor :url
 
-      # API username - default: root
+      # API username - :default => root
       attr_accessor :user
 
       # Raw HTTP response from WHM
@@ -124,7 +124,7 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{@response.inspect}"
         end
-        {success: success, message: message, params: Whm::symbolize_keys(params)}
+        {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
       end
 
       def format_query(hash)

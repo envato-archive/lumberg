@@ -5,7 +5,7 @@ require 'spec_helper'
 module Lumberg
   describe Whm::Server do
     before(:each) do
-      @login    = { host: @whm_host, hash: @whm_hash }
+      @login    = { :host => @whm_host, :hash => @whm_hash }
       @whm      = Whm::Server.new(@login.dup)
       @url_base = "https://myhost.com:2087/json-api"
     end
@@ -25,7 +25,7 @@ module Lumberg
       end
 
       it "should allow setting of the username" do
-        @whm = Whm::Server.new(@login.merge(user: 'bob'))
+        @whm = Whm::Server.new(@login.merge(:user => 'bob'))
         @whm.user.should == 'bob'
       end
     end
@@ -48,7 +48,7 @@ module Lumberg
 
             it "should call the proper URL and arguments" do
               JSON.should_receive(:parse).with("[]").and_return([])
-              @whm.perform_request('my_function', arg1: 1, arg2: 'test')
+              @whm.perform_request('my_function', :arg1 => 1, :arg2 => 'test')
               @whm.function.should == 'my_function'
               @whm.params.should == "arg1=1&arg2=test"
               @whm.raw_response.should be_a(Net::HTTPOK)
@@ -76,7 +76,7 @@ module Lumberg
           use_vcr_cassette "whm/server/applist"
 
           it "should set a response message" do
-            @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
+            @whm = Whm::Server.new(:host => @whm_host, :hash => @whm_hash)
             @whm.perform_request('applist')
             @whm.function.should == 'applist'
           end

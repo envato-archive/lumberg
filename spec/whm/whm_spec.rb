@@ -12,7 +12,7 @@ module Lumberg
       end
 
       it "should be an SSL URL" do
-        Whm::format_url(@host, ssl: false).should == "http://example.com:2086/json-api/"
+        Whm::format_url(@host, :ssl => false).should == "http://example.com:2086/json-api/"
       end
 
       it "should transform the host into an SSL URL by default" do
@@ -20,11 +20,11 @@ module Lumberg
       end
 
       it "should transform the host into an SSL URL when asked" do
-        Whm::format_url(@host, ssl: true).should == "https://example.com:2087/json-api/"
+        Whm::format_url(@host, :ssl => true).should == "https://example.com:2087/json-api/"
       end
 
       it "should transform the host into a non SSL URL when asked" do
-        Whm::format_url(@host, ssl: false).should == "http://example.com:2086/json-api/"
+        Whm::format_url(@host, :ssl => false).should == "http://example.com:2086/json-api/"
       end
     end
 
