@@ -254,7 +254,7 @@ module Lumberg
         result = @account.list_suspended(:empty => true)
         result[:success].should be_true
         result[:params][:accts].should_not be_empty
-        result[:params][:accts].first.should include(:user => 'invalid')
+        result[:params][:accts].first.should include(:user => 'removeme')
       end
 
       it "should return empty result" do
