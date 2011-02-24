@@ -269,7 +269,29 @@ module Lumberg
     end 
 
     describe "privs" do
-      pending
+      use_vcr_cassette 'whm/account/myprivs'
+      it "should require a user" do
+        expect { @account.privs }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should have a result" do
+        result = @account.privs(:username => 'privs')
+        result[:success].should be_true
+
+        params = result[:params]
+        expected = {:kill_dns => false, :edit_dns => false, :edit_mx => false, :add_pkg => false, 
+                    :suspend_acct => false, :add_pkg_shell => false, :viewglobalpackages => false, 
+                    :resftp => false, :list_accts => false, :all => true, :passwd => false, :quota => false, 
+                    :park_dns => false, :rearrange_accts => false, :allow_addoncreate => false, :demo => false, 
+                    :news => false, :edit_account => false, :allow_unlimited_disk_pkgs => false, :allow_parkedcreate => false, 
+                    :frontpage => false, :restart => false, :ssl_gencrt => false, :allow_unlimited_pkgs => false, 
+                    :add_pkg_ip => false, :disallow_shell => false, :res_cart => false, :ssl_buy => false, :kill_acct => false,
+                    :allow_unlimited_bw_pkgs => false, :create_dns => false, :mailcheck => false, :clustering => false, :ssl => false,
+                    :edit_pkg => false, :locale_edit => false, :show_bandwidth => false, :upgrade_account => false, :thirdparty => false,
+                    :limit_bandwidth => false, :create_acct => false, :demo_setup => false, :stats => false}
+
+        params.should include(expected)
+      end
     end 
 
     describe "domainuserdata" do
