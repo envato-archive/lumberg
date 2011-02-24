@@ -50,6 +50,7 @@ module Lumberg
         # Also their docs lie
         @key      = options.delete(:key)
         @key    ||= 'result'
+        @bool     = options.delete(:bool)
 
         @params   = format_query(options)
         uri       = URI.parse("#{@url}#{function}?#{@params}")
@@ -131,6 +132,7 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{@response.inspect}"
         end
+        params = Whm::to_bool(params) if @bool
         {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
       end
 
