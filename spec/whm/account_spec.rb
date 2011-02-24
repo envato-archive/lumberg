@@ -264,10 +264,6 @@ module Lumberg
       end
     end 
 
-    describe "remove" do
-      pending
-    end 
-
     describe "change package" do
       pending
     end 
