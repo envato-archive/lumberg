@@ -94,6 +94,10 @@ module Lumberg
         server.perform_request('unsuspendacct', options)
       end
 
+      def list_suspended(options = {})
+        server.perform_request('listsuspended', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 

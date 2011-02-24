@@ -247,8 +247,21 @@ module Lumberg
       end
     end 
 
-    describe "list suspended" do
-      pending
+    describe "list_suspended" do
+      use_vcr_cassette 'whm/account/listsuspended'
+      it "should return non-empty result" do
+        # empty isn't a real param. VCR Hacks
+        result = @account.list_suspended(:empty => true)
+        result[:success].should be_true
+        result[:params][:accts].should_not be_empty
+        result[:params][:accts].first.should include(:user => 'invalid')
+      end
+
+      it "should return empty result" do
+        result = @account.list_suspended
+        result[:success].should be_true
+        result[:params][:accts].should be_empty
+      end
     end 
 
     describe "remove" do
