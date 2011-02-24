@@ -33,7 +33,7 @@ module Lumberg
       end
 
       it "should require a domain" do
-        expect { @account.create(:username => 'user')}.to raise_error(WhmArgumentError, /Missing required parameter: domain/)
+        expect { @account.create(:username => 'user')}.to raise_error(WhmArgumentError, /Aissing required parameter: domain/)
       end
 
       it "should require a password" do
