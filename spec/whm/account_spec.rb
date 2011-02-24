@@ -269,7 +269,17 @@ module Lumberg
     end 
 
     describe "privs" do
-      pending
+      use_vcr_cassette 'whm/account/myprivs'
+      it "should require a user" do
+        expect { @account.privs }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should have a result" do
+        result = @account.privs(:username => 'privs')
+        result[:success].should be_true
+
+        params = result[:params]
+      end
     end 
 
     describe "domainuserdata" do
