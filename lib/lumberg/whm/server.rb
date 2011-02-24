@@ -103,12 +103,19 @@ module Lumberg
 
         case response_type
         when :action
-          success = @response[@key].first['status'].to_i == 1
-          message = @response[@key].first['statusmsg']
+          # Some API methods ALSO return a 'status' as
+          # part of a result. We only use this value if it's
+          # not part of the results hash
+          if @response[@key].first.is_a?(Hash)
+            success = @response[@key].first['status'].to_i == 1
+            message = @response[@key].first['statusmsg']
+            res     = @response[@key].first.dup
+          else
+            res     = @response[@key].dup
+            res.delete('status')
+            res.delete('statusmsg')
+          end
 
-          res     = @response[@key].first.dup
-          res.delete('status')
-          res.delete('statusmsg')
           params  = res
         when :query
           success = @response['status'].to_i == 1
