@@ -63,5 +63,20 @@ module Lumberg
         new_hash.should include(:true => true, :false => false, :something => 1)
       end
     end
+
+    context "Converting from bool to int" do
+      it "should convert false to 0" do
+        Whm::from_bool(false).should == 0
+      end
+
+      it "should convert true to 1" do
+        Whm::from_bool(true).should == 1
+      end
+
+      it "should transform all falses and trues to 0 and 1" do
+        hash = {:true => true, :false => false}
+        Whm::from_bool(hash).should include(:true => 1, :false => 0)
+      end
+    end
   end
 end
