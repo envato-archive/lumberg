@@ -220,7 +220,7 @@ module Lumberg
       end
     end 
 
-    describe "editquota", :wip => true do
+    describe "editquota" do
       use_vcr_cassette "whm/account/editquota"
 
       it "should return an error for an invalid user" do
@@ -323,7 +323,33 @@ module Lumberg
     end 
 
     describe "change package" do
-      pending
+      use_vcr_cassette "whm/account/changepackage"
+
+      it "should return an error for an invalid user" do
+        result = @account.change_package(:username => 'notexists', :pkg => 'default')
+        result[:success].should_not be_true
+        result[:message].should match(/user notexists does not exist/i)
+      end
+
+      it "should require a user" do
+        expect { @account.change_package(:pkg => '') }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      end
+
+      it "should require a package" do
+        expect { @account.change_package(:username => 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pkg/i)
+      end
+
+      it "should fail if the package was not found" do
+        result = @account.change_package(:username => 'changeme', :pkg => 'fakepackage')
+        result[:success].should_not be_true
+        result[:message].should match(/package does not exist/i)
+      end
+
+      it "should change the package" do
+        result = @account.change_package(:username => 'changeme', :pkg => 'gold')
+        result[:success].should be_true
+        result[:message].should match(/Account Upgrade\/Downgrade Complete for changeme/i)
+      end
     end 
 
     describe "privs" do
@@ -353,7 +379,7 @@ module Lumberg
     end 
 
     describe "domainuserdata" do
-
+      pending
     end 
 
     describe "setsiteip" do
