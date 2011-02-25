@@ -60,7 +60,7 @@ module Lumberg
               end
 
               @whm.boolean_params.should include(:true, :false)
-              req.should include(:true => true, :false => false, :other => 2)
+              req[:params].should include(:true => true, :false => false, :other => 2)
             end
           end
         end
