@@ -295,7 +295,7 @@ module Lumberg
     end 
 
     describe "domainuserdata" do
-      pending
+
     end 
 
     describe "setsiteip" do

@@ -36,12 +36,14 @@ module Lumberg
         end
       end
     
-      def to_bool(hash)
+      def to_bool(hash, *keys)
         if hash.is_a?(Hash)
           hash = Hash[
             hash.map {|key, value|
               value = to_bool(hash) if value.is_a?(Hash)
-              value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
+              if keys.empty? || keys.include?(key)
+                value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
+              end
               [key, value]
           }]
         end
