@@ -53,6 +53,21 @@ module Lumberg
         hash
       end
 
+      def from_bool(input)
+        if input == false
+          0
+        elsif input == true
+          1
+        elsif input.is_a?(Hash)
+          Hash[ 
+            input.map {|k,v| 
+              v = from_bool(v)
+              [k,v]
+            }
+          ]
+        end
+      end
+
     end
   end
 end
