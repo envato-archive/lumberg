@@ -180,7 +180,44 @@ module Lumberg
     end 
 
     describe "modify" do
-      pending
+      use_vcr_cassette "whm/account/modifyacct"
+
+      it "should allow modifying the domain" do
+        result = @account.modify(:username => 'changeme', :domain => 'example.com')
+        result[:success].should be_true
+        result[:params][:newcfg][:cpuser][:DOMAIN].should == 'example.com'
+      end
+
+      it "should return an error for an invalid user" do
+        result = @account.modify(:username => 'notexists')
+        result[:success].should_not be_true
+        result[:message].should match(/Unable to fetch the cPanel user file for notexists/)
+      end
+
+      it "should return the bandwidth limit" do
+        result = @account.modify(:username => 'changeme')
+        result[:params][:newcfg][:cpuser][:BWLIMIT].should == "unlimited" 
+      end
+
+      it "should return the primary contact email" do
+        result = @account.modify(:username => 'changeme')
+        result[:params][:newcfg][:cpuser][:CONTACTEMAIL].should == "user@address.com"
+      end
+
+      it "should return the secondary contact email" do
+        result = @account.modify(:username => 'changeme')
+        result[:params][:newcfg][:cpuser][:CONTACTEMAIL2].should == "user2@address.com"
+      end
+
+      it "should return the main domain" do
+        result = @account.modify(:username => 'changeme')
+        result[:params][:newcfg][:cpuser][:DOMAIN].should == "example.com"
+      end
+
+      it "should return whether or not the domain has CGI access" do
+        result = @account.modify(:username => 'changeme')
+        result[:params][:newcfg][:cpuser][:HASCGI].should be_true
+      end
     end 
 
     describe "editquota" do
