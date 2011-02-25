@@ -131,6 +131,8 @@ module Lumberg
         result = @account.limit_bandwidth(:username => 'changeme', :bwlimit => 99999)
         result[:success].should be_true
         result[:message].should match(/Bandwidth Limit for changeme set to 99999/i)
+        result[:params][:bwlimit][:bwlimitenable].should equal(false)
+        result[:params][:bwlimit][:unlimited].should equal(true)
       end
 
       it "should not be successful when the user doesn't exist" do
@@ -138,7 +140,7 @@ module Lumberg
       end
     end 
 
-    describe "list", :wip => true do
+    describe "list_accounts" do
       use_vcr_cassette "whm/account/listaccts"
 
       it "should list all accounts" do
@@ -155,6 +157,7 @@ module Lumberg
         account[:shell].should == "/usr/local/cpanel/bin/noshell"
         account[:theme].should == "x3"
         account[:plan].should == "default"
+        account[:suspended].should equal(false)
       end
 
       it "should list accounts that match a regex search for the user" do

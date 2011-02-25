@@ -40,6 +40,10 @@ module Lumberg
         if hash.is_a?(Hash)
           hash = Hash[
             hash.map {|key, value|
+              # recurse
+              value = to_bool(value) if value.is_a?(Hash)
+              value = value.map {|elem| to_bool(elem) } if value.is_a?(Array)
+
               if keys.empty? || keys.include?(key)
                 value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
               end
