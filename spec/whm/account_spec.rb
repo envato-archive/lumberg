@@ -220,9 +220,27 @@ module Lumberg
       end
     end 
 
-    describe "editquota" do
-      pending
-    end 
+    describe "editquota", :wip => true do
+      use_vcr_cassette "whm/account/editquota"
+
+      it "should return an error for an invalid user" do
+        result = @account.edit_quota(:username => 'notexists', :quota => 500)
+        result[:success].should_not be_true
+        result[:message].should match(/Invalid User\. Cannot set quota\./i)
+      end
+
+      it "should change the user's disk space usage quota" do
+        result = @account.edit_quota(:username => 'changeme', :quota => 500)
+        result[:success].should be_true
+        result[:message].should match(/Set quota for user./i)
+      end
+
+      it "should fail if a negative usage quota is passed" do
+        result = @account.edit_quota(:username => 'changeme', :quota => -1)
+        result[:success].should_not be_true
+        result[:message].should match(/Failed to set quota for user\./i)
+      end
+    end
 
     describe "summary" do
       use_vcr_cassette "whm/account/accountsummary"
