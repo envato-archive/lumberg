@@ -18,7 +18,7 @@
       - chunked
       content-type: 
       - text/plain
-    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Bandwidth Limit for changeme set to 99999\",\"bwlimit\":{\"bwlimitenable\":0,\"human_bwlimit\":\"97.66 GB\",\"domains\":[\"change.com\"],\"unlimited\":0,\"bwlimit\":\"104856551424\",\"human_bwused\":\"none\"}}]}"
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Bandwidth Limit for changeme set to 99999\",\"bwlimit\":{\"bwlimitenable\":0,\"human_bwlimit\":\"97.66 GB\",\"domains\":[\"change.com\"],\"unlimited\":1,\"bwlimit\":\"104856551424\",\"human_bwused\":\"none\"}}]}"
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 

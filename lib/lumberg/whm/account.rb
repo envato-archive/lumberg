@@ -64,7 +64,8 @@ module Lumberg
 
         verify_user(options[:username]) do
           options[:user] = options.delete(:username)
-          server.perform_request('limitbw', options)
+          bools = [:unlimited, :bwlimitenable]
+          server.perform_request('limitbw', options.merge(:bool => bools))
         end
       end
 
@@ -73,7 +74,7 @@ module Lumberg
           c.optionals :searchtype, :search
         end
 
-        server.perform_request('listaccts', options)
+        server.perform_request('listaccts', options.merge(:bool => :suspended))
       end
 
       def suspend(options ={})
