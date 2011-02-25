@@ -132,7 +132,13 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{@response.inspect}"
         end
-        params = Whm::to_bool(params) if @bool
+
+        if @bool == true
+          params = Whm::to_bool(params)
+        elsif !@bool.nil?
+          params = Whm::to_bool(params, @bool)
+        end
+
         {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
       end
 
