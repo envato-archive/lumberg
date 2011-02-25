@@ -1,0 +1,85 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/editquota?quota=500&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Invalid user. Cannot set quota.\"}],\"output\":null}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/editquota?quota=500&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Set quota for user.\"}],\"output\":\"Using Universal Quota Support (quota=512000)\\n\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/editquota?quota=-1&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Failed to set quota for user.\"}],\"output\":\"Invalid quota\\nUsage: editquota <user> <?M>\\n\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/editquota?quota=-1&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Invalid user. Cannot set quota.\"}],\"output\":null}"
+    http_version: "1.1"

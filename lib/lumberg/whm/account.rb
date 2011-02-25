@@ -87,6 +87,15 @@ module Lumberg
         server.perform_request('modifyacct', options)
       end
 
+      def edit_quota(options = {})
+        Args.new(options) do |c|
+          c.requires :username, :quota
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('editquota', options)
+      end
+
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
