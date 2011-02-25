@@ -77,6 +77,16 @@ module Lumberg
         server.perform_request('listaccts', options.merge(:bool => :suspended))
       end
 
+      def modify(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+          c.optionals :domain, :newuser, :owner, :CPTHEME, :HASCGI, :LANG, :LOCALE, :MAXFTP, :MAXSQL, :MAXPOP, :MAXLST, :MAXSUB, :MAXPARK, :MAXADDON, :shell
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('modifyacct', options)
+      end
+
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
