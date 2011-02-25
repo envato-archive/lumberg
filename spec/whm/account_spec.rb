@@ -41,12 +41,12 @@ module Lumberg
       end
 
       it "should create the account with proper params" do
-        message = @account.create(:username => 'valid', :password => 'hummingbird123', :domain => 'valid-thing.com')
-        message[:success].should be_true
-        message[:message].should match(/Account Creation Ok/i)
-        message[:params].should_not be_empty
-        message[:params].should have_key(:options)
-        message[:params][:options].should include(:nameserver4, :nameserver, :nameserverentry2, :nameserverentry3, 
+        result = @account.create(:username => 'valid', :password => 'hummingbird123', :domain => 'valid-thing.com')
+        result[:success].should be_true
+        result[:message].should match(/Account Creation Ok/i)
+        result[:params].should_not be_empty
+        result[:params].should have_key(:options)
+        result[:params][:options].should include(:nameserver4, :nameserver, :nameserverentry2, :nameserverentry3, 
                                                   :nameserverentry4, :nameserverentry, :ip, :nameservera2, 
                                                   :nameservera3, :package, :nameservera4, :nameserver2, 
                                                   :nameservera, :nameserver3)
@@ -54,9 +54,9 @@ module Lumberg
 
       it "should return an error on duplicate accounts" do
         @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
-        message = @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
-        message[:success].should be(false)
-        message[:message].should match(/username already exists/i)
+        result = @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
+        result[:success].should be(false)
+        result[:message].should match(/username already exists/i)
       end
     end
 
@@ -68,27 +68,27 @@ module Lumberg
       end
 
       it "should remove a user and keep DNS by default" do
-        message = @account.remove(:username => 'removeme')
-        message[:success].should be_true
-        message[:params][:rawout].should match(/Removing DNS Entries/i)
+        result = @account.remove(:username => 'removeme')
+        result[:success].should be_true
+        result[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user and remove DNS when asked" do
-        message = @account.remove(:username => 'removeme', :keepdns => 0)
-        message[:success].should be_true
-        message[:params][:rawout].should match(/Removing DNS Entries/i)
+        result = @account.remove(:username => 'removeme', :keepdns => 0)
+        result[:success].should be_true
+        result[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user but keep DNS" do
-        message = @account.remove(:username => 'removeme', :keepdns => 1)
-        message[:success].should be_true
-        message[:params][:rawout].should_not match(/Removing DNS Entries/i)
+        result = @account.remove(:username => 'removeme', :keepdns => 1)
+        result[:success].should be_true
+        result[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
 
       it "should return an error when the user doesn't exist" do
-        message = @account.remove(:username => 'notreal')
-        message[:success].should be(false)
-        message[:message].should match(/notreal does not exist/i)
+        result = @account.remove(:username => 'notreal')
+        result[:success].should be(false)
+        result[:message].should match(/notreal does not exist/i)
       end
     end
 
@@ -104,15 +104,15 @@ module Lumberg
       end
 
       it "should change the password" do
-        message = @account.change_password(:username => 'changeme', :pass => 'superpass')
-        message[:success].should be_true
-        message[:message].should match(/Password changed for user changeme/i)
+        result = @account.change_password(:username => 'changeme', :pass => 'superpass')
+        result[:success].should be_true
+        result[:message].should match(/Password changed for user changeme/i)
       end
 
       it "should not be successful when the user doesn't exist" do
-        message = @account.change_password(:username => 'dontchangeme', :pass => 'superpass')
-        message[:success].should be(false)
-        message[:message].should match(/dontchangeme does not exist/i)
+        result = @account.change_password(:username => 'dontchangeme', :pass => 'superpass')
+        result[:success].should be(false)
+        result[:message].should match(/dontchangeme does not exist/i)
       end
     end
 
