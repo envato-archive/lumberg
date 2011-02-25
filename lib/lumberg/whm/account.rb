@@ -96,6 +96,23 @@ module Lumberg
         server.perform_request('editquota', options)
       end
 
+      def add_package(options = {})
+        Args.new(options) do |c|
+          c.requires :name
+        end
+
+        server.perform_request('addpkg', options)
+      end
+
+      def change_package(options = {})
+        Args.new(options) do |c|
+          c.requires :username, :pkg
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('changepackage', options)
+      end
+
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
