@@ -30,6 +30,8 @@ module Lumberg
       # HTTP SSL verify mode
       attr_accessor :ssl_verify
 
+      attr_accessor :boolean_params
+
       def initialize(options)
         Args.new(options) do |c|
           c.requires  :host, :hash
@@ -55,6 +57,7 @@ module Lumberg
         @params   = format_query(options)
         uri       = URI.parse("#{@url}#{function}?#{@params}")
 
+        yield self if block_given?
 
         # Auth Header
         _url = uri.path
