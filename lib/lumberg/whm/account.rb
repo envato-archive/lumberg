@@ -87,7 +87,9 @@ module Lumberg
         end
 
         options[:user] = options.delete(:username)
-        server.perform_request('modifyacct', options)
+        server.perform_request('modifyacct', options) do |s|
+          s.boolean_params = :DEMO
+        end
       end
 
       def edit_quota(options = {})
@@ -102,6 +104,8 @@ module Lumberg
       def add_package(options = {})
         Args.new(options) do |c|
           c.requires :name
+          c.optionals :featurelist, :quota, :ip, :cgi, :frontpage, :cpmod, :language, :maxftp, :maxsql, :maxpop, :maxlists, :maxsub, :maxpark, :maxaddon, :hasshell, :bwlimit
+          c.booleans :ip, :cgi, :frontpage, :hasshell
         end
 
         server.perform_request('addpkg', options)
@@ -121,7 +125,9 @@ module Lumberg
           c.requires :domain
         end
 
-        server.perform_request('domainuserdata', options.merge(:key => 'userdata'))
+        server.perform_request('domainuserdata', options.merge(:key => 'userdata')) do |s|
+          s.boolean_params = :hascgi
+        end
       end
 
       def suspend(options ={})
