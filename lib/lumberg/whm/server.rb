@@ -52,7 +52,6 @@ module Lumberg
         # Also their docs lie
         @key      = options.delete(:key)
         @key    ||= 'result'
-        @bool     = options.delete(:bool)
 
         @params   = format_query(options)
         uri       = URI.parse("#{@url}#{function}?#{@params}")
@@ -80,6 +79,7 @@ module Lumberg
         res = http.start do |h|
           h.request(req)
         end
+
         @raw_response = res
         @response = JSON.parse(@raw_response.body)
         format_response
@@ -135,11 +135,9 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{@response.inspect}"
         end
-
-        if @bool == true
-          params = Whm::to_bool(params)
-        elsif !@bool.nil?
-          params = Whm::to_bool(params, @bool)
+ 
+        if !@boolean_params.nil?
+          params = Whm::to_bool(params, @boolean_params)
         end
 
         {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
