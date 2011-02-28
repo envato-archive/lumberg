@@ -168,6 +168,16 @@ module Lumberg
         end
       end
 
+      def set_site_ip(options = {})
+        Args.new(options) do |c|
+          c.requires :ip
+          c.optionals :username, :domain
+        end
+
+        options[:user] = options.delete(:username) if options[:username]
+        server.perform_request('setsiteip', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
