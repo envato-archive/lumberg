@@ -171,7 +171,7 @@ module Lumberg
       def set_site_ip(options = {})
         Args.new(options) do |c|
           c.requires :ip
-          c.optionals :username, :domain
+          c.one_of :username, :domain
         end
 
         options[:user] = options.delete(:username) if options[:username]
