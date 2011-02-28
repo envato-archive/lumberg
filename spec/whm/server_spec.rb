@@ -53,6 +53,15 @@ module Lumberg
               @whm.params.should == "arg1=1&arg2=test"
               @whm.raw_response.should be_a(Net::HTTPOK)
             end
+
+            it "should change params to booleans when given a block" do
+              req = @whm.perform_request('my_function', :block => 1) do |p|
+                p.boolean_params =  :true, :false
+              end
+
+              @whm.boolean_params.should include(:true, :false)
+              req[:params].should include(:true => true, :false => false, :other => 2)
+            end
           end
         end
 

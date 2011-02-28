@@ -64,8 +64,9 @@ module Lumberg
 
         verify_user(options[:username]) do
           options[:user] = options.delete(:username)
-          bools = [:unlimited, :bwlimitenable]
-          server.perform_request('limitbw', options.merge(:bool => bools))
+          server.perform_request('limitbw', options) do |s|
+            s.boolean_params = :unlimited, :bwlimitenable
+          end
         end
       end
 
@@ -74,7 +75,9 @@ module Lumberg
           c.optionals :searchtype, :search
         end
 
-        server.perform_request('listaccts', options.merge(:bool => :suspended))
+        server.perform_request('listaccts', options) do |s|
+          s.boolean_params = :suspended
+        end
       end
 
       def modify(options = {})
@@ -142,7 +145,9 @@ module Lumberg
         end
     
         verify_user(options[:username]) do
-          resp = server.perform_request('myprivs', options.merge(:key => 'privs', :bool => true))
+          resp = server.perform_request('myprivs', options.merge(:key => 'privs')) do |s|
+            s.boolean_params = :all
+          end
           # if you get this far, it's successful
           resp[:success] = true
           resp

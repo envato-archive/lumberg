@@ -37,6 +37,12 @@ module Lumberg
       end
     
       def to_bool(hash, *keys)
+        if keys.empty?
+          keys = [:all]
+        else
+          keys.flatten!
+        end
+
         if hash.is_a?(Hash)
           hash = Hash[
             hash.map {|key, value|
@@ -44,7 +50,7 @@ module Lumberg
               value = to_bool(value) if value.is_a?(Hash)
               value = value.map {|elem| to_bool(elem) } if value.is_a?(Array)
 
-              if keys.empty? || keys.include?(key)
+              if (keys.first == :all) || (keys.include?(key) || (keys.include?(key.to_sym)))
                 value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
               end
               [key, value]
