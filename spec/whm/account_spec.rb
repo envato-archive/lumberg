@@ -379,7 +379,35 @@ module Lumberg
     end 
 
     describe "domainuserdata" do
-      pending
+      use_vcr_cassette "whm/account/domainuserdata"
+
+      it "should return an error for an unknown domain" do
+        result = @account.domain_user_data(:domain => 'notexists.com')
+        result[:success].should_not be_true
+        result[:message].should match(/Unable to determine account owner for domain\./i)
+      end
+
+      it "should require a domain" do
+        expect { @account.domain_user_data() }.to raise_error(WhmArgumentError, /Missing required parameter: domain/i)
+      end
+
+      it "should return the correct data" do
+        result = @account.domain_user_data(:domain => 'example.com')
+        result[:success].should be_true
+        result[:params][:documentroot].should == "/home/changeme/public_html"
+        result[:params][:group].should == "changeme"
+        result[:params][:hascgi].should == "0"
+        result[:params][:homedir].should == "/home/changeme"
+        result[:params][:ip].should == "192.168.1.20"
+        result[:params][:owner].should == "root"
+        result[:params][:port].should == "80"
+        result[:params][:scriptalias].first[:path].should == "/home/changeme/public_html/cgi-bin"
+        result[:params][:scriptalias].first[:url].should == "/cgi-bin/"
+        result[:params][:serveradmin].should == "webmaster@example.com"
+        result[:params][:serveralias].should == "www.example.com"
+        result[:params][:servername].should == "example.com"
+        result[:params][:user].should == "changeme"
+      end
     end 
 
     describe "setsiteip" do
