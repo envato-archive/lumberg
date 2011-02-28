@@ -396,7 +396,7 @@ module Lumberg
         result[:success].should be_true
         result[:params][:documentroot].should == "/home/changeme/public_html"
         result[:params][:group].should == "changeme"
-        result[:params][:hascgi].should == "0"
+        result[:params][:hascgi].should_not be_true
         result[:params][:homedir].should == "/home/changeme"
         result[:params][:ip].should == "192.168.1.20"
         result[:params][:owner].should == "root"
