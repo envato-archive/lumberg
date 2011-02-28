@@ -87,7 +87,9 @@ module Lumberg
       def one_ofs!
         if @one_of_params.size > 1
           specified = @options.select { |key| @one_of_params.include?(key) }
-          raise WhmArgumentError.new("The parameters may include only one of '#{@one_of_params.join(', ')}'") if specified.size > 1
+          if specified.size > 1 || specified.size == 0
+            raise WhmArgumentError.new("The parameters may include only one of '#{@one_of_params.join(', ')}'") 
+          end
         else
           raise WhmArgumentError.new("One of requires two or more items") unless @one_of_params.empty?
         end
