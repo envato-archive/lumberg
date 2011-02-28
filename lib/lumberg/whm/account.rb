@@ -116,6 +116,14 @@ module Lumberg
         server.perform_request('changepackage', options)
       end
 
+      def domain_user_data(options = {})
+        Args.new(options) do |c|
+          c.requires :domain
+        end
+
+        server.perform_request('domainuserdata', options.merge(:key => 'userdata'))
+      end
+
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
