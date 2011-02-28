@@ -30,6 +30,7 @@ module Lumberg
       # HTTP SSL verify mode
       attr_accessor :ssl_verify
 
+      # Returned params to transfor to booleans
       attr_accessor :boolean_params
 
       def initialize(options)
