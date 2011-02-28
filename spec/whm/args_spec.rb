@@ -129,5 +129,40 @@ module Lumberg
         args.boolean_params.should be_empty
       end
     end
+
+    context "one_of" do
+      it "should not allow one arg" do
+        options = {:arg1 => 1}
+        args = lambda {
+          Whm::Args.new(options) do |c|
+            c.one_of :arg1
+          end
+        }
+
+        expect { args.call }.to raise_error(WhmArgumentError, /One of requires two or more items/)
+      end
+
+      it "should allow two or more args" do
+        options = {:arg1 => 1}
+
+        args = Whm::Args.new(options) do |c|
+          c.one_of :arg1, :arg2
+        end
+
+        args.one_of_params.should have(2).values
+        args.one_of_params.should include(:arg1, :arg2)
+      end
+
+      it "should not allow both args" do
+        options = {:arg1 => 1, :arg2 => 2}
+        args = lambda {
+          Whm::Args.new(options) do |c|
+            c.one_of :arg1, :arg2
+          end
+        }
+
+        expect { args.call }.to raise_error(WhmArgumentError, /The parameters may include only one of 'arg1, arg2'/)
+      end
+    end
   end
 end

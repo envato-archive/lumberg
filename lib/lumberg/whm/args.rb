@@ -1,7 +1,7 @@
 module Lumberg
   module Whm
     class Args
-      attr_reader :required_params, :boolean_params, :optional_params
+      attr_reader :required_params, :boolean_params, :optional_params, :one_of_params
       attr_reader :options
       # Check the included hash for the included parameters.
       # Raises WhmArgumentError when it's mising the proper params
@@ -17,12 +17,14 @@ module Lumberg
         @required_params ||= []
         @boolean_params  ||= []
         @optional_params ||= []
+        @one_of_params   ||= []
         @options = options
 
         yield self 
 
         requires!
         booleans!
+        one_ofs!
         valid_options!
       end
 
@@ -38,6 +40,11 @@ module Lumberg
 
       def optionals(*values)
         @optional_params.concat(values)
+      end
+
+      def one_of(*values)
+        @optional_params.concat(values)
+        @one_of_params = values 
       end
 
       protected
@@ -76,6 +83,20 @@ module Lumberg
           raise WhmArgumentError.new("Not a valid parameter: #{key}") unless @optional_params.include?(key)
         end
       end  
+
+      # def one_ofs!
+      #   raise WhmArgumentError.new("One of requires two or more items") unless (@one_of_params.size > 1)
+      #   specified = @options.select { |key| @one_of_params.include?(key) }
+      #   raise WhmArgumentError.new("The parameters may include only one of '#{@one_of_params.join(', ')}'") if specified.size > 1
+      # end
+      def one_ofs!
+        if @one_of_params.size > 1
+          specified = @options.select { |key| @one_of_params.include?(key) }
+          raise WhmArgumentError.new("The parameters may include only one of '#{@one_of_params.join(', ')}'") if specified.size > 1
+        else
+          raise WhmArgumentError.new("One of requires two or more items") unless @one_of_params.empty?
+        end
+      end
     end
   end
 end
