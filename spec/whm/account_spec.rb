@@ -418,9 +418,7 @@ module Lumberg
       end
 
       it "should require a username or a domain" do
-        result = @account.set_site_ip(:ip => '1.1.1.1')
-        result[:success].should_not be_true
-        result[:message].should match(/Cannot determine username/i)
+        expect { @account.set_site_ip(:ip => '1.1.1.1') }.to raise_error(WhmArgumentError, /may include only one of 'username, domain'/i)
       end
 
       it "should accept a username for the account to use" do
