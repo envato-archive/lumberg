@@ -411,7 +411,33 @@ module Lumberg
     end 
 
     describe "setsiteip" do
-      pending
+      use_vcr_cassette "whm/account/setsiteip"
+
+      it "should require an ip" do
+        expect { @account.set_site_ip() }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
+      end
+
+      it "should require a username or a domain" do
+        result = @account.set_site_ip(:ip => '1.1.1.1')
+        result[:success].should_not be_true
+        result[:message].should match(/Cannot determine username/i)
+      end
+
+      it "should accept a username for the account to use" do
+        result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
+        result[:success].should be_true
+      end
+
+      it "should accept a domain for the account to use" do
+        result = @account.set_site_ip(:ip => '192.168.1.20', :domain => 'example.com')
+        result[:success].should be_true
+      end
+
+      it "should set the site ip" do
+        result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
+        result[:success].should be_true
+        result[:message].should match(/OK/i)
+      end
     end 
 
     describe "restore" do
