@@ -107,6 +107,7 @@ module Lumberg
           # Some API methods ALSO return a 'status' as
           # part of a result. We only use this value if it's
           # not part of the results hash
+          success = @response['result'].first['status'].to_i == 1 rescue false
           if @response[@key].first.is_a?(Hash)
             success = @response[@key].first['status'].to_i == 1
             message = @response[@key].first['statusmsg']
