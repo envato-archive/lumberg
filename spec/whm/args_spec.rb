@@ -153,6 +153,17 @@ module Lumberg
         args.one_of_params.should include(:arg1, :arg2)
       end
 
+      it "should not allow 0 params" do
+        options = {}
+        args = lambda {
+          Whm::Args.new(options) do |c|
+            c.one_of :arg1, :arg2
+          end
+        }
+
+        expect { args.call }.to raise_error(WhmArgumentError, /The parameters may include only one of 'arg1, arg2'/)
+      end
+
       it "should not allow both args" do
         options = {:arg1 => 1, :arg2 => 2}
         args = lambda {
