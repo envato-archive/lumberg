@@ -111,15 +111,21 @@ module Lumberg
           # Some API methods ALSO return a 'status' as
           # part of a result. We only use this value if it's
           # not part of the results hash
-          success = @response['result'].first['status'].to_i == 1 rescue false
           if @response[@key].first.is_a?(Hash)
             success = @response[@key].first['status'].to_i == 1
             message = @response[@key].first['statusmsg']
             res     = @response[@key].first.dup
           else
             res     = @response[@key].dup
-            res.delete('status')
-            res.delete('statusmsg')
+
+            # more hacks for WHM silly API
+            if @response.has_key?('result')
+              success = @response['result'].first['status'] == 1
+              message = @response['result'].first['statusmsg']
+            else
+              res.delete('status')
+              res.delete('statusmsg')
+            end
           end
 
           params  = res
