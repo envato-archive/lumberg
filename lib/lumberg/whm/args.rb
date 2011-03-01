@@ -67,12 +67,12 @@ module Lumberg
       def booleans!
         @boolean_params.each do |param|
           if param.is_a?(Array)
-            if @options.include?(param.first) && !@options[param.first].to_s.match(/(1|0)/)
-              raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param.first}")
+            if @options.include?(param.first) && ![true, false].include?(@options[param.first])
+              raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param.first}")
             end
           else
-            if @options.include?(param) && !@options[param].to_s.match(/(1|0)/)
-              raise WhmArgumentError.new("Boolean parameter must be \"1\" or \"0\": #{param}")
+            if @options.include?(param) && ![true, false].include?(@options[param])
+              raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param}")
             end
           end
         end
