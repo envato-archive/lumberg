@@ -74,13 +74,13 @@ module Lumberg
       end
 
       it "should remove a user and remove DNS when asked" do
-        result = @account.remove(:username => 'removeme', :keepdns => 0)
+        result = @account.remove(:username => 'removeme', :keepdns => false)
         result[:success].should be_true
         result[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
       it "should remove a user but keep DNS" do
-        result = @account.remove(:username => 'removeme', :keepdns => 1)
+        result = @account.remove(:username => 'removeme', :keepdns => true)
         result[:success].should be_true
         result[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
