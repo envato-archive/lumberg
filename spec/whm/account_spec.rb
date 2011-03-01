@@ -474,14 +474,14 @@ module Lumberg
       end
 
       it "should return an error if it can't find the backup" do
-        result = @account.restore_account("api.version".to_sym => 1, :username => 'privs', :type => 'daily', :all => 0, :ip => 0, :mail => 0, :mysql => 0, :subs => 0)
+        result = @account.restore_account("api.version".to_sym => 1, :username => 'privs', :type => 'daily', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false)
         result[:success].should be_false
         result[:message].should match(/Unable to find archive/i)
       end
 
       it "should restore the account" do
         pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved"
-        result = @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'daily', :all => 0, :ip => 0, :mail => 0, :mysql => 0, :subs => 0)
+        result = @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'daily', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false)
         raise result.inspect
         result[:success].should be_true
         result[:message].should match(/Account Restore Complete/i)
