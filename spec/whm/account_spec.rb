@@ -438,7 +438,7 @@ module Lumberg
       end
     end 
 
-    describe "restore", :wip => true do
+    describe "restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
       it "should require api.version" do
