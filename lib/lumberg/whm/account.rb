@@ -178,6 +178,16 @@ module Lumberg
         server.perform_request('setsiteip', options)
       end
 
+      def restore_account(options = {})
+        Args.new(options) do |c|
+          c.requires "api.version".to_sym, :username, :type, :all, :ip, :mail, :mysql, :subs
+          c.booleans :all, :ip, :mail, :mysql, :subs
+        end
+
+        options[:user] = options.delete(:username) if options[:username]
+        server.perform_request('restoreaccount', options)
+      end
+
       protected 
       def setup_server(value)
         if value.is_a?(Whm::Server) 

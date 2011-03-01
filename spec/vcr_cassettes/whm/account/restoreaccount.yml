@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
