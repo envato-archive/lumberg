@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/listsuspended?empty=true
+    uri: https://myhost.com:2087/json-api/listsuspended?empty=1
     body: 
     headers: 
       authorization: 

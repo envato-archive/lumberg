@@ -154,6 +154,8 @@ module Lumberg
       def format_query(hash)
         elements = []
         hash.each do |key, value|
+          value = 1 if value === true
+          value = 0 if value === false
           elements << "#{CGI::escape(key.to_s)}=#{CGI::escape(value.to_s)}"
         end
         elements.sort.join('&')
