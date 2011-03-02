@@ -11,7 +11,7 @@ module Lumberg
           c.requires :server
         end
      
-        setup_server options.delete(:server) 
+        @server = Whm::setup_server options.delete(:server) 
       end
 
       # WHM functions
@@ -189,14 +189,6 @@ module Lumberg
       end
 
       protected 
-      def setup_server(value)
-        if value.is_a?(Whm::Server) 
-          @server = value
-        else
-          @server = Whm::Server.new value
-        end
-      end
-
       # Some WHM API methods always return a result, even if the user
       # doesn't actually exist. This makes it seem like your request 
       # was successful when it really wasn't
