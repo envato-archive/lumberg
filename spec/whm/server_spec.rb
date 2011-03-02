@@ -17,7 +17,7 @@ module Lumberg
       end
 
       it "should set the url" do
-        @whm.url.should == "https://#{@login[:host]}:2087/json-api/"
+        @whm.base_url.should == "https://#{@login[:host]}:2087/json-api/"
       end
 
       it "should default to 'root' as the username" do
