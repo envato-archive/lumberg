@@ -2,6 +2,7 @@ module Lumberg
   module Whm
     autoload :Server,  'lumberg/whm/server'
     autoload :Account, 'lumberg/whm/account'
+    autoload :Dns,     'lumberg/whm/dns'
 
     class << self
       def format_url(earl, options = {})
@@ -18,6 +19,14 @@ module Lumberg
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless value.is_a?(String)
         value.gsub!(/\n|\s/, '')
         value
+      end
+
+      def setup_server(value)
+        if value.is_a?(Whm::Server) 
+          value
+        else
+          Whm::Server.new value
+        end
       end
 
       def symbolize_keys(arg)
