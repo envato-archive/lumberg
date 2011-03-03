@@ -37,7 +37,9 @@ module Lumberg
       end
 
       it "should require a password" do
-        expect { @account.create(:username => 'user', :domain => 'example.com')}.to raise_error(WhmArgumentError, /Missing required parameter: password/)
+        expect { 
+          @account.create(:username => 'user', :domain => 'example.com')
+        }.to raise_error(WhmArgumentError, /Missing required parameter: password/)
       end
 
       it "should create the account with proper params" do
@@ -136,7 +138,9 @@ module Lumberg
       end
 
       it "should not be successful when the user doesn't exist" do
-        expect { @account.limit_bandwidth(:username => 'notexists', :bwlimit => 99999) }.to raise_error(WhmInvalidUser, /User notexists does not exist/i)
+        expect { 
+          @account.limit_bandwidth(:username => 'notexists', :bwlimit => 99999) 
+        }.to raise_error(WhmInvalidUser, /User notexists does not exist/i)
       end
     end 
 
@@ -442,49 +446,119 @@ module Lumberg
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
       it "should require api.version" do
-        expect { @account.restore_account(:username => 'changeme', :type => 'monthly', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: api.version/i)
+        expect { @account.restore_account(:username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: api.version/i)
       end
 
       it "should require username" do
-        expect { @account.restore_account("api.version".to_sym => 1, :type => 'monthly', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
       end
 
       it "should require type" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: type/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: type/i)
       end
 
       it "should require all" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'monthly', :ip => false, :mail => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: all/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: all/i)
       end
 
       it "should require ip" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'monthly', :all => false, :mail => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
       end
 
       it "should require mail" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'monthly', :all => false, :ip => false, :mysql => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: mail/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mysql => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: mail/i)
       end
 
       it "should require mysql" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'monthly', :all => false, :ip => false, :mail => false, :subs => false) }.to raise_error(WhmArgumentError, /Missing required parameter: mysql/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :subs => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: mysql/i)
       end
 
       it "should require subs" do
-        expect { @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'monthly', :all => false, :ip => false, :mail => false, :mysql => false) }.to raise_error(WhmArgumentError, /Missing required parameter: subs/i)
+        expect { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false) 
+        }.to raise_error(WhmArgumentError, /Missing required parameter: subs/i)
       end
 
       it "should return an error if it can't find the backup" do
-        result = @account.restore_account("api.version".to_sym => 1, :username => 'privs', :type => 'daily', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false)
+        result = @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'privs', 
+                                          :type => 'daily', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false)
         result[:success].should be_false
         result[:message].should match(/Unable to find archive/i)
       end
 
       it "should restore the account" do
-        pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved"
-        result = @account.restore_account("api.version".to_sym => 1, :username => 'changeme', :type => 'daily', :all => false, :ip => false, :mail => false, :mysql => false, :subs => false)
-        raise result.inspect
-        result[:success].should be_true
-        result[:message].should match(/Account Restore Complete/i)
+        pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved" do
+          result = @account.restore_account("api.version".to_sym => 1, 
+                                            :username => 'changeme', 
+                                            :type => 'daily', 
+                                            :all => false, 
+                                            :ip => false, 
+                                            :mail => false, 
+                                            :mysql => false, 
+                                            :subs => false)
+          result[:success].should be_true
+          result[:message].should match(/Account Restore Complete/i)
+        end
       end
     end 
 
