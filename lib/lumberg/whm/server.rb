@@ -10,7 +10,7 @@ module Lumberg
       attr_accessor :hash
 
       # Base URL to the WHM API
-      attr_accessor :url
+      attr_accessor :base_url
 
       # API username - :default => root
       attr_accessor :user
@@ -44,25 +44,26 @@ module Lumberg
         @hash       = Whm::format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
 
-        @url = Whm::format_url(@host, options)
+        @base_url = Whm::format_url(@host, options)
       end
 
       def perform_request(function, options = {})
         @function = function
-        # WHM uses different things for the response keys
-        # Also their docs lie
-        @key      = options.delete(:key)
-        @key    ||= 'result'
+
+        # WHM sometime uses different keys for the result hash
+        @key  = options.delete(:key) || 'result'
 
         @params   = format_query(options)
-        uri       = URI.parse("#{@url}#{function}?#{@params}")
+        uri       = URI.parse("#{@base_url}#{function}?#{@params}")
 
         yield self if block_given?
 
-        # Auth Header
-        _url = uri.path
-        _url << "?" + uri.query unless uri.query.nil? || uri.query.empty?
-        req = Net::HTTP::Get.new(_url)
+        # Setup request URL
+        url = uri.path
+        url << "?" + uri.query unless uri.query.nil? || uri.query.empty?
+
+        # Add Auth Header
+        req = Net::HTTP::Get.new(url)
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
         # Do the request
@@ -82,7 +83,7 @@ module Lumberg
         end
 
         @raw_response = res
-        @response = JSON.parse(@raw_response.body)
+        @response     = JSON.parse(@raw_response.body)
         format_response
       end
 
@@ -110,7 +111,7 @@ module Lumberg
         when :action
           # Some API methods ALSO return a 'status' as
           # part of a result. We only use this value if it's
-          # not part of the results hash
+          # part of the results hash
           if @response[@key].first.is_a?(Hash)
             success = @response[@key].first['status'].to_i == 1
             message = @response[@key].first['statusmsg']
