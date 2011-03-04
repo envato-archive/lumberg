@@ -2,6 +2,7 @@
 require 'rspec'
 require 'lumberg'
 require 'vcr'
+require 'timeout'
 
 VCR.config do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
