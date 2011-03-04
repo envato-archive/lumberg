@@ -335,11 +335,11 @@ module Lumberg
         result[:message].should match(/user notexists does not exist/i)
       end
 
-      it "should require a username" do
+      it "requires a username" do
         requires_attr('username') { @account.change_package(:pkg => '') }
       end
 
-      it "should require a pkg" do
+      it "requires a pkg" do
         requires_attr('pkg') { @account.change_package(:username => 'changeme') }
       end
 
@@ -358,7 +358,7 @@ module Lumberg
 
     describe "#privs" do
       use_vcr_cassette 'whm/account/myprivs'
-      it "should require a user" do
+      it "requires a user" do
         requires_attr('username') { @account.privs }
       end
 
@@ -446,7 +446,7 @@ module Lumberg
     describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
-      it "should require api.version" do
+      it "requires api.version" do
         requires_attr('api.version') { 
           @account.restore_account(:username => 'changeme', 
                                    :type => 'monthly', 
@@ -494,51 +494,52 @@ module Lumberg
         }
       end
 
-      it "should require ip" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
+      it "requires ip" do
+        requires_attr('ip') { 
+          @account.restore_account("api.version".to_sym => 1, 
+                                   :username => 'changeme', 
+                                   :type => 'monthly', 
+                                   :all => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
-      it "should require mail" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: mail/i)
-      end
-
-      it "should require mysql" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
+      it "requires mail" do
+        requires_attr('mail') { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
                                           :all => false, 
                                           :ip => false, 
-                                          :mail => false, 
+                                          :mysql => false, 
                                           :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: mysql/i)
+        }
       end
 
-      it "should require subs" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
+      it "requires mysql" do
+        requires_attr('mysql') { @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'monthly', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :subs => false) 
+        }
+      end
+
+      it "require subs" do
+       requires_attr('subs') { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
                                           :all => false, 
                                           :ip => false, 
                                           :mail => false, 
                                           :mysql => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: subs/i)
+        }
       end
 
-      it "should return an error if it can't find the backup" do
+      it "returns an error if it can't find the backup" do
         result = @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'privs', 
                                           :type => 'daily', 
@@ -551,7 +552,7 @@ module Lumberg
         result[:message].should match(/Unable to find archive/i)
       end
 
-      it "should restore the account" do
+      it "restores the account" do
         pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved" do
           Timeout::timeout(0.4) do
             result = @account.restore_account("api.version".to_sym => 1, 
@@ -569,10 +570,10 @@ module Lumberg
       end
     end 
 
-    describe "verify_user" do
+    describe "#verify_user" do
       use_vcr_cassette "whm/account/accountsummary"
 
-      it "should not call the block if the user doesn't exist" do
+      it "calls the block if the user doesn't exist" do
         something = double()
         something.should_not_receive(:gold)
         expect { 
@@ -582,7 +583,7 @@ module Lumberg
         }.to raise_error(WhmInvalidUser)
       end
 
-      it "should call the block if the user does exist" do
+      it "scall the block if the user does exist" do
         something = double()
         something.should_receive(:gold)
         @account.send(:verify_user, 'summary') do
