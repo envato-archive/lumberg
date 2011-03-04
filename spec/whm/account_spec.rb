@@ -249,7 +249,7 @@ module Lumberg
     describe "#summary" do
       use_vcr_cassette "whm/account/accountsummary"
       it "requires a user" do
-        expect { @account.summary }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+        requires_attr('username') { @account.create }
       end
 
       it "returns an error for invalid users" do
@@ -267,6 +267,7 @@ module Lumberg
 
     describe "#suspend" do
       use_vcr_cassette "whm/account/suspend"
+
       it "requires a username" do
         requires_attr('username') { @account.suspend }
       end
