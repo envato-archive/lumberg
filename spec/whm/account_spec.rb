@@ -335,11 +335,11 @@ module Lumberg
         result[:message].should match(/user notexists does not exist/i)
       end
 
-      it "should require a username" do
+      it "requires a username" do
         requires_attr('username') { @account.change_package(:pkg => '') }
       end
 
-      it "should require a pkg" do
+      it "requires a pkg" do
         requires_attr('pkg') { @account.change_package(:username => 'changeme') }
       end
 
@@ -358,7 +358,7 @@ module Lumberg
 
     describe "#privs" do
       use_vcr_cassette 'whm/account/myprivs'
-      it "should require a user" do
+      it "requires a user" do
         requires_attr('username') { @account.privs }
       end
 
@@ -446,7 +446,7 @@ module Lumberg
     describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
-      it "should require api.version" do
+      it "requires the api.version" do
         requires_attr('api.version') { 
           @account.restore_account(:username => 'changeme', 
                                    :type => 'monthly', 
@@ -458,7 +458,7 @@ module Lumberg
         }
       end
 
-      it "requires username" do
+      it "requires a username" do
         requires_attr('username') { 
           @account.restore_account("api.version".to_sym => 1, 
                                    :type => 'monthly', 
@@ -494,7 +494,7 @@ module Lumberg
         }
       end
 
-      it "should require ip" do
+      it "requires an ip" do
         expect { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
@@ -505,7 +505,7 @@ module Lumberg
         }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
       end
 
-      it "should require mail" do
+      it "requires mail" do
         expect { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
@@ -516,7 +516,7 @@ module Lumberg
         }.to raise_error(WhmArgumentError, /Missing required parameter: mail/i)
       end
 
-      it "should require mysql" do
+      it "requires mysql" do
         expect { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
@@ -527,7 +527,7 @@ module Lumberg
         }.to raise_error(WhmArgumentError, /Missing required parameter: mysql/i)
       end
 
-      it "should require subs" do
+      it "requires subs" do
         expect { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
@@ -538,7 +538,7 @@ module Lumberg
         }.to raise_error(WhmArgumentError, /Missing required parameter: subs/i)
       end
 
-      it "should return an error if it can't find the backup" do
+      it "returns an error if it can't find the backup" do
         result = @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'privs', 
                                           :type => 'daily', 
@@ -551,7 +551,7 @@ module Lumberg
         result[:message].should match(/Unable to find archive/i)
       end
 
-      it "should restore the account" do
+      it "restores the account" do
         pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved" do
           Timeout::timeout(0.4) do
             result = @account.restore_account("api.version".to_sym => 1, 
@@ -572,7 +572,7 @@ module Lumberg
     describe "verify_user" do
       use_vcr_cassette "whm/account/accountsummary"
 
-      it "should not call the block if the user doesn't exist" do
+      it "does not call the block if the user doesn't exist" do
         something = double()
         something.should_not_receive(:gold)
         expect { 
@@ -582,7 +582,7 @@ module Lumberg
         }.to raise_error(WhmInvalidUser)
       end
 
-      it "should call the block if the user does exist" do
+      it "calls the block if the user does exist" do
         something = double()
         something.should_receive(:gold)
         @account.send(:verify_user, 'summary') do
