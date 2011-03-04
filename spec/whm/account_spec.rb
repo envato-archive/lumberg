@@ -267,8 +267,8 @@ module Lumberg
 
     describe "#suspend" do
       use_vcr_cassette "whm/account/suspend"
-      it "requires a user" do
-        expect { @account.suspend }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      it "requires a username" do
+        requires_attr('username') { @account.suspend }
       end
 
       it "returns an error for invalid users" do
@@ -285,33 +285,32 @@ module Lumberg
 
       it "suspends with a reason" do
         @account.server.should_receive(:perform_request).with('suspendacct', hash_including(:user => 'suspendme', :reason => 'abusive user'))
-
-        result = @account.suspend(:username => 'suspendme', :reason => 'abusive user')
+        @account.suspend(:username => 'suspendme', :reason => 'abusive user')
       end
     end 
 
-    describe "unsuspend" do
+    describe "#unsuspend" do
       use_vcr_cassette "whm/account/unsuspend"
-      it "should require a user" do
-        expect { @account.unsuspend }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      it "require a username" do
+        requires_attr('username') { @account.unsuspend }
       end
 
-      it "should return an error for invalid users" do
+      it "returns an error for invalid users" do
         result = @account.unsuspend(:username => 'notexists')
         result[:success].should_not be_true
         result[:message].should match(/does not exist/i)
       end
 
-      it "should unsuspend" do
+      it "unsuspends" do
         result = @account.unsuspend(:username => 'asdfasdf')
         result[:success].should be_true
         result[:message].should match(/unsuspending .* account/i)
       end
     end 
 
-    describe "list_suspended" do
+    describe "#list_suspended" do
       use_vcr_cassette 'whm/account/listsuspended'
-      it "should return non-empty result" do
+      it "returns non-empty result" do
         # empty isn't a real param. VCR Hacks
         result = @account.list_suspended(:empty => true)
         result[:success].should be_true
@@ -319,55 +318,56 @@ module Lumberg
         result[:params][:accts].first.should include(:user => 'removeme')
       end
 
-      it "should return empty result" do
+      it "returns empty result" do
         result = @account.list_suspended
         result[:success].should be_true
         result[:params][:accts].should be_empty
       end
     end 
 
-    describe "change package" do
+    describe "#change package" do
       use_vcr_cassette "whm/account/changepackage"
 
-      it "should return an error for an invalid user" do
+      it "returns an error for an invalid user" do
         result = @account.change_package(:username => 'notexists', :pkg => 'default')
         result[:success].should_not be_true
         result[:message].should match(/user notexists does not exist/i)
       end
 
-      it "should require a user" do
-        expect { @account.change_package(:pkg => '') }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      it "should require a username" do
+        requires_attr('username') { @account.change_package(:pkg => '') }
       end
 
-      it "should require a package" do
-        expect { @account.change_package(:username => 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pkg/i)
+      it "should require a pkg" do
+        requires_attr('pkg') { @account.change_package(:username => 'changeme') }
       end
 
-      it "should fail if the package was not found" do
+      it "fails if the package was not found" do
         result = @account.change_package(:username => 'changeme', :pkg => 'fakepackage')
         result[:success].should_not be_true
         result[:message].should match(/package does not exist/i)
       end
 
-      it "should change the package" do
+      it "changes the package" do
         result = @account.change_package(:username => 'changeme', :pkg => 'gold')
         result[:success].should be_true
         result[:message].should match(/Account Upgrade\/Downgrade Complete for changeme/i)
       end
     end 
 
-    describe "privs" do
+    describe "#privs" do
       use_vcr_cassette 'whm/account/myprivs'
       it "should require a user" do
-        expect { @account.privs }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+        requires_attr('username') { @account.privs }
       end
 
-      it "should have a result" do
+      it "has a result" do
         result = @account.privs(:username => 'privs')
         result[:success].should be_true
 
         params = result[:params]
-        expected = {:kill_dns => false, :edit_dns => false, :edit_mx => false, :add_pkg => false, 
+        expected = {
+                    :kill_dns => false, :edit_dns => false, :edit_mx => false, :add_pkg => false, 
                     :suspend_acct => false, :add_pkg_shell => false, :viewglobalpackages => false, 
                     :resftp => false, :list_accts => false, :all => true, :passwd => false, :quota => false, 
                     :park_dns => false, :rearrange_accts => false, :allow_addoncreate => false, :demo => false, 
@@ -382,20 +382,20 @@ module Lumberg
       end
     end 
 
-    describe "domainuserdata" do
+    describe "#domainuserdata" do
       use_vcr_cassette "whm/account/domainuserdata"
 
-      it "should return an error for an unknown domain" do
+      it "returns an error for an unknown domain" do
         result = @account.domain_user_data(:domain => 'notexists.com')
         result[:success].should_not be_true
         result[:message].should match(/Unable to determine account owner for domain\./i)
       end
 
-      it "should require a domain" do
-        expect { @account.domain_user_data() }.to raise_error(WhmArgumentError, /Missing required parameter: domain/i)
+      it "requires a domain" do
+        requires_attr('domain') { @account.domain_user_data }
       end
 
-      it "should return the correct data" do
+      it "returns the correct data" do
         result = @account.domain_user_data(:domain => 'example.com')
         result[:success].should be_true
         result[:params][:documentroot].should == "/home/changeme/public_html"
@@ -414,79 +414,83 @@ module Lumberg
       end
     end 
 
-    describe "setsiteip" do
+    describe "#setsiteip" do
       use_vcr_cassette "whm/account/setsiteip"
 
-      it "should require an ip" do
-        expect { @account.set_site_ip() }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
+      it "requires an ip" do
+        requires_attr('ip') { @account.set_site_ip }
       end
 
-      it "should require a username or a domain" do
+      it "requires a username or a domain" do
         expect { @account.set_site_ip(:ip => '1.1.1.1') }.to raise_error(WhmArgumentError, /may include only one of 'username, domain'/i)
       end
 
-      it "should accept a username for the account to use" do
+      it "accepts a username for the account to use" do
         result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
         result[:success].should be_true
       end
 
-      it "should accept a domain for the account to use" do
+      it "accepts a domain for the account to use" do
         result = @account.set_site_ip(:ip => '192.168.1.20', :domain => 'example.com')
         result[:success].should be_true
       end
 
-      it "should set the site ip" do
+      it "sets the site ip" do
         result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
         result[:success].should be_true
         result[:message].should match(/OK/i)
       end
     end 
 
-    describe "restore" do
+    describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
       it "should require api.version" do
-        expect { @account.restore_account(:username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: api.version/i)
+        requires_attr('api.version') { 
+          @account.restore_account(:username => 'changeme', 
+                                   :type => 'monthly', 
+                                   :all => false, 
+                                   :ip => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
-      it "should require username" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      it "requires username" do
+        requires_attr('username') { 
+          @account.restore_account("api.version".to_sym => 1, 
+                                   :type => 'monthly', 
+                                   :all => false, 
+                                   :ip => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
-      it "should require type" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: type/i)
+      it "requires type" do
+        requires_attr('type') { 
+          @account.restore_account("api.version".to_sym => 1, 
+                                   :username => 'changeme', 
+                                   :all => false, 
+                                   :ip => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
-      it "should require all" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: all/i)
+      it "requires all" do
+        requires_attr('all') { 
+          @account.restore_account("api.version".to_sym => 1, 
+                                   :username => 'changeme', 
+                                   :type => 'monthly', 
+                                   :ip => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
       it "should require ip" do
