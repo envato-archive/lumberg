@@ -55,5 +55,23 @@ module Lumberg
       end
     end
 
+    context "add zone record", :wip => true do
+      it "requires a zone" do
+        expect { @dns.add_zone_record() }.to raise_error(WhmArgumentError, /Missing.*: zone/)
+      end
+
+      use_vcr_cassette "whm/account/addzonerecord"
+
+      it "adds a zone record" do
+        pending "script is giving an error"
+        result = @dns.add_zone_record(:zone => 'example.com', 
+                                      :address => '127.0.0.1',
+                                      :type => 'A')
+        result[:success].should be_true
+        result[:message].should match(/Bind reloading on host.*example.com/i)
+      end
+    end
+
+
   end
 end
