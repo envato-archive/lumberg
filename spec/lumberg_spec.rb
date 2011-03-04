@@ -1,7 +1,9 @@
 require 'spec_helper'
 
-describe Lumberg do
-  it "should have a version" do
-    Lumberg::VERSION.should match /\d+/
+module Lumberg
+  describe "VERSION" do
+    it "has a valid format" do
+      VERSION.should match /\d+/
+    end
   end
 end

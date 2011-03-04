@@ -1,6 +1,7 @@
 #$:.unshift File.join(File.dirname(__FILE__), '..', 'lib')
 require 'rspec'
 require 'lumberg'
+require 'lumberg/exceptions'
 require 'vcr'
 require 'timeout'
 
@@ -12,6 +13,10 @@ end
 
 def live_test?
   !ENV['WHM_REAL'].nil?
+end
+
+def requires_attr(attr, &block)
+  expect { block.call }.to raise_error(Lumberg::WhmArgumentError, /Missing required parameter: #{attr}/i)
 end
 
 RSpec.configure do |c|
