@@ -4,7 +4,7 @@ require 'lumberg/whm/args'
 module Lumberg
   describe Whm::Args do
     context "required_parms" do
-      it "should raise an error when missing" do
+      it "raises an error when missing" do
         options = {:arg1 => true}
         args = lambda { 
           Whm::Args.new(options) do |c|
@@ -14,7 +14,7 @@ module Lumberg
         expect { args.call }.to raise_error(WhmArgumentError, /Missing required parameter: arg2/)
       end
 
-      it "should not raise an error with valid params" do
+      it "does not raise an error with valid params" do
         options = {:arg1 => true}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1
@@ -24,7 +24,7 @@ module Lumberg
         args.required_params.should include(:arg1)
       end
 
-      it "should set optional_params" do
+      it "sets optional_params" do
         options = {:arg1 => true, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1, :arg2
@@ -36,7 +36,7 @@ module Lumberg
         args.optional_params.should include(*args.required_params)
       end
 
-      it "should not set boolean_params" do
+      it "does not set boolean_params" do
         options = {:arg1 => true, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.requires :arg1, :arg2
@@ -47,7 +47,7 @@ module Lumberg
     end
 
     context "boolean_params" do
-      it "should raise an error when the param is not boolean" do
+      it "raises an error when the param is not boolean" do
         options = {:arg1 => 'string'}
         args = lambda { 
           Whm::Args.new(options) do |c|
@@ -57,7 +57,7 @@ module Lumberg
         expect { args.call }.to raise_error(WhmArgumentError, /Boolean parameter must be.*: arg1/)
       end
 
-      it "should not raise an error with boolean params" do
+      it "raises an error with boolean params" do
         options = {:arg1 => true}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1
@@ -67,7 +67,7 @@ module Lumberg
         args.boolean_params.should include(:arg1)
       end
 
-      it "should set optional_params" do
+      it "sets optional_params" do
         options = {:arg1 => true, :arg2 => false}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1, :arg2
@@ -79,7 +79,7 @@ module Lumberg
         args.optional_params.should include(:arg1, :arg2)
       end
 
-      it "should not set required_params" do
+      it "sets required_params" do
         options = {:arg1 => true, :arg2 => false}
         args =  Whm::Args.new(options) { |c|
           c.booleans :arg1, :arg2
@@ -90,7 +90,7 @@ module Lumberg
     end
 
     context "optional_params" do
-      it "should raise an error with unknown params" do
+      it "raises an error with unknown params" do
         options = {:arg1 => true}
         args = lambda { 
           Whm::Args.new(options) do |c|
@@ -101,7 +101,7 @@ module Lumberg
         expect { args.call }.to raise_error(WhmArgumentError, /Not a valid parameter: arg1/)
       end
 
-      it "should not raise an error with known params" do
+      it "does not raise an error with known params" do
         options = {:arg1 => true, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
@@ -111,7 +111,7 @@ module Lumberg
         args.optional_params.should include(:arg1, :arg2)
       end
 
-      it "should not set required_params" do
+      it "does not set required_params" do
         options = {:arg1 => true, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
@@ -120,7 +120,7 @@ module Lumberg
         args.required_params.should be_empty
       end
 
-      it "should not set boolean_params" do
+      it "does not set boolean_params" do
         options = {:arg1 => true, :arg2 => 2}
         args =  Whm::Args.new(options) { |c|
           c.optionals :arg1, :arg2
@@ -131,7 +131,7 @@ module Lumberg
     end
 
     context "one_of" do
-      it "should not allow one arg" do
+      it "allows one arg" do
         options = {:arg1 => true}
         args = lambda {
           Whm::Args.new(options) do |c|
@@ -142,7 +142,7 @@ module Lumberg
         expect { args.call }.to raise_error(WhmArgumentError, /One of requires two or more items/)
       end
 
-      it "should allow two or more args" do
+      it "allows two or more args" do
         options = {:arg1 => true}
 
         args = Whm::Args.new(options) do |c|
@@ -153,7 +153,7 @@ module Lumberg
         args.one_of_params.should include(:arg1, :arg2)
       end
 
-      it "should not allow 0 params" do
+      it "does not allow 0 params" do
         options = {}
         args = lambda {
           Whm::Args.new(options) do |c|
@@ -164,7 +164,7 @@ module Lumberg
         expect { args.call }.to raise_error(WhmArgumentError, /The parameters may include only one of 'arg1, arg2'/)
       end
 
-      it "should not allow both args" do
+      it "does not allow both args" do
         options = {:arg1 => true, :arg2 => 2}
         args = lambda {
           Whm::Args.new(options) do |c|
