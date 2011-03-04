@@ -40,11 +40,12 @@ module Lumberg
 
       def change_password(options = {})
         Args.new(options) do |c|
-          c.requires  :username, :pass
+          c.requires  :username, :password
           c.booleans  :db_pass_update
         end
 
         options[:user] = options.delete(:username)
+        options[:pass] = options.delete(:password)
         server.perform_request('passwd', options.merge(:key => 'passwd'))
       end
 

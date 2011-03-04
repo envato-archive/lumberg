@@ -9,40 +9,40 @@ module Lumberg
       @account  = Whm::Account.new(:server => @server.dup)
     end
 
-    describe "initialize" do
-      it "should create a new instance of server" do
+    describe "#initialize" do
+      it "creates a new instance of server" do
         expect { Whm::Account.new }.to raise_error(WhmArgumentError, /Missing required param/)
       end
 
-      it "should allow a server instance to be passed in" do
+      it "allows a server instance to be passed in" do
         account = Whm::Account.new(:server => @server)
         account.server.should be_a(Whm::Server)
       end
 
-      it "should allow a server hash to be passed in" do
+      it "allows a server hash to be passed in" do
         account = Whm::Account.new(:server => @login)
         account.server.should be_a(Whm::Server)
       end
     end
 
-    describe "create" do
+    describe "#create" do
       use_vcr_cassette "whm/account/createacct"
 
-      it "should require a username" do
-        expect { @account.create}.to raise_error(WhmArgumentError, /Missing required parameter: username/)
+      it "requires a username" do
+        requires_attr('username') { @account.create }
       end
 
-      it "should require a domain" do
-        expect { @account.create(:username => 'user')}.to raise_error(WhmArgumentError, /Missing required parameter: domain/)
+      it "requires a domain" do
+        requires_attr('domain') { @account.create(:username => 'user') }
       end
 
-      it "should require a password" do
-        expect { 
+      it "requires a password" do
+        requires_attr('password') { 
           @account.create(:username => 'user', :domain => 'example.com')
-        }.to raise_error(WhmArgumentError, /Missing required parameter: password/)
+        }
       end
 
-      it "should create the account with proper params" do
+      it "creates the account with proper params" do
         result = @account.create(:username => 'valid', :password => 'hummingbird123', :domain => 'valid-thing.com')
         result[:success].should be_true
         result[:message].should match(/Account Creation Ok/i)
@@ -54,7 +54,7 @@ module Lumberg
                                                   :nameservera, :nameserver3)
       end
 
-      it "should return an error on duplicate accounts" do
+      it "returns an error on duplicate accounts" do
         @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
         result = @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
         result[:success].should be(false)
@@ -62,74 +62,74 @@ module Lumberg
       end
     end
 
-    describe "remove" do
+    describe "#remove" do
       use_vcr_cassette "whm/account/removeacct"
 
-      it "should require a 'username' param" do
-        expect { @account.remove }.to raise_error(WhmArgumentError, /Missing required parameter: username/)
+      it "requires a username" do
+        requires_attr('username') { @account.remove }
       end
 
-      it "should remove a user and keep DNS by default" do
+      it "removes a user and keep DNS by default" do
         result = @account.remove(:username => 'removeme')
         result[:success].should be_true
         result[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
-      it "should remove a user and remove DNS when asked" do
+      it "removes a user and DNS when asked" do
         result = @account.remove(:username => 'removeme', :keepdns => false)
         result[:success].should be_true
         result[:params][:rawout].should match(/Removing DNS Entries/i)
       end
 
-      it "should remove a user but keep DNS" do
+      it "removes a user but keep DNS" do
         result = @account.remove(:username => 'removeme', :keepdns => true)
         result[:success].should be_true
         result[:params][:rawout].should_not match(/Removing DNS Entries/i)
       end
 
-      it "should return an error when the user doesn't exist" do
+      it "returns an error when the user doesn't exist" do
         result = @account.remove(:username => 'notreal')
         result[:success].should be(false)
         result[:message].should match(/notreal does not exist/i)
       end
     end
 
-    describe "change_password" do
+    describe "#change_password" do
       use_vcr_cassette "whm/account/passwd"
 
-      it "should require a user" do
-        expect { @account.change_password }.to raise_error(WhmArgumentError, /Missing required parameter: username/)
+      it "requires a username" do
+        requires_attr('username') { @account.change_password }
       end
 
-      it "should require a password" do
-        expect { @account.change_password(:username => 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: pass/)
+      it "requires a password" do
+        requires_attr('password') { @account.change_password(:username => 'changeme') }
       end
 
-      it "should change the password" do
-        result = @account.change_password(:username => 'changeme', :pass => 'superpass')
+      it "changes the password" do
+        result = @account.change_password(:username => 'changeme', :password => 'superpass')
         result[:success].should be_true
         result[:message].should match(/Password changed for user changeme/i)
       end
 
-      it "should not be successful when the user doesn't exist" do
-        result = @account.change_password(:username => 'dontchangeme', :pass => 'superpass')
+      it "isn't successful when the user doesn't exist" do
+        result = @account.change_password(:username => 'dontchangeme', :password => 'superpass')
         result[:success].should be(false)
         result[:message].should match(/dontchangeme does not exist/i)
       end
     end
 
-    describe "limit bandwidth" do
+    describe "#limit bandwidth" do
       use_vcr_cassette "whm/account/limitbw"
 
-      it "should require a user" do
-        expect { @account.limit_bandwidth(:bwlimit => 99999) }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
+      it "requires a user" do
+        requires_attr('username') { @account.limit_bandwidth(:bwlimit => 99999) }
       end
 
-      it "should require a bandwidth" do
-        expect { @account.limit_bandwidth(:username => 'changeme') }.to raise_error(WhmArgumentError, /Missing required parameter: bwlimit/i)
+      it "requires a bandwidth" do
+        requires_attr('bwlimit') { @account.limit_bandwidth(:username => 'changeme') }
       end
 
-      it "should set the bandwidth limit" do
+      it "sets the bandwidth limit" do
         result = @account.limit_bandwidth(:username => 'changeme', :bwlimit => 99999)
         result[:success].should be_true
         result[:message].should match(/Bandwidth Limit for changeme set to 99999/i)
@@ -137,23 +137,23 @@ module Lumberg
         result[:params][:bwlimit][:unlimited].should equal(true)
       end
 
-      it "should not be successful when the user doesn't exist" do
+      it "isn't successful when the user doesn't exist" do
         expect { 
           @account.limit_bandwidth(:username => 'notexists', :bwlimit => 99999) 
         }.to raise_error(WhmInvalidUser, /User notexists does not exist/i)
       end
     end 
 
-    describe "list_accounts" do
+    describe "#list_accounts" do
       use_vcr_cassette "whm/account/listaccts"
 
-      it "should list all accounts" do
+      it "lists all accounts" do
         result = @account.list_accounts
         result[:success].should be_true
         result[:params][:acct].should have(10).accounts
       end
 
-      it "should return data for the account" do
+      it "returns data for the account" do
         result = @account.list_accounts(:searchtype => 'user', :search => 'changeme')
         result[:success].should be_true
         account = result[:params][:acct].first
@@ -164,126 +164,126 @@ module Lumberg
         account[:suspended].should equal(false)
       end
 
-      it "should list accounts that match a regex search for the user" do
+      it "lists accounts that match a regex search for the user" do
         result = @account.list_accounts(:searchtype => 'user', :search => 'changeme')
         result[:success].should be_true
         result[:params][:acct].should have(1).account
       end
 
-      it "should list accounts that match a regex search for the ip" do
+      it "lists accounts that match a regex search for the ip" do
         result = @account.list_accounts(:searchtype => 'ip', :search => '192\..*?\.1\.20')
         result[:success].should be_true
         result[:params][:acct].should have(6).accounts
       end
 
-      it "should list accounts that match a regex search for the domain" do
+      it "lists accounts that match a regex search for the domain" do
         result = @account.list_accounts(:searchtype => 'domain', :search => 'ch.*?e.com')
         result[:success].should be_true
         result[:params][:acct].should have(1).account
       end
     end 
 
-    describe "modify" do
+    describe "#modify" do
       use_vcr_cassette "whm/account/modifyacct"
 
-      it "should allow modifying the domain" do
+      it "allows domain modification" do
         result = @account.modify(:username => 'changeme', :domain => 'example.com')
         result[:success].should be_true
         result[:params][:newcfg][:cpuser][:DOMAIN].should == 'example.com'
       end
 
-      it "should return an error for an invalid user" do
+      it "returns an error for an invalid user" do
         result = @account.modify(:username => 'notexists')
         result[:success].should_not be_true
         result[:message].should match(/Unable to fetch the cPanel user file for notexists/)
       end
 
-      it "should return the bandwidth limit" do
+      it "returns the bandwidth limit" do
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:BWLIMIT].should == "unlimited" 
       end
 
-      it "should return the primary contact email" do
+      it "returns the primary contact email" do
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:CONTACTEMAIL].should == "user@address.com"
       end
 
-      it "should return the secondary contact email" do
+      it "returns the secondary contact email" do
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:CONTACTEMAIL2].should == "user2@address.com"
       end
 
-      it "should return the main domain" do
+      it "returns the main domain" do
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:DOMAIN].should == "example.com"
       end
 
-      it "should return whether or not the domain has CGI access" do
+      it "returns whether or not the domain has CGI access" do
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:HASCGI].should be_true
       end
     end 
 
-    describe "editquota" do
+    describe "#editquota" do
       use_vcr_cassette "whm/account/editquota"
 
-      it "should return an error for an invalid user" do
+      it "returns an error for an invalid user" do
         result = @account.edit_quota(:username => 'notexists', :quota => 500)
         result[:success].should_not be_true
         result[:message].should match(/Invalid User\. Cannot set quota\./i)
       end
 
-      it "should change the user's disk space usage quota" do
+      it "changes the user's disk space usage quota" do
         result = @account.edit_quota(:username => 'changeme', :quota => 500)
         result[:success].should be_true
         result[:message].should match(/Set quota for user./i)
       end
 
-      it "should fail if a negative usage quota is passed" do
+      it "returns an error if a negative usage quota is passed" do
         result = @account.edit_quota(:username => 'changeme', :quota => -1)
         result[:success].should_not be_true
         result[:message].should match(/Failed to set quota for user\./i)
       end
     end
 
-    describe "summary" do
+    describe "#summary" do
       use_vcr_cassette "whm/account/accountsummary"
-      it "should require a user" do
+      it "requires a user" do
         expect { @account.summary }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
       end
 
-      it "should return an error for invalid users" do
+      it "returns an error for invalid users" do
         result = @account.summary(:username => 'notexists')
         result[:success].should_not be_true
         result[:message].should match(/does not exist/i)
       end
 
-      it "should return a summary" do
+      it "returns a summary" do
         result = @account.summary(:username => 'summary')
         result[:success].should be_true
         result[:message].should match(/ok/i)
       end
     end 
 
-    describe "suspend" do
+    describe "#suspend" do
       use_vcr_cassette "whm/account/suspend"
-      it "should require a user" do
+      it "requires a user" do
         expect { @account.suspend }.to raise_error(WhmArgumentError, /Missing required parameter: username/i)
       end
 
-      it "should return an error for invalid users" do
+      it "returns an error for invalid users" do
         result = @account.suspend(:username => 'notexists')
         result[:success].should_not be_true
         result[:message].should match(/does not exist/i)
       end
 
-      it "should suspend" do
+      it "suspends" do
         result = @account.suspend(:username => 'suspendme')
         result[:success].should be_true
         result[:message].should match(/has been suspended/i)
       end
 
-      it "should suspend with a reason" do
+      it "suspends with a reason" do
         @account.server.should_receive(:perform_request).with('suspendacct', hash_including(:user => 'suspendme', :reason => 'abusive user'))
 
         result = @account.suspend(:username => 'suspendme', :reason => 'abusive user')
