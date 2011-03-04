@@ -6,3 +6,4 @@ pkg/*
 test.rb
 *~
 coverage/
+doc/
