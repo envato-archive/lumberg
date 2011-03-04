@@ -30,65 +30,63 @@ module Lumberg
       end
     end
    
-    context "Performing an HTTP request" do
-      describe "perform_request" do
-        # These tests are skipped when running against
-        # a real WHM server
-        unless live_test?
-          describe "calling my_function" do
-            use_vcr_cassette "whm/server/my_function"
+    describe "#perform_request" do
+      # These tests are skipped when running against
+      # a real WHM server
+      unless live_test?
+        describe "my_function" do
+          use_vcr_cassette "whm/server/my_function"
 
-            it "should call the proper URL" do
-              JSON.should_receive(:parse).with("[]").and_return([])
-              @whm.perform_request('my_function')
-              @whm.function.should == 'my_function'
-              @whm.params.should be_empty
-              @whm.raw_response.should be_a(Net::HTTPOK)
+          it "calls the proper URL" do
+            JSON.should_receive(:parse).with("[]").and_return([])
+            @whm.perform_request('my_function')
+            @whm.function.should == 'my_function'
+            @whm.params.should be_empty
+            @whm.raw_response.should be_a(Net::HTTPOK)
+          end
+
+          it "calls the proper URL and arguments" do
+            JSON.should_receive(:parse).with("[]").and_return([])
+            @whm.perform_request('my_function', :arg1 => 1, :arg2 => 'test')
+            @whm.function.should == 'my_function'
+            @whm.params.should == "arg1=1&arg2=test"
+            @whm.raw_response.should be_a(Net::HTTPOK)
+          end
+
+          it "changes params to booleans when given a block" do
+            req = @whm.perform_request('my_function', :block => 1) do |p|
+              p.boolean_params =  :true, :false
             end
 
-            it "should call the proper URL and arguments" do
-              JSON.should_receive(:parse).with("[]").and_return([])
-              @whm.perform_request('my_function', :arg1 => 1, :arg2 => 'test')
-              @whm.function.should == 'my_function'
-              @whm.params.should == "arg1=1&arg2=test"
-              @whm.raw_response.should be_a(Net::HTTPOK)
-            end
-
-            it "should change params to booleans when given a block" do
-              req = @whm.perform_request('my_function', :block => 1) do |p|
-                p.boolean_params =  :true, :false
-              end
-
-              @whm.boolean_params.should include(:true, :false)
-              req[:params].should include(:true => true, :false => false, :other => 2)
-            end
+            @whm.boolean_params.should include(:true, :false)
+            req[:params].should include(:true => true, :false => false, :other => 2)
           end
         end
+      end
 
-        describe "ssl_verify" do
-          it "should no verify SSL certs for HTTP requests by default" do
-            @whm.ssl_verify.should be(false)
-          end
-
-          it "should verify SSL certs for HTTP requests when asked" do
-            @whm.ssl_verify = true
-            @whm.ssl_verify.should be(true)
-          end
-
-          it "should not verify SSL certs for HTTP requests when asked" do
-            @whm.ssl_verify = false
-            @whm.ssl_verify.should be(false)
-          end
+      describe "@ssl_verify" do
+        it "does not verify SSL certs for HTTP requests by default" do
+          @whm.ssl_verify.should be(false)
         end
 
-        describe "calling applist" do
-          use_vcr_cassette "whm/server/applist"
+        it "verifies SSL certs for HTTP requests when asked" do
+          @whm.ssl_verify = true
+          @whm.ssl_verify.should be(true)
+        end
 
-          it "should set a response message" do
-            @whm = Whm::Server.new(:host => @whm_host, :hash => @whm_hash)
-            @whm.perform_request('applist')
-            @whm.function.should == 'applist'
-          end
+        it "does not verify SSL certs for HTTP requests when asked" do
+          @whm.ssl_verify = false
+          @whm.ssl_verify.should be(false)
+        end
+      end
+
+      context "calling applist" do
+        use_vcr_cassette "whm/server/applist"
+
+        it "sets a response message" do
+          @whm = Whm::Server.new(:host => @whm_host, :hash => @whm_hash)
+          @whm.perform_request('applist')
+          @whm.function.should == 'applist'
         end
       end
     end
@@ -96,58 +94,51 @@ module Lumberg
     # These tests are skipped when running against
     # a real WHM server
     unless live_test?
-      context "Parsing response" do
-        describe "response_type" do
-
-          use_vcr_cassette "whm/server/response_type"
-
-          it "should detect an action function" do
-            @whm.perform_request('testing')
-            @whm.send(:response_type).should == :action
-          end
-
-          it "should detect an error function" do
-            @whm.perform_request('testing_error')
-            @whm.send(:response_type).should == :error
-          end
-
-          it "should detect a query function" do
-            @whm.perform_request('testing_query')
-            @whm.send(:response_type).should == :query
-          end
-
-          it "should detect an unknown function" do
-            @whm.perform_request('testing_unknown')
-            @whm.send(:response_type).should == :unknown
-          end
-        end
-      end
-
-      context "Determining response type" do
+      describe "#response_type" do
 
         use_vcr_cassette "whm/server/response_type"
 
-        it "should return true for a successful :action" do
+        it "detects an action function" do
+          @whm.perform_request('testing')
+          @whm.send(:response_type).should == :action
+        end
+
+        it "detects an error function" do
+          @whm.perform_request('testing_error')
+          @whm.send(:response_type).should == :error
+        end
+
+        it "detects a query function" do
+          @whm.perform_request('testing_query')
+          @whm.send(:response_type).should == :query
+        end
+
+        it "detects an unknown function" do
+          @whm.perform_request('testing_unknown')
+          @whm.send(:response_type).should == :unknown
+        end
+
+        it "returns true for a successful :action" do
           @whm.perform_request('testing')
           response = @whm.send(:format_response)
           response[:success].should be(true)
         end
 
-        it "should return true for a successful :query" do
+        it "returns true for a successful :query" do
           @whm.perform_request('testing_query')
           response = @whm.send(:format_response)
           response[:success].should be(true)
           response[:params].should have_key(:acct)
         end
 
-        it "should return false on :error" do
+        it "returns false on :error" do
           @whm.perform_request('testing_error')
           response = @whm.send(:format_response)
           response[:success].should be(false)
           response[:message].should match(/Unknown App Req/)
         end
 
-        it "should return false on :unknown" do
+        it "returns false on :unknown" do
           @whm.perform_request('testing_unknown')
           response = @whm.send(:format_response)
           response[:success].should be(false)

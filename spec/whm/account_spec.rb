@@ -446,7 +446,7 @@ module Lumberg
     describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
-      it "requires the api.version" do
+      it "requires api.version" do
         requires_attr('api.version') { 
           @account.restore_account(:username => 'changeme', 
                                    :type => 'monthly', 
@@ -494,48 +494,49 @@ module Lumberg
         }
       end
 
-      it "requires an ip" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: ip/i)
+      it "requires ip" do
+        requires_attr('ip') { 
+          @account.restore_account("api.version".to_sym => 1, 
+                                   :username => 'changeme', 
+                                   :type => 'monthly', 
+                                   :all => false, 
+                                   :mail => false, 
+                                   :mysql => false, 
+                                   :subs => false) 
+        }
       end
 
       it "requires mail" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
+        requires_attr('mail') { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
                                           :all => false, 
                                           :ip => false, 
                                           :mysql => false, 
                                           :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: mail/i)
+        }
       end
 
       it "requires mysql" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
+        requires_attr('mysql') { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
                                           :all => false, 
                                           :ip => false, 
                                           :mail => false, 
                                           :subs => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: mysql/i)
+        }
       end
 
-      it "requires subs" do
-        expect { @account.restore_account("api.version".to_sym => 1, 
+      it "require subs" do
+       requires_attr('subs') { @account.restore_account("api.version".to_sym => 1, 
                                           :username => 'changeme', 
                                           :type => 'monthly', 
                                           :all => false, 
                                           :ip => false, 
                                           :mail => false, 
                                           :mysql => false) 
-        }.to raise_error(WhmArgumentError, /Missing required parameter: subs/i)
+        }
       end
 
       it "returns an error if it can't find the backup" do
@@ -569,7 +570,7 @@ module Lumberg
       end
     end 
 
-    describe "verify_user" do
+    describe "#verify_user" do
       use_vcr_cassette "whm/account/accountsummary"
 
       it "does not call the block if the user doesn't exist" do
