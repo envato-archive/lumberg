@@ -548,16 +548,18 @@ module Lumberg
 
       it "should restore the account" do
         pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved" do
-          result = @account.restore_account("api.version".to_sym => 1, 
-                                            :username => 'changeme', 
-                                            :type => 'daily', 
-                                            :all => false, 
-                                            :ip => false, 
-                                            :mail => false, 
-                                            :mysql => false, 
-                                            :subs => false)
-          result[:success].should be_true
-          result[:message].should match(/Account Restore Complete/i)
+          Timeout::timeout(0.4) do
+            result = @account.restore_account("api.version".to_sym => 1, 
+                                              :username => 'changeme', 
+                                              :type => 'daily', 
+                                              :all => false, 
+                                              :ip => false, 
+                                              :mail => false, 
+                                              :mysql => false, 
+                                              :subs => false)
+            result[:success].should be_true
+            result[:message].should match(/Account Restore Complete/i)
+          end
         end
       end
     end 
