@@ -19,6 +19,15 @@ module Lumberg
 
         server.perform_request('adddns', options)
       end
+
+      def add_zone_record(options = {})
+        Args.new(options) do |c|
+          c.requires :zone
+          c.optionals :name, :address, :type, :class
+        end
+
+        server.perform_request('addzonerecord', options)
+      end
     end
   end
 end
