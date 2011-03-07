@@ -28,6 +28,10 @@ module Lumberg
 
         server.perform_request('addzonerecord', options)
       end
+
+      def list_zones(options = {})
+        server.perform_request('listzones', options.merge(:key => 'zone'))
+      end
     end
   end
 end
