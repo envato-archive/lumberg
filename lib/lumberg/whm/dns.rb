@@ -48,6 +48,14 @@ module Lumberg
 
         server.perform_request('dumpzone', options)
       end
+
+      def resolve_domain(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, "api.version".to_sym
+        end
+
+        server.perform_request('resolvedomainname', options.merge(:key => 'data'))
+      end
     end
   end
 end
