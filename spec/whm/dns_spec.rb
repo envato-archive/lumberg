@@ -84,7 +84,7 @@ module Lumberg
       end
     end
 
-    context "get zone record", :wip => true do
+    context "get zone record" do
       use_vcr_cassette "whm/account/getzonerecord"
 
       it "requires a domain" do
@@ -109,7 +109,6 @@ module Lumberg
         result[:message].should match(/Zone does not exist/i)
       end
     end
-
 
   end
 end
