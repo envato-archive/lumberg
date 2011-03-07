@@ -40,6 +40,14 @@ module Lumberg
 
         server.perform_request('getzonerecord', options)
       end
+
+      def dump_zone(options = {})
+        Args.new(options) do |c|
+          c.requires :domain
+        end
+
+        server.perform_request('dumpzone', options)
+      end
     end
   end
 end
