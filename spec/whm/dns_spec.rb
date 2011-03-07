@@ -9,17 +9,6 @@ module Lumberg
       @dns      = Whm::Dns.new(:server => @server.dup)
     end
 
-    context "new" do
-      it "requires a server" do
-        expect { Whm::Dns.new }.to raise_error(WhmArgumentError, /Missing.*: server/) 
-      end
-
-      it "sets up a server" do
-        @dns = Whm::Dns.new(:server => @server.dup)
-        @dns.server.should be_a(Whm::Server)
-      end
-    end
-
     context "add_zone" do
       it "requires a domain" do
         @dns.stub(:perform_request)

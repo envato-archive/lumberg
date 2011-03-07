@@ -1,18 +1,11 @@
 module Lumberg
   module Whm
+    autoload :Base,    'lumberg/whm/base'
     autoload :Server,  'lumberg/whm/server'
     autoload :Account, 'lumberg/whm/account'
     autoload :Dns,     'lumberg/whm/dns'
 
     class << self
-
-      def setup_server(value)
-        if value.is_a?(Whm::Server) 
-          value
-        else
-          Whm::Server.new value
-        end
-      end
 
       def symbolize_keys(arg)
         case arg

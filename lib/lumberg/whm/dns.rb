@@ -1,16 +1,6 @@
 module Lumberg
   module Whm
-    class Dns
-      attr_accessor :server
-
-      def initialize(options ={})
-        Args.new(options) do |c|
-          c.requires :server
-        end
-
-        @server = Whm::setup_server options.delete(:server)
-      end
-
+    class Dns < Base
       def add_zone(options = {})
         Args.new(options) do |c|
           c.requires :domain, :ip
