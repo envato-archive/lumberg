@@ -63,12 +63,12 @@ module Lumberg
       use_vcr_cassette "whm/account/addzonerecord"
 
       it "adds a zone record" do
-        pending "script is giving an error"
         result = @dns.add_zone_record(:zone => 'example.com', 
+                                      :name => 'example.com.',
                                       :address => '127.0.0.1',
                                       :type => 'A')
         result[:success].should be_true
-        result[:message].should match(/Bind reloading on host.*example.com/i)
+        result[:message].should match(/Bind reloading on .*example.com/i)
       end
     end
 
