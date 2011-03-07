@@ -32,6 +32,14 @@ module Lumberg
       def list_zones(options = {})
         server.perform_request('listzones', options.merge(:key => 'zone'))
       end
+
+      def get_zone_record(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, :Line
+        end
+
+        server.perform_request('getzonerecord', options)
+      end
     end
   end
 end
