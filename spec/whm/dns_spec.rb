@@ -108,6 +108,34 @@ module Lumberg
         result[:success].should_not be_true
         result[:message].should match(/Zone does not exist/i)
       end
+
+      it "returns an error for a line with no data" do
+        result = @dns.get_zone_record(:domain => "example.com", :Line => 20)
+        result[:success].should be_false
+        result[:message].should match(/No record available on selected line/i)
+      end
+    end
+
+    context "dumpzone" do
+      use_vcr_cassette "whm/account/dumpzone"
+
+      it "requires a domain" do
+        expect { @dns.dump_zone }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+      end
+
+      it "dumps the zone" do
+        result = @dns.dump_zone(:domain => "example.com")
+        result[:success].should be_true
+        result[:message].should match(/Zone Serialized/i)
+        result[:params][:record][0][:raw].should match(/; cPanel first:11\.25\.0-STABLE_44718 latest:11\.28\.64-STABLE_51024 Cpanel::ZoneFile::VERSION:1\.3 mtime:1299509628/i)
+        result[:params][:record][20][:ttl].should == "14400"
+      end
+
+      it "returns an error when the domain is not found" do
+        result = @dns.dump_zone(:domain => "notexists.com")
+        result[:success].should be_false
+        result[:message].should match(/Zone does not exist/i)
+      end
     end
 
   end
