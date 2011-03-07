@@ -458,7 +458,7 @@ module Lumberg
         }
       end
 
-      it "requires username" do
+      it "requires a username" do
         requires_attr('username') { 
           @account.restore_account("api.version".to_sym => 1, 
                                    :type => 'monthly', 
@@ -575,7 +575,7 @@ module Lumberg
 
       before(:each) { @something = double() }
 
-      it "calls the block if the user doesn't exist" do
+      it "does not call the block if the user doesn't exist" do
         @something.should_not_receive(:gold)
         expect { 
           @account.send(:verify_user, 'notexists') do
@@ -584,7 +584,7 @@ module Lumberg
         }.to raise_error(WhmInvalidUser)
       end
 
-      it "scall the block if the user does exist" do
+      it "calls the block if the user does exist" do
         @something.should_receive(:gold)
         @account.send(:verify_user, 'summary') do
           @something.gold
