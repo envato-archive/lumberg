@@ -157,6 +157,7 @@ module Lumberg
       it "returns an error when the ip address cannot be determined" do
         result = @dns.resolve_domain(:domain => "notexists.com", "api.version".to_sym => 1)
         result[:params][:ip].should be_nil
+        result[:message].should match(/Unable to resolve domain name/i)
       end
     end
 
