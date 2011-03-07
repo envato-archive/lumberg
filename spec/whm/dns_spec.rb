@@ -55,7 +55,7 @@ module Lumberg
       end
     end
 
-    context "add zone record", :wip => true do
+    context "add zone record" do
       it "requires a zone" do
         expect { @dns.add_zone_record() }.to raise_error(WhmArgumentError, /Missing.*: zone/)
       end
