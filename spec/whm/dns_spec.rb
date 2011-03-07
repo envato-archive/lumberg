@@ -84,6 +84,32 @@ module Lumberg
       end
     end
 
+    context "get zone record", :wip => true do
+      use_vcr_cassette "whm/account/getzonerecord"
+
+      it "requires a domain" do
+        expect { @dns.get_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+      end
+
+      it "requires a Line" do
+        expect { @dns.get_zone_record(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+      end
+
+      it "returns the zone" do
+        result = @dns.get_zone_record(:domain => "example.com", :Line => 1)
+        result[:success].should be_true
+        result[:message].should match(/Record obtained/i)
+        result[:params][:record][:Line].should == 1
+        result[:params][:record][:raw].should == "; cPanel 11.25.0-STABLE_44718"
+      end
+
+      it "returns an error when the domain was not found" do
+        result = @dns.get_zone_record(:domain => "notexists.com", :Line => 1)
+        result[:success].should_not be_true
+        result[:message].should match(/Zone does not exist/i)
+      end
+    end
+
 
   end
 end
