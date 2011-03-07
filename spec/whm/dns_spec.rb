@@ -138,5 +138,28 @@ module Lumberg
       end
     end
 
+    context "resolve domain name" do
+      use_vcr_cassette "whm/account/resolvedomainname"
+
+      it "requires a domain" do
+        expect { @dns.resolve_domain("api.version".to_sym => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+      end
+
+      it "requires the api version" do
+        expect { @dns.resolve_domain(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: api.version/i)
+      end
+
+      it "returns the ip address of the domain" do
+        result = @dns.resolve_domain(:domain => "example.com", "api.version".to_sym => 1)
+        result[:params][:ip].should == "127.0.0.1"
+      end
+
+      it "returns an error when the ip address cannot be determined" do
+        result = @dns.resolve_domain(:domain => "notexists.com", "api.version".to_sym => 1)
+        result[:params][:ip].should be_nil
+        result[:message].should match(/Unable to resolve domain name/i)
+      end
+    end
+
   end
 end
