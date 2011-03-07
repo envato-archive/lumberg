@@ -72,6 +72,18 @@ module Lumberg
       end
     end
 
+    context "list zones" do
+      use_vcr_cassette "whm/account/listzones"
+
+      it "lists all the zones" do
+        result = @dns.list_zones
+        params = result[:params]
+        params.size.should == 2
+        params[0][:zonefile].should == "thisisathrowawayagain22.com.db"
+        params[0][:domain].should == "thisisathrowawayagain22.com"
+      end
+    end
+
 
   end
 end
