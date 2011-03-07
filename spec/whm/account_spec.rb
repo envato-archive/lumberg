@@ -9,22 +9,6 @@ module Lumberg
       @account  = Whm::Account.new(:server => @server.dup)
     end
 
-    describe "#initialize" do
-      it "creates a new instance of server" do
-        expect { Whm::Account.new }.to raise_error(WhmArgumentError, /Missing required param/)
-      end
-
-      it "allows a server instance to be passed in" do
-        account = Whm::Account.new(:server => @server)
-        account.server.should be_a(Whm::Server)
-      end
-
-      it "allows a server hash to be passed in" do
-        account = Whm::Account.new(:server => @login)
-        account.server.should be_a(Whm::Server)
-      end
-    end
-
     describe "#create" do
       use_vcr_cassette "whm/account/createacct"
 

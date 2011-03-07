@@ -29,6 +29,41 @@ module Lumberg
         @whm.user.should == 'bob'
       end
     end
+
+    describe "#format_url" do
+      it "converts the host into an SSL URL by default" do
+        @whm.send(:format_url).should == "https://myhost.com:2087/json-api/"
+      end
+
+      it "converts the host into an SSL URL when asked" do
+        @whm = Whm::Server.new(@login.dup.merge(:ssl => true))
+        @whm.send(:format_url).should == "https://myhost.com:2087/json-api/"
+      end
+
+      it "converts the host into a non SSL URL when asked" do
+        @whm = Whm::Server.new(@login.dup.merge(:ssl => false))
+        @whm.send(:format_url).should == "http://myhost.com:2086/json-api/"
+      end
+    end
+
+    describe "#format_hash" do
+      it "raises an error if hash is not a string" do
+        expect{  Whm::Server.new(:host => @whm_host, :hash => nil) }.to 
+          raise_error(Lumberg::WhmArgumentError, "Missing WHM hash")
+      end
+
+      it "removes \\n's from the hash" do
+        hash =  "my\nhash\n\n\n\n"
+        @whm = Whm::Server.new(:host => @whm_host, :hash => hash)
+        @whm.hash.should == 'myhash'
+      end
+
+      it "removes whitespace from the hash" do
+        hash = "    my hash "
+        @whm = Whm::Server.new(:host => @whm_host, :hash => hash)
+        @whm.hash.should == 'myhash'
+      end
+    end
    
     describe "#perform_request" do
       # These tests are skipped when running against

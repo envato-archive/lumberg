@@ -27,6 +27,9 @@ module Lumberg
       # WHM API function name
       attr_reader :function
 
+      # Use ssl?
+      attr_accessor :ssl
+
       # HTTP SSL verify mode
       attr_accessor :ssl_verify
 
@@ -36,15 +39,16 @@ module Lumberg
       def initialize(options)
         Args.new(options) do |c|
           c.requires  :host, :hash
-          c.optionals :user
+          c.optionals :user, :ssl
         end
 
         @ssl_verify ||= false
+        @ssl        = options.delete(:ssl)
         @host       = options.delete(:host)
-        @hash       = Whm::format_hash(options.delete(:hash))
+        @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
 
-        @base_url = Whm::format_url(@host, options)
+        @base_url   = format_url(options)
       end
 
       def perform_request(function, options = {})
@@ -154,6 +158,19 @@ module Lumberg
         end
 
         {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
+      end
+
+      def format_url(options = {})
+        @ssl = true if @ssl.nil?
+        port  = (@ssl ? 2087 : 2086)
+        proto = (@ssl ? 'https' : 'http')
+
+        "#{proto}://#{@host}:#{port}/json-api/"
+      end
+
+      def format_hash(hash)
+        raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
+        hash.gsub(/\n|\s/, '')
       end
 
       def format_query(hash)

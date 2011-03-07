@@ -3,16 +3,7 @@ module Lumberg
     # Some WHM functions require different params for the same 'thing'
     # e.g. some accept 'username' while others accept 'user' 
     # Be sure to keep our API consistent and work around those inconsistencies internally 
-    class Account
-      attr_reader :server
-
-      def initialize(options = {})
-        Args.new(options) do |c|
-          c.requires :server
-        end
-     
-        @server = Whm::setup_server options.delete(:server) 
-      end
+    class Account < Base
 
       # WHM functions
       def create(options = {})
