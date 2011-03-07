@@ -5,21 +5,6 @@ module Lumberg
     autoload :Dns,     'lumberg/whm/dns'
 
     class << self
-      def format_url(earl, options = {})
-        options[:ssl] = true if options[:ssl].nil?
-
-        port  = (options[:ssl] ? 2087 : 2086)
-        proto = (options[:ssl] ? 'https' : 'http')
-
-        "#{proto}://#{earl}:#{port}/json-api/"
-      end
-
-      def format_hash(value)
-        value = value.dup unless value.nil?
-        raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless value.is_a?(String)
-        value.gsub!(/\n|\s/, '')
-        value
-      end
 
       def setup_server(value)
         if value.is_a?(Whm::Server) 
