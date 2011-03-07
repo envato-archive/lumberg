@@ -115,7 +115,11 @@ module Lumberg
           if @response[@key].first.is_a?(Hash)
             success = @response[@key].first['status'].to_i == 1
             message = @response[@key].first['statusmsg']
-            res     = @response[@key].first.dup
+            if @response[@key].size > 1
+              res     = @response[@key].dup
+            else
+              res     = @response[@key].first.dup
+            end
           else
             res     = @response[@key].dup
 
