@@ -1,33 +1,11 @@
 module Lumberg
   module Whm
+    autoload :Base,    'lumberg/whm/base'
     autoload :Server,  'lumberg/whm/server'
     autoload :Account, 'lumberg/whm/account'
     autoload :Dns,     'lumberg/whm/dns'
 
     class << self
-      def format_url(earl, options = {})
-        options[:ssl] = true if options[:ssl].nil?
-
-        port  = (options[:ssl] ? 2087 : 2086)
-        proto = (options[:ssl] ? 'https' : 'http')
-
-        "#{proto}://#{earl}:#{port}/json-api/"
-      end
-
-      def format_hash(value)
-        value = value.dup unless value.nil?
-        raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless value.is_a?(String)
-        value.gsub!(/\n|\s/, '')
-        value
-      end
-
-      def setup_server(value)
-        if value.is_a?(Whm::Server) 
-          value
-        else
-          Whm::Server.new value
-        end
-      end
 
       def symbolize_keys(arg)
         case arg
