@@ -200,5 +200,34 @@ module Lumberg
       end
     end
 
+    context "remove zone record" do
+      use_vcr_cassette "whm/account/removezonerecord"
+
+      it "requires a zone" do
+        expect { @dns.remove_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: zone/i)
+      end
+
+      it "requires a Line" do
+        expect { @dns.remove_zone_record(:zone => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+      end
+
+      it "removes the zone record" do
+        pending "need to create a new one to delete"
+        result = @dns.remove_zone_record(:zone => "example.com", :Line => 1)
+        result[:success].should be_true
+        result[:message].should match(/deleted/i)
+      end
+
+      it "returns an error for an unknown zone " do
+        pending
+      end
+
+      it "returns an error for an invalid line" do
+        result = @dns.remove_zone_record(:zone => "example.com", :Line => 200)
+        result[:success].should be_false
+        result[:message].should match(/Unable to find a record on specified line/i)
+      end
+    end
+
   end
 end
