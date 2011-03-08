@@ -46,6 +46,16 @@ module Lumberg
 
         server.perform_request('resolvedomainname', options.merge(:key => 'data'))
       end
+
+      def edit_zone_record(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, :Line
+          c.optionals :address, :class, :cname, :exchange, :preference, :expire, :minimum, :mname,
+                      :name, :nsdname, :raw, :refresh, :retry, :rname, :serial, :ttl, :type, :txtdata
+        end
+
+        server.perform_request('editzonerecord', options)
+      end
     end
   end
 end
