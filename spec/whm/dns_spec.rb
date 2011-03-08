@@ -150,5 +150,35 @@ module Lumberg
       end
     end
 
+    context "edit zone record" do
+      use_vcr_cassette "whm/account/editzonerecord"
+
+      it "requires a domain" do
+        expect { @dns.edit_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+      end
+
+      it "requires a Line" do
+        expect { @dns.edit_zone_record(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+      end
+
+      it "updates the zone record" do
+        result = @dns.edit_zone_record(:domain => "example.com", :Line => 1, :ttl => "86400")
+        result[:success].should be_true
+        result[:message].should match(/Bind reloading on .* using rndc zone.*example.com/i)
+      end
+
+      it "returns an error for an unknown domain or invalid Line" do
+        result = @dns.edit_zone_record(:domain => "notexists.com", :Line => 1, :ttl => "86400")
+        result[:success].should be_false
+        result[:message].should match(/Failed to serialize record/i)
+      end
+
+      it "returns an error for an invalid Line" do
+        result = @dns.edit_zone_record(:domain => "example.com", :Line => 200, :ttl => "86400")
+        result[:success].should be_false
+        result[:message].should match(/Failed to serialize record/i)
+      end
+    end
+
   end
 end
