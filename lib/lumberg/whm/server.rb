@@ -71,20 +71,7 @@ module Lumberg
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
         # Do the request
-        http = Net::HTTP.new(uri.host, uri.port)
-        if uri.port == 2087
-          if @ssl_verify
-            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-            http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
-          else
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-          end
-          http.use_ssl = true 
-        end
-
-        res = http.start do |h|
-          h.request(req)
-        end
+        res = do_request(uri, req)
 
         @raw_response = res
         @response     = JSON.parse(@raw_response.body)
@@ -112,45 +99,16 @@ module Lumberg
         params  = {}
 
         case response_type
-        when :action
-          # Some API methods ALSO return a 'status' as
-          # part of a result. We only use this value if it's
-          # part of the results hash
-          if @response[@key].first.is_a?(Hash)
-            success = @response[@key].first['status'].to_i == 1
-            message = @response[@key].first['statusmsg']
-            if @response[@key].size > 1
-              res     = @response[@key].dup
-            else
-              res     = @response[@key].first.dup
-            end
-          else
-            res     = @response[@key].dup
-
-            # more hacks for WHM silly API
-            if @response.has_key?('result')
-              success = @response['result'].first['status'] == 1
-              message = @response['result'].first['statusmsg']
-            else
-              res.delete('status')
-              res.delete('statusmsg')
-            end
-          end
-
-          params  = res
-        when :query
-          success = @response['status'].to_i == 1
-          message = @response['statusmsg']
-
-          # returns the rest as a params arg
-          res = @response.dup
-          res.delete('status')
-          res.delete('statusmsg')
-          params = res
-        when :error
-          message = @response['error']
-        when :unknown
-          message = "Unknown error occurred #{@response.inspect}"
+          when :action
+            success, message, res = format_action_response
+            params  = res
+          when :query
+            success, message, res = format_query_response
+            params = res
+          when :error
+            message = @response['error']
+          when :unknown
+            message = "Unknown error occurred #{@response.inspect}"
         end
  
         if !@boolean_params.nil?
@@ -181,6 +139,65 @@ module Lumberg
           elements << "#{CGI::escape(key.to_s)}=#{CGI::escape(value.to_s)}"
         end
         elements.sort.join('&')
+      end
+
+      private
+
+      def do_request(uri, req)
+        http = Net::HTTP.new(uri.host, uri.port)
+        if uri.port == 2087
+          if @ssl_verify
+            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+            http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
+          else
+            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          end
+          http.use_ssl = true 
+        end
+
+        http.start do |h|
+          h.request(req)
+        end
+      end
+
+      def format_action_response
+        # Some API methods ALSO return a 'status' as
+        # part of a result. We only use this value if it's
+        # part of the results hash
+        if @response[@key].first.is_a?(Hash)
+          success = @response[@key].first['status'].to_i == 1
+          message = @response[@key].first['statusmsg']
+          if @response[@key].size > 1
+            res     = @response[@key].dup
+          else
+            res     = @response[@key].first.dup
+          end
+        else
+          res     = @response[@key].dup
+
+          # more hacks for WHM silly API
+          if @response.has_key?('result')
+            success = @response['result'].first['status'] == 1
+            message = @response['result'].first['statusmsg']
+          else
+            res.delete('status')
+            res.delete('statusmsg')
+          end
+        end
+
+        return success, message, res
+      end
+
+      def format_query_response
+        success = @response['status'].to_i == 1
+        message = @response['statusmsg']
+
+        # returns the rest as a params arg
+        res = @response.dup
+        res.delete('status')
+        res.delete('statusmsg')
+
+        return success, message, res
       end
     end
   end
