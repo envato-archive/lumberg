@@ -180,5 +180,25 @@ module Lumberg
       end
     end
 
+    context "kill dns" do
+      use_vcr_cassette "whm/account/killdns"
+
+      it "requires a domain" do
+        expect { @dns.kill_dns() }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+      end
+
+      it "kills the dns" do
+        result = @dns.kill_dns(:domain => "example.com")
+        result[:success].should be_true
+        result[:message].should match(/Zones Removed/i)
+      end
+
+      it "returns an error when the domain does not exist" do
+        result = @dns.kill_dns(:domain => "notexists.com")
+        result[:success].should be_false
+        result[:message].should match(/Unable to remove zone that does not exist/i)
+      end
+    end
+
   end
 end

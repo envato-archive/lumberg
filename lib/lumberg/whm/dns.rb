@@ -56,6 +56,14 @@ module Lumberg
 
         server.perform_request('editzonerecord', options)
       end
+
+      def kill_dns(options = {})
+        Args.new(options) do |c|
+          c.requires :domain
+        end
+
+        server.perform_request('killdns', options)
+      end
     end
   end
 end
