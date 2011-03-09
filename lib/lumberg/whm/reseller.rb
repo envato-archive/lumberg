@@ -9,6 +9,12 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setupreseller', options)
       end
+
+      def list
+       result = server.perform_request('listresellers', :key => 'reseller')
+       result[:success] = true
+       result
+      end
     end
   end
 end
