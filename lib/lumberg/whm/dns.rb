@@ -80,6 +80,22 @@ module Lumberg
 
         server.perform_request('removezonerecord', options)
       end
+
+      def reset_zone(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, :zone
+        end
+
+        server.perform_request('resetzone', options)
+      end
+
+      def list_mxs(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, "api.version".to_sym
+        end
+
+        server.perform_request('listmxs', options.merge(:key => 'data'))
+      end
     end
   end
 end
