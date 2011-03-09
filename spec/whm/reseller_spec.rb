@@ -31,5 +31,16 @@ module Lumberg
         @reseller.create(:username => 'bob', :makeowner => true)
       end
     end
+
+    describe "#list" do
+      use_vcr_cassette "whm/account/listresellers"
+
+      it "lists all resellers" do
+        result = @reseller.list
+        result[:success].should be_true
+        result[:params].should have(2).resellers
+        result[:params].should include('bob', 'ted')
+      end
+    end 
   end
 end
