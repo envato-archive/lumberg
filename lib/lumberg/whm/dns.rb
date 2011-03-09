@@ -72,6 +72,14 @@ module Lumberg
 
         server.perform_request('lookupnsip', options.merge(:key => 'ip'))
       end
+
+      def remove_zone_record(options = {})
+        Args.new(options) do |c|
+          c.requires :zone, :Line
+        end
+
+        server.perform_request('removezonerecord', options)
+      end
     end
   end
 end
