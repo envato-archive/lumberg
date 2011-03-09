@@ -53,7 +53,7 @@ module Lumberg
         requires_attr('username') { @account.remove }
       end
 
-      it "removes a user and keep DNS by default" do
+      it "removes a user and keeps DNS by default" do
         result = @account.remove(:username => 'removeme')
         result[:success].should be_true
         result[:params][:rawout].should match(/Removing DNS Entries/i)
