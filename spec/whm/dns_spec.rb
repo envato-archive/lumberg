@@ -212,14 +212,15 @@ module Lumberg
       end
 
       it "removes the zone record" do
-        pending "need to create a new one to delete"
         result = @dns.remove_zone_record(:zone => "example.com", :Line => 1)
         result[:success].should be_true
-        result[:message].should match(/deleted/i)
+        result[:message].should match(/Bind reloading on .*example.com/i)
       end
 
       it "returns an error for an unknown zone " do
-        pending
+        result = @dns.remove_zone_record(:zone => "notexists.com", :Line => 1)
+        result[:success].should be_false
+        result[:message].should match(/Unable to find a record on specified line/i)
       end
 
       it "returns an error for an invalid line" do
