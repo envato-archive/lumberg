@@ -15,6 +15,12 @@ module Lumberg
         requires_attr('username') { @reseller.create }
       end
 
+      it "fails when the user doesn't exist" do
+        result = @reseller.create(:username => 'invalid')
+        result[:success].should be_false
+        result[:message].should match(/does not exist/i)
+      end
+
       it "creates a reseller" do
         result = @reseller.create(:username => 'bob')
         result[:success].should be_true
