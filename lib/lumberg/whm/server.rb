@@ -36,6 +36,9 @@ module Lumberg
       # Returned params to transfor to booleans
       attr_accessor :boolean_params
 
+      # Force response type...ARG!
+      attr_accessor :force_response_type
+
       def initialize(options)
         Args.new(options) do |c|
           c.requires  :host, :hash
@@ -80,7 +83,9 @@ module Lumberg
 
       protected
       def response_type
-        if !@response.respond_to?(:has_key?)
+        if !@force_response_type.nil?
+          @force_response_type
+        elsif !@response.respond_to?(:has_key?)
           :unknown
         elsif @response.has_key?('error')
           :error
