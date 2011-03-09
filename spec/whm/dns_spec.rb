@@ -12,11 +12,11 @@ module Lumberg
     context "add_zone" do
       it "requires a domain" do
         @dns.stub(:perform_request)
-        expect { @dns.add_zone }.to raise_error(WhmArgumentError, /Missing.*: domain/) 
+        requires_attr('domain') { @dns.add_zone }
       end
 
       it "requires an ip" do
-        expect { @dns.add_zone(:domain => 'example.com') }.to raise_error(WhmArgumentError, /Missing.*: ip/) 
+        requires_attr('ip') { @dns.add_zone(:domain => 'example.com') } 
       end
 
       it "allows template" do
@@ -46,7 +46,7 @@ module Lumberg
 
     context "add zone record" do
       it "requires a zone" do
-        expect { @dns.add_zone_record() }.to raise_error(WhmArgumentError, /Missing.*: zone/)
+        requires_attr('zone') { @dns.add_zone_record }
       end
 
       use_vcr_cassette "whm/account/addzonerecord"
@@ -77,11 +77,11 @@ module Lumberg
       use_vcr_cassette "whm/account/getzonerecord"
 
       it "requires a domain" do
-        expect { @dns.get_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+        requires_attr('domain') { @dns.get_zone_record(:Line => 1) }
       end
 
       it "requires a Line" do
-        expect { @dns.get_zone_record(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+        requires_attr('Line') { @dns.get_zone_record(:domain => "example.com") }
       end
 
       it "returns the zone" do
@@ -109,7 +109,7 @@ module Lumberg
       use_vcr_cassette "whm/account/dumpzone"
 
       it "requires a domain" do
-        expect { @dns.dump_zone }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+        requires_attr('domain') { @dns.dump_zone }
       end
 
       it "dumps the zone" do
@@ -131,11 +131,11 @@ module Lumberg
       use_vcr_cassette "whm/account/resolvedomainname"
 
       it "requires a domain" do
-        expect { @dns.resolve_domain("api.version".to_sym => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+        requires_attr('domain') { @dns.resolve_domain("api.version".to_sym => 1) }
       end
 
       it "requires the api version" do
-        expect { @dns.resolve_domain(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: api.version/i)
+        requires_attr('api.version') { @dns.resolve_domain(:domain => "example.com") }
       end
 
       it "returns the ip address of the domain" do
@@ -154,11 +154,11 @@ module Lumberg
       use_vcr_cassette "whm/account/editzonerecord"
 
       it "requires a domain" do
-        expect { @dns.edit_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+        requires_attr('domain') { @dns.edit_zone_record(:Line => 1) }
       end
 
       it "requires a Line" do
-        expect { @dns.edit_zone_record(:domain => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+        requires_attr('Line') { @dns.edit_zone_record(:domain => "example.com") }
       end
 
       it "updates the zone record" do
@@ -184,7 +184,7 @@ module Lumberg
       use_vcr_cassette "whm/account/killdns"
 
       it "requires a domain" do
-        expect { @dns.kill_dns() }.to raise_error(WhmArgumentError, /Missing.*: domain/i)
+        requires_attr('domain') { @dns.kill_dns }
       end
 
       it "kills the dns" do
@@ -204,7 +204,7 @@ module Lumberg
       use_vcr_cassette "whm/account/lookupnsip"
 
       it "requires a nameserver" do
-        expect { @dns.lookup_nameserver_ip }.to raise_error(WhmArgumentError, /Missing.*: nameserver/i)
+        requires_attr('nameserver') { @dns.lookup_nameserver_ip }
       end
 
       it "returns the nameserver's ip" do
@@ -223,11 +223,11 @@ module Lumberg
       use_vcr_cassette "whm/account/removezonerecord"
 
       it "requires a zone" do
-        expect { @dns.remove_zone_record(:Line => 1) }.to raise_error(WhmArgumentError, /Missing.*: zone/i)
+        requires_attr('zone') { @dns.remove_zone_record(:Line => 1) }
       end
 
       it "requires a Line" do
-        expect { @dns.remove_zone_record(:zone => "example.com") }.to raise_error(WhmArgumentError, /Missing.*: Line/i)
+        requires_attr('Line') { @dns.remove_zone_record(:zone => "example.com") }
       end
 
       it "removes the zone record" do
