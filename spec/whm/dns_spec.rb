@@ -200,5 +200,24 @@ module Lumberg
       end
     end
 
+    context "lookup nameserver ip", :wip => true do
+      use_vcr_cassette "whm/account/lookupnsip"
+
+      it "requires a nameserver" do
+        expect { @dns.lookup_nameserver_ip }.to raise_error(WhmArgumentError, /Missing.*: nameserver/i)
+      end
+
+      it "returns the nameserver's ip" do
+        result = @dns.lookup_nameserver_ip(:nameserver => "example.com")
+        p result.inspect
+        result[:params][:ip].should == "127.0.0.1"
+      end
+
+      it "returns null if the ip cannot be determined" do
+        result = @dns.lookup_nameserver_ip(:nameserver => "notexists.com")
+        result[:params][:ip].should be_nil
+      end
+    end
+
   end
 end
