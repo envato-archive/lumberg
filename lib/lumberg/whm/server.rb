@@ -164,24 +164,30 @@ module Lumberg
         # Some API methods ALSO return a 'status' as
         # part of a result. We only use this value if it's
         # part of the results hash
-        if @response[@key].first.is_a?(Hash)
-          success = @response[@key].first['status'].to_i == 1
-          message = @response[@key].first['statusmsg']
-          if @response[@key].size > 1
-            res     = @response[@key].dup
-          else
-            res     = @response[@key].first.dup
-          end
+        unless @response[@key].is_a?(Array) || @response[@key].is_a?(Hash)
+          res = {@key => @response[@key]}
+          success = true
+          message = ""
         else
-          res     = @response[@key].dup
-
-          # more hacks for WHM silly API
-          if @response.has_key?('result')
-            success = @response['result'].first['status'] == 1
-            message = @response['result'].first['statusmsg']
+          if @response[@key].first.is_a?(Hash)
+            success = @response[@key].first['status'].to_i == 1
+            message = @response[@key].first['statusmsg']
+            if @response[@key].size > 1
+              res     = @response[@key].dup
+            else
+              res     = @response[@key].first.dup
+            end
           else
-            res.delete('status')
-            res.delete('statusmsg')
+            res     = @response[@key].dup
+
+            # more hacks for WHM silly API
+            if @response.has_key?('result')
+              success = @response['result'].first['status'] == 1
+              message = @response['result'].first['statusmsg']
+            else
+              res.delete('status')
+              res.delete('statusmsg')
+            end
           end
         end
 

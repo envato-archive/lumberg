@@ -64,6 +64,14 @@ module Lumberg
 
         server.perform_request('killdns', options)
       end
+
+      def lookup_nameserver_ip(options = {})
+        Args.new(options) do |c|
+          c.requires :nameserver
+        end
+
+        server.perform_request('lookupnsip', options.merge(:key => 'ip'))
+      end
     end
   end
 end
