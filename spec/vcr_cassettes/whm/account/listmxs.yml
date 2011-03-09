@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listmxs?api.version=1&domain=example.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"data\":{\"record\":[{\"Line\":\"20\",\"ttl\":\"14400\",\"class\":\"IN\",\"exchange\":\"example.com\",\"preference\":\"0\",\"type\":\"MX\",\"name\":\"example.com.\"}]},\"metadata\":{\"result\":1,\"reason\":\"Records obtained.\",\"version\":1,\"command\":\"listmxs\"}}"
+    http_version: "1.1"
