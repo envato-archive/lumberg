@@ -128,17 +128,17 @@ module Lumberg
       end
     end 
 
-    describe "#list_accounts" do
+    describe "#list" do
       use_vcr_cassette "whm/account/listaccts"
 
       it "lists all accounts" do
-        result = @account.list_accounts
+        result = @account.list
         result[:success].should be_true
         result[:params][:acct].should have(10).accounts
       end
 
       it "returns data for the account" do
-        result = @account.list_accounts(:searchtype => 'user', :search => 'changeme')
+        result = @account.list(:searchtype => 'user', :search => 'changeme')
         result[:success].should be_true
         account = result[:params][:acct].first
         account[:email].should == "*unknown*"
@@ -149,19 +149,19 @@ module Lumberg
       end
 
       it "lists accounts that match a regex search for the user" do
-        result = @account.list_accounts(:searchtype => 'user', :search => 'changeme')
+        result = @account.list(:searchtype => 'user', :search => 'changeme')
         result[:success].should be_true
         result[:params][:acct].should have(1).account
       end
 
       it "lists accounts that match a regex search for the ip" do
-        result = @account.list_accounts(:searchtype => 'ip', :search => '192\..*?\.1\.20')
+        result = @account.list(:searchtype => 'ip', :search => '192\..*?\.1\.20')
         result[:success].should be_true
         result[:params][:acct].should have(6).accounts
       end
 
       it "lists accounts that match a regex search for the domain" do
-        result = @account.list_accounts(:searchtype => 'domain', :search => 'ch.*?e.com')
+        result = @account.list(:searchtype => 'domain', :search => 'ch.*?e.com')
         result[:success].should be_true
         result[:params][:acct].should have(1).account
       end
