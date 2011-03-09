@@ -291,5 +291,54 @@ module Lumberg
         result[:params][:record].first[:name].should == "example.com."
       end
     end
+
+    describe "#savemxs", :wip => true do
+      use_vcr_cassette "whm/dns/savemxs"
+
+      it "requires the api.version" do
+        requires_attr('api.version') { @dns.save_mx(:domain => "example.com", 
+                                                    :name => "mail.example.com", 
+                                                    :exchange => "example.com", 
+                                                    :preference => 10) }
+      end
+
+      it "requires a domain" do
+        requires_attr('domain') { @dns.save_mx("api.version".to_sym => 1, 
+                                               :name => "mail.example.com", 
+                                               :exchange => "example.com", 
+                                               :preference => 10) }
+      end
+
+      it "requires a name" do
+        requires_attr('name') { @dns.save_mx("api.version".to_sym => 1, 
+                                             :domain => "example.com", 
+                                             :exchange => "example.com", 
+                                             :preference => 10) }
+      end
+
+      it "requires an exchange" do
+        requires_attr('exchange') { @dns.save_mx("api.version".to_sym => 1, 
+                                                 :domain => "example.com", 
+                                                 :name => "mail.example.com", 
+                                                 :preference => 10) }
+      end
+
+      it "requires a preference" do
+        requires_attr('preference') { @dns.save_mx("api.version".to_sym => 1, 
+                                                   :domain => "example.com", 
+                                                   :name => "mail.example.com", 
+                                                   :exchange => "example.com") }
+      end
+
+      it "saves the mx record" do
+        result = @dns.save_mx("api.version".to_sym => 1, 
+                              :domain => "examplecom", 
+                              :name => "mail.example.com", 
+                              :exchange => "example.com", 
+                              :preference => 10)
+        result[:success].should be_true
+        result[:message].should match(/Bind reloading on .*example.com/i)
+      end
+    end
   end
 end
