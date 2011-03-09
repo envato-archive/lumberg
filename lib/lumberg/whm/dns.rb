@@ -65,9 +65,9 @@ module Lumberg
         server.perform_request('killdns', options)
       end
 
-      def remove_zone_record(opions = {})
+      def remove_zone_record(options = {})
         Args.new(options) do |c|
-          c.requires :domain, :Line
+          c.requires :zone, :Line
         end
 
         server.perform_request('removezonerecord', options)
