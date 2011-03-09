@@ -94,8 +94,7 @@ module Lumberg
           c.requires :domain, "api.version".to_sym
         end
 
-        #server.perform_request('listmxs', options.merge(:key => 'data'))
-        server.perform_request('listmxs', options)
+        server.perform_request('listmxs', options.merge(:key => 'data'))
       end
     end
   end

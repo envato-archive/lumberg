@@ -272,7 +272,7 @@ module Lumberg
       end
     end
 
-    describe "#listmxs", :wip => true do
+    describe "#listmxs" do
       use_vcr_cassette "whm/account/listmxs"
 
       it "requires a domain" do
@@ -285,9 +285,10 @@ module Lumberg
 
       it "returns a list of mxs" do
         result = @dns.list_mxs(:domain => "example.com", "api.version".to_sym => 1)
-        result[:success].should be_true
-        result[:message].should match(/Records obtained/i)
-        p result.inspect
+        result[:params][:record].should be_a_kind_of Array
+        result[:params][:record].size.should == 1
+        result[:params][:record].first[:exchange].should == "example.com"
+        result[:params][:record].first[:name].should == "example.com."
       end
     end
   end
