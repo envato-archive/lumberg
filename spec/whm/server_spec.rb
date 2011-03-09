@@ -153,6 +153,12 @@ module Lumberg
           @whm.send(:response_type).should == :unknown
         end
 
+        it "forces response type" do
+          @whm.force_response_type = :magic
+          @whm.perform_request('testing')
+          @whm.send(:response_type).should == :magic
+        end
+
         it "returns true for a successful :action" do
           @whm.perform_request('testing')
           response = @whm.send(:format_response)
