@@ -29,7 +29,7 @@ module Lumberg
         @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1', :trueowner => 'something')
       end
 
-      use_vcr_cassette "whm/account/adddns"
+      use_vcr_cassette "whm/dns/adddns"
 
       it "creates a zone" do
         result = @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1')
@@ -49,7 +49,7 @@ module Lumberg
         requires_attr('zone') { @dns.add_zone_record }
       end
 
-      use_vcr_cassette "whm/account/addzonerecord"
+      use_vcr_cassette "whm/dns/addzonerecord"
 
       it "adds a zone record" do
         result = @dns.add_zone_record(:zone => 'example.com', 
@@ -62,7 +62,7 @@ module Lumberg
     end
 
     describe "#listzones" do
-      use_vcr_cassette "whm/account/listzones"
+      use_vcr_cassette "whm/dns/listzones"
 
       it "lists all the zones" do
         result = @dns.list_zones
@@ -74,7 +74,7 @@ module Lumberg
     end
 
     describe "#getzonerecord" do
-      use_vcr_cassette "whm/account/getzonerecord"
+      use_vcr_cassette "whm/dns/getzonerecord"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.get_zone_record(:Line => 1) }
@@ -106,7 +106,7 @@ module Lumberg
     end
 
     describe "#dumpzone" do
-      use_vcr_cassette "whm/account/dumpzone"
+      use_vcr_cassette "whm/dns/dumpzone"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.dump_zone }
@@ -128,7 +128,7 @@ module Lumberg
     end
 
     describe "#resolvedomainname" do
-      use_vcr_cassette "whm/account/resolvedomainname"
+      use_vcr_cassette "whm/dns/resolvedomainname"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.resolve_domain("api.version".to_sym => 1) }
@@ -151,7 +151,7 @@ module Lumberg
     end
 
     describe "#editzonerecord" do
-      use_vcr_cassette "whm/account/editzonerecord"
+      use_vcr_cassette "whm/dns/editzonerecord"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.edit_zone_record(:Line => 1) }
@@ -181,7 +181,7 @@ module Lumberg
     end
 
     describe "#killdns" do
-      use_vcr_cassette "whm/account/killdns"
+      use_vcr_cassette "whm/dns/killdns"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.kill_dns }
@@ -201,7 +201,7 @@ module Lumberg
     end
 
     describe "#lookupnsip" do
-      use_vcr_cassette "whm/account/lookupnsip"
+      use_vcr_cassette "whm/dns/lookupnsip"
 
       it "requires a nameserver" do
         requires_attr('nameserver') { @dns.lookup_nameserver_ip }
@@ -219,7 +219,7 @@ module Lumberg
     end
 
     describe "#removezonerecord" do
-      use_vcr_cassette "whm/account/removezonerecord"
+      use_vcr_cassette "whm/dns/removezonerecord"
 
       it "requires a zone" do
         requires_attr('zone') { @dns.remove_zone_record(:Line => 1) }
@@ -249,7 +249,7 @@ module Lumberg
     end
 
     describe "#resetzone" do
-      use_vcr_cassette "whm/account/resetzone"
+      use_vcr_cassette "whm/dns/resetzone"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.reset_zone(:zone => "example.com") }
@@ -273,7 +273,7 @@ module Lumberg
     end
 
     describe "#listmxs" do
-      use_vcr_cassette "whm/account/listmxs"
+      use_vcr_cassette "whm/dns/listmxs"
 
       it "requires a domain" do
         requires_attr('domain') { @dns.list_mxs("api.version".to_sym => 1) }
