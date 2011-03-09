@@ -209,7 +209,6 @@ module Lumberg
 
       it "returns the nameserver's ip" do
         result = @dns.lookup_nameserver_ip(:nameserver => "example.com")
-        p result.inspect
         result[:params][:ip].should == "127.0.0.1"
       end
 
