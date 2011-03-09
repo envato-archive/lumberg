@@ -248,5 +248,47 @@ module Lumberg
       end
     end
 
+    describe "#resetzone" do
+      use_vcr_cassette "whm/account/resetzone"
+
+      it "requires a domain" do
+        requires_attr('domain') { @dns.reset_zone(:zone => "example.com") }
+      end
+
+      it "requires a zone" do
+        requires_attr('zone') { @dns.reset_zone(:domain => "example.com") }
+      end
+
+      it "resets the zone" do
+        result = @dns.reset_zone(:domain => "example.com", :zone => "example.com")
+        result[:success].should be_true
+        result[:message].should match(/Bind reloading on .*example.com/i)
+      end
+
+      it "returns an error for an unknown domain" do
+        result = @dns.reset_zone(:domain => "notexists.com", :zone => "notexists.com")
+        result[:success].should be_false
+        result[:message].should match(/Unable to determine the IP address for notexists.com/i)
+      end
+    end
+
+    describe "#listmxs", :wip => true do
+      use_vcr_cassette "whm/account/listmxs"
+
+      it "requires a domain" do
+        requires_attr('domain') { @dns.list_mxs("api.version".to_sym => 1) }
+      end
+
+      it "requires the api.version" do
+        requires_attr('api.version') { @dns.list_mxs(:domain => "example.com") }
+      end
+
+      it "returns a list of mxs" do
+        result = @dns.list_mxs(:domain => "example.com", "api.version".to_sym => 1)
+        result[:success].should be_true
+        result[:message].should match(/Records obtained/i)
+        p result.inspect
+      end
+    end
   end
 end
