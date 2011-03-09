@@ -20,8 +20,14 @@ module Lumberg
         end
       end
 
+      # Creates WHM::Whatever.new(:server => @server)
+      # automagically
+      def auto_accessors
+        [:account, :dns, :reseller]
+      end
+
       def method_missing(meth, *args, &block)
-        if [:account, :dns, :reseller].include?(meth.to_sym)
+        if auto_accessors.include?(meth.to_sym)
           ivar = instance_variable_get("@#{meth}")
           if ivar.nil?
             constant  = Whm.const_get(meth.to_s.capitalize)
