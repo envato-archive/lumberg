@@ -332,7 +332,7 @@ module Lumberg
 
       it "saves the mx record" do
         result = @dns.save_mx("api.version".to_sym => 1, 
-                              :domain => "examplecom", 
+                              :domain => "example.com", 
                               :name => "mail.example.com", 
                               :exchange => "example.com", 
                               :preference => 10)
