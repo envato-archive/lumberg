@@ -1,9 +1,10 @@
 module Lumberg
   module Whm
-    autoload :Base,    'lumberg/whm/base'
-    autoload :Server,  'lumberg/whm/server'
-    autoload :Account, 'lumberg/whm/account'
-    autoload :Dns,     'lumberg/whm/dns'
+    autoload :Base,     'lumberg/whm/base'
+    autoload :Server,   'lumberg/whm/server'
+    autoload :Account,  'lumberg/whm/account'
+    autoload :Dns,      'lumberg/whm/dns'
+    autoload :Reseller, 'lumberg/whm/reseller'
 
     class << self
 
