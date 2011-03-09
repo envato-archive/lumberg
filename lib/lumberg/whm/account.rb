@@ -62,7 +62,7 @@ module Lumberg
         end
       end
 
-      def list_accounts(options = {})
+      def list(options = {})
         Args.new(options) do |c|
           c.optionals :searchtype, :search
         end
