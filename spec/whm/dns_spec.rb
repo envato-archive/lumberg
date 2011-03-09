@@ -9,7 +9,7 @@ module Lumberg
       @dns      = Whm::Dns.new(:server => @server.dup)
     end
 
-    context "add_zone" do
+    describe "#addzone" do
       it "requires a domain" do
         @dns.stub(:perform_request)
         requires_attr('domain') { @dns.add_zone }
@@ -44,7 +44,7 @@ module Lumberg
       end
     end
 
-    context "add zone record" do
+    describe "#addzonerecord" do
       it "requires a zone" do
         requires_attr('zone') { @dns.add_zone_record }
       end
@@ -61,7 +61,7 @@ module Lumberg
       end
     end
 
-    context "list zones" do
+    describe "#listzones" do
       use_vcr_cassette "whm/account/listzones"
 
       it "lists all the zones" do
@@ -73,7 +73,7 @@ module Lumberg
       end
     end
 
-    context "get zone record" do
+    describe "#getzonerecord" do
       use_vcr_cassette "whm/account/getzonerecord"
 
       it "requires a domain" do
@@ -105,7 +105,7 @@ module Lumberg
       end
     end
 
-    context "dumpzone" do
+    describe "#dumpzone" do
       use_vcr_cassette "whm/account/dumpzone"
 
       it "requires a domain" do
@@ -127,7 +127,7 @@ module Lumberg
       end
     end
 
-    context "resolve domain name" do
+    describe "#resolvedomainname" do
       use_vcr_cassette "whm/account/resolvedomainname"
 
       it "requires a domain" do
@@ -150,7 +150,7 @@ module Lumberg
       end
     end
 
-    context "edit zone record" do
+    describe "#editzonerecord" do
       use_vcr_cassette "whm/account/editzonerecord"
 
       it "requires a domain" do
@@ -180,7 +180,7 @@ module Lumberg
       end
     end
 
-    context "kill dns" do
+    describe "#killdns" do
       use_vcr_cassette "whm/account/killdns"
 
       it "requires a domain" do
@@ -200,7 +200,7 @@ module Lumberg
       end
     end
 
-    context "lookup nameserver ip", :wip => true do
+    describe "#lookupnsip" do
       use_vcr_cassette "whm/account/lookupnsip"
 
       it "requires a nameserver" do
@@ -219,7 +219,7 @@ module Lumberg
       end
     end
 
-    context "remove zone record" do
+    describe "#removezonerecord" do
       use_vcr_cassette "whm/account/removezonerecord"
 
       it "requires a zone" do
