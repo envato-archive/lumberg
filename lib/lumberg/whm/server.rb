@@ -76,7 +76,7 @@ module Lumberg
         begin
           # Do the request
           res = do_request(uri, req)
-        rescue
+        rescue Exception => e
           raise "Error when sending the request. Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
         end
 
@@ -124,6 +124,8 @@ module Lumberg
           params = Whm::to_bool(params, @boolean_params)
         end
 
+        # Reset this for subsequent requests
+        @force_response_type = nil
         {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
       end
 
@@ -153,21 +155,26 @@ module Lumberg
       private
 
       def do_request(uri, req)
-        http = Net::HTTP.new(uri.host, uri.port)
-        http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
+        begin
+          http = Net::HTTP.new(uri.host, uri.port)
+          http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
 
-        if uri.port == 2087
-          if @ssl_verify
-            http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-            http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
-          else
-            http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+          if uri.port == 2087
+            if @ssl_verify
+              http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+              http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
+            else
+              http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+            end
+            http.use_ssl = true 
           end
-          http.use_ssl = true 
-        end
 
-        http.start do |h|
-          h.request(req)
+          http.start do |h|
+            h.request(req)
+          end
+        rescue Exception => e
+          raise "Error when sending the request. 
+                 Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
         end
       end
 
