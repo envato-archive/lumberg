@@ -50,6 +50,17 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellermainip', options)
       end
+
+      def set_package_limit(options = {})
+        Args.new(options) do |c|
+          c.requires :username, :no_limit, :package
+          c.booleans :no_limit, :allowed
+          c.optionals :allowed, :number
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('setresellerpackagelimit', options)
+      end
     end
   end
 end
