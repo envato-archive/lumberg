@@ -33,7 +33,7 @@ module Lumberg
     end
 
     describe "#list" do
-      use_vcr_cassette "whm/account/listresellers"
+      use_vcr_cassette "whm/reseller/listresellers"
 
       it "lists all resellers" do
         result = @reseller.list
