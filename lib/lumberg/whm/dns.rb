@@ -13,7 +13,7 @@ module Lumberg
       def add_zone_record(options = {})
         Args.new(options) do |c|
           c.requires :zone
-          c.optionals :name, :address, :type, :class
+          c.optionals :name, :address, :type, :class, :cname, :exchange, :nsdname, :ptdrname, :preference, :ttl
         end
 
         server.perform_request('addzonerecord', options)
