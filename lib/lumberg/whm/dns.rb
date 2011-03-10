@@ -102,8 +102,6 @@ module Lumberg
           c.requires "api.version".to_sym, :domain, :name, :exchange, :preference
         end
 
-        p options.inspect
-
         server.perform_request('savemxs', options)
       end
     end
