@@ -96,6 +96,14 @@ module Lumberg
 
         server.perform_request('listmxs', options.merge(:key => 'data'))
       end
+
+      def save_mx(options = {})
+        Args.new(options) do |c|
+          c.requires "api.version".to_sym, :domain, :name, :exchange, :preference
+        end
+
+        server.perform_request('savemxs', options)
+      end
     end
   end
 end
