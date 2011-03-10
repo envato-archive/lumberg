@@ -41,6 +41,20 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellerlimits', options)
       end
+
+      def terminate(options = {})
+        Args.new(options) do |c|
+          c.requires :reseller
+          c.booleans :terminatereseller
+        end
+      
+        # WTF, seriously?
+        wtf = "I understand this will irrevocably remove all the "
+        wtf << "accounts owned by the reseller #{options[:reseller]}"
+        options[:verify]  = wtf
+
+        server.perform_request('terminatereseller', options)
+      end
     end
   end
 end
