@@ -104,5 +104,63 @@ module Lumberg
       end
 
     end
+
+    describe "#setresellermainip" do
+      use_vcr_cassette "whm/reseller/setresellermainip"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.set_main_ip(:ip => '127.0.0.1') }
+      end
+
+      it "requires an ip" do
+        requires_attr('ip') { @reseller.set_main_ip(:username => 'bob') }
+      end
+
+      it "sets the main ip" do
+        result = @reseller.set_main_ip(:username => 'bob', :ip => '192.168.0.18')
+        result[:success].should be_true
+        result[:message].should match(/Successfully set main IP address of the reseller/i)
+      end
+
+      it "returns an error when the IP is invalid" do
+        result = @reseller.set_main_ip(:username => 'bob', :ip => '10')
+        result[:success].should be_false
+        result[:message].should match(/Supplied IP address is invalid/)
+      end
+
+      it "returns an error when the user is invalid" do
+        result = @reseller.set_main_ip(:username => 'notexists', :ip => '127.0.0.1')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
+
+    describe "#setresellerpackagelimit" do
+      use_vcr_cassette "whm/reseller/setresellerpackagelimit"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.set_package_limit(:no_limit => true, :package => 'gold') }
+      end
+
+      it "requires no_limit" do
+        requires_attr('no_limit') { @reseller.set_package_limit(:username => 'bob', :package => 'gold') }
+      end
+
+      it "requires package" do
+        requires_attr('package') { @reseller.set_package_limit(:username => 'bob', :no_limit => true) }
+      end
+
+      it "sets the package limit" do
+        result = @reseller.set_package_limit(:username => 'bob', :no_limit => false, :package => 'gold', :allowed => true)
+        result[:success].should be_true
+        result[:message].should match(/Successfully set reseller package limit/i)
+      end
+
+      it "sets no limit" do
+        result = @reseller.set_package_limit(:username => 'bob', :no_limit => true, :package => 'gold')
+        result[:success].should be_true
+        result[:message].should match(/Successfully set reseller package limit/i)
+      end
+    end                                                                                                   
   end
 end
