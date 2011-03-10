@@ -155,9 +155,20 @@ module Lumberg
 
         it "forces response type" do
           @whm.force_response_type = :magic
-          @whm.perform_request('testing')
           @whm.send(:response_type).should == :magic
+          @whm.perform_request('testing')
         end
+
+        it "resets response_type each request" do
+          @whm.force_response_type.should be_nil
+          @whm.force_response_type = :magic
+          @whm.send(:response_type).should == :magic
+
+          @whm.force_response_type = :magic
+          @whm.perform_request('testing')
+          @whm.force_response_type.should be_nil
+        end
+
 
         it "returns true for a successful :action" do
           @whm.perform_request('testing')
