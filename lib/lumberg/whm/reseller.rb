@@ -17,6 +17,17 @@ module Lumberg
         result[:params]  = {:resellers => result.delete(:params)}
         result
       end
+
+      def add_ips(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+          c.optionals :ips
+          c.booleans :delegate
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('setresellerips', options)
+      end
     end
   end
 end

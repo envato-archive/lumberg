@@ -42,5 +42,23 @@ module Lumberg
         result[:params][:resellers].should include('bob', 'ted')
       end
     end 
+
+    describe "#setresellerips" do
+      use_vcr_cassette "whm/reseller/setresellerips"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.add_ips }
+      end
+
+      it "adds the ip address to the reseller account" do
+        result = @reseller.add_ips(:username => 'bob', :ips =>'192.168.0.18')
+        result[:message].should match(/Successfully configured IP addresses delegation to reseller/i)
+      end
+
+      it "returns an error for invalid ip addresses" do
+        result = @reseller.add_ips(:username => 'bob', :ips =>'127.0.0.1')
+        result[:message].should match(/The list of supplied IP addresses contains inappropriate values/i)
+      end
+    end
   end
 end
