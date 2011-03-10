@@ -60,5 +60,20 @@ module Lumberg
         result[:message].should match(/The list of supplied IP addresses contains inappropriate values/i)
       end
     end
+
+    describe "#setresellerlimits", :wip => true do
+      use_vcr_cassette "whm/reseller/setresellerlimits"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.set_limits }
+      end
+
+      it "sets the limits" do
+        result = @reseller.set_limits(:username => 'bob', :diskspace_limit => 1024, :enable_overselling => true, 
+                                      :enable_overselling_diskspace => true)
+        result[:success].should be_true
+        result[:message].should match(/Successfully set reseller account .*limits/i)
+      end
+    end
   end
 end

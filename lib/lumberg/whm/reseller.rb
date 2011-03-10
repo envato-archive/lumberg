@@ -28,6 +28,19 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellerips', options)
       end
+
+      def set_limits(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+          c.optionals :account_limit, :bandwidth_limit, :diskspace_limit
+          c.booleans :enable_account_limit, :enable_resource_limits, :enable_overselling,
+                     :enable_overselling_bandwidth, :enable_overselling_diskspace, :enable_package_limits,
+                     :enable_package_limit_numbers
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('setresellerlimits', options)
+      end
     end
   end
 end
