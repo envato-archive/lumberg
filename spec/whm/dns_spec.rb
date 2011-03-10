@@ -292,7 +292,7 @@ module Lumberg
       end
     end
 
-    describe "#savemxs", :wip => true do
+    describe "#savemxs" do
       use_vcr_cassette "whm/dns/savemxs"
 
       it "requires the api.version" do
@@ -336,7 +336,6 @@ module Lumberg
                               :name => "mail.example.com", 
                               :exchange => "example.com", 
                               :preference => 10)
-        result[:success].should be_true
         result[:message].should match(/Bind reloading on .*example.com/i)
       end
     end
