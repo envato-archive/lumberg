@@ -75,5 +75,35 @@ module Lumberg
         result[:message].should match(/Successfully set reseller account .*limits/i)
       end
     end
+
+    describe "#setresellermainip" do
+      use_vcr_cassette "whm/reseller/setresellermainip"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.set_main_ip(:ip => '127.0.0.1') }
+      end
+
+      it "requires an ip" do
+        requires_attr('ip') { @reseller.set_main_ip(:username => 'bob') }
+      end
+
+      it "sets the main ip" do
+        result = @reseller.set_main_ip(:username => 'bob', :ip => '192.168.0.18')
+        result[:success].should be_true
+        result[:message].should match(/Successfully set main IP address of the reseller/i)
+      end
+
+      it "returns an error when the IP is invalid" do
+        result = @reseller.set_main_ip(:username => 'bob', :ip => '10')
+        result[:success].should be_false
+        result[:message].should match(/Supplied IP address is invalid/)
+      end
+
+      it "returns an error when the user is invalid" do
+        result = @reseller.set_main_ip(:username => 'notexists', :ip => '127.0.0.1')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
   end
 end
