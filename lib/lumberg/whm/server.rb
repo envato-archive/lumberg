@@ -73,8 +73,12 @@ module Lumberg
         req = Net::HTTP::Get.new(url)
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
-        # Do the request
-        res = do_request(uri, req)
+        begin
+          # Do the request
+          res = do_request(uri, req)
+        rescue
+          raise "Error when sending the request. Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
+        end
 
         @raw_response = res
         @response     = JSON.parse(@raw_response.body)
@@ -150,6 +154,8 @@ module Lumberg
 
       def do_request(uri, req)
         http = Net::HTTP.new(uri.host, uri.port)
+        http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
+
         if uri.port == 2087
           if @ssl_verify
             http.verify_mode = OpenSSL::SSL::VERIFY_PEER
