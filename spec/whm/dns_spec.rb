@@ -59,6 +59,15 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/Bind reloading on .*example.com/i)
       end
+
+      it "adds a zone record reverse" do
+        result = @dns.add_zone_record(:zone => 'example.com',
+                                      :name => '1',
+                                      :ptdrname => 'example.com',
+                                      :type => 'PTR')
+        result[:success].should be_true
+        result[:message].should match(/Bind reloading on .*example.com/i)
+      end
     end
 
     describe "#listzones" do
