@@ -38,8 +38,8 @@ module Lumberg
       it "lists all resellers" do
         result = @reseller.list
         result[:success].should be_true
-        result[:params].should have(2).resellers
-        result[:params].should include('bob', 'ted')
+        result[:params][:resellers].should have(2).resellers
+        result[:params][:resellers].should include('bob', 'ted')
       end
     end 
   end

@@ -11,9 +11,11 @@ module Lumberg
       end
 
       def list
-       result = server.perform_request('listresellers', :key => 'reseller')
-       result[:success] = true
-       result
+        # This method is funky. That is all
+        result = server.perform_request('listresellers', :key => 'reseller')
+        result[:success] = true
+        result[:params]  = {:resellers => result.delete(:params)}
+        result
       end
     end
   end
