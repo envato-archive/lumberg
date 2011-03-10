@@ -61,7 +61,7 @@ module Lumberg
       end
     end
 
-    describe "#setresellerlimits", :wip => true do
+    describe "#setresellerlimits" do
       use_vcr_cassette "whm/reseller/setresellerlimits"
 
       it "requires a username" do
