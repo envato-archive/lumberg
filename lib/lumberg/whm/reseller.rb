@@ -41,6 +41,15 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellerlimits', options)
       end
+
+      def set_main_ip(options = {})
+        Args.new(options) do |c|
+          c.requires :username, :ip
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('setresellermainip', options)
+      end
     end
   end
 end
