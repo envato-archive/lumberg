@@ -1,4 +1,5 @@
 --- 
+- !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
     uri: https://myhost.com:2087/json-api/setresellermainip?ip=192.168.0.18&user=bob
