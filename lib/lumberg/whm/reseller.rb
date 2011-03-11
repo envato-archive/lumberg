@@ -94,6 +94,15 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('unsuspendreseller', options)
       end
+
+      def account_counts(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('acctcounts', options.merge(:key => 'reseller'))
+      end
     end
   end
 end

@@ -182,7 +182,7 @@ module Lumberg
         result[:message].should match(/Finished suspending reseller/i)
       end
 
-      it "returns an error if the user is invalid" do
+      it "returns an error when the user is invalid" do
         result = @reseller.suspend(:username => 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
@@ -202,8 +202,32 @@ module Lumberg
         result[:message].should match(/Finished unsuspending reseller/i)
       end
 
-      it "return an error if the user is invalid" do
+      it "return an error when the user is invalid" do
         result = @reseller.unsuspend(:username => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
+
+    describe "#acctcounts" do
+      use_vcr_cassette "whm/reseller/acctcounts"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.account_counts }
+      end
+
+      it "returns the account counts" do
+        result = @reseller.account_counts(:username => 'bob')
+        result[:success].should be_true
+        result[:message].should match(/Obtained reseller account counts/i)
+        result[:params][:account].should == "bob" 
+        result[:params][:suspended].to_i.should == 0
+        result[:params][:active].to_i.should == 0
+        result[:params][:limit].should == "" 
+      end
+
+      it "returns an error when the user is invalid" do
+        result = @reseller.account_counts(:username => 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
