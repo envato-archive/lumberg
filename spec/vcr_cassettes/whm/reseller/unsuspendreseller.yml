@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/unsuspendreseller?user=bob
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Finished unsuspending reseller.\"}],\"output\":\"Changing shell for bob.\\nShell changed.\\nUnlocking password for user bob.\\npasswd: Success.\\nFound /etc/proftpd/bob with contents. It will be archived as '/etc/proftpd/bob.unsuspend_failed' and replaced with the previously suspended version.\\nUnsuspending FTP accounts...\\nUpdating ftp passwords for bob\\nFtp password files updated.\\nFtp vhost passwords synced\\nbob's account is now active\\nUnsuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\n\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/unsuspendreseller?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Specified user is not a reseller.\"}]}"
+    http_version: "1.1"

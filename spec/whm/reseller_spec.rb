@@ -188,5 +188,25 @@ module Lumberg
         result[:message].should match(/Specified user is not a reseller/i)
       end
     end
+
+    describe "#unsuspendreseller" do
+      use_vcr_cassette "whm/reseller/unsuspendreseller"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.unsuspend }
+      end
+
+      it "should unsuspend the user" do
+        result = @reseller.unsuspend(:username => 'bob')
+        result[:success].should be_true
+        result[:message].should match(/Finished unsuspending reseller/i)
+      end
+
+      it "return an error if the user is invalid" do
+        result = @reseller.unsuspend(:username => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
   end
 end
