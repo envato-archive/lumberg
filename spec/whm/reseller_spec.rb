@@ -133,5 +133,31 @@ module Lumberg
         result[:message].should match(/Successfully set reseller package limit/i)
       end
     end                                                                                                   
+
+    describe "#suspendreseller" do
+      use_vcr_cassette "whm/reseller/suspendreseller"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.suspend }
+      end
+
+      it "suspends the reseller" do
+        result = @reseller.suspend(:username => 'bob')
+        result[:success].should be_true
+        result[:message].should match(/Finished suspending reseller/i)
+      end
+
+      it "can take a reason" do
+        result = @reseller.suspend(:username => 'bob', :reason => 'some reason')
+        result[:success].should be_true
+        result[:message].should match(/Finished suspending reseller/i)
+      end
+
+      it "returns an error if the user is invalid" do
+        result = @reseller.suspend(:username => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
   end
 end
