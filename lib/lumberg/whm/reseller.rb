@@ -61,6 +61,16 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellerpackagelimit', options)
       end
+
+      def suspend(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+          c.optionals :reason
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('suspendreseller', options)
+      end
     end
   end
 end
