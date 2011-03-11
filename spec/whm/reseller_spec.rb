@@ -76,6 +76,35 @@ module Lumberg
       end
     end
 
+    describe "#terminate" do
+      use_vcr_cassette "whm/reseller/terminatereseller"
+
+      it "requires a reseller" do
+        requires_attr('reseller') { @reseller.terminate }
+      end
+
+      it "terminates the reseller" do
+        result = @reseller.terminate(:reseller => 'terminat')
+        result[:success].should be_true
+        result[:message].should match(/account terminations complete/i)
+        result[:params][:accts].should be_empty
+      end
+
+      it "terminates the main account" do
+        result = @reseller.terminate(:reseller => 'terminat', :terminatereseller => true)
+        result[:success].should be_true
+        result[:message].should match(/account terminations complete/i)
+        result[:params][:accts][:terminat][:rawout].should match(/Account Removal Complete/i)
+      end
+
+      it "errors on non-existaet user" do
+        result = @reseller.terminate(:reseller => 'what')
+        result[:success].should be_false
+        result[:message].should match(/does not exist/i)
+      end
+
+    end
+
     describe "#setresellermainip" do
       use_vcr_cassette "whm/reseller/setresellermainip"
 

@@ -1,0 +1,64 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=terminat&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"privdelete\":1,\"statusmsg\":\"Account Terminations Complete\",\"accts\":{}}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=terminat&terminatereseller=1&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"privdelete\":1,\"statusmsg\":\"Account Terminations Complete\",\"accts\":{\"terminat\":{\"status\":1,\"statusmsg\":\"terminat account removed\",\"rawout\":\"Running pre removal script (/scripts/prekillacct)......DoneCollecting Domain Name and IP...User: terminat\\nDomain: terminateme.com\\n...DoneKilling all processes owned by user......DoneCleaning passwd,shadow,group......DoneRemoving User from Group..........DoneRemoving Web Logs......DoneRemoving Bandwidth Files......DoneRemoving Crontab......DoneRemoving Virtual Hosts...Removed terminateme.com Server at line: 355.\\nRemoved Entry from httpd.conf\\nRemoving user's web content directory symlinks......DoneRemoving MySQL databases and users......DoneRemoving PostgreSQL databases and users......DoneRemoving System User......DoneRemoving Group......DoneRemoving DNS Entries...\\nError: There is a problem communicating with the name server.\\nWe may be doing maintenance to this feature or the DNS server.\\nPlease try again and if this problem continues please report it to the server administrator.\\n\\n...DoneRemoving Email Setup...Removing /etc/valiases/terminateme.com\\n...DoneRemoving mailman lists......DoneUpdating Databases......DoneRemoving Counter Data......DoneAdding ip back to the ip address pool...System has 241 free ips.\\n...DoneRemoving user's cPanel Databases & Updating......DoneReloading Services......DoneRemoving mail and service configs...\\n...DoneSending Contacts......DoneUpdating internal databases...Updating ftp passwords for terminat\\nPurging ftp user terminat\\nFtp password files updated.\\nFtp vhost passwords synced\\n...DoneRunning post removal scripts (/scripts/legacypostkillacct, /scripts/postkillacct)......DoneAccount Removal Complete!!!...terminat account removed...Done\"}}}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=what&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+what
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Reseller what Does not exist\"}]}"
+    http_version: "1.1"
