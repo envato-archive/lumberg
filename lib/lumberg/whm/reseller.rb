@@ -85,6 +85,15 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('suspendreseller', options)
       end
+
+      def unsuspend(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('unsuspendreseller', options)
+      end
     end
   end
 end
