@@ -121,6 +121,30 @@ module Lumberg
 
         server.perform_request('resellerstats', options)
       end
+
+      def list_acls
+        server.perform_request('listacls', {:key => 'acls'})
+      end
+
+      def save_acl_list(options = {})
+        Args.new(options) do |c|
+          c.requires :acllist
+          c.booleans "acl-add-pkg".to_sym, "acl-add-pkg-ip".to_sym, "acl-add-pkg-shell".to_sym, "acl-all".to_sym, "acl-allow-addoncreate".to_sym, "acl-allow-parkedcreate".to_sym, "acl-allow-unlimited-disk-pkgs".to_sym, "acl-allow-unlimited-pkgs".to_sym, "acl-clustering".to_sym, "acl-create-acct".to_sym, "acl-create-dns".to_sym, "acl-demo-setup".to_sym, "acl-disallow-shell".to_sym, "acl-edit-account".to_sym, "acl-edit-dns".to_sym, "acl-edit-mx".to_sym, "acl-edit-pkg".to_sym, "acl-frontpage".to_sym, "acl-kill-acct".to_sym, "acl-kill-dns".to_sym, "acl-limit-bandwidth".to_sym, "acl-list-accts".to_sym, "acl-mailcheck".to_sym, "acl-mod-subdomains".to_sym, "acl-news".to_sym, "acl-onlyselfandglobalpkgs".to_sym, "acl-park-dns".to_sym, "acl-passwd".to_sym, "acl-quota".to_sym, "acl-rearrange-accts".to_sym, "acl-res-cart".to_sym, "acl-status".to_sym, "acl-resftp".to_sym, "acl-restart".to_sym, "acl-show-bandwidth".to_sym, "acl-ssl".to_sym, "acl-ssl-gencrt".to_sym, "acl-stats".to_sym, "acl-suspend-acct".to_sym, "acl-upgrade-account".to_sym
+          c.optionals "acl-add-pkg".to_sym, "acl-add-pkg-ip".to_sym, "acl-add-pkg-shell".to_sym, "acl-all".to_sym, "acl-allow-addoncreate".to_sym, "acl-allow-parkedcreate".to_sym, "acl-allow-unlimited-disk-pkgs".to_sym, "acl-allow-unlimited-pkgs".to_sym, "acl-clustering".to_sym, "acl-create-acct".to_sym, "acl-create-dns".to_sym, "acl-demo-setup".to_sym, "acl-disallow-shell".to_sym, "acl-edit-account".to_sym, "acl-edit-dns".to_sym, "acl-edit-mx".to_sym, "acl-edit-pkg".to_sym, "acl-frontpage".to_sym, "acl-kill-acct".to_sym, "acl-kill-dns".to_sym, "acl-limit-bandwidth".to_sym, "acl-list-accts".to_sym, "acl-mailcheck".to_sym, "acl-mod-subdomains".to_sym, "acl-news".to_sym, "acl-onlyselfandglobalpkgs".to_sym, "acl-park-dns".to_sym, "acl-passwd".to_sym, "acl-quota".to_sym, "acl-rearrange-accts".to_sym, "acl-res-cart".to_sym, "acl-status".to_sym, "acl-resftp".to_sym, "acl-restart".to_sym, "acl-show-bandwidth".to_sym, "acl-ssl".to_sym, "acl-ssl-gencrt".to_sym, "acl-stats".to_sym, "acl-suspend-acct".to_sym, "acl-upgrade-account".to_sym
+        end
+
+        server.perform_request('saveacllist', options.merge(:key => 'results'))
+      end
+
+      def set_acls(options = {})
+        Args.new(options) do |c|
+          c.requires :reseller
+          c.booleans "acl-add-pkg".to_sym, "acl-add-pkg-ip".to_sym, "acl-add-pkg-shell".to_sym, "acl-all".to_sym, "acl-allow-addoncreate".to_sym, "acl-allow-parkedcreate".to_sym, "acl-allow-unlimited-disk-pkgs".to_sym, "acl-allow-unlimited-pkgs".to_sym, "acl-clustering".to_sym, "acl-create-acct".to_sym, "acl-create-dns".to_sym, "acl-demo-setup".to_sym, "acl-disallow-shell".to_sym, "acl-edit-account".to_sym, "acl-edit-dns".to_sym, "acl-edit-mx".to_sym, "acl-edit-pkg".to_sym, "acl-frontpage".to_sym, "acl-kill-acct".to_sym, "acl-kill-dns".to_sym, "acl-limit-bandwidth".to_sym, "acl-list-accts".to_sym, "acl-mailcheck".to_sym, "acl-mod-subdomains".to_sym, "acl-news".to_sym, "acl-onlyselfandglobalpkgs".to_sym, "acl-park-dns".to_sym, "acl-passwd".to_sym, "acl-quota".to_sym, "acl-rearrange-accts".to_sym, "acl-res-cart".to_sym, "acl-status".to_sym, "acl-resftp".to_sym, "acl-restart".to_sym, "acl-show-bandwidth".to_sym, "acl-ssl".to_sym, "acl-ssl-gencrt".to_sym, "acl-stats".to_sym, "acl-suspend-acct".to_sym, "acl-upgrade-account".to_sym
+          c.optionals :acllist, "acl-add-pkg".to_sym, "acl-add-pkg-ip".to_sym, "acl-add-pkg-shell".to_sym, "acl-all".to_sym, "acl-allow-addoncreate".to_sym, "acl-allow-parkedcreate".to_sym, "acl-allow-unlimited-disk-pkgs".to_sym, "acl-allow-unlimited-pkgs".to_sym, "acl-clustering".to_sym, "acl-create-acct".to_sym, "acl-create-dns".to_sym, "acl-demo-setup".to_sym, "acl-disallow-shell".to_sym, "acl-edit-account".to_sym, "acl-edit-dns".to_sym, "acl-edit-mx".to_sym, "acl-edit-pkg".to_sym, "acl-frontpage".to_sym, "acl-kill-acct".to_sym, "acl-kill-dns".to_sym, "acl-limit-bandwidth".to_sym, "acl-list-accts".to_sym, "acl-mailcheck".to_sym, "acl-mod-subdomains".to_sym, "acl-news".to_sym, "acl-onlyselfandglobalpkgs".to_sym, "acl-park-dns".to_sym, "acl-passwd".to_sym, "acl-quota".to_sym, "acl-rearrange-accts".to_sym, "acl-res-cart".to_sym, "acl-status".to_sym, "acl-resftp".to_sym, "acl-restart".to_sym, "acl-show-bandwidth".to_sym, "acl-ssl".to_sym, "acl-ssl-gencrt".to_sym, "acl-stats".to_sym, "acl-suspend-acct".to_sym, "acl-upgrade-account".to_sym
+        end
+
+        server.perform_request('setacls', options)
+      end
     end
   end
 end
