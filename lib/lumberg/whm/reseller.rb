@@ -103,6 +103,16 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('acctcounts', options.merge(:key => 'reseller'))
       end
+
+      def set_nameservers(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+          c.optionals :nameservers
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('setresellernameservers', options)
+      end
     end
   end
 end

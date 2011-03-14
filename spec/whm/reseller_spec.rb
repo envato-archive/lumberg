@@ -232,5 +232,31 @@ module Lumberg
         result[:message].should match(/Specified user is not a reseller/i)
       end
     end
+
+    describe "#setresellernameservers" do
+      use_vcr_cassette "whm/reseller/setresellernameservers"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.set_nameservers }
+      end
+
+      it "sets the default nameservers" do
+        result = @reseller.set_nameservers(:username => 'bob')
+        result[:success].should be_true
+        result[:message].should match(/Set resellers nameservers/i)
+      end
+      
+      it "sets the specified nameservers" do
+        result = @reseller.set_nameservers(:username => 'bob', :nameservers => 'ns1.example.com')
+        result[:success].should be_true
+        result[:message].should match(/Set resellers nameservers/i)
+      end
+      
+      it "returns an error for an invalid username" do
+        result = @reseller.account_counts(:username => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Specified user is not a reseller/i)
+      end
+    end
   end
 end
