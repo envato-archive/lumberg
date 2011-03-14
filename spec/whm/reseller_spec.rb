@@ -258,5 +258,28 @@ module Lumberg
         result[:message].should match(/Specified user is not a reseller/i)
       end
     end
+
+    describe "#resellerstats" do
+      use_vcr_cassette "whm/reseller/resellerstats"
+
+      it "requires a reseller" do
+        requires_attr('reseller') { @reseller.stats }
+      end
+
+      it "returns the stats of the reseller" do
+        result = @reseller.stats(:reseller => 'bob')
+        result[:success].should be_true
+        result[:message].should match(/Fetched Reseller Data OK/i)
+        result[:params][:diskquota].to_i.should == 0
+        result[:params][:diskoverselling].to_i.should == 1 
+        result[:params][:bandwidthlimit].to_i.should == 0
+      end
+
+      it "returns an error for an invalid reseller" do
+        result = @reseller.stats(:reseller => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Reseller Does Not Exist/i)
+      end
+    end
   end
 end

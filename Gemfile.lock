@@ -35,7 +35,6 @@ GEM
     hirb (0.4.0)
     i18n (0.5.0)
     json (1.5.1)
-    json (1.5.1-java)
     json_pure (1.5.1)
     main (4.4.0)
       arrayfields (>= 4.7.4)

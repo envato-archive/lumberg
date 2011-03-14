@@ -200,8 +200,11 @@ module Lumberg
 
             # more hacks for WHM silly API
             if @response.has_key?('result')
-              success = @response['result'].first['status'] == 1
-              message = @response['result'].first['statusmsg']
+              result_node = @response['result']
+              status_hash = result_node.first
+              status_hash = result_node if result_node.is_a?(Hash) && result_node.has_key?('status')
+              success = status_hash['status'] == 1
+              message = status_hash['statusmsg']
             else
               res.delete('status')
               res.delete('statusmsg')
