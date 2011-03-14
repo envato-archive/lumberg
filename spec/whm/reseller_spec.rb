@@ -281,5 +281,57 @@ module Lumberg
         result[:message].should match(/Reseller Does Not Exist/i)
       end
     end
+
+    describe "#listacls", :wip => true do
+      use_vcr_cassette "whm/reseller/listacls"
+
+      it "lists the saved reseller ACL lists" do
+        result = @reseller.list_acls
+        pending "should list acls here"
+      end
+    end
+
+    describe "#saveacllist", :wip => true do
+      use_vcr_cassette "whm/reseller/saveacllist"
+
+      it "requires an acllist name" do
+        requires_attr('acllist') { @reseller.save_acl_list }
+      end
+
+      it "creates a new reseller ACL list" do
+        result = @reseller.save_acl_list(:acllist => 'testacllist')
+        result[:success].should be_true
+        result[:message].should match(/ACL List testacllist saved/i)
+      end
+
+      it "creates a new reseller ACL list with optional settings" do
+        result = @reseller.save_acl_list(:acllist => 'testacllist', 
+                                         "acl-ssl".to_sym => true,
+                                         "acl-add-pkg".to_sym => true, 
+                                         "acl-stats".to_sym => true)
+        result[:success].should be_true
+        result[:message].should match(/ACL List testacllist saved/i)
+      end
+    end
+
+    describe "#setacls", :wip => true do
+      use_vcr_cassette "whm/reseller/setacls"
+
+      it "requires a reseller" do
+        requires_attr('reseller') { @reseller.set_acls }
+      end
+
+      it "sets the ACL for the reseller" do
+        result = @reseller.set_acls(:reseller => 'bob', :acllist => 'testacllist')
+        result[:success].should be_true
+        result[:message].should match(/Reseller Acls Saved/i)
+      end
+      
+      it "returns an error for an invalid reseller" do
+        result = @reseller.set_acls(:reseller => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/Not a reseller/i)
+      end
+    end
   end
 end
