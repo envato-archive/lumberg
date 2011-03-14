@@ -113,6 +113,14 @@ module Lumberg
         options[:user] = options.delete(:username)
         server.perform_request('setresellernameservers', options)
       end
+
+      def stats(options = {})
+        Args.new(options) do |c|
+          c.requires :reseller
+        end
+
+        server.perform_request('resellerstats', options)
+      end
     end
   end
 end

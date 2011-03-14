@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/resellerstats?reseller=bob
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":{\"diskquota\":0,\"totalbwalloc\":null,\"totalbwused\":null,\"diskoverselling\":1,\"statusmsg\":\"Fetched Reseller Data OK\",\"bwoverselling\":0,\"accts\":[],\"status\":1,\"reseller\":\"bob\",\"totaldiskalloc\":null,\"bandwidthlimit\":0,\"diskused\":null}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/resellerstats?reseller=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":{\"reseller\":\"notexists\",\"status\":0,\"statusmsg\":\"Reseller Does Not Exist\"}}"
+    http_version: "1.1"
