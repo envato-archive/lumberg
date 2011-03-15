@@ -399,7 +399,7 @@ module Lumberg
       end
     end 
 
-    describe "#setsiteip" do
+    describe "#setsiteip", :wip => true do
       use_vcr_cassette "whm/account/setsiteip"
 
       it "requires an ip" do
@@ -427,7 +427,7 @@ module Lumberg
       end
     end 
 
-    describe "#restore" do
+    describe "#restore", :wip => true do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
       it "requires api.version" do
@@ -537,20 +537,18 @@ module Lumberg
       end
 
       it "restores the account" do
-        pending "WHM API bug that returns stdout in the response headers. Waiting on ticket to be resolved" do
-          Timeout::timeout(0.4) do
-            result = @account.restore_account("api.version".to_sym => 1, 
-                                              :username => 'changeme', 
-                                              :type => 'daily', 
-                                              :all => false, 
-                                              :ip => false, 
-                                              :mail => false, 
-                                              :mysql => false, 
-                                              :subs => false)
-            result[:success].should be_true
-            result[:message].should match(/Account Restore Complete/i)
-          end
-        end
+        result = @account.restore_account("api.version".to_sym => 1, 
+                                          :username => 'changeme', 
+                                          :type => 'daily', 
+                                          :all => false, 
+                                          :ip => false, 
+                                          :mail => false, 
+                                          :mysql => false, 
+                                          :subs => false)
+        p "RESULT"
+        p result.inspect
+        result[:success].should be_true
+        result[:message].should match(/Account Restore Complete/i)
       end
     end 
 
