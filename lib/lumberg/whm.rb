@@ -8,6 +8,7 @@ module Lumberg
 
     class << self
 
+      # Converts keys to symbols
       def symbolize_keys(arg)
         case arg
           when Array
@@ -24,6 +25,7 @@ module Lumberg
         end
       end
     
+      # Recursively converts values of 0 or 1 to true or false
       def to_bool(hash, *keys)
         if keys.empty?
           keys = [:all]
@@ -47,6 +49,7 @@ module Lumberg
         hash
       end
 
+      # Converts boolean values to 0 or 1
       def from_bool(input)
         if input == false
           0
