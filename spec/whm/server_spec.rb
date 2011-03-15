@@ -126,76 +126,103 @@ module Lumberg
       end
     end
 
-    # These tests are skipped when running against
-    # a real WHM server
-    unless live_test?
-      describe "#response_type" do
+    describe "#response_type" do
 
-        use_vcr_cassette "whm/server/response_type"
+      use_vcr_cassette "whm/server/response_type"
 
-        it "detects an action function" do
-          @whm.perform_request('testing')
-          @whm.send(:response_type).should == :action
-        end
+      it "detects an action function" do
+        @whm.perform_request('testing')
+        @whm.send(:response_type).should == :action
+      end
 
-        it "detects an error function" do
-          @whm.perform_request('testing_error')
-          @whm.send(:response_type).should == :error
-        end
+      it "detects an error function" do
+        @whm.perform_request('testing_error')
+        @whm.send(:response_type).should == :error
+      end
 
-        it "detects a query function" do
-          @whm.perform_request('testing_query')
-          @whm.send(:response_type).should == :query
-        end
+      it "detects a query function" do
+        @whm.perform_request('testing_query')
+        @whm.send(:response_type).should == :query
+      end
 
-        it "detects an unknown function" do
-          @whm.perform_request('testing_unknown')
-          @whm.send(:response_type).should == :unknown
-        end
+      it "detects an unknown function" do
+        @whm.perform_request('testing_unknown')
+        @whm.send(:response_type).should == :unknown
+      end
 
-        it "forces response type" do
-          @whm.force_response_type = :magic
-          @whm.send(:response_type).should == :magic
-          @whm.perform_request('testing')
-        end
+      it "forces response type" do
+        @whm.force_response_type = :magic
+        @whm.send(:response_type).should == :magic
+        @whm.perform_request('testing')
+      end
 
-        it "resets response_type each request" do
-          @whm.force_response_type.should be_nil
-          @whm.force_response_type = :magic
-          @whm.send(:response_type).should == :magic
+      it "resets response_type each request" do
+        @whm.force_response_type.should be_nil
+        @whm.force_response_type = :magic
+        @whm.send(:response_type).should == :magic
 
-          @whm.force_response_type = :magic
-          @whm.perform_request('testing')
-          @whm.force_response_type.should be_nil
-        end
+        @whm.force_response_type = :magic
+        @whm.perform_request('testing')
+        @whm.force_response_type.should be_nil
+      end
 
 
-        it "returns true for a successful :action" do
-          @whm.perform_request('testing')
-          response = @whm.send(:format_response)
-          response[:success].should be(true)
-        end
+      it "returns true for a successful :action" do
+        @whm.perform_request('testing')
+        response = @whm.send(:format_response)
+        response[:success].should be(true)
+      end
 
-        it "returns true for a successful :query" do
-          @whm.perform_request('testing_query')
-          response = @whm.send(:format_response)
-          response[:success].should be(true)
-          response[:params].should have_key(:acct)
-        end
+      it "returns true for a successful :query" do
+        @whm.perform_request('testing_query')
+        response = @whm.send(:format_response)
+        response[:success].should be(true)
+        response[:params].should have_key(:acct)
+      end
 
-        it "returns false on :error" do
-          @whm.perform_request('testing_error')
-          response = @whm.send(:format_response)
-          response[:success].should be(false)
-          response[:message].should match(/Unknown App Req/)
-        end
+      it "returns false on :error" do
+        @whm.perform_request('testing_error')
+        response = @whm.send(:format_response)
+        response[:success].should be(false)
+        response[:message].should match(/Unknown App Req/)
+      end
 
-        it "returns false on :unknown" do
-          @whm.perform_request('testing_unknown')
-          response = @whm.send(:format_response)
-          response[:success].should be(false)
-          response[:message].should match(/Unknown error occurred .*wtf.*/)
-        end
+      it "returns false on :unknown" do
+        @whm.perform_request('testing_unknown')
+        response = @whm.send(:format_response)
+        response[:success].should be(false)
+        response[:message].should match(/Unknown error occurred .*wtf.*/)
+      end
+    end
+
+    describe "#account" do
+      it "has an account accessor" do
+        @whm.account.should be_an(Whm::Account)
+      end
+
+    end
+
+    describe "#dns" do
+      it "has an dns accessor" do
+        @whm.dns.should be_an(Whm::Dns)
+      end
+    end
+
+    describe "#reseller" do
+      it "has an reseller accessor" do
+        @whm.reseller.should be_an(Whm::Reseller)
+      end
+    end
+
+    describe "#method_missing" do
+      it "caches @vars" do
+        Whm.should_receive(:const_get).once.and_return(Whm::Account)
+        @whm.account
+        @whm.account
+      end
+      
+      it "raises to super" do
+        expect { @whm.asdf }.to raise_error(NoMethodError)
       end
     end
   end

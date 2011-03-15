@@ -2,7 +2,7 @@ require 'cgi'
 
 module Lumberg
   module Whm
-    class Server
+    class Server < Base
       # Server
       attr_accessor :host
 
@@ -83,6 +83,24 @@ module Lumberg
         @raw_response = res
         @response     = JSON.parse(@raw_response.body)
         format_response
+      end
+
+      # Creates WHM::Whatever.new(:server => @server)
+      # automagically
+      def auto_accessors
+        [:account, :dns, :reseller]
+      end
+
+      def method_missing(meth, *args, &block)
+        if auto_accessors.include?(meth.to_sym)
+          ivar = instance_variable_get("@#{meth}")
+          if ivar.nil?
+            constant  = Whm.const_get(meth.to_s.capitalize)
+            return instance_variable_set("@#{meth}", constant.new(:server => self))
+          end
+        else
+          super
+        end
       end
 
       protected
