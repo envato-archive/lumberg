@@ -7,6 +7,7 @@ require 'net/http'
 require 'net/https'
 
 # Internal Libs
+require 'net_http_hacked'
 require 'lumberg/version'
 require 'lumberg/exceptions'
 require 'lumberg/whm/args'
@@ -19,3 +20,4 @@ module Lumberg
     end
   end
 end
+
