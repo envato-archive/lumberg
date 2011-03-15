@@ -73,12 +73,8 @@ module Lumberg
         req = Net::HTTP::Get.new(url)
         req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
-        begin
-          # Do the request
-          res = do_request(uri, req)
-        rescue Exception => e
-          raise "Error when sending the request. Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
-        end
+        # Do the request
+        res = do_request(uri, req)
 
         @raw_response = res
         @response     = JSON.parse(@raw_response.body)
@@ -156,6 +152,7 @@ module Lumberg
 
       def do_request(uri, req)
         begin
+          Net::HTTP.skip_bad_headers = true
           http = Net::HTTP.new(uri.host, uri.port)
           http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
 
@@ -173,8 +170,11 @@ module Lumberg
             h.request(req)
           end
         rescue Exception => e
-          raise "Error when sending the request. 
+          puts "Error when sending the request. 
                  Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
+          raise e
+        ensure
+          Net::HTTP.skip_bad_headers = false
         end
       end
 
