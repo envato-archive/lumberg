@@ -24,7 +24,7 @@ module Net
           value << line.strip
         else
           tmp_key, tmp_value = line.strip.split(/\s*:\s*/, 2)
-          next if Net::HTTP.skip_bad_headers && tmp_value.nil?
+          next if tmp_value.nil? && Net::HTTP.skip_bad_headers
 
           yield key, value if key
 
