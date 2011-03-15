@@ -3,10 +3,12 @@ module Net
     @skip_bad_headers = false
 
     class << self
+      # Accessor for @skip_bad_headers
       def skip_bad_headers
         @skip_bad_headers
       end
 
+      # Mutator for @skip_bad_headers
       def skip_bad_headers=(value)
         @skip_bad_headers = value
       end
@@ -14,6 +16,7 @@ module Net
   end
 
   class << HTTPResponse
+    # Parses each response header and strips out bad headers if skip_bad_headers is set
     def each_response_header(sock)
       key = value = nil
       while true
