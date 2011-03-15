@@ -145,6 +145,15 @@ module Lumberg
 
         server.perform_request('setacls', options)
       end
+
+      def unsetup(options = {})
+        Args.new(options) do |c|
+          c.requires :username
+        end
+
+        options[:user] = options.delete(:username)
+        server.perform_request('unsetupreseller', options)
+      end
     end
   end
 end
