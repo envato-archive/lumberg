@@ -525,15 +525,15 @@ module Lumberg
 
       it "returns an error if it can't find the backup" do
         result = @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'privs', 
+                                          :username => 'notexists', 
                                           :type => 'daily', 
                                           :all => false, 
                                           :ip => false, 
                                           :mail => false, 
                                           :mysql => false, 
                                           :subs => false)
-        result[:success].should be_false
-        result[:message].should match(/Unable to find archive/i)
+        result[:params][:result].to_i.should == 0
+        result[:params][:reason].should match(/Unable to find archive/i)
       end
 
       it "restores the account" do
@@ -545,10 +545,9 @@ module Lumberg
                                           :mail => false, 
                                           :mysql => false, 
                                           :subs => false)
-        p "RESULT"
-        p result.inspect
-        result[:success].should be_true
-        result[:message].should match(/Account Restore Complete/i)
+        result[:params][:result].to_i.should == 1
+        result[:params][:reason].should == "OK"
+        result[:params][:output][:raw].should match(/Account Restore Complete/i)
       end
     end 
 

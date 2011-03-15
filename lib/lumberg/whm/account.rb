@@ -177,7 +177,7 @@ module Lumberg
         end
 
         options[:user] = options.delete(:username) if options[:username]
-        server.perform_request('restoreaccount', options)
+        server.perform_request('restoreaccount', options.merge(:key => 'metadata'))
       end
 
       protected 
