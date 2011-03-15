@@ -282,7 +282,7 @@ module Lumberg
       end
     end
 
-    describe "#listacls", :wip => true do
+    describe "#listacls" do
       use_vcr_cassette "whm/reseller/listacls"
 
       it "lists the saved reseller ACL lists" do
@@ -291,7 +291,7 @@ module Lumberg
       end
     end
 
-    describe "#saveacllist", :wip => true do
+    describe "#saveacllist" do
       use_vcr_cassette "whm/reseller/saveacllist"
 
       it "requires an acllist name" do
@@ -314,7 +314,7 @@ module Lumberg
       end
     end
 
-    describe "#setacls", :wip => true do
+    describe "#setacls" do
       use_vcr_cassette "whm/reseller/setacls"
 
       it "requires a reseller" do
@@ -331,6 +331,25 @@ module Lumberg
         result = @reseller.set_acls(:reseller => 'notexists')
         result[:success].should be_false
         result[:message].should match(/Not a reseller/i)
+      end
+    end
+
+    describe "#unsetupreseller" do
+      use_vcr_cassette "whm/reseller/unsetupreseller"
+
+      it "requires a username" do
+        requires_attr('username') { @reseller.unsetup }
+      end
+
+      it "removes the reseller status from the user" do
+        result = @reseller.unsetup(:username => 'bob')
+        result[:success].should be_true
+      end
+
+      it "returns an error if the user does not exist" do
+        result = @reseller.unsetup(:username => 'notexists')
+        result[:success].should be_false
+        result[:message].should match(/called for a user that does not exist/i)
       end
     end
   end
