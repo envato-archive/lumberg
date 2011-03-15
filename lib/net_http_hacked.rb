@@ -25,8 +25,13 @@ module Net
         else
           yield key, value if key
           key, value = line.strip.split(/\s*:\s*/, 2)
-          next if value.nil? && Net::HTTP.skip_bad_headers
-          raise HTTPBadResponse, 'wrong header line format' if value.nil?
+          if value.nil? 
+            if Net::HTTP.skip_bad_headers
+              value = ' '
+            else
+              raise HTTPBadResponse, 'wrong header line format'
+            end
+          end
         end
       end
       yield key, value if key
