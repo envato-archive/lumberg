@@ -51,13 +51,8 @@ module Lumberg
 
       def requires!
         @required_params.each do |param| 
-          if param.is_a?(Array)
-            raise WhmArgumentError.new("Missing required parameter: #{param.first}") unless @options.has_key?(param.first) 
-            raise WhmArgumentError.new("Required parameter cannot be blank: #{param.first}") if (@options[param.first].nil? || (@options[param.first].respond_to?(:empty?) && @options[param.first].empty?))
-          else
-            raise WhmArgumentError.new("Missing required parameter: #{param}") unless @options.has_key?(param) 
-            raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (@options[param].nil? || (@options[param].respond_to?(:empty?) && @options[param].empty?))
-          end
+          key = (param.is_a?(Array) ? param.first : param)
+          verify_required_param(key)
         end
       end
 
@@ -66,15 +61,8 @@ module Lumberg
       # either a 1 ("Yes") or 0 ("No") value.
       def booleans!
         @boolean_params.each do |param|
-          if param.is_a?(Array)
-            if @options.include?(param.first) && ![true, false].include?(@options[param.first])
-              raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param.first}")
-            end
-          else
-            if @options.include?(param) && ![true, false].include?(@options[param])
-              raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param}")
-            end
-          end
+          key = (param.is_a?(Array) ? param.first : param)
+          verify_boolean_param(key)
         end
       end
 
@@ -92,6 +80,19 @@ module Lumberg
           end
         else
           raise WhmArgumentError.new("One of requires two or more items") unless @one_of_params.empty?
+        end
+      end
+
+      private
+      
+      def verify_required_param(param)
+        raise WhmArgumentError.new("Missing required parameter: #{param}") unless @options.has_key?(param) 
+        raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (@options[param].nil? || (@options[param].respond_to?(:empty?) && @options[param].empty?))
+      end
+
+      def verify_boolean_param(param)
+        if @options.include?(param) && ![true, false].include?(@options[param])
+          raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param}")
         end
       end
     end
