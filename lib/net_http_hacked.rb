@@ -23,16 +23,14 @@ module Net
           value << ' ' unless value.empty?
           value << line.strip
         else
+          tmp_key, tmp_value = line.strip.split(/\s*:\s*/, 2)
+          next if Net::HTTP.skip_bad_headers && tmp_value.nil?
+
           yield key, value if key
-          key, value = line.strip.split(/\s*:\s*/, 2)
-          if value.nil? 
-            if Net::HTTP.skip_bad_headers
-              key.gsub!(' ', '-') if key && key.respond_to?(:gsub!)
-              value = ' '
-            else
-              raise HTTPBadResponse, 'wrong header line format'
-            end
-          end
+
+          key   = tmp_key
+          value = tmp_value
+          raise HTTPBadResponse, 'wrong header line format' if value.nil?
         end
       end
       yield key, value if key
