@@ -65,13 +65,7 @@ module Lumberg
 
         yield self if block_given?
 
-        # Setup request URL
-        url = uri.path
-        url << "?" + uri.query unless uri.query.nil? || uri.query.empty?
-
-        # Add Auth Header
-        req = Net::HTTP::Get.new(url)
-        req.add_field("Authorization", "WHM #{@user}:#{@hash}")
+        req = prepare_request(uri)
 
         # Do the request
         res = do_request(uri, req)
@@ -99,26 +93,20 @@ module Lumberg
       end
 
       def format_response
-        success = false
-        message = nil
-        params  = {}
+        success, message, params = false, nil, {}
 
         case response_type
           when :action
-            success, message, res = format_action_response
-            params  = res
+            success, message, params = format_action_response
           when :query
-            success, message, res = format_query_response
-            params = res
+            success, message, params = format_query_response
           when :error
             message = @response['error']
           when :unknown
             message = "Unknown error occurred #{@response.inspect}"
         end
  
-        if !@boolean_params.nil?
-          params = Whm::to_bool(params, @boolean_params)
-        end
+        params = Whm::to_bool(params, @boolean_params) unless @boolean_params.nil?
 
         # Reset this for subsequent requests
         @force_response_type = nil
@@ -156,15 +144,7 @@ module Lumberg
           http = Net::HTTP.new(uri.host, uri.port)
           http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
 
-          if uri.port == 2087
-            if @ssl_verify
-              http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-              http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
-            else
-              http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-            end
-            http.use_ssl = true 
-          end
+          enable_ssl(http) if uri.port == 2087
 
           http.start do |h|
             h.request(req)
@@ -182,33 +162,33 @@ module Lumberg
         # Some API methods ALSO return a 'status' as
         # part of a result. We only use this value if it's
         # part of the results hash
-        unless @response[@key].is_a?(Array) || @response[@key].is_a?(Hash)
-          res = {@key => @response[@key]}
-          success = true
-          message = ""
+        item = @response[@key]
+
+        unless item.is_a?(Array) || item.is_a?(Hash)
+          res = {@key => item}
+          success, message = true, ""
         else
-          if @response[@key].first.is_a?(Hash)
-            success = @response[@key].first['status'].to_i == 1
-            message = @response[@key].first['statusmsg']
-            if @response[@key].size > 1
-              res     = @response[@key].dup
-            else
-              res     = @response[@key].first.dup
-            end
+          result = nil
+          if item.first.is_a?(Hash)
+            result = item.first
+            res = (item.size > 1 ? item.dup : item.first.dup)
           else
-            res     = @response[@key].dup
+            res = item.dup
 
             # more hacks for WHM silly API
             if @response.has_key?('result')
               result_node = @response['result']
-              status_hash = result_node.first
-              status_hash = result_node if result_node.is_a?(Hash) && result_node.has_key?('status')
-              success = status_hash['status'] == 1
-              message = status_hash['statusmsg']
+              node_with_key_status = result_node.is_a?(Hash) && result_node.has_key?('status')
+              result = (node_with_key_status ? result_node : result_node.first)
             else
               res.delete('status')
               res.delete('statusmsg')
             end
+          end
+
+          unless result.nil?
+            success = result['status'].to_i == 1
+            message = result['statusmsg']
           end
         end
 
@@ -237,12 +217,35 @@ module Lumberg
         if auto_accessors.include?(meth.to_sym)
           ivar = instance_variable_get("@#{meth}")
           if ivar.nil?
-            constant  = Whm.const_get(meth.to_s.capitalize)
+            constant = Whm.const_get(meth.to_s.capitalize)
             return instance_variable_set("@#{meth}", constant.new(:server => self))
           end
         else
           super
         end
+      end
+
+      def prepare_request(uri)
+        # Setup request URL
+        url = uri.path
+        query = uri.query
+        url << "?" + query unless query.nil? || query.empty?
+
+        # Add Auth Header
+        req = Net::HTTP::Get.new(url)
+        req.add_field("Authorization", "WHM #{@user}:#{@hash}")
+
+        req
+      end
+
+      def enable_ssl(http)
+        if @ssl_verify
+          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
+          http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
+        else
+          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
+        end
+        http.use_ssl = true 
       end
 
     end
