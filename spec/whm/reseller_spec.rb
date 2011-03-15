@@ -287,7 +287,10 @@ module Lumberg
 
       it "lists the saved reseller ACL lists" do
         result = @reseller.list_acls
-        pending "should list acls here"
+        result[:params].size.should == 1
+        result[:params][:testacllist][:add_pkg].to_i.should == 1
+        result[:params][:testacllist][:add_pkg_ip].to_i.should == 1
+        result[:params][:testacllist][:edit_mx].to_i.should == 0
       end
     end
 

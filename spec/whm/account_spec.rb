@@ -399,7 +399,7 @@ module Lumberg
       end
     end 
 
-    describe "#setsiteip", :wip => true do
+    describe "#setsiteip" do
       use_vcr_cassette "whm/account/setsiteip"
 
       it "requires an ip" do
@@ -427,7 +427,7 @@ module Lumberg
       end
     end 
 
-    describe "#restore", :wip => true do
+    describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
       it "requires api.version" do
