@@ -27,6 +27,7 @@ module Net
           key, value = line.strip.split(/\s*:\s*/, 2)
           if value.nil? 
             if Net::HTTP.skip_bad_headers
+              key.gsub!(' ', '-') if key && key.respond_to?(:gsub!)
               value = ' '
             else
               raise HTTPBadResponse, 'wrong header line format'
