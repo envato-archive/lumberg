@@ -28,20 +28,24 @@ module Lumberg
         valid_options!
       end
 
+      # Specifies the required arguments
       def requires(*values)
         @optional_params.concat(values)
         @required_params = values
       end
 
+      # Specifies which arguments are boolean
       def booleans(*values)
         @optional_params.concat(values)
         @boolean_params = values
       end
 
+      # Specifies which arguments are optional
       def optionals(*values)
         @optional_params.concat(values)
       end
 
+      # Specifies which arguments take one of a set of arguments
       def one_of(*values)
         @optional_params.concat(values)
         @one_of_params = values 
@@ -49,6 +53,7 @@ module Lumberg
 
       protected
 
+      # Verifies that all required arguments are present
       def requires!
         @required_params.each do |param| 
           key = (param.is_a?(Array) ? param.first : param)
@@ -66,12 +71,14 @@ module Lumberg
         end
       end
 
+      # Verifies that only valid arguments were set
       def valid_options!
         @options.keys.uniq.each do |key|
           raise WhmArgumentError.new("Not a valid parameter: #{key}") unless @optional_params.include?(key)
         end
       end  
 
+      # Verifies that the one_of arguments were used correctly
       def one_ofs!
         if @one_of_params.size > 1
           specified = @options.keys.select { |key| @one_of_params.include?(key) }.uniq
@@ -85,11 +92,13 @@ module Lumberg
 
       private
       
+      # Internal method for verifiying required arguments
       def verify_required_param(param)
         raise WhmArgumentError.new("Missing required parameter: #{param}") unless @options.has_key?(param) 
         raise WhmArgumentError.new("Required parameter cannot be blank: #{param}") if (@options[param].nil? || (@options[param].respond_to?(:empty?) && @options[param].empty?))
       end
 
+      # Internal method for verifying boolean arguments
       def verify_boolean_param(param)
         if @options.include?(param) && ![true, false].include?(@options[param])
           raise WhmArgumentError.new("Boolean parameter must be \"true\" or \"false\": #{param}")
