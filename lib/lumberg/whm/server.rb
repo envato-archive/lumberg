@@ -39,7 +39,7 @@ module Lumberg
       # Force response type...ARG!
       attr_accessor :force_response_type
 
-
+      #
       # ==== Required 
       #  * <tt>:host</tt> - PENDING
       #  * <tt>:hash</tt> - PENDING
