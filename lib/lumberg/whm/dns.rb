@@ -3,6 +3,14 @@ module Lumberg
     class Dns < Base
       # Creates a DNS zone. All zone information other than domain name and IP address is created based on the standard zone template in WHM.
       # Your MX, nameserver, domain PTR, and A records will all be generated automatically
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:ip</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:template</tt> - PENDING
+      #  * <tt>:trueowner</tt> - PENDING
       def add_zone(options = {})
         Args.new(options) do |c|
           c.requires :domain, :ip
@@ -13,6 +21,21 @@ module Lumberg
       end
 
       # Adds a DNS zone record to the server
+
+      # ==== Required 
+      #  * <tt>:zone</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:name</tt> - PENDING
+      #  * <tt>:address</tt> - PENDING
+      #  * <tt>:type</tt> - PENDING
+      #  * <tt>:class</tt> - PENDING
+      #  * <tt>:cname</tt> - PENDING
+      #  * <tt>:exchange</tt> - PENDING
+      #  * <tt>:nsdname</tt> - PENDING
+      #  * <tt>:ptdrname</tt> - PENDING
+      #  * <tt>:preference</tt> - PENDING
+      #  * <tt>:ttl</tt> - PENDING
       def add_zone_record(options = {})
         Args.new(options) do |c|
           c.requires :zone
@@ -31,6 +54,10 @@ module Lumberg
       # 
       # To use this function most effectively, you may first wish to run the dumpzone function for the domain(s) whose record(s) you wish to retrieve. 
       # The Line output variable from that function call can then be used as a reference to create the input for this function.
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:Line</tt> - PENDING
       def get_zone_record(options = {})
         Args.new(options) do |c|
           c.requires :domain, :Line
@@ -40,6 +67,9 @@ module Lumberg
       end
 
       # Displays the DNS zone configuration for a specific domain
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
       def dump_zone(options = {})
         Args.new(options) do |c|
           c.requires :domain
@@ -49,6 +79,10 @@ module Lumberg
       end
 
       # Attempts to resolve an IP address for a specified domain name
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:"api.version".to_sym</tt> - PENDING
       def resolve_domain(options = {})
         Args.new(options) do |c|
           c.requires :domain, "api.version".to_sym
@@ -61,6 +95,20 @@ module Lumberg
       #
       # To use this function most effectively, you should first run the dumpzone function for the domain(s) whose record(s) you wish to edit. 
       # The output of that function call will be used as a reference to create the input for this function.
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:Line</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:address</tt> - PENDING
+      #  * <tt>:class</tt> - PENDING
+      #  * <tt>:cname</tt> - PENDING
+      #  * <tt>:exchange</tt> - PENDING
+      #  * <tt>:preference</tt> - PENDING
+      #  * <tt>:expire</tt> - PENDING
+      #  * <tt>:minimum</tt> - PENDING
+      #  * <tt>:mname</tt> - PENDING
       def edit_zone_record(options = {})
         Args.new(options) do |c|
           c.requires :domain, :Line
@@ -72,6 +120,9 @@ module Lumberg
       end
 
       # Deletes a DNS zone
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
       def kill_dns(options = {})
         Args.new(options) do |c|
           c.requires :domain
@@ -81,6 +132,9 @@ module Lumberg
       end
 
       # Obtains the IP address of a registered nameserver from the root nameservers
+
+      # ==== Required 
+      #  * <tt>:nameserver</tt> - PENDING
       def lookup_nameserver_ip(options = {})
         Args.new(options) do |c|
           c.requires :nameserver
@@ -93,6 +147,10 @@ module Lumberg
       # 
       # To use this function most effectively, you should first run the dumpzone function for the domain(s) whose record(s) you wish to remove. 
       # The output of that function call will be used as a reference to create the input for this function.
+
+      # ==== Required 
+      #  * <tt>:zone</tt> - PENDING
+      #  * <tt>:Line</tt> - PENDING
       def remove_zone_record(options = {})
         Args.new(options) do |c|
           c.requires :zone, :Line
@@ -105,6 +163,10 @@ module Lumberg
       # 
       # This function can be useful for restoring DNS zones that have become corrupted or have been improperly edited. 
       # It will also restore zone file subdomains listed in the server's httpd.conf file, along with default settings for new accounts.
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:zone</tt> - PENDING
       def reset_zone(options = {})
         Args.new(options) do |c|
           c.requires :domain, :zone
@@ -116,6 +178,10 @@ module Lumberg
       # This function will list a specified domain's MX records
       #
       # *This function is only available in version 11.27/11.28+*
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:"api.version".to_sym</tt> - PENDING
       def list_mxs(options = {})
         Args.new(options) do |c|
           c.requires :domain, "api.version".to_sym

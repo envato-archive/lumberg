@@ -39,6 +39,14 @@ module Lumberg
       # Force response type...ARG!
       attr_accessor :force_response_type
 
+
+      # ==== Required 
+      #  * <tt>:host</tt> - PENDING
+      #  * <tt>:hash</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:user</tt> - PENDING
+      #  * <tt>:ssl</tt> - PENDING
       def initialize(options)
         Args.new(options) do |c|
           c.requires  :host, :hash

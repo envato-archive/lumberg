@@ -1,4 +1,8 @@
 module Lumberg
+
+      #
+      # ==== Optional 
+      #  * <tt>:whatever</tt> - PENDING
   module Whm
     class Args
       attr_reader :required_params, :boolean_params, :optional_params, :one_of_params
