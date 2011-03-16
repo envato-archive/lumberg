@@ -6,6 +6,22 @@ module Lumberg
     class Account < Base
 
       # Creates a hosting account and sets up its associated domain information
+      #
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:password</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:plan</tt> - PENDING
+      #  * <tt>:pkgname</tt> - PENDING
+      #  * <tt>:savepkg</tt> - PENDING
+      #  * <tt>:featurelist</tt> - PENDING
+      #  * <tt>:quota</tt> - PENDING
+      #  * <tt>:ip</tt> - PENDING
+      #  * <tt>:cgi</tt> - PENDING
+      #  * <tt>:</tt> - PENDING
       def create(options = {})
         Args.new(options) do |c|
           c.requires  :username, :domain, :password
@@ -20,6 +36,9 @@ module Lumberg
       end
 
       # Permanently removes a cPanel account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
       def remove(options = {})
         Args.new(options) do |c|
           c.requires  :username
@@ -31,6 +50,10 @@ module Lumberg
       end
 
       # Changes the password of a domain owner (cPanel) or reseller (WHM) account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:password</tt> - PENDING
       def change_password(options = {})
         Args.new(options) do |c|
           c.requires  :username, :password
@@ -43,6 +66,9 @@ module Lumberg
       end
 
       # Displays pertinent information about a specific account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
       def summary(options = {})
         Args.new(options) do |c|
           c.requires  :username
@@ -53,6 +79,10 @@ module Lumberg
       end
 
       # Modifies the bandwidth usage (transfer) limit for a specific account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:bwlimit</tt> - PENDING
       def limit_bandwidth(options = {})
         Args.new(options) do |c|
           c.requires :username, :bwlimit
@@ -67,6 +97,11 @@ module Lumberg
       end
 
       # Lists all accounts on the server, and also allows you to search for a specific account or set of accounts
+
+      #
+      # ==== Optional 
+      #  * <tt>:searchtype</tt> - PENDING
+      #  * <tt>:search</tt> - PENDING
       def list(options = {})
         Args.new(options) do |c|
           c.optionals :searchtype, :search
@@ -78,6 +113,26 @@ module Lumberg
       end
 
       # Modifies settings for an account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:newuser</tt> - PENDING
+      #  * <tt>:owner</tt> - PENDING
+      #  * <tt>:CPTHEME</tt> - PENDING
+      #  * <tt>:HASCGI</tt> - PENDING
+      #  * <tt>:LANG</tt> - PENDING
+      #  * <tt>:LOCALE</tt> - PENDING
+      #  * <tt>:MAXFTP</tt> - PENDING
+      #  * <tt>:MAXSQL</tt> - PENDING
+      #  * <tt>:MAXPOP</tt> - PENDING
+      #  * <tt>:MAXLST</tt> - PENDING
+      #  * <tt>:MAXSUB</tt> - PENDING
+      #  * <tt>:MAXPARK</tt> - PENDING
+      #  * <tt>:MAXADDON</tt> - PENDING
+      #  * <tt>:shell</tt> - PENDING
       def modify(options = {})
         Args.new(options) do |c|
           c.requires :username
@@ -91,6 +146,10 @@ module Lumberg
       end
 
       # Changes an account's disk space usage quota
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:quota</tt> - PENDING
       def edit_quota(options = {})
         Args.new(options) do |c|
           c.requires :username, :quota
@@ -101,6 +160,27 @@ module Lumberg
       end
 
       # Adds a new hosting package
+
+      # ==== Required 
+      #  * <tt>:name</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:featurelist</tt> - PENDING
+      #  * <tt>:quota</tt> - PENDING
+      #  * <tt>:ip</tt> - PENDING
+      #  * <tt>:cgi</tt> - PENDING
+      #  * <tt>:frontpage</tt> - PENDING
+      #  * <tt>:cpmod</tt> - PENDING
+      #  * <tt>:language</tt> - PENDING
+      #  * <tt>:maxftp</tt> - PENDING
+      #  * <tt>:maxsql</tt> - PENDING
+      #  * <tt>:maxpop</tt> - PENDING
+      #  * <tt>:maxlists</tt> - PENDING
+      #  * <tt>:maxsub</tt> - PENDING
+      #  * <tt>:maxpark</tt> - PENDING
+      #  * <tt>:maxaddon</tt> - PENDING
+      #  * <tt>:hasshell</tt> - PENDING
+      #  * <tt>:bwlimit</tt> - PENDING
       def add_package(options = {})
         Args.new(options) do |c|
           c.requires :name
@@ -112,6 +192,10 @@ module Lumberg
       end
 
       # Changes the hosting package associated with a cPanel account
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:pkg</tt> - PENDING
       def change_package(options = {})
         Args.new(options) do |c|
           c.requires :username, :pkg
@@ -122,6 +206,9 @@ module Lumberg
       end
 
       # Obtains user data for a specific domain
+
+      # ==== Required 
+      #  * <tt>:domain</tt> - PENDING
       def domain_user_data(options = {})
         Args.new(options) do |c|
           c.requires :domain
@@ -133,6 +220,12 @@ module Lumberg
       end
 
       # Prevents a cPanel user from accessing his or her account. Once an account is suspended, it can be un-suspended to allow a user to access the account again
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #
+      # ==== Optional 
+      #  * <tt>:reason</tt> - PENDING
       def suspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
@@ -144,6 +237,9 @@ module Lumberg
       end
 
       # Unsuspend a suspended account. When a user's account is unsuspended, he or she will be able to access cPanel again
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
       def unsuspend(options ={})
         Args.new(options) do |c|
           c.requires  :username
@@ -159,6 +255,9 @@ module Lumberg
       end
 
       # Generates a list of features you are allowed to use in WHM. Each feature will display either a 1 or 0. You are only able to use features with a corresponding 1
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
       def privs(options ={})
         Args.new(options) do |c|
           c.requires  :username
@@ -175,6 +274,9 @@ module Lumberg
       end
 
       # Changes the IP address of a website, or a user account, hosted on your server
+
+      # ==== Required 
+      #  * <tt>:ip</tt> - PENDING
       def set_site_ip(options = {})
         Args.new(options) do |c|
           c.requires :ip
@@ -186,6 +288,15 @@ module Lumberg
       end
 
       # Restores a user's account from a backup file. You may restore a monthly, weekly, or daily backup
+
+      # ==== Required 
+      #  * <tt>:username</tt> - PENDING
+      #  * <tt>:type</tt> - PENDING
+      #  * <tt>:all</tt> - PENDING
+      #  * <tt>:ip</tt> - PENDING
+      #  * <tt>:mail</tt> - PENDING
+      #  * <tt>:mysql</tt> - PENDING
+      #  * <tt>:subs</tt> - PENDING
       def restore_account(options = {})
         Args.new(options) do |c|
           c.requires "api.version".to_sym, :username, :type, :all, :ip, :mail, :mysql, :subs
