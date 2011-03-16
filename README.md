@@ -12,9 +12,9 @@ Create a server object
 
 You can access the modules of WHM by calling server.<module>. For example, server.account or server.dns. Here's all of the supported modules:
 
-    * Account
-    * DNS
-    * Reseller
+* Account
+* DNS
+* Reseller
 
 Here's how to get a list of accounts:
 
