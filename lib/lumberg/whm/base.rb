@@ -4,7 +4,7 @@ module Lumberg
       # Whm::Server
       attr_accessor :server
 
-
+      #
       # ==== Required 
       #  * <tt>:server</tt> - PENDING
       def initialize(options = {})

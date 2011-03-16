@@ -4,7 +4,7 @@ module Lumberg
       # Gives reseller status to an account.
       #
       # *Note:* The user must already exist to be made a reseller. This function will not create an account. If the account does not yet exist, you can use the createacct function to set it up before conferring reseller privileges.
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def create(options = {})
@@ -26,7 +26,7 @@ module Lumberg
       end
 
       # Adds IP addresses to a reseller account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -44,7 +44,7 @@ module Lumberg
       end
 
       # Specifies the amount of bandwidth and disk space a reseller is able to use
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -66,7 +66,7 @@ module Lumberg
       end
 
       # Terminates a reseller's main account, as well as all accounts owned by the reseller
-
+      #
       # ==== Required 
       #  * <tt>:reseller</tt> - PENDING
       def terminate(options = {})
@@ -84,7 +84,7 @@ module Lumberg
       end
 
       # Assigns a main, shared IP address to a reseller
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:ip</tt> - PENDING
@@ -98,7 +98,7 @@ module Lumberg
       end
 
       # Sets which packages resellers are able to use. It also allows you to define the number of times a package can be used by a reseller
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:no_limit</tt> - PENDING
@@ -119,7 +119,7 @@ module Lumberg
       end
 
       # Suspends a reseller's account. The suspension will prevent the reseller from accessing his or her account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -136,7 +136,7 @@ module Lumberg
       end
 
       # Unsuspends a reseller's account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def unsuspend(options = {})
@@ -152,7 +152,7 @@ module Lumberg
       # If no reseller is specified, counts will be provided for the reseller who is currently logged in.
       # 
       # *Note:* Counts for other users will only be provided if the user issuing the function call has root-level permissions or owns the provided account.
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def account_counts(options = {})
@@ -165,7 +165,7 @@ module Lumberg
       end
 
       # Defines a reseller's nameservers. Additionally, you may use it to reset a reseller's nameservers to the default settings
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -182,7 +182,7 @@ module Lumberg
       end
 
       # Shows account statistics for a specific reseller's accounts
-
+      #
       # ==== Required 
       #  * <tt>:reseller</tt> - PENDING
       def stats(options = {})
@@ -199,7 +199,7 @@ module Lumberg
       end
 
       # Creates a new reseller ACL list
-
+      #
       # ==== Required 
       #  * <tt>:acllist</tt> - PENDING
       def save_acl_list(options = {})
@@ -224,7 +224,7 @@ module Lumberg
       end
 
       # Sets the ACL for a reseller, or modifies specific ACL items for a reseller
-
+      #
       # ==== Required 
       #  * <tt>:reseller</tt> - PENDING
       #

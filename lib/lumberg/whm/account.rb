@@ -7,7 +7,6 @@ module Lumberg
 
       # Creates a hosting account and sets up its associated domain information
       #
-
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:domain</tt> - PENDING
@@ -36,7 +35,7 @@ module Lumberg
       end
 
       # Permanently removes a cPanel account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def remove(options = {})
@@ -50,7 +49,7 @@ module Lumberg
       end
 
       # Changes the password of a domain owner (cPanel) or reseller (WHM) account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:password</tt> - PENDING
@@ -66,7 +65,7 @@ module Lumberg
       end
 
       # Displays pertinent information about a specific account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def summary(options = {})
@@ -79,7 +78,7 @@ module Lumberg
       end
 
       # Modifies the bandwidth usage (transfer) limit for a specific account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:bwlimit</tt> - PENDING
@@ -113,7 +112,7 @@ module Lumberg
       end
 
       # Modifies settings for an account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -146,7 +145,7 @@ module Lumberg
       end
 
       # Changes an account's disk space usage quota
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:quota</tt> - PENDING
@@ -160,7 +159,7 @@ module Lumberg
       end
 
       # Adds a new hosting package
-
+      #
       # ==== Required 
       #  * <tt>:name</tt> - PENDING
       #
@@ -192,7 +191,7 @@ module Lumberg
       end
 
       # Changes the hosting package associated with a cPanel account
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:pkg</tt> - PENDING
@@ -206,7 +205,7 @@ module Lumberg
       end
 
       # Obtains user data for a specific domain
-
+      #
       # ==== Required 
       #  * <tt>:domain</tt> - PENDING
       def domain_user_data(options = {})
@@ -220,7 +219,7 @@ module Lumberg
       end
 
       # Prevents a cPanel user from accessing his or her account. Once an account is suspended, it can be un-suspended to allow a user to access the account again
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #
@@ -237,7 +236,7 @@ module Lumberg
       end
 
       # Unsuspend a suspended account. When a user's account is unsuspended, he or she will be able to access cPanel again
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def unsuspend(options ={})
@@ -255,7 +254,7 @@ module Lumberg
       end
 
       # Generates a list of features you are allowed to use in WHM. Each feature will display either a 1 or 0. You are only able to use features with a corresponding 1
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       def privs(options ={})
@@ -274,7 +273,7 @@ module Lumberg
       end
 
       # Changes the IP address of a website, or a user account, hosted on your server
-
+      #
       # ==== Required 
       #  * <tt>:ip</tt> - PENDING
       def set_site_ip(options = {})
@@ -288,7 +287,7 @@ module Lumberg
       end
 
       # Restores a user's account from a backup file. You may restore a monthly, weekly, or daily backup
-
+      #
       # ==== Required 
       #  * <tt>:username</tt> - PENDING
       #  * <tt>:type</tt> - PENDING
