@@ -128,7 +128,7 @@ Creating a reseller works by changing the status of an existing user account, so
       p "created reseller rtest" if result[:success]
     end     
 
-    "created reseller rtest"
+    created reseller rtest
 
 You can get a list of all of the reseller acccounts easily.
 
@@ -142,12 +142,12 @@ Suspending a reseller is pretty straightforward. It's optional to provide a reas
     result = server.reseller.suspend(:username => 'rtest', :reason => 'bad user')
     p "reseller was suspended successfully" if result[:success]
 
-    "user was suspended successfully"
+    user was suspended successfully
     
 Deleting the reseller removes the reseller status from the user account. To also delete the user account, set the :terminatereseller argument.
 
     result = server.reseller.terminate(:reseller => 'rtest', :terminatereseller => true)
     p result[:message]
 
-    "Account Terminations Complete"
+    Account Terminations Complete
 
