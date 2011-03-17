@@ -51,12 +51,12 @@ module Lumberg
       end
 
       it "adds the ip address to the reseller account" do
-        result = @reseller.add_ips(:username => 'bob', :ips =>'192.168.0.18')
+        result = @reseller.add_ips(:username => 'bob', :ips =>'192.1.2.3')
         result[:message].should match(/Successfully configured IP addresses delegation to reseller/i)
       end
 
       it "returns an error for invalid ip addresses" do
-        result = @reseller.add_ips(:username => 'bob', :ips =>'127.0.0.1')
+        result = @reseller.add_ips(:username => 'bob', :ips =>'1.2.3.4')
         result[:message].should match(/The list of supplied IP addresses contains inappropriate values/i)
       end
     end
@@ -109,7 +109,7 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellermainip"
 
       it "requires a username" do
-        requires_attr('username') { @reseller.set_main_ip(:ip => '127.0.0.1') }
+        requires_attr('username') { @reseller.set_main_ip(:ip => '192.1.2.3') }
       end
 
       it "requires an ip" do
@@ -117,7 +117,7 @@ module Lumberg
       end
 
       it "sets the main ip" do
-        result = @reseller.set_main_ip(:username => 'bob', :ip => '192.168.0.18')
+        result = @reseller.set_main_ip(:username => 'bob', :ip => '192.1.2.3')
         result[:success].should be_true
         result[:message].should match(/Successfully set main IP address of the reseller/i)
       end
@@ -129,7 +129,7 @@ module Lumberg
       end
 
       it "returns an error when the user is invalid" do
-        result = @reseller.set_main_ip(:username => 'notexists', :ip => '127.0.0.1')
+        result = @reseller.set_main_ip(:username => 'notexists', :ip => '192.1.2.3')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
