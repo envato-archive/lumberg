@@ -200,6 +200,14 @@ module Lumberg
         @whm.account.should be_an(Whm::Account)
       end
 
+      it "returns the same thing twice" do
+        @whm.account.should be_a(Whm::Account)
+        @whm.account.should respond_to(:list)
+
+        @whm.account.should be_a(Whm::Account)
+        @whm.account.should respond_to(:list)
+      end
+
     end
 
     describe "#dns" do
