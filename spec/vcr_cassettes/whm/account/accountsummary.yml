@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/accountsummary?user=summary
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"10 Dec 16 10:24\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"summary.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"summary\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292516679\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"timtesting@timtesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/accountsummary?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":0,\"statusmsg\":\"Account does not exist\",\"acct\":null}"
+    http_version: "1.1"

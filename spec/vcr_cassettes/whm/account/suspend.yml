@@ -1,0 +1,64 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendacct?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"_suspendacct called for a user that does not exist. ()\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendacct?user=suspendme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"<script>if (self['clear_ui_status']) { clear_ui_status(); }</script>\\nChanging Shell to /bin/false...Changing shell for suspendme.\\nWarning: \\\"/bin/false\\\" is not listed in /etc/shells\\nShell changed.\\nDone\\nLocking Password...Locking password for user suspendme.\\npasswd: Success\\nDone\\nSuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\nUsing Universal Quota Support (quota=0)\\nSuspended document root /home/suspendme/public_html\\nUsing Universal Quota Support (quota=0)\\nSuspending FTP accounts...\\nUpdating ftp passwords for suspendme\\nFtp password files updated.\\nFtp vhost passwords synced\\nsuspendme's account has been suspended\\n\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendacct?reason=abusive+user&user=suspendme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"<script>if (self['clear_ui_status']) { clear_ui_status(); }</script>\\nChanging Shell to /bin/false...Changing shell for suspendme.\\nWarning: \\\"/bin/false\\\" is not listed in /etc/shells\\nShell changed.\\nDone\\nLocking Password...Locking password for user suspendme.\\npasswd: Success\\nDone\\nSuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\nUsing Universal Quota Support (quota=0)\\nSuspended document root /home/suspendme/public_html\\nUsing Universal Quota Support (quota=0)\\nSuspending FTP accounts...\\nUpdating ftp passwords for suspendme\\nFtp password files updated.\\nFtp vhost passwords synced\\nsuspendme's account has been suspended\\n\"}]}"
+    http_version: "1.1"

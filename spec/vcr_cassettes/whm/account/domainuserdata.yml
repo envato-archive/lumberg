@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/domainuserdata?domain=notexists.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Unable to determine account owner for domain.\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/domainuserdata?domain=example.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Obtained userdata.\"}],\"userdata\":{\"usecanonicalname\":\"Off\",\"port\":\"80\",\"phpopenbasedirprotect\":\"1\",\"group\":\"changeme\",\"documentroot\":\"/home/changeme/public_html\",\"hascgi\":\"0\",\"serveradmin\":\"webmaster@example.com\",\"options\":\"-ExecCGI -Includes\",\"user\":\"changeme\",\"customlog\":[{\"format\":\"combined\",\"target\":\"/usr/local/apache/domlogs/example.com\"},{\"format\":\"\\\"%{%s}t %I .\\\\n%{%s}t %O .\\\"\",\"target\":\"/usr/local/apache/domlogs/example.com-bytes_log\"}],\"servername\":\"example.com\",\"ip\":\"192.1.2.3\",\"scriptalias\":[{\"path\":\"/home/changeme/public_html/cgi-bin\",\"url\":\"/cgi-bin/\"}],\"serveralias\":\"www.example.com\",\"homedir\":\"/home/changeme\",\"owner\":\"root\"}}"
+    http_version: "1.1"

@@ -1,0 +1,147 @@
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"10 Dec 16 09:59\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"geodefaultloctest.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"geodefau\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292515153\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"fdsajfksa@sometesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 09:52\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"invalid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"invalid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298389927\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 11:05\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"valid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"valid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298394344\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Sep 30 13:00\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"thisismyhdasdfs.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"thisismy\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1285869619\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"ftp@mailheist.com\",\"disklimit\":\"3531007M\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 21 10:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"99999999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"chicagoturbonew.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"chicagot\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1295628781\",\"diskused\":\"0M\",\"maxparked\":\"999999\",\"email\":\"testing@timistestinghere.com\",\"disklimit\":\"3531007M\",\"owner\":\"chicagot\"},{\"startdate\":\"11 Feb 23 13:25\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"suspendme.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"asdfasdf\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298489142\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Dec 16 10:24\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"timsgeoprovisoin.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"timsgeop\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292516679\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"timtesting@timtesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Dec 16 09:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"testinggeolocdcdefault.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"geolocde\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292514837\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"testinggeoloc@example.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 04 15:46\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"canadaplantesting.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"canadapl\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1294177595\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"fdsjkafdsjkadfsjkl@example.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=%2Fch.%2A%3Fme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"10 Dec 16 09:59\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"geodefaultloctest.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"geodefau\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292515153\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"fdsajfksa@sometesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 09:52\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"invalid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"invalid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298389927\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 11:05\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"valid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"valid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298394344\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Sep 30 13:00\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"thisismyhdasdfs.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"thisismy\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1285869619\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"ftp@mailheist.com\",\"disklimit\":\"3531007M\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 21 10:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"99999999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"chicagoturbonew.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"chicagot\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1295628781\",\"diskused\":\"0M\",\"maxparked\":\"999999\",\"email\":\"testing@timistestinghere.com\",\"disklimit\":\"3531007M\",\"owner\":\"chicagot\"},{\"startdate\":\"11 Feb 23 13:25\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"suspendme.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"asdfasdf\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298489142\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Dec 16 10:24\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"timsgeoprovisoin.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"timsgeop\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292516679\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"timtesting@timtesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Dec 16 09:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"testinggeolocdcdefault.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"geolocde\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292514837\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"testinggeoloc@example.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 04 15:46\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"canadaplantesting.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"canadapl\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1294177595\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"fdsjkafdsjkadfsjkl@example.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=changeme&searchtype=user
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=192.1.2.3&searchtype=ip
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 22 09:52\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"invalid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"invalid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298389927\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 11:05\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"valid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"valid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298394344\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Sep 30 13:00\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"thisismyhdasdfs.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"thisismy\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1285869619\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"ftp@mailheist.com\",\"disklimit\":\"3531007M\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 21 10:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"99999999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"chicagoturbonew.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"chicagot\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1295628781\",\"diskused\":\"0M\",\"maxparked\":\"999999\",\"email\":\"testing@timistestinghere.com\",\"disklimit\":\"3531007M\",\"owner\":\"chicagot\"},{\"startdate\":\"11 Feb 23 13:25\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"suspendme.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"asdfasdf\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298489142\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=change.com&searchtype=domain
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=192%5C..%2A%3F%5C.1%5C.20&searchtype=ip
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 22 09:52\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"invalid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"invalid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298389927\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 11:05\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"valid-thing.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"valid\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298394344\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"10 Sep 30 13:00\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"thisismyhdasdfs.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"thisismy\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1285869619\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"ftp@mailheist.com\",\"disklimit\":\"3531007M\",\"owner\":\"root\"},{\"startdate\":\"11 Jan 21 10:53\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"99999999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"chicagoturbonew.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"chicagot\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1295628781\",\"diskused\":\"0M\",\"maxparked\":\"999999\",\"email\":\"testing@timistestinghere.com\",\"disklimit\":\"3531007M\",\"owner\":\"chicagot\"},{\"startdate\":\"11 Feb 23 13:25\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"suspendme.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"asdfasdf\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298489142\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"},{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listaccts?search=ch.%2A%3Fe.com&searchtype=domain
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 22 13:20\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/noshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"change.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"changeme\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298402439\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"

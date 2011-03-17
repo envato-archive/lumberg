@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/dumpzone?domain=notexists.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Zone does not exist.\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/dumpzone?domain=example.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"record\":[{\"Line\":1,\"raw\":\"; cPanel first:11.25.0-STABLE_44718 latest:11.28.64-STABLE_51024 Cpanel::ZoneFile::VERSION:1.3 mtime:1299509628 hostname:myhost.site5.com\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":2,\"raw\":\"; Zone file for example.com\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":3,\"ttl\":\"14400\",\"type\":\"$TTL\",\"name\":\"\"},{\"serial\":\"2011030706\",\"minimum\":\"86400\",\"rname\":\"notifications.examplesystems.com\",\"refresh\":\"86400\",\"Lines\":7,\"name\":\"example.com.\",\"Line\":4,\"retry\":\"7200\",\"ttl\":\"86400\",\"class\":\"IN\",\"mname\":\"ns1-myhost.site5.com\",\"type\":\"SOA\",\"expire\":\"3600000\"},{\"Line\":11,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":12,\"nsdname\":\"ns1-myhost.site5.com\",\"ttl\":\"86400\",\"class\":\"IN\",\"type\":\"NS\",\"name\":\"example.com.\"},{\"Line\":13,\"nsdname\":\"ns2-myhost.site5.com\",\"ttl\":\"86400\",\"class\":\"IN\",\"type\":\"NS\",\"name\":\"example.com.\"},{\"Line\":14,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":15,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":16,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"example.com.\"},{\"Line\":17,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":18,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"localhost.example.com.\"},{\"Line\":19,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":20,\"ttl\":\"14400\",\"class\":\"IN\",\"preference\":\"0\",\"exchange\":\"example.com\",\"type\":\"MX\",\"name\":\"example.com.\"},{\"Line\":21,\"raw\":\"\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},{\"Line\":22,\"cname\":\"example.com\",\"ttl\":\"14400\",\"class\":\"IN\",\"type\":\"CNAME\",\"name\":\"mail.example.com.\"},{\"Line\":23,\"cname\":\"example.com\",\"ttl\":\"14400\",\"class\":\"IN\",\"type\":\"CNAME\",\"name\":\"www.example.com.\"},{\"Line\":24,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"ftp.example.com.\"},{\"Line\":25,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"cpanel.example.com.\"},{\"Line\":26,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"whm.example.com.\"},{\"Line\":27,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"webmail.example.com.\"},{\"Line\":28,\"ttl\":\"14400\",\"address\":\"192.1.2.3\",\"class\":\"IN\",\"type\":\"A\",\"name\":\"webdisk.example.com.\"}],\"statusmsg\":\"Zone Serialized\"}]}"
+    http_version: "1.1"

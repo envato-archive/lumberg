@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/accountsummary?user=privs
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"11 Feb 24 11:30\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"x3\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"*unknown*\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"privs.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"privs\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1298568645\",\"diskused\":\"0M\",\"maxparked\":\"*unknown*\",\"email\":\"*unknown*\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/myprivs?username=privs
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"privs\":{\"kill-dns\":0,\"edit-dns\":0,\"edit-mx\":0,\"add-pkg\":0,\"status\":0,\"suspend-acct\":0,\"add-pkg-shell\":0,\"viewglobalpackages\":0,\"resftp\":0,\"list-accts\":0,\"all\":1,\"passwd\":0,\"quota\":0,\"park-dns\":0,\"rearrange-accts\":0,\"allow-addoncreate\":0,\"demo\":0,\"news\":0,\"edit-account\":0,\"allow-unlimited-disk-pkgs\":0,\"allow-parkedcreate\":0,\"frontpage\":0,\"restart\":0,\"ssl-gencrt\":0,\"allow-unlimited-pkgs\":0,\"add-pkg-ip\":0,\"disallow-shell\":0,\"res-cart\":0,\"ssl-buy\":0,\"kill-acct\":0,\"allow-unlimited-bw-pkgs\":0,\"create-dns\":0,\"mailcheck\":0,\"clustering\":0,\"ssl\":0,\"edit-pkg\":0,\"locale-edit\":0,\"show-bandwidth\":0,\"upgrade-account\":0,\"thirdparty\":0,\"limit-bandwidth\":0,\"create-acct\":0,\"demo-setup\":0,\"stats\":0}}"
+    http_version: "1.1"

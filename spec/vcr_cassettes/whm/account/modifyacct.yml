@@ -1,0 +1,63 @@
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/modifyacct?domain=example.com&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"newcfg\":{\"setshell\":\"unmodified\",\"domain\":\"example.com\",\"user\":\"changeme\",\"cpuser\":{\"MXCHECK-example.com\":\"0\",\"DEADDOMAINS\":[],\"DBOWNER\":\"changeme\",\"IP\":\"192.1.2.3\",\"MAXSUB\":\"unlimited\",\"DOMAIN\":\"example.com\",\"CONTACTEMAIL\":\"user@address.com\",\"MAXSQL\":\"unlimited\",\"MAXFTP\":\"unlimited\",\"LOCALE\":\"en\",\"HASCGI\":\"1\",\"CONTACTEMAIL2\":\"user2@address.com\",\"DEMO\":0,\"USER\":\"changeme\",\"FEATURELIST\":\"default\",\"BWLIMIT\":\"unlimited\",\"DOMAINS\":[],\"MTIME\":\"1298658902\",\"STARTDATE\":\"1298658868\",\"OWNER\":\"root\",\"__CACHE_DATA_VERSION\":\"0.2\",\"MAXPARK\":\"0\",\"RS\":\"x3\",\"PLAN\":\"default\",\"MAXADDON\":\"0\",\"MAXPOP\":\"unlimited\",\"MAXLST\":\"unlimited\"}},\"status\":1,\"statusmsg\":\"Account Modified\",\"warnings\":[],\"messages\":[]}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/modifyacct?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"newcfg\":null,\"status\":0,\"statusmsg\":\"Unable to fetch the cPanel user file for notexists\",\"warnings\":null,\"messages\":null}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/modifyacct?user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"newcfg\":{\"setshell\":\"unmodified\",\"domain\":\"example.com\",\"user\":\"changeme\",\"cpuser\":{\"MXCHECK-example.com\":\"0\",\"DEADDOMAINS\":[],\"DBOWNER\":\"changeme\",\"MAXSUB\":\"unlimited\",\"IP\":\"192.1.2.3\",\"CONTACTEMAIL\":\"user@address.com\",\"DOMAIN\":\"example.com\",\"MAXSQL\":\"unlimited\",\"MAXFTP\":\"unlimited\",\"LOCALE\":\"en\",\"HASCGI\":\"1\",\"CONTACTEMAIL2\":\"user2@address.com\",\"DEMO\":0,\"USER\":\"changeme\",\"FEATURELIST\":\"default\",\"DOMAINS\":[],\"BWLIMIT\":\"unlimited\",\"MTIME\":\"1298658924\",\"STARTDATE\":\"1298658868\",\"OWNER\":\"root\",\"__CACHE_DATA_VERSION\":\"0.2\",\"MAXPARK\":\"0\",\"RS\":\"x3\",\"PLAN\":\"default\",\"MAXADDON\":\"0\",\"MAXLST\":\"unlimited\",\"MAXPOP\":\"unlimited\"}},\"status\":1,\"statusmsg\":\"Account Modified\",\"warnings\":[],\"messages\":[]}]}"
+    http_version: "1.1"
