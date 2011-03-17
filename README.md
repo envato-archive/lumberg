@@ -151,3 +151,26 @@ Deleting the reseller removes the reseller status from the user account. To also
 
     Account Terminations Complete
 
+Contributors
+============
+
+* [Justin Mazzi](http://github.com/jmazzi)
+* [Tim Parkin.](http://github.com/tparkin)
+
+Note on Patches/Pull Requests
+=============================
+All HTTP interactions are recorded using VCR and FakeWeb. Please be sure to remove any sensitive information from your cassettes.
+ 
+* Fork the project.
+* Add yourself to the Contributors list
+* Make your feature addition or bug fix.
+* Add tests for it. This is important so I don't break it in a
+  future version unintentionally.
+* Commit, do not mess with rakefile, version, or history.
+  (if you want to have your own version, that is fine but bump version in a commit by itself I can ignore when I pull)
+* Send me a pull request. Bonus points for topic branches.
+
+Copyright
+=========
+
+Copyright (c) 2011 Site5. See LICENSE for details.
