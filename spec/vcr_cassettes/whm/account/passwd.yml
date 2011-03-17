@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"passwd\":[{\"status\":1,\"services\":[{\"app\":\"system\"},{\"app\":\"ftp\"},{\"app\":\"mail\"},{\"app\":\"mySQL\"}],\"statusmsg\":\"Password changed for user changeme\",\"rawout\":\"Changing password for changeme\\nPassword for changeme has been changed\\nUpdating ftp passwords for changeme\\nFtp password files updated.\\nFtp vhost passwords synced\\n\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=dontchangeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"passwd\":[{\"status\":0,\"services\":null,\"statusmsg\":\"Sorry, the user dontchangeme does not exist.\",\"rawout\":null}]}"
+    http_version: "1.1"

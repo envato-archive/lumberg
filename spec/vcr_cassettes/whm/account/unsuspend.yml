@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/unsuspendacct?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"_unsuspendacct called for a user that does not exist. (notexists)\"}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/unsuspendacct?user=asdfasdf
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"<script>if (self['clear_ui_status']) { clear_ui_status(); }</script>\\nChanging shell for asdfasdf.\\nShell changed.\\nUnlocking password for user asdfasdf.\\npasswd: Success.\\nUnsuspending FTP accounts...\\nUpdating ftp passwords for asdfasdf\\nFtp password files updated.\\nFtp vhost passwords synced\\nasdfasdf's account is now active\\nUnsuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\n\"}]}"
+    http_version: "1.1"

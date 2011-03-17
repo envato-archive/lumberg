@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/applist
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"app\":[\"accountsummary\",\"acctcounts\",\"adddns\",\"addip\",\"addpkg\",\"addzonerecord\",\"applist\",\"changepackage\",\"configureservice\",\"cpanel\",\"createacct\",\"delip\",\"domainuserdata\",\"dumpzone\",\"editpkg\",\"editquota\",\"editzonerecord\",\"fetchsslinfo\",\"generatessl\",\"getfeaturelist\",\"gethostname\",\"getlanglist\",\"getresellerips\",\"getzonerecord\",\"installssl\",\"killdns\",\"killpkg\",\"limitbw\",\"listaccts\",\"listacls\",\"listcrts\",\"listips\",\"listpkgs\",\"listresellers\",\"listsuspended\",\"listzones\",\"loadavg\",\"lookupnsip\",\"modifyacct\",\"myprivs\",\"mysqltuner\",\"nvget\",\"nvset\",\"passwd\",\"reboot\",\"removeacct\",\"removezonerecord\",\"resellerstats\",\"resetzone\",\"restartservice\",\"saveacllist\",\"servicestatus\",\"setacls\",\"sethostname\",\"setresellerips\",\"setresellerlimits\",\"setresellermainip\",\"setresellernameservers\",\"setresellerpackagelimit\",\"setresolvers\",\"setsiteip\",\"setupreseller\",\"showbw\",\"suspendacct\",\"suspendreseller\",\"terminatereseller\",\"unsetupreseller\",\"unsuspendacct\",\"unsuspendreseller\",\"updateconfig\",\"version\"]}"
+    http_version: "1.1"

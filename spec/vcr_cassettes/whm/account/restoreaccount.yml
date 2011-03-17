@@ -1,0 +1,198 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      changing-password-for-privs: 
+      - " "
+      password-for-privs-has-been-changed: 
+      - " "
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"restoreaccount\",\"output\":{\"raw\":\"Extracting tarball...................\\nDone<br />\\nExtracting Domain....Done<br />\\nDone<br />\\n<br /><br />Restoring cpanel user config fileDone<br />\\n<br />Restoring reseller privs (if any)<br />Restoring Locale Setting<br />Restoring SSL keys and CertificatesDone<br />\\n<br />Restoring frontpage (if installed)Done<br />\\n<br />Restoring access logs....\\nDone<br />\\n<br /><br />Restoring domain keys....\\nDone<br />\\n<br /><br />Restoring DB MAP File....\\nDone<br />\\n<br /><br /><span class=\\\"b2\\\">Restoring PostgreSQL databases....</span>\\nPostgreSQL is not installed. Skipping.<br/>\\nRestoring Mailman listsDone<br />\\n<br />Restoring Mailman ArchivesDone<br />\\n<br />Restoring shell<blockquote><pre>Current shell /usr/local/cpanel/bin/jailshell is up to date.\\n</pre></blockquote>Done<br />\\n<br />Restoring password<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring proftpd fileDone<br />\\n<br />Resyncing FTP Passwords<blockquote><pre>Updating ftp passwords for privsFtp password files updated.Ftp vhost passwords synced</pre></blockquote>Done<br />\\n<br />Linking old home directories<br />Parsing Domain Databases...ParkedDomains......AddonDomains...<br />Restoring Domains<br />\\n<br />Restoring Bandwidth DataDone\\n<br />Restoring Counter Data<pre></pre><br />Restoring Homedir....<blockquote><pre></pre></blockquote>Done<br />\\n<br />Doing fileprotect conversion<br />Restoring nobody owned filesDone<br />\\n<br />Restoring userdata....\\nDone<br />\\n<br /><br />Restoring custom virtualhost templates....\\nConverting email to cPanel 5+ (if needed)<blockquote><pre></pre></blockquote>Done<br />\\n<br />Cleaning up filters (if needed)<blockquote><pre>vfilter converter v3.0Updating vfilter files to latest format.Running for privs only (force=0) (has_spam_acl=1)Processing privs......Done</pre></blockquote>Done<br />\\n<br />Fixing mail permissions<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring crontabDone<br />\\nConverting to maildir if needed<blockquote><pre></pre></blockquote>Done<br />\\nRestoring Dns Zones<blockquote><pre>Restoring zone: privs.com.db\\nUnable to determine IP address for privs.com!Could not get zone ip for privs.com.. skipping changes.\\n</pre></blockquote><br />Adding missing subdomain DNS entries (if needed)<pre></pre><br />Updating SPF Records<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring quota<blockquote><pre></pre></blockquote>Done<br />\\n<br /><br />Update mail routing<blockquote><pre>LOCAL MAIL EXCHANGER: This server will serve as a primary mail exchanger for privs.com's mail.: This configuration has been manually selected.\\n</pre></blockquote>Done<br />\\n<br />Rebuilding Apache Conf<br />Restore CompleteAccount Restore Complete\\nUnlocking password for user privs.passwd: Success.<br />\"}}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      changing-password-for-changeme: 
+      - " "
+      password-for-changeme-has-been-changed: 
+      - " "
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"restoreaccount\",\"output\":{\"raw\":\"Extracting tarball...................\\nDone<br />\\nExtracting Domain....Done<br />\\nDone<br />\\n<br /><br />Restoring cpanel user config fileDone<br />\\n<br />Restoring reseller privs (if any)<br />Restoring Locale Setting<br />Restoring SSL keys and CertificatesDone<br />\\n<br />Restoring frontpage (if installed)Done<br />\\n<br />Restoring access logs....\\nDone<br />\\n<br /><br />Restoring domain keys....\\nDone<br />\\n<br /><br />Restoring DB MAP File....\\nDone<br />\\n<br /><br /><span class=\\\"b2\\\">Restoring PostgreSQL databases....</span>\\nPostgreSQL is not installed. Skipping.<br/>\\nRestoring Mailman listsDone<br />\\n<br />Restoring Mailman ArchivesDone<br />\\n<br />Restoring shell<blockquote><pre>Current shell /usr/local/cpanel/bin/noshell is up to date.\\n</pre></blockquote>Done<br />\\n<br />Restoring password<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring proftpd fileDone<br />\\n<br />Resyncing FTP Passwords<blockquote><pre>Updating ftp passwords for changemeFtp password files updated.Ftp vhost passwords synced</pre></blockquote>Done<br />\\n<br />Linking old home directories<br />Parsing Domain Databases...ParkedDomains......AddonDomains...<br />Restoring Domains<br />\\n<br />Restoring Bandwidth DataDone\\n<br />Restoring Counter Data<pre></pre><br />Restoring Homedir....<blockquote><pre></pre></blockquote>Done<br />\\n<br />Doing fileprotect conversion<br />Restoring nobody owned filesDone<br />\\n<br />Restoring userdata....\\nDone<br />\\n<br /><br />Restoring custom virtualhost templates....\\nConverting email to cPanel 5+ (if needed)<blockquote><pre></pre></blockquote>Done<br />\\n<br />Cleaning up filters (if needed)<blockquote><pre>vfilter converter v3.0Updating vfilter files to latest format.Running for changeme only (force=0) (has_spam_acl=1)Processing changeme......Done</pre></blockquote>Done<br />\\n<br />Fixing mail permissions<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring crontabDone<br />\\nConverting to maildir if needed<blockquote><pre></pre></blockquote>Done<br />\\nRestoring Dns Zones<blockquote><pre>Restoring zone: example.com.db\\nUnable to determine IP address for example.com!Could not get zone ip for example.com.. skipping changes.\\n</pre></blockquote><br />Adding missing subdomain DNS entries (if needed)<pre></pre><br />Updating SPF Records<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring quota<blockquote><pre></pre></blockquote>Done<br />\\n<br /><br />Update mail routing<blockquote><pre>LOCAL MAIL EXCHANGER: This server will serve as a primary mail exchanger for example.com's mail.: This configuration has been manually selected.\\n</pre></blockquote>Done<br />\\n<br />Rebuilding Apache Conf<br />Restore CompleteAccount Restore Complete\\nUnlocking password for user changeme.passwd: Success.<br />\"}}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privsfdsa
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"restoreaccount\",\"output\":{\"raw\":\"Extracting tarball...................\\nDone<br />\\nExtracting Domain....Done<br />\\nDone<br />\\n<br /><br />Restoring cpanel user config fileDone<br />\\n<br />Restoring reseller privs (if any)<br />Restoring Locale Setting<br />Restoring SSL keys and CertificatesDone<br />\\n<br />Restoring frontpage (if installed)Done<br />\\n<br />Restoring access logs....\\nDone<br />\\n<br /><br />Restoring domain keys....\\nDone<br />\\n<br /><br />Restoring DB MAP File....\\nDone<br />\\n<br /><br /><span class=\\\"b2\\\">Restoring PostgreSQL databases....</span>\\nPostgreSQL is not installed. Skipping.<br/>\\nRestoring Mailman listsDone<br />\\n<br />Restoring Mailman ArchivesDone<br />\\n<br />Restoring shell<blockquote><pre>Current shell /usr/local/cpanel/bin/noshell is up to date.\\n</pre></blockquote>Done<br />\\n<br />Restoring password<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring proftpd fileDone<br />\\n<br />Resyncing FTP Passwords<blockquote><pre>Updating ftp passwords for changemeFtp password files updated.Ftp vhost passwords synced</pre></blockquote>Done<br />\\n<br />Linking old home directories<br />Parsing Domain Databases...ParkedDomains......AddonDomains...<br />Restoring Domains<br />\\n<br />Restoring Bandwidth DataDone\\n<br />Restoring Counter Data<pre></pre><br />Restoring Homedir....<blockquote><pre></pre></blockquote>Done<br />\\n<br />Doing fileprotect conversion<br />Restoring nobody owned filesDone<br />\\n<br />Restoring userdata....\\nDone<br />\\n<br /><br />Restoring custom virtualhost templates....\\nConverting email to cPanel 5+ (if needed)<blockquote><pre></pre></blockquote>Done<br />\\n<br />Cleaning up filters (if needed)<blockquote><pre>vfilter converter v3.0Updating vfilter files to latest format.Running for changeme only (force=0) (has_spam_acl=1)Processing changeme......Done</pre></blockquote>Done<br />\\n<br />Fixing mail permissions<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring crontabDone<br />\\nConverting to maildir if needed<blockquote><pre></pre></blockquote>Done<br />\\nRestoring Dns Zones<blockquote><pre>Restoring zone: example.com.db\\nUnable to determine IP address for example.com!Could not get zone ip for example.com.. skipping changes.\\n</pre></blockquote><br />Adding missing subdomain DNS entries (if needed)<pre></pre><br />Updating SPF Records<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring quota<blockquote><pre></pre></blockquote>Done<br />\\n<br /><br />Update mail routing<blockquote><pre>LOCAL MAIL EXCHANGER: This server will serve as a primary mail exchanger for example.com's mail.: This configuration has been manually selected.\\n</pre></blockquote>Done<br />\\n<br />Rebuilding Apache Conf<br />Restore CompleteAccount Restore Complete\\nUnlocking password for user changeme.passwd: Success.<br />\"}}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":0,\"reason\":\"Unable to find archive at /backup/cpbackup/daily\",\"version\":1,\"command\":\"restoreaccount\"}}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"restoreaccount\",\"output\":{\"raw\":\"Extracting tarball...................\\nDone<br />\\nExtracting Domain....Done<br />\\nDone<br />\\n<br /><br />Restoring cpanel user config fileDone<br />\\n<br />Restoring reseller privs (if any)<br />Restoring Locale Setting<br />Restoring SSL keys and CertificatesDone<br />\\n<br />Restoring frontpage (if installed)Done<br />\\n<br />Restoring access logs....\\nDone<br />\\n<br /><br />Restoring domain keys....\\nDone<br />\\n<br /><br />Restoring DB MAP File....\\nDone<br />\\n<br /><br /><span class=\\\"b2\\\">Restoring PostgreSQL databases....</span>\\nPostgreSQL is not installed. Skipping.<br/>\\nRestoring Mailman listsDone<br />\\n<br />Restoring Mailman ArchivesDone<br />\\n<br />Restoring shell<blockquote><pre>Current shell /usr/local/cpanel/bin/noshell is up to date.\\n</pre></blockquote>Done<br />\\n<br />Restoring password<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring proftpd fileDone<br />\\n<br />Resyncing FTP Passwords<blockquote><pre>Updating ftp passwords for changemeFtp password files updated.Ftp vhost passwords synced</pre></blockquote>Done<br />\\n<br />Linking old home directories<br />Parsing Domain Databases...ParkedDomains......AddonDomains...<br />Restoring Domains<br />\\n<br />Restoring Bandwidth DataDone\\n<br />Restoring Counter Data<pre></pre><br />Restoring Homedir....<blockquote><pre></pre></blockquote>Done<br />\\n<br />Doing fileprotect conversion<br />Restoring nobody owned filesDone<br />\\n<br />Restoring userdata....\\nDone<br />\\n<br /><br />Restoring custom virtualhost templates....\\nConverting email to cPanel 5+ (if needed)<blockquote><pre></pre></blockquote>Done<br />\\n<br />Cleaning up filters (if needed)<blockquote><pre>vfilter converter v3.0Updating vfilter files to latest format.Running for changeme only (force=0) (has_spam_acl=1)Processing changeme......Done</pre></blockquote>Done<br />\\n<br />Fixing mail permissions<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring crontabDone<br />\\nConverting to maildir if needed<blockquote><pre></pre></blockquote>Done<br />\\nRestoring Dns Zones<blockquote><pre>Restoring zone: example.com.db\\nUnable to determine IP address for example.com!Could not get zone ip for example.com.. skipping changes.\\n</pre></blockquote><br />Adding missing subdomain DNS entries (if needed)<pre></pre><br />Updating SPF Records<blockquote><pre></pre></blockquote>Done<br />\\n<br />Restoring quota<blockquote><pre></pre></blockquote>Done<br />\\n<br /><br />Update mail routing<blockquote><pre>LOCAL MAIL EXCHANGER: This server will serve as a primary mail exchanger for example.com's mail.: This configuration has been manually selected.\\n</pre></blockquote>Done<br />\\n<br />Rebuilding Apache Conf<br />Restore CompleteAccount Restore Complete\\nUnlocking password for user changeme.passwd: Success.<br />\"}}}"
+    http_version: "1.1"

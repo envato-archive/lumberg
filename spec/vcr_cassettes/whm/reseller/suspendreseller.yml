@@ -1,0 +1,64 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendreseller?user=bob
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Finished suspending reseller.\"}],\"output\":\"Changing Shell to /bin/false...Changing shell for bob.\\nWarning: \\\"/bin/false\\\" is not listed in /etc/shells\\nShell changed.\\nDone\\nLocking Password...Locking password for user bob.\\npasswd: Success\\nDone\\nSuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\nUsing Universal Quota Support (quota=0)\\nSuspended document root /home/bob/public_html\\nUsing Universal Quota Support (quota=0)\\nSuspending FTP accounts...\\nUpdating ftp passwords for bob\\nFtp password files updated.\\nFtp vhost passwords synced\\nbob's account has been suspended\\n\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendreseller?reason=some+reason&user=bob
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Finished suspending reseller.\"}],\"output\":\"Changing Shell to /bin/false...Changing shell for bob.\\nWarning: \\\"/bin/false\\\" is not listed in /etc/shells\\nShell not changed.\\nDone\\nLocking Password...Locking password for user bob.\\npasswd: Success\\nDone\\nSuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\nAccount previously suspended (password was locked).\\nUsing Universal Quota Support (quota=0)\\nSuspended document root /home/bob/public_html\\nUsing Universal Quota Support (quota=0)\\nUpdating ftp passwords for bob\\nFtp password files updated.\\nFtp vhost passwords synced\\nbob's account has been suspended\\n\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/suspendreseller?user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Specified user is not a reseller.\"}]}"
+    http_version: "1.1"

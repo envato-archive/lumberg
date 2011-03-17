@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/listacls
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"acls\":{\"testacllist\":{\"kill-dns\":\"0\",\"edit-dns\":\"0\",\"edit-mx\":\"0\",\"status\":\"0\",\"add-pkg\":\"1\",\"suspend-acct\":\"0\",\"add-pkg-shell\":\"0\",\"viewglobalpackages\":\"0\",\"resftp\":\"0\",\"list-accts\":\"0\",\"quota\":\"0\",\"passwd\":\"0\",\"all\":\"0\",\"park-dns\":\"0\",\"rearrange-accts\":\"0\",\"news\":\"0\",\"allow-addoncreate\":\"0\",\"demo\":\"0\",\"edit-account\":\"0\",\"allow-unlimited-disk-pkgs\":\"0\",\"allow-parkedcreate\":\"0\",\"frontpage\":\"0\",\"restart\":\"0\",\"ssl-gencrt\":\"0\",\"add-pkg-ip\":\"1\",\"allow-unlimited-pkgs\":\"0\",\"ssl-buy\":\"0\",\"disallow-shell\":\"0\",\"res-cart\":\"0\",\"kill-acct\":\"0\",\"create-dns\":\"0\",\"allow-unlimited-bw-pkgs\":\"0\",\"clustering\":\"0\",\"mailcheck\":\"0\",\"ssl\":\"0\",\"edit-pkg\":\"0\",\"locale-edit\":\"0\",\"upgrade-account\":\"0\",\"show-bandwidth\":\"0\",\"thirdparty\":\"0\",\"limit-bandwidth\":\"0\",\"create-acct\":\"0\",\"demo-setup\":\"0\",\"stats\":\"0\"}}}"
+    http_version: "1.1"

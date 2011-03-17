@@ -1,0 +1,64 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=default&user=notexists
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Sorry the user notexists does not exist\",\"rawout\":null}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=fakepackage&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Specified package does not exist.\",\"rawout\":null}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=gold&user=changeme
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      content-type: 
+      - text/plain
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Account Upgrade/Downgrade Complete for changeme\",\"rawout\":\"<pre>\\nChanging bwlimit to unlimited Meg\\nChanging Feature List to default\\nChanging max pop accounts from unlimited to unlimited\\nChanging max sql accounts from unlimited to unlimited\\nChanging max ftp accounts from unlimited to unlimited\\nChanging max lists from unlimited to unlimited\\nChanging max sub domains from unlimited to unlimited\\nChanging language from en to en\\nChanging max parked domains from 0 to 0\\nChanging max addon domains from 0 to 0\\nShell Access Set Correctly (noshell)\\nChanging cPanel theme from  to \\nChanging plan from gold to gold\\nResetting QUOTA....\\nUsing Universal Quota Support (quota=0)\\nBandwidth limit (0) is lower than (unlimited) (all limits removed)<br /><blockquote><div style='float:left;'>Enabling...</div><div style='float:left;'>...example.com...</div><div style='float:left;'>Done</div></blockquote><br /><div class='clearit' style='clear:both; width:80%;'>&nbsp;</div><span class=\\\"b2\\\">Warning, this will not change shared IP accounts to dedicated IP accounts, or the reverse.</span>\\n\"}]}"
+    http_version: "1.1"

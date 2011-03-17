@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/createacct?domain=valid-thing.com&password=hummingbird123&username=valid
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Account Creation Ok\",\"rawout\":\"<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Checking input data...System has 237 free ips.\\n...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>WWWAcct 12.5.0 (c) 2010 cPanel, Inc....\\n\\nDns Zone check is enabled.\\n+===================================+\\n| New Account Info                  |\\n+===================================+\\n| Domain: valid-thing.com\\n| Ip: 192.1.2.3 (n)\\n| HasCgi: y\\n| UserName: valid\\n| PassWord: hummingbird123\\n| CpanelMod: x3\\n| HomeRoot: /home\\n| Quota: 0 Meg\\n| NameServer1: dns.example.com\\n| NameServer2: dns2.example.com\\n| NameServer3: \\n| NameServer4: \\n| Contact Email: \\n| Package: default\\n| Feature List: default\\n| Language: en\\n+===================================+\\n...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Running pre creation script (/scripts/prewwwacct)......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Adding User...Removing Shell Access (n)\\n...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Copying skel files from /root/cpanel3-skel/ to /home/valid/......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Adding Entries to httpd.conf......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Setting up Mail & Local Domains...localdomains...valiases ...vdomainaliases...vfilters......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Configuring DNS...\\nError: There is a problem communicating with the name server.\\nWe may be doing maintenance to this feature or the DNS server.\\nPlease try again and if this problem continues please report it to the server administrator.\\n\\n...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Restarting apache......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\nChanging password for valid\\nPassword for valid has been changed\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Updating Authentication Databases...Updating ftp passwords for valid\\nFtp password files updated.\\nFtp vhost passwords synced\\n...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Verifying MX Records and Setting up Databases...Reconfiguring Mail Routing:\\n<ul><li>LOCAL MAIL EXCHANGER: This server will serve as a primary mail exchanger for valid-thing.com's mail.:<br /> This configuration has been manually selected.<br /><br /></li></ul>...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Sending Account Information......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\nSystem has 237 free ips.\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Running post creation scripts (/scripts/legacypostwwwacct, /scripts/postwwwacct, /scripts/postwwwacctuser)......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\nwwwacct creation finished\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Setting up Domain Pointers......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Setting Reseller Privs......Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n<table style=\\\"border-bottom: 1px #ccc dotted;\\\"><tr><td width=\\\"100%\\\"><pre>Account Creation Complete!!!...Account Creation Ok...Done</pre></td><td width=\\\"30\\\"><img align=absmiddle src=\\\"/cPanel_magic_revision_1266536260/cjt/images/icons/success.png\\\"></td></tr></table>\\n\",\"options\":{\"nameserver4\":null,\"nameserver\":\"dns.example.com\",\"nameserverentry2\":null,\"nameserverentry3\":null,\"nameserverentry4\":null,\"nameserverentry\":null,\"ip\":\"192.1.2.3\",\"nameservera2\":null,\"nameservera3\":null,\"package\":\"default\",\"nameservera4\":null,\"nameserver2\":\"dns2.example.com\",\"nameservera\":null,\"nameserver3\":null}}]}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/createacct?domain=invalid-thing.com&password=hummingbird123&username=invalid
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Sorry, a group for that username already exists.\",\"rawout\":null,\"options\":null}]}"
+    http_version: "1.1"
