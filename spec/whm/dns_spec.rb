@@ -32,13 +32,13 @@ module Lumberg
       use_vcr_cassette "whm/dns/adddns"
 
       it "creates a zone" do
-        result = @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1')
+        result = @dns.add_zone(:domain => 'example.com', :ip => '192.1.2.3')
         result[:success].should be_true
         result[:message].should match(/added example\.com .*user root.*/i)
       end
 
       it "creates a zone under a user" do
-        result = @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1', :trueowner => 'something')
+        result = @dns.add_zone(:domain => 'example.com', :ip => '192.1.2.3', :trueowner => 'something')
         result[:success].should be_true
         result[:message].should match(/added example\.com .*user something.*/i)
       end
@@ -54,7 +54,7 @@ module Lumberg
       it "adds a zone record" do
         result = @dns.add_zone_record(:zone => 'example.com', 
                                       :name => 'example.com.',
-                                      :address => '127.0.0.1',
+                                      :address => '192.1.2.3',
                                       :type => 'A')
         result[:success].should be_true
         result[:message].should match(/Bind reloading on .*example.com/i)
@@ -149,7 +149,7 @@ module Lumberg
 
       it "returns the ip address of the domain" do
         result = @dns.resolve_domain(:domain => "example.com", "api.version".to_sym => 1)
-        result[:params][:ip].should == "127.0.0.1"
+        result[:params][:ip].should == "192.1.2.3"
       end
 
       it "returns an error when the ip address cannot be determined" do
@@ -218,7 +218,7 @@ module Lumberg
 
       it "returns the nameserver's ip" do
         result = @dns.lookup_nameserver_ip(:nameserver => "example.com")
-        result[:params][:ip].should == "127.0.0.1"
+        result[:params][:ip].should == "192.1.2.3"
       end
 
       it "returns null if the ip cannot be determined" do
