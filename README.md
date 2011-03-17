@@ -155,7 +155,7 @@ Contributors
 ============
 
 * [Justin Mazzi](http://github.com/jmazzi)
-* [Tim Parkin.](http://github.com/tparkin)
+* [Tim Parkin](http://github.com/tparkin)
 
 Note on Patches/Pull Requests
 =============================
