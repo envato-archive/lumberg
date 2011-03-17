@@ -387,7 +387,7 @@ module Lumberg
         result[:params][:group].should == "changeme"
         result[:params][:hascgi].should_not be_true
         result[:params][:homedir].should == "/home/changeme"
-        result[:params][:ip].should == "192.168.1.20"
+        result[:params][:ip].should == "192.1.2.3"
         result[:params][:owner].should == "root"
         result[:params][:port].should == "80"
         result[:params][:scriptalias].first[:path].should == "/home/changeme/public_html/cgi-bin"
@@ -411,17 +411,17 @@ module Lumberg
       end
 
       it "accepts a username for the account to use" do
-        result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
+        result = @account.set_site_ip(:ip => '192.1.2.3', :username => 'changeme')
         result[:success].should be_true
       end
 
       it "accepts a domain for the account to use" do
-        result = @account.set_site_ip(:ip => '192.168.1.20', :domain => 'example.com')
+        result = @account.set_site_ip(:ip => '192.1.2.3', :domain => 'example.com')
         result[:success].should be_true
       end
 
       it "sets the site ip" do
-        result = @account.set_site_ip(:ip => '192.168.1.20', :username => 'changeme')
+        result = @account.set_site_ip(:ip => '192.1.2.3', :username => 'changeme')
         result[:success].should be_true
         result[:message].should match(/OK/i)
       end
