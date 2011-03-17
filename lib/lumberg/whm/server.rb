@@ -227,6 +227,8 @@ module Lumberg
           if ivar.nil?
             constant = Whm.const_get(meth.to_s.capitalize)
             return instance_variable_set("@#{meth}", constant.new(:server => self))
+          else
+            return ivar
           end
         else
           super
