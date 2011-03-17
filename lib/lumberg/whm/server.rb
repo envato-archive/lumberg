@@ -114,7 +114,7 @@ module Lumberg
             message = "Unknown error occurred #{@response.inspect}"
         end
  
-        params = Whm::to_bool(params, @boolean_params) unless @boolean_params.nil?
+        params = Whm::to_bool(params, @boolean_params) unless @boolean_params.nil? || @boolean_params.empty?
 
         # Reset this for subsequent requests
         @force_response_type = nil

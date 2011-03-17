@@ -135,6 +135,7 @@ module Lumberg
         result = @account.list
         result[:success].should be_true
         result[:params][:acct].should have(10).accounts
+        p result[:params][:acct].first[:ip].should_not be_false
       end
 
       it "returns data for the account" do
