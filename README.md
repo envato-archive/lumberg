@@ -25,7 +25,7 @@ You can access the modules of WHM by calling server.<module>. For example, serve
 Here's how to get a list of accounts:
 
     account = server.account
-    result = account.list
+    result  = account.list
 
 Most responses will return success and a message
 
@@ -87,7 +87,7 @@ Creating a new account requires only a username, domain, and password.
 You can list all accounts or search for a specific account.
 
     result = server.account.list(:search => 'new', :searchtype => 'user')
-    acct = result[:params][:acct].first
+    acct   = result[:params][:acct].first
     p "Found user '#{acct[:user]}' with domain '#{acct[:domain]}'"
 
     Found user 'newuser' with domain 'newuser.com'
@@ -103,7 +103,7 @@ Suspending an account is simple and the reason for suspension is optional.
 We can look at the account list again to see the reason for the user's suspension.
 
     result = server.account.list(:search => 'new', :searchtype => 'user')
-    acct = result[:params][:acct].first
+    acct   = result[:params][:acct].first
     p "user '#{acct[:user]}' was suspended with reason '#{acct[:suspendreason]}'"
 
     user 'newuser' was suspended with reason 'bad user'
