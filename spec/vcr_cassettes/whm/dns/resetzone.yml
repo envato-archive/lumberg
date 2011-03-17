@@ -18,7 +18,7 @@
       - chunked
       content-type: 
       - text/plain
-    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Bind reloading on reseller-server using rndc zone: [example.com]\"}]}"
+    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"Bind reloading on myhost using rndc zone: [example.com]\"}]}"
     http_version: "1.1"
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
