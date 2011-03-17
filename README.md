@@ -1,7 +1,7 @@
 Lumberg
 =======
 
-This is a gem that does WHM stuff
+Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
 
 Description
 -----------
