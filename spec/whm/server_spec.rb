@@ -195,6 +195,57 @@ module Lumberg
       end
     end
 
+    describe "#gethostname" do
+      use_vcr_cassette "whm/server/gethostname"
+
+      it "returns the hostname" do
+        result = @whm.get_hostname
+        result[:success].should be_true
+        result[:params][:hostname].should == "myhost.com"
+      end
+    end
+
+    describe "#version" do
+      use_vcr_cassette "whm/server/version"
+
+      it "returns the version of cPanel and WHM" do
+        result = @whm.version
+        result[:success].should be_true
+        result[:params][:version].should == "11.28.64"
+      end
+    end
+
+    describe "#loadavg" do
+      use_vcr_cassette "whm/server/loadavg"
+
+      it "returns the server's load average" do
+        result = @whm.load_average
+        result[:success].should be_true
+        result[:params].should include(:one, :five, :fifteen)
+      end
+    end
+
+    describe "#systemloadavg" do
+      use_vcr_cassette "whm/server/systemloadavg"
+
+      it "returns the server's load average with metadata" do
+        result = @whm.system_load_average("api.version".to_sym => 1)
+        result[:params][:one].should == "0.00"
+        result[:params][:five].should == "0.04"
+        result[:params][:fifteen].should == "0.01"
+      end
+    end
+
+    describe "#getlanglist" do
+      use_vcr_cassette "whm/server/getlanglist"
+
+      it "returns the list of languages" do
+        result = @whm.languages
+        result[:params].size.to_i.should == 19
+        result[:params].should include "english"
+      end
+    end
+
     describe "#account" do
       it "has an account accessor" do
         @whm.account.should be_an(Whm::Account)

@@ -1,0 +1,43 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/systemloadavg
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"error\":\"Unknown App Requested: systemloadavg\"}"
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/systemloadavg?api.version=1
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"data\":{\"one\":\"0.00\",\"five\":\"0.04\",\"fifteen\":\"0.01\"},\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"systemloadavg\"}}"
+    http_version: "1.1"

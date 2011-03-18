@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/getlanglist
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"lang\":[\"arabic\",\"bengali\",\"brazilian-portuguese-utf8\",\"chinese\",\"dutch-utf8\",\"english\",\"english-utf8\",\"french\",\"french-utf8\",\"german\",\"german-utf8\",\"hindi\",\"iberian_spanish\",\"japanese\",\"portuguese\",\"portuguese-utf8\",\"russian\",\"spanish\",\"spanish-utf8\"],\"themes\":{\"x3\":{\"spanish\":1,\"japanese\":1,\"bengali\":1,\"english\":1,\"russian\":1,\"french-utf8\":1,\"brazilian-portuguese-utf8\":1,\"arabic\":1,\"spanish-utf8\":1,\"portuguese\":1,\"german\":1,\"portuguese-utf8\":1,\"hindi\":1,\"chinese\":1,\"german-utf8\":1,\"iberian_spanish\":1,\"french\":1,\"dutch-utf8\":1,\"english-utf8\":1},\"/\":{\"spanish\":1,\"japanese\":1,\"bengali\":1,\"english\":1,\"russian\":1,\"french-utf8\":1,\"brazilian-portuguese-utf8\":1,\"arabic\":1,\"spanish-utf8\":1,\"portuguese\":1,\"german\":1,\"portuguese-utf8\":1,\"hindi\":1,\"chinese\":1,\"german-utf8\":1,\"iberian_spanish\":1,\"french\":1,\"dutch-utf8\":1,\"english-utf8\":1},\"x\":{\"english\":1},\"x3mail\":{\"spanish\":1,\"japanese\":1,\"bengali\":1,\"english\":1,\"russian\":1,\"french-utf8\":1,\"arabic\":1,\"spanish-utf8\":1,\"portuguese\":1,\"german\":1,\"portuguese-utf8\":1,\"hindi\":1,\"chinese\":1,\"german-utf8\":1,\"french\":1,\"english-utf8\":1}}}"
+    http_version: "1.1"
