@@ -1,6 +1,8 @@
 Lumberg
 =======
 
+![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
+
 Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
 
 Description
