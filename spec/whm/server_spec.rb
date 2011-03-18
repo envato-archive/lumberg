@@ -215,7 +215,7 @@ module Lumberg
       end
     end
 
-    describe "#loadavg", :wip => true do
+    describe "#loadavg" do
       use_vcr_cassette "whm/server/loadavg"
 
       it "returns the server's load average" do
