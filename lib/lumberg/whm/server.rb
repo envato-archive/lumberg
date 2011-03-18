@@ -83,6 +83,30 @@ module Lumberg
         format_response
       end
 
+      def get_hostname
+        perform_request('gethostname', {:key => 'hostname'})
+      end
+
+      def version
+        perform_request('version', {:key => 'version'})
+      end
+
+      def load_average
+        perform_request('loadavg' )
+      end
+
+      def system_load_average(options = {})
+        Args.new(options) do |c|
+          c.requires "api.version".to_sym
+        end
+
+        perform_request('systemloadavg', options.merge(:key => 'data'))
+      end
+
+      def languages
+        perform_request('getlanglist', {:key => 'lang'})
+      end
+
       protected
       def response_type
         if !@force_response_type.nil?

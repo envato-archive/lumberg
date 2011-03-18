@@ -1,0 +1,28 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/loadavg
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.64
+      date: 
+      - Fri, 18 Mar 2011 14:39:03 GMT
+      content-length: 
+      - "46"
+      cache-control: 
+      - no-cache, no-store, private, must-revalidate
+      content-type: 
+      - text/plain
+    body: |
+      {"one":"0.06","five":"0.03","fifteen":"0.01"}
+
+    http_version: "1.1"
