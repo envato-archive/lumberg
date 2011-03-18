@@ -9,8 +9,8 @@ Gem::Specification.new do |s|
   s.authors     = ["Justin Mazzi"]
   s.email       = ["jmazzi@site5.com"]
   s.homepage    = ""
-  s.summary     = %q{WHM & cPanel Ruby Library}
-  s.description = %q{Access the WHM & cPanel JSON API with Ruby}
+  s.summary     = %q{Ruby library for the WHM & cPanel API}
+  s.description = %q{Ruby library for the WHM & cPanel API; It's not a half day or anything like that}
 
   s.rubyforge_project = "lumberg"
 
