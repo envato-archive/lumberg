@@ -9,6 +9,11 @@ Ruby library for the WHM & cPanel API. It is currently what we consider to be be
 
 Confirmed to work with ruby 1.8.7 and 1.9.2 on cPanel 11.28+
 
+Install
+-------
+
+    gem install lumberg
+
 Usage
 -----
 
