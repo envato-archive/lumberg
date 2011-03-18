@@ -210,7 +210,6 @@ module Lumberg
 
       it "returns the version of cPanel and WHM" do
         result = @whm.version
-        pp result.inspect
         result[:success].should be_true
         result[:params][:version].should == "11.28.64"
       end
@@ -221,7 +220,8 @@ module Lumberg
 
       it "returns the server's load average" do
         result = @whm.load_average
-        pending "WHM returns strange things"
+        result[:success].should be_true
+        result[:params].should include(:one, :five, :fifteen)
       end
     end
 

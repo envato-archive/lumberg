@@ -92,7 +92,10 @@ module Lumberg
       end
 
       def load_average
-        perform_request('loadavg' )
+        @force_response_type = :query
+        result = perform_request('loadavg')
+        result[:success] = result[:params].has_key?(:one)
+        result
       end
 
       def system_load_average(options = {})
