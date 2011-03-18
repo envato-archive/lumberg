@@ -4,11 +4,9 @@ Lumberg
 ![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
 
 Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
+[RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Description
------------
-
-WHM API implementation
+Confirmed to work with ruby 1.8.7 and 1.9.2
 
 Usage
 -----
