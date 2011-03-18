@@ -19,6 +19,7 @@ Usage
 
 Create a server object and connect to WHM using your host and hash:
 
+    require 'lumberg'
     server = Lumberg::Whm::Server.new(:host => WHM_HOST, :hash => WHM_HASH)
 
 You can access the modules of WHM by calling server.<module>. For example, server.account or server.dns. Here are the currently supported modules:
