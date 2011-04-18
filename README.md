@@ -7,7 +7,7 @@ Ruby library for the WHM & cPanel API. It is currently what we consider to be be
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Confirmed to work with ruby 1.8.7, 1.9.2 and JRuby 1.6.0 on cPanel 11.28+
+Confirmed to work with ruby 1.8.7, 1.9.2, Rubinis, REE and JRuby 1.6.0 on cPanel 11.28+
 
 Install
 -------
