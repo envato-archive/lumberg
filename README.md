@@ -1,7 +1,7 @@
 Lumberg
 =======
-[![Build Status](http://travis-ci.org/site5/lumberg.png)](http://travis-ci.org/site5/lumberg)
 ![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
+[![Build Status](http://travis-ci.org/site5/lumberg.png)](http://travis-ci.org/site5/lumberg)
 
 Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
 
