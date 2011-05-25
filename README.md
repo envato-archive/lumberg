@@ -183,4 +183,3 @@ Copyright
 =========
 
 Copyright (c) 2011 Site5. See LICENSE for details.
-
