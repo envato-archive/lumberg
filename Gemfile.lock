@@ -1,8 +1,7 @@
 PATH
   remote: .
   specs:
-    lumberg (0.9.5)
-      jruby-openssl (~> 0.7.3)
+    lumberg (1.0.0)
       json
 
 GEM
@@ -12,7 +11,6 @@ GEM
     abstract (1.0.0)
     activesupport (3.0.5)
     arrayfields (4.7.4)
-    bouncy-castle-java (1.5.0145.2)
     chronic (0.3.0)
     churn (0.0.13)
       chronic (>= 0.2.3)
@@ -36,9 +34,7 @@ GEM
     haml (3.0.25)
     hirb (0.4.0)
     i18n (0.5.0)
-    jruby-openssl (0.7.3)
-      bouncy-castle-java
-    json (1.5.1-java)
+    json (1.5.1)
     json_pure (1.5.1)
     main (4.4.0)
       arrayfields (>= 4.7.4)
@@ -63,6 +59,7 @@ GEM
       i18n
       ruby-progressbar (~> 0.0.9)
       ruby_parser (~> 2.0.4)
+    rake (0.8.7)
     rcov (0.9.9)
     rcov (0.9.9-java)
     reek (1.2.8)
@@ -96,7 +93,8 @@ PLATFORMS
 DEPENDENCIES
   fakeweb
   lumberg!
-  metric_fu
-  rcov
+  metric_fu (~> 2.1)
+  rake (~> 0.8.7)
+  rcov (~> 0.9)
   rspec
   vcr
