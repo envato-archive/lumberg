@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/showbw?month=5&year=2011
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.87
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"bandwidth\":[{\"reseller\":\"root\",\"month\":\"5\",\"acct\":[{\"reseller\":\"1\",\"bwusage\":[{\"deleted\":0,\"usage\":0,\"domain\":\"testsiteone.com\"}],\"deleted\":0,\"limit\":\"999999999999990\",\"owner\":\"testsi\",\"user\":\"chicagot\",\"maindomain\":\"testsiteone.com\",\"totalbytes\":0},{\"reseller\":0,\"bwusage\":[{\"deleted\":0,\"usage\":0,\"domain\":\"testsitetwo.com\"}],\"deleted\":0,\"limit\":\"1048576000\",\"owner\":\"root\",\"user\":\"testsit\",\"maindomain\":\"testsitetwo.com\",\"totalbytes\":0},{\"reseller\":0,\"bwusage\":[{\"deleted\":0,\"usage\":0,\"domain\":\"blah.example.com\"},{\"deleted\":0,\"usage\":0,\"domain\":\"newuser.example.com\"}],\"deleted\":0,\"limit\":\"1049624576\",\"owner\":\"root\",\"user\":\"newuser\",\"maindomain\":\"blah.example.com\",\"totalbytes\":0}],\"totalused\":0,\"year\":\"2011\"}]}"
+    http_version: "1.1"

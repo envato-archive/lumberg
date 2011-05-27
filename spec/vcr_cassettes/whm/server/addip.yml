@@ -1,0 +1,22 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://myhost.com:2087/json-api/addip?ip=208.77.188.166&netmask=255.255.255.0
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:iscool
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      server: 
+      - cpsrvd/11.28.87
+      transfer-encoding: 
+      - chunked
+      content-type: 
+      - text/plain
+    body: "{\"addip\":[{\"errors\":[],\"status\":1,\"statusmsg\":\"Success\",\"msgs\":\"eth0:cp242 is now up.  208.77.188.166/255.255.255.0 broadcast 208.77.188.255 has been added\\nSystem has 240 free ips.\"}]}"
+    http_version: "1.1"

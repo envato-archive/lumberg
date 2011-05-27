@@ -110,6 +110,75 @@ module Lumberg
         perform_request('getlanglist', {:key => 'lang'})
       end
 
+      def list_ips
+        perform_request('listips', {:key => 'result'})
+      end
+
+      def add_ip(options = {})
+        Args.new(options) do |c|
+          c.requires :ip, :netmask
+        end
+
+        perform_request('addip', options.merge(:key => 'addip'))
+      end
+
+      def delete_ip(options = {})
+        Args.new(options) do |c|
+          c.requires :ip
+          c.optionals :ethernetdev
+          c.booleans :skipifshutdown
+        end
+
+        perform_request('delip', options.merge(:key => 'delip'))
+      end
+
+      def set_hostname(options = {})
+        Args.new(options) do |c|
+          c.requires :hostname
+        end
+
+        perform_request('sethostname', options.merge(:key => 'sethostname'))
+      end
+
+      def set_resolvers(options = {})
+        Args.new(options) do |c|
+          c.requires :nameserver1
+          c.optionals :nameserver2, :nameserver3
+        end
+
+        perform_request('setresolvers', options.merge(:key => 'setresolvers'))
+      end
+
+      def show_bandwidth(options = {})
+        Args.new(options) do |c|
+          c.optionals :month, :year, :showres, :search, :searchtype
+        end
+
+        perform_request('showbw', options.merge(:key => 'bandwidth'))
+      end
+
+      def set_nv_var(options = {})
+        Args.new(options) do |c|
+          c.requires :key
+          c.optionals :value
+        end
+
+        perform_request('nvset', options.merge(:key => 'nvset'))
+      end
+
+      def get_nv_var(options = {})
+        Args.new(options) do |c|
+          c.requires :key
+          c.optionals :value
+        end
+
+        perform_request('nvget', options.merge(:key => 'nvget'))
+      end
+
+      def reboot
+        perform_request('reboot', {:key => "reboot"})
+      end
+
       protected
       def response_type
         if !@force_response_type.nil?
