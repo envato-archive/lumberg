@@ -7,3 +7,4 @@ test.rb
 *~
 coverage/
 doc/
+Gemfile.lock
