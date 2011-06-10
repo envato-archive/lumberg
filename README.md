@@ -1,5 +1,5 @@
-Lumberg
-=======
+Lumberg [![Build Status](http://travis-ci.org/site5/lumberg.png)](http://travis-ci.org/site5/lumberg)
+=====================================================================================================
 ![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
 
 
