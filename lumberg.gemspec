@@ -18,8 +18,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'fakeweb'
   s.add_development_dependency 'vcr'
-  s.add_development_dependency 'rcov'
-  s.add_development_dependency 'metric_fu'
+
+  if ! defined?(RUBY_ENGINE) || RUBY_ENGINE != 'rbx'
+    s.add_development_dependency 'rcov'
+    s.add_development_dependency 'metric_fu'
+  end
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
