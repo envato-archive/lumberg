@@ -28,6 +28,15 @@ module Lumberg
         @whm = Whm::Server.new(@login.merge(:user => 'bob'))
         @whm.user.should == 'bob'
       end
+
+      it "should default to false for basic_auth" do
+        @whm.basic_auth.should be_false
+      end
+
+      it "should allow setting of basic_auth" do
+        @whm = Whm::Server.new(@login.merge(:basic_auth => true))
+        @whm.basic_auth.should be_true
+      end
     end
 
     describe "#format_url" do

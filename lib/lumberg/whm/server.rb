@@ -1,4 +1,5 @@
 require 'cgi'
+require 'base64'
 
 module Lumberg
   module Whm
@@ -11,6 +12,9 @@ module Lumberg
 
       # Base URL to the WHM API
       attr_accessor :base_url
+
+      # Enable Basic Authentication with API - default false
+      attr_accessor :basic_auth
 
       # API username - :default => root
       attr_accessor :user
@@ -47,10 +51,11 @@ module Lumberg
       # ==== Optional 
       #  * <tt>:user</tt> - PENDING
       #  * <tt>:ssl</tt> - PENDING
+      #  * <tt>:basic_auth</tt>
       def initialize(options)
         Args.new(options) do |c|
           c.requires  :host, :hash
-          c.optionals :user, :ssl
+          c.optionals :user, :ssl, :basic_auth
         end
 
         @ssl_verify ||= false
@@ -58,6 +63,7 @@ module Lumberg
         @host       = options.delete(:host)
         @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
+        @basic_auth = options.has_key?(:basic_auth) && options.delete(:basic_auth)
 
         @base_url   = format_url(options)
       end
@@ -337,10 +343,16 @@ module Lumberg
         query = uri.query
         url << "?" + query unless query.nil? || query.empty?
 
-        # Add Auth Header
         req = Net::HTTP::Get.new(url)
-        req.add_field("Authorization", "WHM #{@user}:#{@hash}")
 
+        # Add Auth Header
+        if basic_auth
+          encoded = Base64.encode64("#{@user}:#{@hash}")
+          auth = "Basic #{encoded}"
+        else
+          auth = "WHM #{@user}:#{@hash}"
+        end
+        req.add_field("Authorization", auth)
         req
       end
 
