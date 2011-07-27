@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-# Requests will need an "Authorization" header with 
+# Requests will need an "Authorization" header with
 # WHM username:hash"
 module Lumberg
   describe Whm::Server do
@@ -57,7 +57,7 @@ module Lumberg
 
     describe "#format_hash" do
       it "raises an error if hash is not a string" do
-        expect{  Whm::Server.new(:host => @whm_host, :hash => nil) }.to 
+        expect{  Whm::Server.new(:host => @whm_host, :hash => nil) }.to
           raise_error(Lumberg::WhmArgumentError, "Missing WHM hash")
       end
 
@@ -73,7 +73,7 @@ module Lumberg
         @whm.hash.should == 'myhash'
       end
     end
-   
+
     describe "#perform_request" do
       # These tests are skipped when running against
       # a real WHM server
@@ -288,7 +288,7 @@ module Lumberg
         @whm.account
         @whm.account
       end
-      
+
       it "raises to super" do
         expect { @whm.asdf }.to raise_error(NoMethodError)
       end
@@ -323,6 +323,83 @@ module Lumberg
           auth.should_not be_nil
           auth.should == "WHM #{test_auth}"
         end
+      end
+    end
+
+    describe "#list_ips" do
+      use_vcr_cassette "whm/server/listips"
+
+      it "lists all the ip addresses" do
+        result = @whm.list_ips
+        result[:params][0][:ip].should == "123.123.123.123"
+        result[:params][0][:used].should == 1
+        result[:params].should have(242).ips
+      end
+    end
+
+    describe "#add_ip" do
+      use_vcr_cassette "whm/server/addip"
+
+      it "requires an ip address" do
+        requires_attr('ip') { @whm.add_ip(:netmask => '255.255.255.250') }
+      end
+
+      it "requires a netmask" do
+        requires_attr('netmask') { @whm.add_ip(:ip => '123.123.123.123') }
+      end
+
+      it "adds the ip address" do
+        result = @whm.add_ip(:ip => '208.77.188.166', :netmask => '255.255.255.0')
+        result[:success].should be_true
+      end
+    end
+
+    describe "#delete_ip" do
+      use_vcr_cassette "whm/server/delip"
+
+      it "requires an ip address" do
+        requires_attr('ip') { @whm.delete_ip }
+      end
+
+      it "deletes the ip address" do
+        result = @whm.delete_ip(:ip => '208.77.188.166')
+        result[:success].should be_true
+      end
+    end
+
+    describe "#set_hostname" do
+      use_vcr_cassette "whm/server/sethostname"
+
+      it "requires a hostname" do
+        requires_attr('hostname') { @whm.set_hostname }
+      end
+
+      it "changes the server's hostname" do
+        result = @whm.set_hostname(:hostname => "myhost.com")
+        result[:success].should be_true
+      end
+    end
+
+    describe "#set_resolvers" do
+      use_vcr_cassette "whm/server/setresolvers"
+
+      it "requires a nameserver1" do
+        requires_attr('nameserver1') { @whm.set_resolvers }
+      end
+
+      it "configures the nameservers" do
+        result = @whm.set_resolvers(:nameserver1 => "123.123.123.123", :nameserver2 => "123.123.123.124")
+        result[:success].should be_true
+      end
+    end
+
+    describe "#show_bandwidth" do
+      use_vcr_cassette "whm/server/showbw"
+
+      it "shows the bandwidth information" do
+        result = @whm.show_bandwidth(:year => 2011, :month => 5)
+        result[:params][:month].to_i.should == 5
+        result[:params][:acct].should have(3).accounts
       end
     end
   end
