@@ -1,15 +1,15 @@
-Lumberg [![Build Status](http://travis-ci.org/site5/lumberg.png)](http://travis-ci.org/site5/lumberg)
-=====================================================================================================
+Lumberg [![Lumberg Build Status][Build Icon]][Build Status]
+===========================================================
 ![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
-
-
-[![Build Status](http://travis-ci.org/site5/lumberg.png)](http://travis-ci.org/site5/lumberg)
 
 Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
 Confirmed to work with ruby 1.8.7, 1.9.2, Rubinius, REE and JRuby 1.6.0 on cPanel 11.28+
+
+[Build Status]: http://travis-ci.org/site5/lumberg
+[Build Icon]: https://secure.travis-ci.org/site5/lumberg.png?branch=master
 
 Install
 -------
