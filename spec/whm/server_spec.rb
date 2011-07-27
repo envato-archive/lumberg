@@ -28,6 +28,15 @@ module Lumberg
         @whm = Whm::Server.new(@login.merge(:user => 'bob'))
         @whm.user.should == 'bob'
       end
+
+      it "should default to false for basic_auth" do
+        @whm.basic_auth.should be_false
+      end
+
+      it "should allow setting of basic_auth" do
+        @whm = Whm::Server.new(@login.merge(:basic_auth => true))
+        @whm.basic_auth.should be_true
+      end
     end
 
     describe "#format_url" do
@@ -282,6 +291,38 @@ module Lumberg
       
       it "raises to super" do
         expect { @whm.asdf }.to raise_error(NoMethodError)
+      end
+    end
+
+    describe "#prepare_request" do
+      context "when @basic_auth is true" do
+        before do
+          @whm.basic_auth = true
+          @req = @whm.instance_eval {
+            prepare_request(URI.parse("http://example.com/"))
+          }
+        end
+
+        it "sets Authorization header to 'Basic {base64text}'" do
+          test_auth = Base64.encode64("#{@whm.user}:#{@whm.hash}")
+          auth = @req['Authorization']
+          auth.should_not be_nil
+          auth.should == "Basic #{test_auth}"
+        end
+      end
+
+      context "when @basic_auth is false" do
+        before do
+          @req = @whm.instance_eval {
+            prepare_request(URI.parse("http://example.com/"))
+          }
+        end
+        it "sets Authorization header to 'WHM user:hash'" do
+          test_auth = "#{@whm.user}:#{@whm.hash}"
+          auth = @req['Authorization']
+          auth.should_not be_nil
+          auth.should == "WHM #{test_auth}"
+        end
       end
     end
   end
