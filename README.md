@@ -1,20 +1,27 @@
-Lumberg
-=======
-
+Lumberg [![Lumberg Build Status][Build Icon]][Build Status]
+===========================================================
 ![Lumberg logo](http://i.imgur.com/xC4Sw.jpg)
 
 Ruby library for the WHM & cPanel API. It is currently what we consider to be beta-ish. Please report any issues you find. :)
 
-Description
------------
+[RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-WHM API implementation
+Confirmed to work with ruby 1.8.7, 1.9.2, Rubinius, REE and JRuby 1.6.0 on cPanel 11.28+
+
+[Build Status]: http://travis-ci.org/site5/lumberg
+[Build Icon]: https://secure.travis-ci.org/site5/lumberg.png?branch=master
+
+Install
+-------
+
+    gem install lumberg
 
 Usage
 -----
 
 Create a server object and connect to WHM using your host and hash:
 
+    require 'lumberg'
     server = Lumberg::Whm::Server.new(:host => WHM_HOST, :hash => WHM_HASH)
 
 You can access the modules of WHM by calling server.<module>. For example, server.account or server.dns. Here are the currently supported modules:

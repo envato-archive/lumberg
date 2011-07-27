@@ -15,13 +15,14 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "lumberg"
 
   s.add_dependency 'json'
+  s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
   s.add_development_dependency 'rspec'
   s.add_development_dependency 'fakeweb'
   s.add_development_dependency 'vcr'
-
-  if ! defined?(RUBY_ENGINE) || RUBY_ENGINE != 'rbx'
-    s.add_development_dependency 'rcov'
-    s.add_development_dependency 'metric_fu'
+  s.add_development_dependency 'rake', '~> 0.8.7'
+  if !defined?(RUBY_ENGINE) || RUBY_ENGINE != 'rbx'
+    s.add_development_dependency 'rcov', '~> 0.9' 
+    s.add_development_dependency 'metric_fu', '~> 2.1'
   end
 
   s.files         = `git ls-files`.split("\n")
