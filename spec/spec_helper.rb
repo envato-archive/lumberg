@@ -31,3 +31,7 @@ RSpec.configure do |c|
     end
   end
 end
+
+# Helper methodsj
+def login_hash
+end
