@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html/test-magic.com/&newdomain=test-magic.com&subdomain=tmagic
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "330"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:48:34 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"result":1,"reason":"Using nameservers with the following IPs: 204.13.161.145,204.13.160.143\ntest-magic.com was successfully parked on top of tmagic.lumberg-test.com"}],"module":"AddonDomain","apiversion":2,"event":{"result":1},"postevent":{"result":1},"preevent":{"result":1},"func":"addaddondomain"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:48:35 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-magic.com&subdomain=tmagic_lumberg-test.com
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "402"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:48:43 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"apiversion":2,"data":[{"result":1,"reason":"Deleted domain: tmagic.lumberg-test.com\nThe zone file for 'lumberg-test.com' has been edited and your new data has been added to it.\r\nsaved lumberg-test.com\nThe subdomain, tmagic.lumberg-test.com has been removed."}],"module":"AddonDomain","preevent":{"result":1},"postevent":{"result":1},"func":"deladdondomain"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:48:44 GMT
+recorded_with: VCR 2.0.1

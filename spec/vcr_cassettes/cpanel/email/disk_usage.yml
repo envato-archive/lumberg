@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=disk-usage-test&password=s00pers3cr3t&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "302"
+      Date: 
+      - Fri, 03 May 2013 16:48:04 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"result":0,"reason":"The account disk-usage-test@lumberg-test.com already exists!"}],"preevent":{"result":1},"apiversion":2,"postevent":{"result":1},"func":"addpop","module":"Email","event":{"result":1},"error":"The account disk-usage-test@lumberg-test.com already exists!"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:05 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=getdiskusage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&login=disk-usage-test
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "248"
+      Date: 
+      - Fri, 03 May 2013 16:48:05 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"func":"getdiskusage","apiversion":2,"event":{"result":1},"postevent":{"result":1},"module":"Email","preevent":{"result":1},"data":[{"login":"disk-usage-test","domain":"lumberg-test.com","diskused":"0","user":"disk-usage-test"}]}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:05 GMT
+recorded_with: VCR 2.0.1

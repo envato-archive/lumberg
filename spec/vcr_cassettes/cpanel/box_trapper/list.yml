@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=accountmanagelist&cpanel_jsonapi_module=BoxTrapper&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "1070"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:48:45 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"enabled":0,"account":"account-test@lumberg-test.com","accounturi":"account-test%40lumberg-test.com","bg":"even","status":"disabled"},{"enabled":0,"account":"disk-usage-test@lumberg-test.com","accounturi":"disk-usage-test%40lumberg-test.com","bg":"odd","status":"disabled"},{"enabled":0,"account":"filters-test@lumberg-test.com","accounturi":"filters-test%40lumberg-test.com","bg":"even","status":"disabled"},{"enabled":0,"account":"lumberg","accounturi":"lumberg","bg":"odd","status":"disabled"},{"enabled":0,"account":"mail-dir-test@lumberg-test.com","accounturi":"mail-dir-test%40lumberg-test.com","bg":"even","status":"disabled"},{"enabled":0,"account":"mail-dirs-test@lumberg-test.com","accounturi":"mail-dirs-test%40lumberg-test.com","bg":"odd","status":"disabled"},{"enabled":0,"account":"test-account@lumberg-test.com","accounturi":"test-account%40lumberg-test.com","bg":"even","status":"disabled"}],"event":{"result":1},"func":"accountmanagelist","apiversion":2,"preevent":{"result":1},"postevent":{"result":1},"module":"BoxTrapper"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:48:45 GMT
+recorded_with: VCR 2.0.1
