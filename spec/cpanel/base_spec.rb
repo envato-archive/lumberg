@@ -7,12 +7,16 @@ module Lumberg
     before(:each) do
       @login  = { :host => @whm_host, :hash => @whm_hash }
       @server = Whm::Server.new(@login.dup)
-      @base   = Cpanel::Base.new(:server => @server)
+      @base   = Cpanel::Base.new(:server => @server, :api_username => "foodawg")
     end
 
     describe "#initialize" do
-      it "assigns nil to @api_username" do
-        @base.instance_variable_get(:@api_username).should be_nil
+      it "requires an api_username" do
+        requires_attr("api_username") { Cpanel::Base.new }
+      end
+
+      it "assigns api_username param to @api_username" do
+        @base.api_username.should == "foodawg"
       end
 
       context "a server instance or server hash is passed in" do
@@ -21,7 +25,7 @@ module Lumberg
         end
 
         it "allows a server hash to be passed in" do
-          base = Cpanel::Base.new(:server => @login)
+          base = Cpanel::Base.new(:server => @login, :api_username => "foodawg")
           base.server.should be_a(Whm::Server)
         end
 
@@ -33,7 +37,7 @@ module Lumberg
       context "nothing is passed in" do
         context "a server instance is cached" do
           it "loads the cached server instance" do
-            base = Cpanel::Base.new
+            base = Cpanel::Base.new(:api_username => "foodawg")
             base.server.should eql(
               Cpanel::Base.class_variable_get(:@@server)
             )
@@ -61,10 +65,28 @@ module Lumberg
         :api_function => "some_function"
       }}
 
-      it "requires api_username" do
-        requires_attr("api_username") { @base.perform_request }
-      end
+      context "requires api_username" do
+        it "loads saved api_username if api_username not specified" do
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(
+              :cpanel_jsonapi_module   => "SomeModule",
+              :cpanel_jsonapi_function => "some_function",
+              :cpanel_jsonapi_user     => "foodawg"
+            )
+          )
+          @base.perform_request(:api_module => "SomeModule", :api_function => "some_function")
+        end
 
+        it "raises error if api_username is not saved" do
+          base = @base.dup
+          base.api_username = nil
+
+          requires_attr("api_username") {
+            base.perform_request(:api_module => "SomeModule", :api_function => "some_function")
+          }
+        end
+      end
 
       it "requires api_module" do
         requires_attr("api_module") {

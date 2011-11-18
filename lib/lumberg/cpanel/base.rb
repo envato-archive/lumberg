@@ -6,14 +6,21 @@ module Lumberg
       attr_accessor :api_username
 
       def initialize(options = {})
-        if options.empty? && !@@server.nil?
+        Args.new(options) do |c|
+          c.requires  :api_username
+          c.optionals :server
+        end
+
+        @api_username = options.delete(:api_username)
+
+        if !options[:server] && !@@server.nil?
           super :server => @@server
         else
+          options.delete(:api_username)
           super options
         end
 
-        @api_username = nil
-        @@server      = @server
+        @@server = @server
       end
 
       def perform_request(options = {}, call_options = {})
@@ -30,7 +37,7 @@ module Lumberg
           :key                       => options.delete(:key) || "cpanelresult",
           :cpanel_jsonapi_user       => options.delete(:api_username),
           :cpanel_jsonapi_module     => options.delete(:api_module),
-          :cpanel_jsonapi_function   => options.delete(:api_module),
+          :cpanel_jsonapi_function   => options.delete(:api_function),
           :cpanel_jsonapi_apiversion => options.delete(:api_version) || 2
         }.merge(options).merge(call_options)
 
