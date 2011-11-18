@@ -9,6 +9,11 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
   c.default_cassette_options = {:record => :none}
+
+  if ENV['WHM_HASH'] && ENV['WHM_HOST']
+    c.filter_sensitive_data("<FILTERED_HASH>") { ENV['WHM_HASH'] }
+    c.filter_sensitive_data("<FILTERED_HOST>") { ENV['WHM_HOST'] }
+  end
 end
 
 def live_test?
@@ -32,6 +37,3 @@ RSpec.configure do |c|
   end
 end
 
-# Helper methodsj
-def login_hash
-end
