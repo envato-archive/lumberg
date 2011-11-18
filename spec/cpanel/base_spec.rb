@@ -11,6 +11,10 @@ module Lumberg
     end
 
     describe "#initialize" do
+      it "assigns nil to @api_username" do
+        @base.instance_variable_get(:@api_username).should be_nil
+      end
+
       context "a server instance or server hash is passed in" do
         it "allows a server instance to be passed in" do
           @base.server.should be_a(Whm::Server)
@@ -60,6 +64,7 @@ module Lumberg
       it "requires api_username" do
         requires_attr("api_username") { @base.perform_request }
       end
+
 
       it "requires api_module" do
         requires_attr("api_module") {
@@ -125,6 +130,21 @@ module Lumberg
         )
         @base.perform_request(valid_options, { :awesome => "sauce" })
       end
+
+      context "@api_username is not nil" do
+        it "uses @api_username as default for api_username param" do
+          @base.api_username = "foodawg"
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(:cpanel_jsonapi_user => "foodawg")
+          )
+
+          options = valid_options
+          options.delete(:api_username)
+          @base.perform_request(options)
+        end
+      end
     end
+
   end
 end
