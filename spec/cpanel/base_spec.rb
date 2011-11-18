@@ -11,8 +11,16 @@ module Lumberg
     end
 
     describe "#initialize" do
+      it "requires a server" do
+        requires_attr("server") {
+          Cpanel::Base.new(:api_username => "foodawg")
+        }
+      end
+
       it "requires an api_username" do
-        requires_attr("api_username") { Cpanel::Base.new }
+        requires_attr("api_username") {
+          Cpanel::Base.new(:server => @server)
+        }
       end
 
       it "assigns api_username param to @api_username" do

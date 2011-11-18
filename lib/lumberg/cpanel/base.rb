@@ -5,8 +5,7 @@ module Lumberg
 
       def initialize(options = {})
         Args.new(options) do |c|
-          c.requires  :api_username
-          c.optionals :server
+          c.requires  :server, :api_username
         end
 
         @api_username = options.delete(:api_username)
