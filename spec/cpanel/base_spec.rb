@@ -49,5 +49,82 @@ module Lumberg
         end
       end
     end
+
+    describe "#perform_request" do
+      let(:valid_options) {{
+        :api_username => "foodawg",
+        :api_module   => "SomeModule",
+        :api_function => "some_function"
+      }}
+
+      it "requires api_username" do
+        requires_attr("api_username") { @base.perform_request }
+      end
+
+      it "requires api_module" do
+        requires_attr("api_module") {
+          @base.perform_request(:api_username => "foodawg")
+        }
+      end
+
+      it "requires api_function" do
+        requires_attr("api_function") {
+          @base.perform_request(:api_username => "foodawg", :api_module => "SomeModule")
+        }
+      end
+
+      context "optional api_version is specified" do
+        it "should perform the request with specified API version" do
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(:cpanel_jsonapi_apiversion => 1234)
+          )
+          @base.perform_request(valid_options.merge(:api_version => 1234))
+        end
+      end
+
+      context "optional api_version is not specified" do
+        it "should set API version to 2" do
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(:cpanel_jsonapi_apiversion => 2)
+          )
+          @base.perform_request(valid_options)
+        end
+      end
+
+      context "optional key is specified" do
+        it "should perform the request with specified key" do
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(:key => "some_key")
+          )
+          @base.perform_request(valid_options.merge(:key => "some_key"))
+        end
+      end
+
+      context "optional key is not specified" do
+        it "should set key to \"cpanelresult\"" do
+          @base.server.should_receive(:perform_request).with(
+            anything,
+            hash_including(:key => "cpanelresult")
+          )
+          @base.perform_request(valid_options)
+        end
+      end
+
+      it "should perform the request with \"cpanel\" function" do
+        @base.server.should_receive(:perform_request).with("cpanel", anything)
+        @base.perform_request(valid_options)
+      end
+
+      it "should accept additional call parameters" do
+        @base.server.should_receive(:perform_request).with(
+          anything,
+          hash_including(:awesome => "sauce")
+        )
+        @base.perform_request(valid_options, { :awesome => "sauce" })
+      end
+    end
   end
 end

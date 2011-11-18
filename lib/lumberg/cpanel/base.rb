@@ -12,6 +12,23 @@ module Lumberg
 
         @@server = @server
       end
+
+      def perform_request(options = {}, call_options = {})
+        Args.new(options) do |c|
+          c.requires :api_username, :api_module, :api_function
+          c.optionals :api_version, :key
+        end
+
+        params = {
+          :key                       => options.delete(:key) || "cpanelresult",
+          :cpanel_jsonapi_user       => options.delete(:api_username),
+          :cpanel_jsonapi_module     => options.delete(:api_module),
+          :cpanel_jsonapi_function   => options.delete(:api_module),
+          :cpanel_jsonapi_apiversion => options.delete(:api_version) || 2
+        }.merge(options).merge(call_options)
+
+        server.perform_request("cpanel", params)
+      end
     end
   end
 end
