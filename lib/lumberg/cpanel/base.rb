@@ -1,8 +1,6 @@
 module Lumberg
   module Cpanel
     class Base < Whm::Base
-      @@server = nil
-
       attr_accessor :api_username
 
       def initialize(options = {})
@@ -13,14 +11,7 @@ module Lumberg
 
         @api_username = options.delete(:api_username)
 
-        if !options[:server] && !@@server.nil?
-          super :server => @@server
-        else
-          options.delete(:api_username)
-          super options
-        end
-
-        @@server = @server
+        super options
       end
 
       def perform_request(options = {}, call_options = {})

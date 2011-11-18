@@ -19,43 +19,15 @@ module Lumberg
         @base.api_username.should == "foodawg"
       end
 
-      context "a server instance or server hash is passed in" do
-        it "allows a server instance to be passed in" do
-          @base.server.should be_a(Whm::Server)
-        end
-
-        it "allows a server hash to be passed in" do
-          base = Cpanel::Base.new(:server => @login, :api_username => "foodawg")
-          base.server.should be_a(Whm::Server)
-        end
-
-        it "caches the server instance" do
-          Cpanel::Base.class_variable_get(:@@server).should eql(@base.server)
-        end
+      it "allows a server instance to be passed in" do
+        @base.server.should be_a(Whm::Server)
       end
 
-      context "nothing is passed in" do
-        context "a server instance is cached" do
-          it "loads the cached server instance" do
-            base = Cpanel::Base.new(:api_username => "foodawg")
-            base.server.should eql(
-              Cpanel::Base.class_variable_get(:@@server)
-            )
-          end
-        end
-
-        context "server instance is not cached" do
-          before { Cpanel::Base.class_variable_set(:@@server,nil) }
-
-          it "raises an error" do
-            expect {
-              Cpanel::Base.new
-            }.to raise_error(
-              WhmArgumentError, /Missing required param/
-            )
-          end
-        end
+      it "allows a server hash to be passed in" do
+        base = Cpanel::Base.new(:server => @login, :api_username => "foodawg")
+        base.server.should be_a(Whm::Server)
       end
+
     end
 
     describe "#perform_request" do
