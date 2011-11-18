@@ -71,7 +71,7 @@ module Lumberg
             anything,
             hash_including(
               :cpanel_jsonapi_module   => "SomeModule",
-              :cpanel_jsonapi_function => "some_function",
+              :cpanel_jsonapi_func     => "some_function",
               :cpanel_jsonapi_user     => "foodawg"
             )
           )
