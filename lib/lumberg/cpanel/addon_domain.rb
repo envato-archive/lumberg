@@ -1,6 +1,7 @@
 module Lumberg
   module Cpanel
     class AddonDomain < Base
+      def self.api_module; "AddonDomain"; end
 
       # Delete an addon domain. This will also remove the corresponding
       # subdomain and FTP account
@@ -12,6 +13,15 @@ module Lumberg
         Args.new(options) do |c|
           c.requires :domain, :subdomain
         end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "deladdondomain",
+          :api_username => options.delete(:api_username)
+        }, {
+          :domain    => options.delete(:domain),
+          :subdomain => options.delete(:subdomain)
+        })
       end
 
       # Add an addon domain with a coresponding subdomain
@@ -24,16 +34,34 @@ module Lumberg
         Args.new(options) do |c|
           c.requires :dir, :newdomain, :subdomain
         end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "addaddondomain",
+          :api_username => options.delete(:api_username)
+        }, {
+          :dir       => options.delete(:dir),
+          :newdomain => options.delete(:newdomain),
+          :subdomain => options.delete(:subdomain)
+        })
       end
 
       # List addon domains
       #
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
-      def listaddondomains
+      def listaddondomains(options={})
         Args.new(options) do |c|
-          c.optional :regex
+          c.optionals :regex
         end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "listaddondomains",
+          :api_username => options.delete(:api_username)
+        }, {
+          :regex => options.delete(:regex)
+        })
       end
     end
   end
