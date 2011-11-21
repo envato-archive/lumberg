@@ -51,9 +51,22 @@ module Lumberg
     end
 
     describe "#delsubdomain" do
+      use_vcr_cassette "cpanel/sub_domain/delsubdomain"
+
+      it "requires domain" do
+        requires_attr("domain") { @subd.delsubdomain }
+      end
+
+      it "removes a subdomain" do
+        result = @subd.delsubdomain(:domain => "foo.lumberg-test.com")
+        result[:params][:data][0][:result].should == 1
+      end
     end
 
     describe "#addsubdomain" do
+      it "requires domain"
+      it "requires rootdomain"
+      it "adds a subdomain"
     end
   end
 end
