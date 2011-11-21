@@ -1,0 +1,88 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkedomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Mon, 21 Nov 2011 13:56:34 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "256"
+    body: |
+      {"cpanelresult":{"data":null,"event":{"result":0,"reason":"Undefined subroutine &Cpanel::Park::api2_listparkedomains called at (eval 6) line 1.\n"},"module":"Park","apiversion":2,"func":"listparkedomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Mon, 21 Nov 2011 13:58:13 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "428"
+    body: |
+      {"cpanelresult":{"data":[{"status":"not redirected","reldir":"home:public_html","dir":"/home/lumberg/public_html","basedir":"public_html","domain":"eeeee.at"},{"status":"not redirected","reldir":"home:public_html","dir":"/home/lumberg/public_html","basedir":"public_html","domain":"eeeeeeeee.io"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"listparkeddomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Mon, 21 Nov 2011 14:03:39 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "157"
+    body: |
+      {"cpanelresult":{"data":[],"event":{"result":1},"module":"Park","apiversion":2,"func":"listparkeddomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

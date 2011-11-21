@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Mon, 21 Nov 2011 13:46:19 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "232"
+    body: |
+      {"cpanelresult":{"data":[{"result":1,"reason":"test-park.com was successfully parked on top of lumberg-test.com"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"park","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

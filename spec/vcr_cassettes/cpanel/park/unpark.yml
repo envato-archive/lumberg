@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Mon, 21 Nov 2011 13:50:18 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "532"
+    body: |
+      {"cpanelresult":{"data":[{"result":1,"reason":"DNS server connection established.\nThere was a problem: The zone for 'test-park.com' was not found in named.conf! There is no DNS zone 'entry' to remove! We will still remove the 'zone file' if it exists.\r\nThe zone file entries and files for 'test-park.com' have been removed from the DNS server.\r\nSession completed.\ntest-park.com was successfully unparked"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"unpark","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
