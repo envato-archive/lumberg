@@ -58,15 +58,59 @@ module Lumberg
       end
 
       it "removes a subdomain" do
+        # Add the subdomain first
+        @subd.addsubdomain(:domain => "foo", :rootdomain => "lumberg-test.com")
+
         result = @subd.delsubdomain(:domain => "foo.lumberg-test.com")
         result[:params][:data][0][:result].should == 1
       end
     end
 
     describe "#addsubdomain" do
-      it "requires domain"
-      it "requires rootdomain"
-      it "adds a subdomain"
+      use_vcr_cassette "cpanel/sub_domain/addsubdomain"
+
+      it "requires domain" do
+        requires_attr("domain") {
+          @subd.addsubdomain(:rootdomain => "domain.com")
+        }
+      end
+
+      it "requires rootdomain" do
+        requires_attr("rootdomain") {
+          @subd.addsubdomain(:domain => "sub")
+        }
+      end
+
+      #it "accepts optional dir" do
+      #  accepts_attr("dir") {
+      #    @subd.addsubdomain(
+      #      :domain     => "sub",
+      #      :rootdomain => "domain.com",
+      #      :dir        => "public_html/dir"
+      #    )
+      #  }
+      #end
+
+      #it "accepts optional disallowdot" do
+      #  accepts_attr("disallowdot") {
+      #    @subd.addsubdomain(
+      #      :domain      => "sub",
+      #      :rootdomain  => "domain.com",
+      #      :disallowdot => 1
+      #    )
+      #  }
+      #end
+
+      it "adds a subdomain" do
+        # Delete the subdomain first
+        @subd.delsubdomain(:domain => "sub.lumberg-test.com")
+
+        result = @subd.addsubdomain(
+          :domain     => "sub",
+          :rootdomain => "lumberg-test.com"
+        )
+        result[:params][:data][0][:result].should == 1
+      end
     end
   end
 end
