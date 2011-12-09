@@ -77,6 +77,31 @@ module Lumberg
         })
       end
 
+      # Set mail delivery for a domain
+      #
+      # ==== Requires
+      #  * <tt>:domain</tt> - PENDING
+      #  * <tt>:delivery</tt> - PENDING
+      def set_mail_delivery(options = {})
+        Args.new(options) do |c|
+          c.requires :domain, :delivery
+        end
+
+        delivery_vals = [:local, :remote, :auto, :secondary]
+        unless delivery_vals.include?(options[:delivery].to_sym)
+          raise "Invalid :delivery option"
+        end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "setalwaysaccept",
+          :api_username => options.delete(:api_username)
+        }, {
+          :domain  => options.delete(:domain),
+          :mxcheck => options.delete(:delivery)
+        })
+      end
+
       def getalwaysaccept; end
       def listfilters; end
       def fetchcharmaps; end

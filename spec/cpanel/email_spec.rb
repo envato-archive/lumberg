@@ -4,6 +4,8 @@ require 'lumberg/cpanel'
 
 module Lumberg
   describe Cpanel::Email do
+    let(:domain) { "lumberg-test.com" }
+
     before(:each) do
       @login  = { :host => @whm_host, :hash => @whm_hash }
       @server = Whm::Server.new(@login.dup)
@@ -133,5 +135,63 @@ module Lumberg
         }
       end
     end
+
+    describe "#set_mail_delivery" do
+      use_vcr_cassette "cpanel/email/set_mail_delivery"
+
+      it "should raise an error if given an invalid delivery option" do
+        expect {
+          @email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :invalid
+          )
+        }.to raise_error("Invalid :delivery option")
+      end
+
+      context "remote delivery" do
+        subject {
+          @email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => "remote"
+          )[:params][:data].first
+        }
+
+        it { should be_a(Hash) }
+        its([:mxcheck])   { should == "remote" }
+        its([:secondary]) { should == 0 }
+        its([:remote])    { should == 1 }
+        its([:local])     { should == 0 }
+
+        it "returns info for the mail exchanger" do
+          subject.keys.should include(
+            :mxcheck, :statusmsg, :checkmx, :detected, :results,
+            :secondary, :remote, :status, :local
+          )
+        end
+      end
+
+      context "local delivery" do
+        subject {
+          @email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => "local"
+          )[:params][:data].first
+        }
+
+        it { should be_a(Hash) }
+        its([:mxcheck])   { should == "local" }
+        its([:secondary]) { should == 0 }
+        its([:remote])    { should == 0 }
+        its([:local])     { should == 1 }
+
+        it "returns info for the mail exchanger" do
+          subject.keys.should include(
+            :mxcheck, :statusmsg, :checkmx, :detected, :results,
+            :secondary, :remote, :status, :local
+          )
+        end
+      end
+    end
+
   end
 end

@@ -1,0 +1,59 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=setalwaysaccept&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&mxcheck=remote
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 21:41:03 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "482"
+    body: |
+      {"cpanelresult":{"data":[{"mxcheck":"remote","statusmsg":"Set Always Accept Status to: remote","checkmx":{"mxcheck":"remote","detected":"remote","isprimary":0,"secondary":0,"remote":1,"changed":1,"warnings":[],"issecondary":0,"local":0},"detected":"remote","results":"Set Always Accept Status to: remote","secondary":0,"remote":1,"status":1,"local":0}],"event":{"result":1},"module":"Email","apiversion":2,"func":"setalwaysaccept","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=setalwaysaccept&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&mxcheck=local
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 21:41:05 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "476"
+    body: |
+      {"cpanelresult":{"data":[{"mxcheck":"local","statusmsg":"Set Always Accept Status to: local","checkmx":{"mxcheck":"local","detected":"local","isprimary":1,"secondary":0,"remote":0,"changed":1,"warnings":[],"issecondary":0,"local":1},"detected":"local","results":"Set Always Accept Status to: local","secondary":0,"remote":0,"status":1,"local":1}],"event":{"result":1},"module":"Email","apiversion":2,"func":"setalwaysaccept","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
