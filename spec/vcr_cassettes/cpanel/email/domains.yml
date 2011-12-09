@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listmaildomains&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&skipmain=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 17:28:41 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "482"
+    body: |
+      {"cpanelresult":{"data":[{"domain":"add.lumberg-test.com"},{"domain":"bar.lumberg-test.com"},{"domain":"eeeee.at"},{"domain":"eeeeeeeee.io"},{"domain":"linty.lumberg-test.com"},{"domain":"linty.net"},{"domain":"lumberg-addon.com"},{"domain":"lumberg-test.com"},{"domain":"sub.lumberg-test.com"},{"domain":"team.com"},{"domain":"team.lumberg-test.com"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listmaildomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

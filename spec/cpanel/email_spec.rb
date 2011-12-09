@@ -100,15 +100,38 @@ module Lumberg
       end
     end
 
-    #desribe "#domains" do
-    #  use_vcr_cassette "cpanel/email/domains"
+    describe "#domains" do
+      use_vcr_cassette "cpanel/email/domains"
 
-    #  subject { @email.accounts_[:params][:data] }
-    #  it { should be_an(Array) }
+      subject { @email.domains[:params][:data] }
+      it { should be_an(Array) }
 
-    #  it "returns an array with info for each email account" do
-    #    subject.each {|info| info.keys.should include(:login, :email) }
-    #  end
-    #end
+      it "returns an array with info for each domain" do
+        subject.each {|info| info.keys.should include(:domain) }
+      end
+    end
+
+    describe "#mx" do
+      use_vcr_cassette "cpanel/email/mx"
+
+      subject { @email.mx[:params][:data] }
+      it { should be_an(Array) }
+
+      it "returns an array with info for each mail exchanger" do
+        #puts YAML.dump(subject)
+        subject.each {|info|
+          info.keys.should include(
+            :mxcheck, :entries, :statusmsg, :detected, :secondary, :remote,
+            :status, :alwaysaccept, :mx, :domain, :local
+          )
+
+          info[:entries].each {|entry|
+            entry.keys.should include(
+              :priority, :mx, :domain, :entrycount, :row
+            )
+          }
+        }
+      end
+    end
   end
 end

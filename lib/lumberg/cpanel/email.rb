@@ -45,23 +45,39 @@ module Lumberg
         })
       end
 
-      #def listmaildomains; end
-      #def domains(options = {})
-      #  Args.new(options) do |c|
-      #    c.optionals :skipmain
-      #  end
+      # List domains that can send/receive mail
+      #
+      # ==== Optional
+      #  * <tt>:skipmain</tt> - PENDING
+      def domains(options = {})
+        Args.new(options) do |c|
+          c.optionals :skipmain
+        end
 
-      #  perform_request({
-      #    :api_module   => self.class.api_module,
-      #    :api_function => "listmaildomains",
-      #    :api_username => options.delete(:api_username)
-      #  }, {
-      #    :skipmain => options.delete(:skipmain)
-      #  })
-      #end
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "listmaildomains",
+          :api_username => options.delete(:api_username)
+        }, {
+          :skipmain => options.delete(:skipmain)
+        })
+      end
+
+      def mx(options = {})
+        Args.new(options) do |c|
+          c.optionals :domain
+        end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "listmxs",
+          :api_username => options.delete(:api_username)
+        }, {
+          :domain => options.delete(:domain)
+        })
+      end
 
       def getalwaysaccept; end
-      def listmxs; end
       def listfilters; end
       def fetchcharmaps; end
       def listautoresponders; end
