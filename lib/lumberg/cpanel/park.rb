@@ -3,6 +3,13 @@ module Lumberg
     class Park < Base
       def self.api_module; "Park"; end
 
+      # Add a parked domain
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - PENDING
+      #
+      # ==== Optional
+      #  * <tt>:topdomain</tt> - PENDING
       def add(options = {})
         Args.new(options) do |c|
           c.requires :domain
@@ -19,6 +26,10 @@ module Lumberg
         })
       end
 
+      # Remove a parked domain
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - PENDING
       def remove(options = {})
         Args.new(options) do |c|
           c.requires :domain
@@ -33,6 +44,10 @@ module Lumberg
         })
       end
 
+      # List parked domains
+      #
+      # ==== Optional
+      #  * <tt>:regex</tt> - PENDING
       def list(options = {})
         Args.new(options) do |c|
           c.optionals :regex
@@ -47,6 +62,10 @@ module Lumberg
         })
       end
 
+      # List addon domains
+      #
+      # ==== Optional
+      #  * <tt>:regex</tt> - PENDING
       def list_addon_domains(options = {})
         Args.new(options) do |c|
           c.optionals :regex
