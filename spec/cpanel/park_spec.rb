@@ -21,37 +21,43 @@ module Lumberg
       end
     end
 
-    describe "#park" do
-      use_vcr_cassette "cpanel/park/park"
+    describe "#add" do
+      use_vcr_cassette "cpanel/park/add"
 
       it "requires domain" do
-        requires_attr("domain") { @park.park }
+        requires_attr("domain") { @park.add }
       end
 
       it "creates a new parked domain" do
-        result = @park.park(:domain    => "test-park.com")
+        # Remove first
+        @park.remove(:domain => "test-park.com")
+
+        result = @park.add(:domain => "test-park.com")
         result[:params][:data].first[:result].should == 1
       end
     end
 
-    describe "#unpark" do
-      use_vcr_cassette "cpanel/park/unpark"
+    describe "#remove" do
+      use_vcr_cassette "cpanel/park/remove"
 
       it "requires domain" do
-        requires_attr("domain") { @park.unpark }
+        requires_attr("domain") { @park.remove }
       end
 
       it "removes a parked domain" do
-        result = @park.unpark(:domain => "test-park.com")
+        # Add first
+        @park.add(:domain => "test-park.com")
+
+        result = @park.remove(:domain => "test-park.com")
         result[:params][:data].first[:result].should == 1
       end
     end
 
-    describe "#listparkeddomains" do
-      use_vcr_cassette "cpanel/park/listparkeddomains"
+    describe "#list" do
+      use_vcr_cassette "cpanel/park/list"
 
       context "parked domains exist on the account" do
-        let(:result) { @park.listparkeddomains }
+        let(:result) { @park.list }
         subject { result[:params][:data] }
 
         it "returns an array with info for each parked domain" do
@@ -69,16 +75,16 @@ module Lumberg
         after { @park.api_username = "lumberg" }
 
         it "returns an empty array" do
-          @park.listparkeddomains[:params][:data].should be_empty
+          @park.list[:params][:data].should be_empty
         end
       end
     end
 
-    describe "#listaddondomains" do
-      use_vcr_cassette "cpanel/park/listaddondomains"
+    describe "#list_addon_domains" do
+      use_vcr_cassette "cpanel/park/list_addon_domains"
 
       context "addon domains exist on the account" do
-        let(:result) { @park.listaddondomains }
+        let(:result) { @park.list_addon_domains }
         subject { result[:params][:data] }
 
         it "returns an array with info for each addon domain" do
@@ -96,7 +102,7 @@ module Lumberg
         after { @park.api_username = "lumberg" }
 
         it "returns an empty array" do
-          @park.listaddondomains[:params][:data].should be_empty
+          @park.list_addon_domains[:params][:data].should be_empty
         end
       end
     end
