@@ -77,7 +77,7 @@ module Lumberg
       end
 
       # List email accounts.
-      # Uses Email::listpops
+      # Uses Email::listpops; you probably want to use #accounts
       #
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
@@ -88,19 +88,32 @@ module Lumberg
 
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listpopswithdisk",
+          :api_function => "listpops",
           :api_username => options.delete(:api_username)
         }, {
-          :regex         => options.delete(:regex),
+          :regex => options.delete(:regex),
         })
       end
 
+      # List email accounts.
+      # Uses Email::listpopswithimage; you probably want to use #accounts
       def accounts_with_image(options = {})
+        perform_request(
+          :api_module   => self.class.api_module,
+          :api_function => "listpopswithimage",
+          :api_username => options.delete(:api_username)
+        )
       end
 
+      # List email accounts.
+      # Uses Email::listpopssingle; you probably want to use #accounts
       def accounts_single(options = {})
+        perform_request(
+          :api_module   => self.class.api_module,
+          :api_function => "listpopssingle",
+          :api_username => options.delete(:api_username)
+        )
       end
-
 
       def listdefaultaddresses; end
       def getabsbrowsedir; end

@@ -77,5 +77,27 @@ module Lumberg
         subject.each {|info| info.keys.should include(:login, :email) }
       end
     end
+
+    describe "#accounts_with_image" do
+      use_vcr_cassette "cpanel/email/accounts_with_image"
+
+      subject { @email.accounts_[:params][:data] }
+      it { should be_an(Array) }
+
+      it "returns an array with info for each email account" do
+        subject.each {|info| info.keys.should include(:login, :email) }
+      end
+    end
+
+    describe "#accounts_single" do
+      use_vcr_cassette "cpanel/email/accounts_single"
+
+      subject { @email.accounts_[:params][:data] }
+      it { should be_an(Array) }
+
+      it "returns an array with info for each email account" do
+        subject.each {|info| info.keys.should include(:login, :email) }
+      end
+    end
   end
 end
