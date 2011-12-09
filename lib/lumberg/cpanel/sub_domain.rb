@@ -3,7 +3,7 @@ module Lumberg
     class SubDomain < Base
       def self.api_module; "SubDomain"; end
 
-      def addsubdomain(options = {})
+      def add(options = {})
         Args.new(options) do |c|
           c.requires :domain, :rootdomain
           c.optionals :dir, :disallowdot
@@ -21,7 +21,7 @@ module Lumberg
         })
       end
 
-      def delsubdomain(options = {})
+      def remove(options = {})
         Args.new(options) do |c|
           c.requires :domain
         end
@@ -35,7 +35,7 @@ module Lumberg
         })
       end
 
-      def listsubdomains(options = {})
+      def list(options = {})
         Args.new(options) do |c|
           c.optionals :regex
         end

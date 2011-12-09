@@ -21,11 +21,11 @@ module Lumberg
       end
     end
 
-    describe "#listsubdomains" do
-      use_vcr_cassette "cpanel/sub_domain/listsubdomains"
+    describe "#list" do
+      use_vcr_cassette "cpanel/sub_domain/list"
 
       context "subdomains exist on the account" do
-        let(:result) { @subd.listsubdomains }
+        let(:result) { @subd.list }
         subject { result[:params][:data] }
 
         it "returns an array with info for each subdomain" do
@@ -44,68 +44,48 @@ module Lumberg
         after { @subd.api_username = "lumberg" }
 
         it "returns an empty array" do
-          @subd.listsubdomains[:params][:data].should be_empty
+          @subd.list[:params][:data].should be_empty
         end
 
       end
     end
 
-    describe "#delsubdomain" do
-      use_vcr_cassette "cpanel/sub_domain/delsubdomain"
+    describe "#remove" do
+      use_vcr_cassette "cpanel/sub_domain/remove"
 
       it "requires domain" do
-        requires_attr("domain") { @subd.delsubdomain }
+        requires_attr("domain") { @subd.remove }
       end
 
       it "removes a subdomain" do
         # Add the subdomain first
-        @subd.addsubdomain(:domain => "foo", :rootdomain => "lumberg-test.com")
+        @subd.add(:domain => "foo", :rootdomain => "lumberg-test.com")
 
-        result = @subd.delsubdomain(:domain => "foo.lumberg-test.com")
+        result = @subd.remove(:domain => "foo.lumberg-test.com")
         result[:params][:data][0][:result].should == 1
       end
     end
 
-    describe "#addsubdomain" do
-      use_vcr_cassette "cpanel/sub_domain/addsubdomain"
+    describe "#add" do
+      use_vcr_cassette "cpanel/sub_domain/add"
 
       it "requires domain" do
         requires_attr("domain") {
-          @subd.addsubdomain(:rootdomain => "domain.com")
+          @subd.add(:rootdomain => "domain.com")
         }
       end
 
       it "requires rootdomain" do
         requires_attr("rootdomain") {
-          @subd.addsubdomain(:domain => "sub")
+          @subd.add(:domain => "sub")
         }
       end
 
-      #it "accepts optional dir" do
-      #  accepts_attr("dir") {
-      #    @subd.addsubdomain(
-      #      :domain     => "sub",
-      #      :rootdomain => "domain.com",
-      #      :dir        => "public_html/dir"
-      #    )
-      #  }
-      #end
-
-      #it "accepts optional disallowdot" do
-      #  accepts_attr("disallowdot") {
-      #    @subd.addsubdomain(
-      #      :domain      => "sub",
-      #      :rootdomain  => "domain.com",
-      #      :disallowdot => 1
-      #    )
-      #  }
-      #end
-
       it "adds a subdomain" do
         # Delete the subdomain first
-        @subd.delsubdomain(:domain => "sub.lumberg-test.com")
+        @subd.remove(:domain => "sub.lumberg-test.com")
 
-        result = @subd.addsubdomain(
+        result = @subd.add(
           :domain     => "sub",
           :rootdomain => "lumberg-test.com"
         )

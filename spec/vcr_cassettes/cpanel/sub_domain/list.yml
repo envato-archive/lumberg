@@ -1,0 +1,59 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listsubdomains&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:19:55 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "1751"
+    body: |
+      {"cpanelresult":{"data":[{"domainkey":"add_lumberg-test.com","status":"not redirected","reldir":"home:public_html/lumberg-addon.com","dir":"/home/lumberg/public_html/lumberg-addon.com","subdomain":"add","rootdomain":"lumberg-test.com","domain":"add.lumberg-test.com","basedir":"public_html/lumberg-addon.com"},{"domainkey":"bar_lumberg-test.com","status":"not redirected","reldir":"home:public_html/bar.lumberg-test.com","dir":"/home/lumberg/public_html/bar.lumberg-test.com","subdomain":"bar","rootdomain":"lumberg-test.com","domain":"bar.lumberg-test.com","basedir":"public_html/bar.lumberg-test.com"},{"domainkey":"foo_lumberg-test.com","status":"not redirected","reldir":"home:public_html/foo","dir":"/home/lumberg/public_html/foo","subdomain":"foo","rootdomain":"lumberg-test.com","domain":"foo.lumberg-test.com","basedir":"public_html/foo"},{"domainkey":"linty_lumberg-test.com","status":"not redirected","reldir":"home:public_html/linty.net","dir":"/home/lumberg/public_html/linty.net","subdomain":"linty","rootdomain":"lumberg-test.com","domain":"linty.lumberg-test.com","basedir":"public_html/linty.net"},{"domainkey":"sub_lumberg-test.com","status":"not redirected","reldir":"home:public_html/sub","dir":"/home/lumberg/public_html/sub","subdomain":"sub","rootdomain":"lumberg-test.com","domain":"sub.lumberg-test.com","basedir":"public_html/sub"},{"domainkey":"team_lumberg-test.com","status":"not redirected","reldir":"home:public_html/team.com","dir":"/home/lumberg/public_html/team.com","subdomain":"team","rootdomain":"lumberg-test.com","domain":"team.lumberg-test.com","basedir":"public_html/team.com"}],"event":{"result":1},"module":"SubDomain","apiversion":2,"func":"listsubdomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listsubdomains&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=minimal&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:19:55 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "159"
+    body: |
+      {"cpanelresult":{"data":[],"event":{"result":1},"module":"SubDomain","apiversion":2,"func":"listsubdomains","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

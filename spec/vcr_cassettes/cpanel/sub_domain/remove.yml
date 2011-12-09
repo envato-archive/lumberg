@@ -1,0 +1,59 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&dir=&disallowdot=&domain=foo&rootdomain=lumberg-test.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:19:56 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "370"
+    body: |
+      {"cpanelresult":{"error":"Error from domain wrapper: Domain already exists, it was not added.: foo.lumberg-test.com","data":[{"result":0,"reason":"Error from domain wrapper: Domain already exists, it was not added.: foo.lumberg-test.com"}],"event":{"result":1},"module":"SubDomain","apiversion":2,"func":"addsubdomain","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=delsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&domain=foo.lumberg-test.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:19:56 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "392"
+    body: |
+      {"cpanelresult":{"data":[{"result":1,"reason":"Deleted domain: foo.lumberg-test.com\nThe zone file for 'lumberg-test.com' has been edited and your new data has been added to it.\r\nsaved lumberg-test.com\nThe subdomain, foo.lumberg-test.com has been removed."}],"event":{"result":1},"module":"SubDomain","apiversion":2,"func":"delsubdomain","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
