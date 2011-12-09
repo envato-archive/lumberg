@@ -2,35 +2,6 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&regex=
-    body: 
-    headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
-      code: 200
-      message: OK
-    headers: 
-      x-keep-alive-count: 
-      - "1"
-      keep-alive: 
-      - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 16:25:34 GMT
-      content-type: 
-      - text/plain; charset="utf-8"
-      content-length: 
-      - "483"
-    body: |
-      {"cpanelresult":{"data":[{"diskquota":"unlimited","humandiskquota":"None","user":"test","_diskused":"0","humandiskused":"None","_diskquota":"0","txtdiskquota":"unlimited","mtime":"1323447477","diskusedpercent":0,"diskusedpercent20":0,"login":"test@add.lumberg-test.com","domain":"add.lumberg-test.com","diskused":0,"email":"test@add.lumberg-test.com"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listpopswithdisk","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
     uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&regex=
     body: 
     headers: 
@@ -48,7 +19,7 @@
       server: 
       - cpsrvd/11.30.4.6
       date: 
-      - Fri, 09 Dec 2011 16:29:46 GMT
+      - Fri, 09 Dec 2011 17:27:06 GMT
       content-type: 
       - text/plain; charset="utf-8"
       content-length: 

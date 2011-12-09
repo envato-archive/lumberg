@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&regex=
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithimage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
     headers: 
       authorization: 
@@ -19,12 +19,12 @@
       server: 
       - cpsrvd/11.30.4.6
       date: 
-      - Fri, 09 Dec 2011 16:29:47 GMT
+      - Fri, 09 Dec 2011 17:27:06 GMT
       content-type: 
       - text/plain; charset="utf-8"
       content-length: 
-      - "265"
+      - "309"
     body: |
-      {"cpanelresult":{"data":[{"login":"test@add.lumberg-test.com","email":"test@add.lumberg-test.com"},{"login":"Main Account","email":"lumberg"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listpops","postevent":{"result":1},"preevent":{"result":1}}}
+      {"cpanelresult":{"data":[{"login":"test@add.lumberg-test.com","email":"test@add.lumberg-test.com"},{"login":"<img src=\"/frontend/sa2/images/mainacct.jpg\">","email":"lumberg"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listpopswithimage","postevent":{"result":1},"preevent":{"result":1}}}
 
     http_version: "1.1"
