@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listforwards&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 16:08:00 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "599"
+    body: |
+      {"cpanelresult":{"data":[{"uri_dest":"efefa%40lumberg-test.com","forward":"ddddd@llllll.com","html_dest":"efefa@lumberg-test.com","uri_forward":"ddddd%40llllll.com","dest":"efefa@lumberg-test.com","html_forward":"ddddd@llllll.com"},{"uri_dest":"sadfasdfasdf%40lumberg-test.com","forward":"asdfasfasd@lllll.com","html_dest":"sadfasdfasdf@lumberg-test.com","uri_forward":"asdfasfasd%40lllll.com","dest":"sadfasdfasdf@lumberg-test.com","html_forward":"asdfasfasd@lllll.com"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listforwards","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

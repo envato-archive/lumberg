@@ -1,0 +1,30 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listlists&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=&regex=
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 15:55:40 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "564"
+    body: |
+      {"cpanelresult":{"data":[{"humandiskused":"17.13 KB","list":"salt@eeeee.at","desthost":"mail.lumberg-test.com","diskused":"17541","listid":"salt_eeeee.at"},{"humandiskused":"19.86 KB","list":"test1@lumberg-test.com","desthost":"mail.lumberg-test.com","diskused":"20332","listid":"test1_lumberg-test.com"},{"humandiskused":"20.77 KB","list":"test2@linty.net","desthost":"mail.lumberg-test.com","diskused":"21272","listid":"test2_linty.net"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listlists","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
