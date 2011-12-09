@@ -1,0 +1,59 @@
+--- 
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html%2Ftest-magic.com%2F&newdomain=test-magic.com&subdomain=tmagic
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:08:46 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "329"
+    body: |
+      {"cpanelresult":{"data":[{"result":1,"reason":"Using nameservers with the following IPs: 216.69.185.17,208.109.255.17\ntest-magic.com was successfully parked on top of tmagic.lumberg-test.com"}],"event":{"result":1},"module":"AddonDomain","apiversion":2,"func":"addaddondomain","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"
+- !ruby/struct:VCR::HTTPInteraction 
+  request: !ruby/struct:VCR::Request 
+    method: :get
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-magic.com&subdomain=tmagic_lumberg-test.com
+    body: 
+    headers: 
+      authorization: 
+      - WHM root:<FILTERED_HASH>
+  response: !ruby/struct:VCR::Response 
+    status: !ruby/struct:VCR::ResponseStatus 
+      code: 200
+      message: OK
+    headers: 
+      x-keep-alive-count: 
+      - "1"
+      keep-alive: 
+      - timeout=70, max=200
+      server: 
+      - cpsrvd/11.30.4.6
+      date: 
+      - Fri, 09 Dec 2011 14:08:49 GMT
+      content-type: 
+      - text/plain; charset="utf-8"
+      content-length: 
+      - "402"
+    body: |
+      {"cpanelresult":{"data":[{"result":1,"reason":"Deleted domain: tmagic.lumberg-test.com\nThe zone file for 'lumberg-test.com' has been edited and your new data has been added to it.\r\nsaved lumberg-test.com\nThe subdomain, tmagic.lumberg-test.com has been removed."}],"event":{"result":1},"module":"AddonDomain","apiversion":2,"func":"deladdondomain","postevent":{"result":1},"preevent":{"result":1}}}
+
+    http_version: "1.1"

@@ -21,28 +21,28 @@ module Lumberg
       end
     end
 
-    describe "#deladdondomain" do
-      use_vcr_cassette "cpanel/addon_domain/deladdondomain"
+    describe "#remove" do
+      use_vcr_cassette "cpanel/addon_domain/remove"
 
       it "requires domain" do
-        requires_attr("domain") { @addond.deladdondomain }
+        requires_attr("domain") { @addond.remove }
       end
 
       it "requires subdomain" do
         requires_attr("subdomain") {
-          @addond.deladdondomain(:domain => "example.com")
+          @addond.remove(:domain => "example.com")
         }
       end
 
       it "removes an addon domain" do
-        # Create the addon domain to be deleted
-        @addond.addaddondomain(
+        # Create the addon domain to be removed
+        @addond.add(
           :dir       => "public_html/test-addon.com/",
           :newdomain => "test-addon.com",
           :subdomain => "testadd"
         )
 
-        result = @addond.deladdondomain(
+        result = @addond.remove(
           :domain    => "test-addon.com",
           :subdomain => "testadd_lumberg-test.com"
         )
@@ -52,27 +52,27 @@ module Lumberg
 
     end
 
-    describe "#addaddondomain" do
-      use_vcr_cassette "cpanel/addon_domain/addaddondomain"
+    describe "#add" do
+      use_vcr_cassette "cpanel/addon_domain/add"
 
       it "requires dir" do
-        requires_attr("dir") { @addond.addaddondomain }
+        requires_attr("dir") { @addond.add }
       end
 
       it "requires newdomain" do
         requires_attr("newdomain") {
-          @addond.addaddondomain(:dir => "/some/path")
+          @addond.add(:dir => "/some/path")
         }
       end
 
       it "requires subdomain" do
         requires_attr("subdomain") {
-          @addond.addaddondomain(:dir => "/some/path", :newdomain => "new.com")
+          @addond.add(:dir => "/some/path", :newdomain => "new.com")
         }
       end
 
       it "adds an addon domain" do
-        result = @addond.addaddondomain(
+        result = @addond.add(
           :dir       => "public_html/test-magic.com/",
           :newdomain => "test-magic.com",
           :subdomain => "tmagic"
@@ -80,18 +80,18 @@ module Lumberg
         result[:params][:data][0][:result].should == 1
 
         # Remove the addon domain
-        result = @addond.deladdondomain(
+        result = @addond.remove(
           :domain    => "test-magic.com",
           :subdomain => "tmagic_lumberg-test.com"
         )
       end
     end
 
-    describe "#listaddondomains" do
-      use_vcr_cassette "cpanel/addon_domain/listaddondomains"
+    describe "#list" do
+      use_vcr_cassette "cpanel/addon_domain/list"
 
       context "addon domains exist on the account" do
-        let(:result) { @addond.listaddondomains }
+        let(:result) { @addond.list }
         subject { result[:params][:data] }
 
         it "returns an array with info for each addon domain" do
@@ -110,7 +110,7 @@ module Lumberg
         after { @addond.api_username = "lumberg" }
 
         it "returns an empty array" do
-          @addond.listaddondomains[:params][:data].should be_empty
+          @addond.list[:params][:data].should be_empty
         end
       end
     end

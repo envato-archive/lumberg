@@ -9,7 +9,7 @@ module Lumberg
       # ==== Required
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:subdomain</tt> - PENDING
-      def deladdondomain(options = {})
+      def remove(options = {})
         Args.new(options) do |c|
           c.requires :domain, :subdomain
         end
@@ -30,7 +30,7 @@ module Lumberg
       #  * <tt>:dir</tt> - PENDING
       #  * <tt>:newdomain</tt> - PENDING
       #  * <tt>:subdomain</tt> - PENDING
-      def addaddondomain(options = {})
+      def add(options = {})
         Args.new(options) do |c|
           c.requires :dir, :newdomain, :subdomain
         end
@@ -50,7 +50,7 @@ module Lumberg
       #
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
-      def listaddondomains(options={})
+      def list(options={})
         Args.new(options) do |c|
           c.optionals :regex
         end
