@@ -65,7 +65,7 @@ module Lumberg
 
       # List mail exchanger information
       #
-      # ==== Optional
+      # ==== Required
       #  * <tt>:domain</tt> - PENDING
       def mx(options = {})
         Args.new(options) do |c|
