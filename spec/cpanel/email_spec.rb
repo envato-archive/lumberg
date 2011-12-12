@@ -116,8 +116,12 @@ module Lumberg
     describe "#mx" do
       use_vcr_cassette "cpanel/email/mx"
 
-      subject { @email.mx[:params][:data] }
+      subject { @email.mx(:domain => domain)[:params][:data] }
       it { should be_an(Array) }
+
+      it "requies a domain" do
+        requires_attr("domain") { @email.mx }
+      end
 
       it "returns an array with info for each mail exchanger" do
         #puts YAML.dump(subject)

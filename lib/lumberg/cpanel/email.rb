@@ -69,7 +69,7 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       def mx(options = {})
         Args.new(options) do |c|
-          c.optionals :domain
+          c.requires :domain
         end
 
         perform_request({

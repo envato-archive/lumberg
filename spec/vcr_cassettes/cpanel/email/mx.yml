@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listmxs&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=
+    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listmxs&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com
     body: 
     headers: 
       authorization: 
@@ -19,12 +19,12 @@
       server: 
       - cpsrvd/11.30.4.6
       date: 
-      - Fri, 09 Dec 2011 18:08:49 GMT
+      - Mon, 12 Dec 2011 16:55:17 GMT
       content-type: 
       - text/plain; charset="utf-8"
       content-length: 
-      - "3377"
+      - "450"
     body: |
-      {"cpanelresult":{"data":[{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"add.lumberg-test.com","row":"odd","domain":"add.lumberg-test.com","priority":0}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"add.lumberg-test.com","domain":"add.lumberg-test.com","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"bar.lumberg-test.com","row":"odd","domain":"bar.lumberg-test.com","priority":0}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"bar.lumberg-test.com","domain":"bar.lumberg-test.com","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"mail.eeeee.at","row":"odd","domain":"eeeee.at","priority":"10"}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"mail.eeeee.at","domain":"eeeee.at","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"mail.eeeeeeeee.io","row":"odd","domain":"eeeeeeeee.io","priority":"10"}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"mail.eeeeeeeee.io","domain":"eeeeeeeee.io","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"linty.lumberg-test.com","row":"odd","domain":"linty.lumberg-test.com","priority":0}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"linty.lumberg-test.com","domain":"linty.lumberg-test.com","local":0},{"mxcheck":"remote","entries":[{"entrycount":1,"mx":"mail.linty.net","row":"odd","domain":"linty.net","priority":"10"}],"statusmsg":"Fetched MX List","detected":"remote","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"mail.linty.net","domain":"linty.net","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"mail.lumberg-addon.com","row":"odd","domain":"lumberg-addon.com","priority":"10"}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"mail.lumberg-addon.com","domain":"lumberg-addon.com","local":0},{"mxcheck":"local","entries":[{"entrycount":1,"mx":"mail.lumberg-test.com","row":"odd","domain":"lumberg-test.com","priority":"10"}],"statusmsg":"Fetched MX List","detected":"local","secondary":0,"remote":0,"status":1,"alwaysaccept":1,"mx":"mail.lumberg-test.com","domain":"lumberg-test.com","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"sub.lumberg-test.com","row":"odd","domain":"sub.lumberg-test.com","priority":0}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"sub.lumberg-test.com","domain":"sub.lumberg-test.com","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"team.com","row":"odd","domain":"team.com","priority":"10"}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"team.com","domain":"team.com","local":0},{"mxcheck":"auto","entries":[{"entrycount":1,"mx":"team.lumberg-test.com","row":"odd","domain":"team.lumberg-test.com","priority":0}],"statusmsg":"Fetched MX List","detected":"auto","secondary":0,"remote":0,"status":1,"alwaysaccept":0,"mx":"team.lumberg-test.com","domain":"team.lumberg-test.com","local":0}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listmxs","postevent":{"result":1},"preevent":{"result":1}}}
+      {"cpanelresult":{"data":[{"mxcheck":"local","entries":[{"entrycount":1,"mx":"mail.lumberg-test.com","row":"odd","domain":"lumberg-test.com","priority":"10"}],"statusmsg":"Fetched MX List","detected":"local","secondary":0,"remote":0,"status":1,"alwaysaccept":1,"mx":"mail.lumberg-test.com","domain":"lumberg-test.com","local":0}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listmxs","postevent":{"result":1},"preevent":{"result":1}}}
 
     http_version: "1.1"
