@@ -7,5 +7,5 @@ rvm:
   - 1.9.3
   - ree
   - rbx
-  - rbx-2.0
+  - rbx-head
   - jruby
