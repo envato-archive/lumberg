@@ -4,7 +4,7 @@ notifications:
   email:
     recipients:
       - engineering@internal.site5.com
-    on_success: always
+    on_success: never
     on_failure: always
 rvm:
   - 1.8.7
