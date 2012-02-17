@@ -243,4 +243,4 @@ remove any sensitive information from your cassettes.
 Copyright
 =========
 
-Copyright (c) 2011 Site5. See LICENSE for details.
+Copyright (c) 2012 Site5.com. See LICENSE for details.
