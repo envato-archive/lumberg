@@ -10,6 +10,7 @@ require 'net/https'
 require 'net_http_hacked'
 require 'lumberg/version'
 require 'lumberg/exceptions'
+require 'lumberg/logger'
 require 'lumberg/whm/args'
 require 'lumberg/whm'
 
