@@ -105,6 +105,15 @@ module Lumberg
             @whm.boolean_params.should include(:true, :false)
             req[:params].should include(:true => true, :false => false, :other => 2)
           end
+          
+          it "logs debug info if configured" do
+            Lumberg.configuration.options[:debug] = true
+            JSON.should_receive(:parse).and_return([])
+            Net::HTTP.any_instance.should_receive(:set_debug_output)
+            @whm.perform_request('my_function')
+            # Teardown
+            Lumberg.configuration.options[:debug] = nil
+          end
         end
       end
 

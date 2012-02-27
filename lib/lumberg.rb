@@ -10,15 +10,37 @@ require 'net/https'
 require 'net_http_hacked'
 require 'lumberg/version'
 require 'lumberg/exceptions'
-require 'lumberg/logger'
+require 'lumberg/config'
 require 'lumberg/whm/args'
 require 'lumberg/whm'
 
 module Lumberg
-  class << self
-    def base_path
-      File.dirname(__FILE__)
-    end
+    
+  extend self
+  
+  attr_accessor :configuration
+  
+  def base_path
+    File.dirname(__FILE__)
   end
+  
+  self.configuration ||= Lumberg::Config.new
+
+   # Specificy the config via block
+   #
+   # ==== Attributes
+   #
+   # * +debug+ - Set to true to log debug info to $stderr, or a file path
+   #
+   # ==== Example
+   #
+   #   Lumberg.config do |c|
+   #     c.dubug "path/to/file.log"
+   #   end
+   def config
+     yield self.configuration if block_given?
+     self.configuration.options
+   end
+   
 end
 

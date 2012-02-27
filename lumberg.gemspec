@@ -15,7 +15,6 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "lumberg"
 
   s.add_dependency 'json'
-  s.add_dependency 'logging', '~> 1.7.0'
   s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
   s.add_development_dependency 'rspec', '~> 2.8.0'
   s.add_development_dependency 'fakeweb', '~> 1.3.0'

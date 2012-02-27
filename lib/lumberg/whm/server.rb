@@ -252,7 +252,11 @@ module Lumberg
         begin
           Net::HTTP.skip_bad_headers = true
           http = Net::HTTP.new(uri.host, uri.port)
-          http.set_debug_output($stderr) if ENV['LUMBERG_DEBUG']
+          if Lumberg.configuration[:debug]
+            out = $stderr
+            out = Lumberg.configuration[:debug] if Lumberg.configuration[:debug].is_a?(String)
+            http.set_debug_output(out)
+          end
 
           enable_ssl(http) if uri.port == 2087
 
