@@ -264,8 +264,7 @@ module Lumberg
             h.request(req)
           end
         rescue Exception => e
-          puts "Error when sending the request. 
-                 Enable debug output by setting the environment variable LUMBERG_DEBUG and try again."
+          puts "Error when sending the request. Enable debug output by setting the configuration option."
           raise e
         ensure
           Net::HTTP.skip_bad_headers = false
