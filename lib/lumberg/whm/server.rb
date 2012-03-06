@@ -247,6 +247,25 @@ module Lumberg
       end
 
       private
+      
+      def prepare_request(uri)
+        # Setup request URL
+        url = uri.path
+        query = uri.query
+        url << "?" + query unless query.nil? || query.empty?
+
+        req = Net::HTTP::Get.new(url)
+
+        # Add Auth Header
+        if basic_auth
+          encoded = Base64.encode64("#{@user}:#{@hash}")
+          auth = "Basic #{encoded}"
+        else
+          auth = "WHM #{@user}:#{@hash}"
+        end
+        req.add_field("Authorization", auth)
+        req
+      end
 
       def do_request(uri, req)
         begin
@@ -338,25 +357,6 @@ module Lumberg
         else
           super
         end
-      end
-
-      def prepare_request(uri)
-        # Setup request URL
-        url = uri.path
-        query = uri.query
-        url << "?" + query unless query.nil? || query.empty?
-
-        req = Net::HTTP::Get.new(url)
-
-        # Add Auth Header
-        if basic_auth
-          encoded = Base64.encode64("#{@user}:#{@hash}")
-          auth = "Basic #{encoded}"
-        else
-          auth = "WHM #{@user}:#{@hash}"
-        end
-        req.add_field("Authorization", auth)
-        req
       end
 
       def enable_ssl(http)
