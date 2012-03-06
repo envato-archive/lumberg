@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3&trueowner=something
+    uri: https://myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3&trueowner=something
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3
+    uri: https://myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3&trueowner=something
+    uri: https://myhost.com:2087/json-api/adddns?domain=example.com&ip=192.1.2.3&trueowner=something
     body: 
     headers: 
       authorization: 

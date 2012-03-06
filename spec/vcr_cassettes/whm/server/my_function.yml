@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/my_function
+    uri: https://myhost.com:2087/json-api/my_function
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/my_function?arg1=1&arg2=test
+    uri: https://myhost.com:2087/json-api/my_function?arg1=1&arg2=test
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/my_function?block=1
+    uri: https://myhost.com:2087/json-api/my_function?block=1
     body: 
     headers: 
       authorization: 

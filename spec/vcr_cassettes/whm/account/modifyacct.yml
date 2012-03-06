@@ -1,7 +1,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/modifyacct?domain=example.com&user=changeme
+    uri: https://myhost.com:2087/json-api/modifyacct?domain=example.com&user=changeme
     body: 
     headers: 
       authorization: 
@@ -22,7 +22,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/modifyacct?user=notexists
+    uri: https://myhost.com:2087/json-api/modifyacct?user=notexists
     body: 
     headers: 
       authorization: 
@@ -43,7 +43,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/modifyacct?user=changeme
+    uri: https://myhost.com:2087/json-api/modifyacct?user=changeme
     body: 
     headers: 
       authorization: 

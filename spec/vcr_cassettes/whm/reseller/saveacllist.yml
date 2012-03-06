@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/saveacllist?acllist=testacllist
+    uri: https://myhost.com:2087/json-api/saveacllist?acllist=testacllist
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/saveacllist?acl-ssl=1&acllist=testacllist
+    uri: https://myhost.com:2087/json-api/saveacllist?acl-ssl=1&acllist=testacllist
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/saveacllist?acl-add-pkg=1&acl-ssl=1&acl-stats=1&acllist=testacllist
+    uri: https://myhost.com:2087/json-api/saveacllist?acl-add-pkg=1&acl-ssl=1&acl-stats=1&acllist=testacllist
     body: 
     headers: 
       authorization: 
@@ -65,7 +65,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/saveacllist?acl-add-pkg-ip=1&acl-add-pkg=1&acllist=testacllist
+    uri: https://myhost.com:2087/json-api/saveacllist?acl-add-pkg-ip=1&acl-add-pkg=1&acllist=testacllist
     body: 
     headers: 
       authorization: 

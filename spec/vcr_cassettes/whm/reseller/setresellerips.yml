@@ -1,7 +1,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellerips?ips=192.1.2.3&user=bob
+    uri: https://myhost.com:2087/json-api/setresellerips?ips=192.1.2.3&user=bob
     body: 
     headers: 
       authorization: 
@@ -22,7 +22,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellerips?ips=1.2.3.4&user=bob
+    uri: https://myhost.com:2087/json-api/setresellerips?ips=1.2.3.4&user=bob
     body: 
     headers: 
       authorization: 

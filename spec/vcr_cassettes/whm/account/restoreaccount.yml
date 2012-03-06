@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
     body: 
     headers: 
       authorization: 
@@ -48,7 +48,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body: 
     headers: 
       authorization: 
@@ -73,7 +73,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privsfdsa
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privsfdsa
     body: 
     headers: 
       authorization: 
@@ -94,7 +94,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body: 
     headers: 
       authorization: 
@@ -115,7 +115,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body: 
     headers: 
       authorization: 
@@ -136,7 +136,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body: 
     headers: 
       authorization: 
@@ -157,7 +157,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body: 
     headers: 
       authorization: 
@@ -178,7 +178,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body: 
     headers: 
       authorization: 

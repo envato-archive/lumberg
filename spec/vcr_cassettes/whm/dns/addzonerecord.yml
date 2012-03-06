@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/addzonerecord?address=192.1.2.3&name=example.com.&type=A&zone=example.com
+    uri: https://myhost.com:2087/json-api/addzonerecord?address=192.1.2.3&name=example.com.&type=A&zone=example.com
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/addzonerecord?name=1&ptdrname=example.com&type=PTR&zone=example.com
+    uri: https://myhost.com:2087/json-api/addzonerecord?name=1&ptdrname=example.com&type=PTR&zone=example.com
     body: 
     headers: 
       authorization: 

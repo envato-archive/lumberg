@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/changepackage?pkg=default&user=notexists
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=default&user=notexists
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/changepackage?pkg=fakepackage&user=changeme
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=fakepackage&user=changeme
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/changepackage?pkg=gold&user=changeme
+    uri: https://myhost.com:2087/json-api/changepackage?pkg=gold&user=changeme
     body: 
     headers: 
       authorization: 

@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/terminatereseller?reseller=terminat&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=terminat&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/terminatereseller?reseller=terminat&terminatereseller=1&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=terminat&terminatereseller=1&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+terminat
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/terminatereseller?reseller=what&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+what
+    uri: https://myhost.com:2087/json-api/terminatereseller?reseller=what&verify=I+understand+this+will+irrevocably+remove+all+the+accounts+owned+by+the+reseller+what
     body: 
     headers: 
       authorization: 

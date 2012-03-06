@@ -3,14 +3,12 @@ $:.unshift(File.dirname(__FILE__))
 # External Libs
 require 'json'
 require 'uri'
-require 'net/http'
-require 'net/https'
+require 'patron'
 require 'faraday'
 require 'faraday_middleware'
 require 'logger'
 
 # Internal Libs
-require 'net_http_hacked'
 require 'lumberg/version'
 require 'lumberg/exceptions'
 require 'lumberg/config'

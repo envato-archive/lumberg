@@ -1,7 +1,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts
+    uri: https://myhost.com:2087/json-api/listaccts
     body: 
     headers: 
       authorization: 
@@ -22,7 +22,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=%2Fch.%2A%3Fme
+    uri: https://myhost.com:2087/json-api/listaccts?search=%2Fch.%2A%3Fme
     body: 
     headers: 
       authorization: 
@@ -43,7 +43,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=changeme&searchtype=user
+    uri: https://myhost.com:2087/json-api/listaccts?search=changeme&searchtype=user
     body: 
     headers: 
       authorization: 
@@ -64,7 +64,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=192.1.2.3&searchtype=ip
+    uri: https://myhost.com:2087/json-api/listaccts?search=192.1.2.3&searchtype=ip
     body: 
     headers: 
       authorization: 
@@ -85,7 +85,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=change.com&searchtype=domain
+    uri: https://myhost.com:2087/json-api/listaccts?search=change.com&searchtype=domain
     body: 
     headers: 
       authorization: 
@@ -106,7 +106,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=192%5C..%2A%3F%5C.1%5C.20&searchtype=ip
+    uri: https://myhost.com:2087/json-api/listaccts?search=192%5C..%2A%3F%5C.1%5C.20&searchtype=ip
     body: 
     headers: 
       authorization: 
@@ -127,7 +127,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=ch.%2A%3Fe.com&searchtype=domain
+    uri: https://myhost.com:2087/json-api/listaccts?search=ch.%2A%3Fe.com&searchtype=domain
     body: 
     headers: 
       authorization: 

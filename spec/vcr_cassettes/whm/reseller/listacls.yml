@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/listacls
+    uri: https://myhost.com:2087/json-api/listacls
     body: 
     headers: 
       authorization: 

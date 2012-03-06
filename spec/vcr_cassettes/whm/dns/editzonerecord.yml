@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=1&domain=example.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=1&domain=example.com&ttl=86400
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=1&domain=notexists.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=1&domain=notexists.com&ttl=86400
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=200&domain=example.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=200&domain=example.com&ttl=86400
     body: 
     headers: 
       authorization: 

@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/acctcounts?user=bob
+    uri: https://myhost.com:2087/json-api/acctcounts?user=bob
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/acctcounts?user=notexists
+    uri: https://myhost.com:2087/json-api/acctcounts?user=notexists
     body: 
     headers: 
       authorization: 

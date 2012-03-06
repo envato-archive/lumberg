@@ -176,10 +176,9 @@ module Lumberg
           c.params = params
           c.request :url_encoded
           c.response :logger, create_logger_instance
-          # TODO: c.response :skip_bad_headers
           # TODO: c.response :whm_errors
           c.response :json
-          c.adapter :net_http
+          c.adapter :patron
         end.get(function).body
         # TODO: Move to middleware
         format_response

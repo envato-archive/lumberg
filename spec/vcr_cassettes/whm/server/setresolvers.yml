@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresolvers?nameserver1=123.123.123.123&nameserver2=123.123.123.124
+    uri: https://myhost.com:2087/json-api/setresolvers?nameserver1=123.123.123.123&nameserver2=123.123.123.124
     body: 
     headers: 
       authorization: 

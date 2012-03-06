@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/limitbw?bwlimit=99999&user=changeme
+    uri: https://myhost.com:2087/json-api/limitbw?bwlimit=99999&user=changeme
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/limitbw?bwlimit=99999&user=dontchangeme
+    uri: https://myhost.com:2087/json-api/limitbw?bwlimit=99999&user=dontchangeme
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/accountsummary?user=changeme
+    uri: https://myhost.com:2087/json-api/accountsummary?user=changeme
     body: 
     headers: 
       authorization: 
@@ -65,7 +65,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://root:iscool@myhost.com:2087/json-api/accountsummary?user=notexists
+    uri: https://myhost.com:2087/json-api/accountsummary?user=notexists
     body: 
     headers: 
       authorization: 
