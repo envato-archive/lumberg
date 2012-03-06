@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/removezonerecord?Line=1&zone=example.com
+    uri: https://root:iscool@myhost.com:2087/json-api/removezonerecord?Line=1&zone=example.com
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/removezonerecord?Line=200&zone=example.com
+    uri: https://root:iscool@myhost.com:2087/json-api/removezonerecord?Line=200&zone=example.com
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/removezonerecord?Line=1&zone=notexists.com
+    uri: https://root:iscool@myhost.com:2087/json-api/removezonerecord?Line=1&zone=notexists.com
     body: 
     headers: 
       authorization: 

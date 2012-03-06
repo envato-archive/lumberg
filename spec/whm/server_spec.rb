@@ -86,15 +86,13 @@ module Lumberg
             @whm.perform_request('my_function')
             @whm.function.should == 'my_function'
             @whm.params.should be_empty
-            @whm.raw_response.should be_a(Net::HTTPOK)
           end
 
           it "calls the proper URL and arguments" do
             JSON.should_receive(:parse).with("[]").and_return([])
             @whm.perform_request('my_function', :arg1 => 1, :arg2 => 'test')
             @whm.function.should == 'my_function'
-            @whm.params.should == "arg1=1&arg2=test"
-            @whm.raw_response.should be_a(Net::HTTPOK)
+            @whm.params.should == {:arg1 => 1, :arg2 => 'test'}
           end
 
           it "changes params to booleans when given a block" do
@@ -105,15 +103,7 @@ module Lumberg
             @whm.boolean_params.should include(:true, :false)
             req[:params].should include(:true => true, :false => false, :other => 2)
           end
-          
-          it "logs debug info if configured" do
-            Lumberg.configuration.options[:debug] = true
-            JSON.should_receive(:parse).and_return([])
-            Net::HTTP.any_instance.should_receive(:set_debug_output)
-            @whm.perform_request('my_function')
-            # Teardown
-            Lumberg.configuration.options[:debug] = nil
-          end
+
         end
       end
 
@@ -300,38 +290,6 @@ module Lumberg
 
       it "raises to super" do
         expect { @whm.asdf }.to raise_error(NoMethodError)
-      end
-    end
-
-    describe "#prepare_request" do
-      context "when @basic_auth is true" do
-        before do
-          @whm.basic_auth = true
-          @req = @whm.instance_eval {
-            prepare_request(URI.parse("http://example.com/"))
-          }
-        end
-
-        it "sets Authorization header to 'Basic {base64text}'" do
-          test_auth = Base64.encode64("#{@whm.user}:#{@whm.hash}")
-          auth = @req['Authorization']
-          auth.should_not be_nil
-          auth.should == "Basic #{test_auth}"
-        end
-      end
-
-      context "when @basic_auth is false" do
-        before do
-          @req = @whm.instance_eval {
-            prepare_request(URI.parse("http://example.com/"))
-          }
-        end
-        it "sets Authorization header to 'WHM user:hash'" do
-          test_auth = "#{@whm.user}:#{@whm.hash}"
-          auth = @req['Authorization']
-          auth.should_not be_nil
-          auth.should == "WHM #{test_auth}"
-        end
       end
     end
 

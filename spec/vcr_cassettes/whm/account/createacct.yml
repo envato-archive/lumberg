@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/createacct?domain=valid-thing.com&password=hummingbird123&username=valid
+    uri: https://root:iscool@myhost.com:2087/json-api/createacct?domain=valid-thing.com&password=hummingbird123&username=valid
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/createacct?domain=invalid-thing.com&password=hummingbird123&username=invalid
+    uri: https://root:iscool@myhost.com:2087/json-api/createacct?domain=invalid-thing.com&password=hummingbird123&username=invalid
     body: 
     headers: 
       authorization: 

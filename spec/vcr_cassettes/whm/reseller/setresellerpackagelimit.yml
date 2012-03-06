@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/setresellerpackagelimit?allowed=1&no_limit=0&package=gold&user=bob
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellerpackagelimit?allowed=1&no_limit=0&package=gold&user=bob
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/setresellerpackagelimit?no_limit=1&package=gold&user=bob
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellerpackagelimit?no_limit=1&package=gold&user=bob
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/setresellerpackagelimit?allowed=1&no_limit=0&package=gold&user=bob
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellerpackagelimit?allowed=1&no_limit=0&package=gold&user=bob
     body: 
     headers: 
       authorization: 

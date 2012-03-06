@@ -5,6 +5,9 @@ require 'json'
 require 'uri'
 require 'net/http'
 require 'net/https'
+require 'faraday'
+require 'faraday_middleware'
+require 'logger'
 
 # Internal Libs
 require 'net_http_hacked'

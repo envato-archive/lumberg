@@ -2,7 +2,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/testing
+    uri: https://root:iscool@myhost.com:2087/json-api/testing
     body: 
     headers: 
       authorization: 
@@ -23,7 +23,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/testing_error
+    uri: https://root:iscool@myhost.com:2087/json-api/testing_error
     body: 
     headers: 
       authorization: 
@@ -44,7 +44,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/testing_query
+    uri: https://root:iscool@myhost.com:2087/json-api/testing_query
     body: 
     headers: 
       authorization: 
@@ -65,7 +65,7 @@
 - !ruby/struct:VCR::HTTPInteraction 
   request: !ruby/struct:VCR::Request 
     method: :get
-    uri: https://myhost.com:2087/json-api/testing_unknown
+    uri: https://root:iscool@myhost.com:2087/json-api/testing_unknown
     body: 
     headers: 
       authorization: 
