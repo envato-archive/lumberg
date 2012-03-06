@@ -16,9 +16,6 @@ module Lumberg
       # API username - :default => root
       attr_accessor :user
 
-      # Raw HTTP response from WHM
-      attr_accessor :raw_response
-
       # WHM parsed response
       attr_reader :response
 
