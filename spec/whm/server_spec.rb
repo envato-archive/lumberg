@@ -99,8 +99,6 @@ module Lumberg
             req = @whm.perform_request('my_function', :block => 1) do |p|
               p.boolean_params =  :true, :false
             end
-
-            @whm.boolean_params.should include(:true, :false)
             req[:params].should include(:true => true, :false => false, :other => 2)
           end
 
@@ -131,75 +129,6 @@ module Lumberg
           @whm.perform_request('applist')
           @whm.function.should == 'applist'
         end
-      end
-    end
-
-    describe "#response_type" do
-
-      use_vcr_cassette "whm/server/response_type"
-
-      it "detects an action function" do
-        @whm.perform_request('testing')
-        @whm.send(:response_type).should == :action
-      end
-
-      it "detects an error function" do
-        @whm.perform_request('testing_error')
-        @whm.send(:response_type).should == :error
-      end
-
-      it "detects a query function" do
-        @whm.perform_request('testing_query')
-        @whm.send(:response_type).should == :query
-      end
-
-      it "detects an unknown function" do
-        @whm.perform_request('testing_unknown')
-        @whm.send(:response_type).should == :unknown
-      end
-
-      it "forces response type" do
-        @whm.force_response_type = :magic
-        @whm.send(:response_type).should == :magic
-        @whm.perform_request('testing')
-      end
-
-      it "resets response_type each request" do
-        @whm.force_response_type.should be_nil
-        @whm.force_response_type = :magic
-        @whm.send(:response_type).should == :magic
-
-        @whm.force_response_type = :magic
-        @whm.perform_request('testing')
-        @whm.force_response_type.should be_nil
-      end
-
-
-      it "returns true for a successful :action" do
-        @whm.perform_request('testing')
-        response = @whm.send(:format_response)
-        response[:success].should be(true)
-      end
-
-      it "returns true for a successful :query" do
-        @whm.perform_request('testing_query')
-        response = @whm.send(:format_response)
-        response[:success].should be(true)
-        response[:params].should have_key(:acct)
-      end
-
-      it "returns false on :error" do
-        @whm.perform_request('testing_error')
-        response = @whm.send(:format_response)
-        response[:success].should be(false)
-        response[:message].should match(/Unknown App Req/)
-      end
-
-      it "returns false on :unknown" do
-        @whm.perform_request('testing_unknown')
-        response = @whm.send(:format_response)
-        response[:success].should be(false)
-        response[:message].should match(/Unknown error occurred .*wtf.*/)
       end
     end
 

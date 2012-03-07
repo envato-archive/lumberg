@@ -30,8 +30,11 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{response.inspect}"
       end
+      
+      params = Whm::symbolize_keys(params)
+      params = Whm::to_bool(params)
 
-      {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
+      {:success => success, :message => message, :params => params}
     end
     
     def response_type(response)
