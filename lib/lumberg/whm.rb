@@ -41,7 +41,7 @@ module Lumberg
               value = value.map {|elem| to_bool(elem, keys) } if value.is_a?(Array)
 
               if (keys.first == :all) || (keys.include?(key) || (keys.include?(key.to_sym)))
-                value = [1,0].include?(value) ? value == 1 : value
+                value = (value.to_s.match(/0|1/) ? value.to_i == 1 : value)
               end
               [key, value]
           }]
