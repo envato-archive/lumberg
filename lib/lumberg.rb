@@ -3,7 +3,7 @@ $:.unshift(File.dirname(__FILE__))
 # External Libs
 require 'json'
 require 'uri'
-require 'patron'
+require 'typhoeus'
 require 'faraday'
 require 'faraday_middleware'
 require 'logger'

@@ -178,7 +178,7 @@ module Lumberg
           c.response :logger, create_logger_instance
           # TODO: c.response :whm_errors
           c.response :json
-          c.adapter :patron
+          c.adapter :typhoeus
         end.get(function).body
         # TODO: Move to middleware
         format_response
