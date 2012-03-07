@@ -4,6 +4,7 @@ module Lumberg
     def initialize(env, *args, &block)
       @type = args[0]
       @key = args[1]
+      @boolean_params = args[2]
       super(env)
     end
 
@@ -32,7 +33,7 @@ module Lumberg
       end
       
       params = Whm::symbolize_keys(params)
-      params = Whm::to_bool(params)
+      params = Whm::to_bool(params, @boolean_params)
 
       {:success => success, :message => message, :params => params}
     end

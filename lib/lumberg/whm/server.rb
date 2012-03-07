@@ -177,7 +177,7 @@ module Lumberg
           c.basic_auth @user, @hash
           c.params = params
           c.request :url_encoded
-          c.response :format_whm, @force_response_type, @key
+          c.response :format_whm, @force_response_type, @key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
           c.adapter :typhoeus
