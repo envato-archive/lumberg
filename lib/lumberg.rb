@@ -9,6 +9,7 @@ require 'faraday_middleware'
 require 'logger'
 
 # Internal Libs
+require 'lumberg/format_whm'
 require 'lumberg/version'
 require 'lumberg/exceptions'
 require 'lumberg/config'

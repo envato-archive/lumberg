@@ -1,3 +1,5 @@
+Faraday.register_middleware :response, :format_whm => Lumberg::FormatWhm
+
 module Lumberg
   module Whm
     class Server < Base
@@ -175,13 +177,13 @@ module Lumberg
           c.basic_auth @user, @hash
           c.params = params
           c.request :url_encoded
+          c.response :format_whm, @force_response_type, @key
           c.response :logger, create_logger_instance
-          # TODO: c.response :whm_errors
           c.response :json
           c.adapter :typhoeus
         end.get(function).body
-        # TODO: Move to middleware
-        format_response
+        @force_response_type = nil
+        @response
       end
       
       def format_query(hash)
@@ -210,95 +212,6 @@ module Lumberg
         end
       end
 
-      # TODO: Move to middleware
-      def format_response
-        success, message, params = false, nil, {}
-
-        case response_type
-          when :action
-            success, message, params = format_action_response
-          when :query
-            success, message, params = format_query_response
-          when :error
-            message = @response['error']
-          when :unknown
-            message = "Unknown error occurred #{@response.inspect}"
-        end
- 
-        params = Whm::to_bool(params, @boolean_params) unless @boolean_params.nil?
-
-        # Reset this for subsequent requests
-        @force_response_type = nil
-        {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
-      end
-
-      # TODO: Move to middleware
-      def format_action_response
-        # Some API methods ALSO return a 'status' as
-        # part of a result. We only use this value if it's
-        # part of the results hash
-        item = @response[@key]
-
-        unless item.is_a?(Array) || item.is_a?(Hash)
-          res = {@key => item}
-          success, message = true, ""
-        else
-          result = nil
-          if item.first.is_a?(Hash)
-            result = item.first
-            res = (item.size > 1 ? item.dup : item.first.dup)
-          else
-            res = item.dup
-
-            # more hacks for WHM silly API
-            if @response.has_key?('result')
-              result_node = @response['result']
-              node_with_key_status = result_node.is_a?(Hash) && result_node.has_key?('status')
-              result = (node_with_key_status ? result_node : result_node.first)
-            else
-              res.delete('status')
-              res.delete('statusmsg')
-            end
-          end
-
-          unless result.nil?
-            success = result['status'].to_i == 1
-            message = result['statusmsg']
-          end
-        end
-
-        return success, message, res
-      end
-
-      # TODO: Move to middleware
-      def format_query_response
-        success = @response['status'].to_i == 1
-        message = @response['statusmsg']
-
-        # returns the rest as a params arg
-        res = @response.dup
-        res.delete('status')
-        res.delete('statusmsg')
-
-        return success, message, res
-      end
-      
-      def response_type
-        if !@force_response_type.nil?
-          @force_response_type
-        elsif !@response.respond_to?(:has_key?)
-          :unknown
-        elsif @response.has_key?('error')
-          :error
-        elsif @response.has_key?(@key)
-          :action
-        elsif @response.has_key?('status') && @response.has_key?('statusmsg')
-          :query
-        else
-          :unknown
-        end
-      end
-
       def format_url(options = {})
         @ssl = true if @ssl.nil?
         port  = (@ssl ? 2087 : 2086)
@@ -311,7 +224,6 @@ module Lumberg
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
         hash.gsub(/\n|\s/, '')
       end
-
 
       # Creates WHM::Whatever.new(:server => @server)
       # automagically
