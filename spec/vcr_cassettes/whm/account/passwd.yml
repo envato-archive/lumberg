@@ -1,43 +1,58 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=changeme
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"passwd\":[{\"status\":1,\"services\":[{\"app\":\"system\"},{\"app\":\"ftp\"},{\"app\":\"mail\"},{\"app\":\"mySQL\"}],\"statusmsg\":\"Password changed for user changeme\",\"rawout\":\"Changing password for changeme\\nPassword for changeme has been changed\\nUpdating ftp passwords for changeme\\nFtp password files updated.\\nFtp vhost passwords synced\\n\"}]}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"passwd":[{"status":1,"services":[{"app":"system"},{"app":"ftp"},{"app":"mail"},{"app":"mySQL"}],"statusmsg":"Password
+        changed for user changeme","rawout":"Changing password for changeme\nPassword
+        for changeme has been changed\nUpdating ftp passwords for changeme\nFtp password
+        files updated.\nFtp vhost passwords synced\n"}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=dontchangeme
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"passwd\":[{\"status\":0,\"services\":null,\"statusmsg\":\"Sorry, the user dontchangeme does not exist.\",\"rawout\":null}]}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"passwd":[{"status":0,"services":null,"statusmsg":"Sorry, the user
+        dontchangeme does not exist.","rawout":null}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...

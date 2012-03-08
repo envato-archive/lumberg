@@ -5,10 +5,10 @@ require 'lumberg/exceptions'
 require 'vcr'
 require 'timeout'
 
-VCR.config do |c|
+VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
-  c.stub_with :fakeweb
-  c.default_cassette_options = {:record => :new_episodes}
+  c.stub_with :webmock
+  c.default_cassette_options = {:record => :none}
 end
 
 def live_test?

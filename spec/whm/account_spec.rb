@@ -39,7 +39,6 @@ module Lumberg
       end
 
       it "returns an error on duplicate accounts" do
-        @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
         result = @account.create(:username => 'invalid', :password => 'hummingbird123', :domain => 'invalid-thing.com')
         result[:success].should be(false)
         result[:message].should match(/username already exists/i)

@@ -14,6 +14,8 @@ begin
 rescue LoadError
 end
 
+load 'vcr/tasks/vcr.rake'
+
 RSpec::Core::RakeTask.new :spec
 Bundler::GemHelper.install_tasks
 
@@ -26,7 +28,7 @@ task :sanitize_cassettes do
       files.each do |file|
         old = File.read(file)
         if old.match(/#{ENV['WHM_HASH']}|#{ENV['WHM_HOST']}/)
-          puts "Sanitizing #{file}" 
+          puts "Sanitizing #{file}"
           old.gsub!(ENV['WHM_HASH'], 'iscool')
           old.gsub!(ENV['WHM_HOST'], 'myhost.com')
           File.open(file, 'w') do |f|

@@ -1,43 +1,54 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/systemloadavg
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"error\":\"Unknown App Requested: systemloadavg\"}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"error":"Unknown App Requested: systemloadavg"}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/systemloadavg?api.version=1
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"data\":{\"one\":\"0.00\",\"five\":\"0.04\",\"fifteen\":\"0.01\"},\"metadata\":{\"result\":1,\"reason\":\"OK\",\"version\":1,\"command\":\"systemloadavg\"}}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"data":{"one":"0.00","five":"0.04","fifteen":"0.01"},"metadata":{"result":1,"reason":"OK","version":1,"command":"systemloadavg"}}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...

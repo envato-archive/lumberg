@@ -1,43 +1,60 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/unsuspendacct?user=notexists
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"_unsuspendacct called for a user that does not exist. (notexists)\"}]}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"result":[{"status":0,"statusmsg":"_unsuspendacct called for a user
+        that does not exist. (notexists)"}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/unsuspendacct?user=asdfasdf
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"result\":[{\"status\":1,\"statusmsg\":\"<script>if (self['clear_ui_status']) { clear_ui_status(); }</script>\\nChanging shell for asdfasdf.\\nShell changed.\\nUnlocking password for user asdfasdf.\\npasswd: Success.\\nUnsuspending FTP accounts...\\nUpdating ftp passwords for asdfasdf\\nFtp password files updated.\\nFtp vhost passwords synced\\nasdfasdf's account is now active\\nUnsuspending mysql users\\nNotification => notify@example.com via EMAIL [level => 3]\\n\"}]}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"result":[{"status":1,"statusmsg":"<script>if (self[''clear_ui_status''])
+        { clear_ui_status(); }</script>\nChanging shell for asdfasdf.\nShell changed.\nUnlocking
+        password for user asdfasdf.\npasswd: Success.\nUnsuspending FTP accounts...\nUpdating
+        ftp passwords for asdfasdf\nFtp password files updated.\nFtp vhost passwords
+        synced\nasdfasdf''s account is now active\nUnsuspending mysql users\nNotification
+        => notify@example.com via EMAIL [level => 3]\n"}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...

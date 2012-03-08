@@ -1,43 +1,55 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/accountsummary?user=summary
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"status\":1,\"statusmsg\":\"Ok\",\"acct\":[{\"startdate\":\"10 Dec 16 10:24\",\"plan\":\"default\",\"suspended\":0,\"theme\":\"na4\",\"shell\":\"/usr/local/cpanel/bin/jailshell\",\"maxpop\":\"unlimited\",\"maxlst\":\"unlimited\",\"maxaddons\":\"9999\",\"suspendtime\":null,\"ip\":\"192.1.2.3\",\"maxsub\":\"unlimited\",\"domain\":\"summary.com\",\"maxsql\":\"unlimited\",\"partition\":\"home\",\"maxftp\":\"unlimited\",\"user\":\"summary\",\"suspendreason\":\"not suspended\",\"unix_startdate\":\"1292516679\",\"diskused\":\"0M\",\"maxparked\":\"9999\",\"email\":\"timtesting@timtesting.com\",\"disklimit\":\"unlimited\",\"owner\":\"root\"}]}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"status":1,"statusmsg":"Ok","acct":[{"startdate":"10 Dec 16 10:24","plan":"default","suspended":0,"theme":"na4","shell":"/usr/local/cpanel/bin/jailshell","maxpop":"unlimited","maxlst":"unlimited","maxaddons":"9999","suspendtime":null,"ip":"192.1.2.3","maxsub":"unlimited","domain":"summary.com","maxsql":"unlimited","partition":"home","maxftp":"unlimited","user":"summary","suspendreason":"not
+        suspended","unix_startdate":"1292516679","diskused":"0M","maxparked":"9999","email":"timtesting@timtesting.com","disklimit":"unlimited","owner":"root"}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/accountsummary?user=notexists
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"status\":0,\"statusmsg\":\"Account does not exist\",\"acct\":null}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"status":0,"statusmsg":"Account does not exist","acct":null}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...
