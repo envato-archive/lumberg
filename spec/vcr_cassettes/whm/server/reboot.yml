@@ -1,22 +1,29 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/reboot
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.87
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"reboot\":\"normal\"}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"reboot":"normal"}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...

@@ -1,64 +1,81 @@
---- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+---
+http_interactions:
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/getzonerecord?Line=1&domain=example.com
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"result\":[{\"status\":1,\"record\":{\"Line\":1,\"raw\":\"; cPanel 11.25.0-STABLE_44718\",\"ttl\":\"86400\",\"type\":\":RAW\",\"name\":\"\"},\"statusmsg\":\"Record obtained.\"}]}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"result":[{"status":1,"record":{"Line":1,"raw":"; cPanel 11.25.0-STABLE_44718","ttl":"86400","type":":RAW","name":""},"statusmsg":"Record
+        obtained."}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/getzonerecord?Line=1&domain=notexists.com
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"Zone does not exist.\"}]}"
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
+    body:
+      encoding: UTF-8
+      string: ! '{"result":[{"status":0,"statusmsg":"Zone does not exist."}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+- request:
+    method: get
     uri: https://myhost.com:2087/json-api/getzonerecord?Line=20&domain=example.com
-    body: 
-    headers: 
-      authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      server: 
+    headers:
+      Server:
       - cpsrvd/11.28.64
-      transfer-encoding: 
+      Transfer-Encoding:
       - chunked
-      content-type: 
+      Content-Type:
       - text/plain
-    body: "{\"result\":[{\"status\":0,\"statusmsg\":\"No record available on selected line.\"}]}"
-    http_version: "1.1"
+    body:
+      encoding: UTF-8
+      string: ! '{"result":[{"status":0,"statusmsg":"No record available on selected
+        line."}]}'
+    http_version: '1.1'
+  recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
+recorded_with: VCR 2.0.0
+...

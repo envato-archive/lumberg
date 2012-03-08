@@ -1,5 +1,4 @@
-require 'cgi'
-require 'base64'
+Faraday.register_middleware :response, :format_whm => Lumberg::FormatWhm
 
 module Lumberg
   module Whm
@@ -18,9 +17,6 @@ module Lumberg
 
       # API username - :default => root
       attr_accessor :user
-
-      # Raw HTTP response from WHM
-      attr_accessor :raw_response
 
       # WHM parsed response
       attr_reader :response
@@ -44,11 +40,11 @@ module Lumberg
       attr_accessor :force_response_type
 
       #
-      # ==== Required 
+      # ==== Required
       #  * <tt>:host</tt> - PENDING
       #  * <tt>:hash</tt> - PENDING
       #
-      # ==== Optional 
+      # ==== Optional
       #  * <tt>:user</tt> - PENDING
       #  * <tt>:ssl</tt> - PENDING
       #  * <tt>:basic_auth</tt>
@@ -63,30 +59,19 @@ module Lumberg
         @host       = options.delete(:host)
         @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
-        @basic_auth = options.has_key?(:basic_auth) && options.delete(:basic_auth)
-
+        @basic_auth = options.delete(:basic_auth)
         @base_url   = format_url(options)
       end
 
       def perform_request(function, options = {})
-        @function = function
-
         # WHM sometime uses different keys for the result hash
-        @key  = options.delete(:key) || 'result'
-
+        @key      = options.delete(:key) || 'result'
+        @function = function
         @params   = format_query(options)
-        uri       = URI.parse("#{@base_url}#{function}?#{@params}")
 
         yield self if block_given?
 
-        req = prepare_request(uri)
-
-        # Do the request
-        res = do_request(uri, req)
-
-        @raw_response = res
-        @response     = JSON.parse(@raw_response.body)
-        format_response
+        do_request(@base_url, function, @params)
       end
 
       def get_hostname
@@ -185,42 +170,46 @@ module Lumberg
         perform_request('reboot', {:key => "reboot"})
       end
 
-      protected
-      def response_type
-        if !@force_response_type.nil?
-          @force_response_type
-        elsif !@response.respond_to?(:has_key?)
-          :unknown
-        elsif @response.has_key?('error')
-          :error
-        elsif @response.has_key?(@key)
-          :action
-        elsif @response.has_key?('status') && @response.has_key?('statusmsg')
-          :query
-        else
-          :unknown
+    private
+
+      def do_request(uri, function, params)
+        @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
+          c.basic_auth @user, @hash
+          c.params = params
+          c.request :url_encoded
+          c.response :format_whm, @force_response_type, @key, @boolean_params
+          c.response :logger, create_logger_instance
+          c.response :json
+          c.adapter :excon
+        end.get(function).body
+        @force_response_type = nil
+        @response
+      end
+
+      def format_query(hash)
+        hash.inject({}) do |params, (key, value)|
+          value = 1 if value === true
+          value = 0 if value === false
+          params[key] = value
+          params
         end
       end
 
-      def format_response
-        success, message, params = false, nil, {}
+      def create_logger_instance
+        Logger.new(Lumberg.configuration[:debug].is_a?(TrueClass) ? $stderr : Lumberg.configuration[:debug])
+      end
 
-        case response_type
-          when :action
-            success, message, params = format_action_response
-          when :query
-            success, message, params = format_query_response
-          when :error
-            message = @response['error']
-          when :unknown
-            message = "Unknown error occurred #{@response.inspect}"
+      def ssl_options
+        if @ssl_verify
+          {
+            :verify_mode => OpenSSL::SSL::VERIFY_PEER,
+            :ca_file     => File.join(Lumberg::base_path, "cacert.pem")
+          }
+        else
+          {
+            :verify_mode => OpenSSL::SSL::VERIFY_NONE
+          }
         end
- 
-        params = Whm::to_bool(params, @boolean_params) unless @boolean_params.nil?
-
-        # Reset this for subsequent requests
-        @force_response_type = nil
-        {:success => success, :message => message, :params => Whm::symbolize_keys(params)}
       end
 
       def format_url(options = {})
@@ -234,90 +223,6 @@ module Lumberg
       def format_hash(hash)
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
         hash.gsub(/\n|\s/, '')
-      end
-
-      def format_query(hash)
-        elements = []
-        hash.each do |key, value|
-          value = 1 if value === true
-          value = 0 if value === false
-          elements << "#{CGI::escape(key.to_s)}=#{CGI::escape(value.to_s)}"
-        end
-        elements.sort.join('&')
-      end
-
-      private
-
-      def do_request(uri, req)
-        begin
-          Net::HTTP.skip_bad_headers = true
-          http = Net::HTTP.new(uri.host, uri.port)
-          if Lumberg.configuration[:debug]
-            out = $stderr
-            out = Lumberg.configuration[:debug] if Lumberg.configuration[:debug].is_a?(String)
-            http.set_debug_output(out)
-          end
-
-          enable_ssl(http) if uri.port == 2087
-
-          http.start do |h|
-            h.request(req)
-          end
-        rescue Exception => e
-          puts "Error when sending the request. Enable debug output by setting the configuration option."
-          raise e
-        ensure
-          Net::HTTP.skip_bad_headers = false
-        end
-      end
-
-      def format_action_response
-        # Some API methods ALSO return a 'status' as
-        # part of a result. We only use this value if it's
-        # part of the results hash
-        item = @response[@key]
-
-        unless item.is_a?(Array) || item.is_a?(Hash)
-          res = {@key => item}
-          success, message = true, ""
-        else
-          result = nil
-          if item.first.is_a?(Hash)
-            result = item.first
-            res = (item.size > 1 ? item.dup : item.first.dup)
-          else
-            res = item.dup
-
-            # more hacks for WHM silly API
-            if @response.has_key?('result')
-              result_node = @response['result']
-              node_with_key_status = result_node.is_a?(Hash) && result_node.has_key?('status')
-              result = (node_with_key_status ? result_node : result_node.first)
-            else
-              res.delete('status')
-              res.delete('statusmsg')
-            end
-          end
-
-          unless result.nil?
-            success = result['status'].to_i == 1
-            message = result['statusmsg']
-          end
-        end
-
-        return success, message, res
-      end
-
-      def format_query_response
-        success = @response['status'].to_i == 1
-        message = @response['statusmsg']
-
-        # returns the rest as a params arg
-        res = @response.dup
-        res.delete('status')
-        res.delete('statusmsg')
-
-        return success, message, res
       end
 
       # Creates WHM::Whatever.new(:server => @server)
@@ -338,35 +243,6 @@ module Lumberg
         else
           super
         end
-      end
-
-      def prepare_request(uri)
-        # Setup request URL
-        url = uri.path
-        query = uri.query
-        url << "?" + query unless query.nil? || query.empty?
-
-        req = Net::HTTP::Get.new(url)
-
-        # Add Auth Header
-        if basic_auth
-          encoded = Base64.encode64("#{@user}:#{@hash}")
-          auth = "Basic #{encoded}"
-        else
-          auth = "WHM #{@user}:#{@hash}"
-        end
-        req.add_field("Authorization", auth)
-        req
-      end
-
-      def enable_ssl(http)
-        if @ssl_verify
-          http.verify_mode = OpenSSL::SSL::VERIFY_PEER
-          http.ca_file = File.join(Lumberg::base_path, "cacert.pem")
-        else
-          http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-        end
-        http.use_ssl = true 
       end
 
     end
