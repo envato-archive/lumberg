@@ -15,8 +15,7 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "lumberg"
 
   s.add_dependency 'json'
-  s.add_dependency 'typhoeus', '~> 0.3.3'
-  s.add_dependency 'excon'
+  s.add_dependency 'excon' , '~> 0.10.0'
   s.add_runtime_dependency 'faraday', '~> 0.8.0rc2'
   s.add_runtime_dependency 'faraday_middleware', '~> 0.8.4'
   s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
