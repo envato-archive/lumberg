@@ -40,11 +40,11 @@ module Lumberg
       attr_accessor :force_response_type
 
       #
-      # ==== Required 
+      # ==== Required
       #  * <tt>:host</tt> - PENDING
       #  * <tt>:hash</tt> - PENDING
       #
-      # ==== Optional 
+      # ==== Optional
       #  * <tt>:user</tt> - PENDING
       #  * <tt>:ssl</tt> - PENDING
       #  * <tt>:basic_auth</tt>
@@ -171,7 +171,7 @@ module Lumberg
       end
 
     private
-      
+
       def do_request(uri, function, params)
         @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
           c.basic_auth @user, @hash
@@ -180,12 +180,12 @@ module Lumberg
           c.response :format_whm, @force_response_type, @key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
-          c.adapter :typhoeus
+          c.adapter :excon
         end.get(function).body
         @force_response_type = nil
         @response
       end
-      
+
       def format_query(hash)
         hash.inject({}) do |params, (key, value)|
           value = 1 if value === true
@@ -194,11 +194,11 @@ module Lumberg
           params
         end
       end
-      
+
       def create_logger_instance
         Logger.new(Lumberg.configuration[:debug].is_a?(TrueClass) ? $stderr : Lumberg.configuration[:debug])
       end
-      
+
       def ssl_options
         if @ssl_verify
           {
