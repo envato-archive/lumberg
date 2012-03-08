@@ -7,7 +7,7 @@ require 'timeout'
 
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
-  c.stub_with :webmock
+  c.hook_into :webmock
   c.default_cassette_options = {:record => :none}
 end
 
