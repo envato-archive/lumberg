@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/sethostname?hostname=myhost.com
+    uri: https://myhost.com:2087/json-api/sethostname?hostname=myhost.com
     body:
       encoding: US-ASCII
       string: ''

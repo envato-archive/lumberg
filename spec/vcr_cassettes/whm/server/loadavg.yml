@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/loadavg
+    uri: https://myhost.com:2087/json-api/loadavg
     body:
       encoding: US-ASCII
       string: ''

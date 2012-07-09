@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=1&domain=example.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=1&domain=example.com&ttl=86400
     body:
       encoding: US-ASCII
       string: ''
@@ -28,7 +28,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=1&domain=notexists.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=1&domain=notexists.com&ttl=86400
     body:
       encoding: US-ASCII
       string: ''
@@ -54,7 +54,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/editzonerecord?Line=200&domain=example.com&ttl=86400
+    uri: https://myhost.com:2087/json-api/editzonerecord?Line=200&domain=example.com&ttl=86400
     body:
       encoding: US-ASCII
       string: ''

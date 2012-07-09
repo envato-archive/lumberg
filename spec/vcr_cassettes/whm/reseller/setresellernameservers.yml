@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/acctcounts?user=notexists
+    uri: https://myhost.com:2087/json-api/acctcounts?user=notexists
     body:
       encoding: US-ASCII
       string: ''
@@ -27,7 +27,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellernameservers?user=bob
+    uri: https://myhost.com:2087/json-api/setresellernameservers?user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -52,7 +52,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellernameservers?nameservers=ns1.example.com&user=bob
+    uri: https://myhost.com:2087/json-api/setresellernameservers?nameservers=ns1.example.com&user=bob
     body:
       encoding: US-ASCII
       string: ''
