@@ -3,7 +3,6 @@ $:.unshift(File.dirname(__FILE__))
 # External Libs
 require 'json'
 require 'uri'
-require 'excon'
 require 'faraday'
 require 'faraday_middleware'
 require 'logger'
@@ -17,15 +16,15 @@ require 'lumberg/whm/args'
 require 'lumberg/whm'
 
 module Lumberg
-    
+
   extend self
-  
+
   attr_accessor :configuration
-  
+
   def base_path
     File.dirname(__FILE__)
   end
-  
+
   self.configuration ||= Lumberg::Config.new
 
    # Specificy the config via block
@@ -43,6 +42,6 @@ module Lumberg
      yield self.configuration if block_given?
      self.configuration.options
    end
-   
+
 end
 

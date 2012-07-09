@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
     body:
       encoding: US-ASCII
       string: ''
@@ -27,7 +27,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privs
     body:
       encoding: US-ASCII
       string: ''
@@ -90,7 +90,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body:
       encoding: US-ASCII
       string: ''
@@ -153,7 +153,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privsfdsa
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=privsfdsa
     body:
       encoding: US-ASCII
       string: ''
@@ -178,7 +178,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body:
       encoding: US-ASCII
       string: ''
@@ -203,7 +203,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body:
       encoding: US-ASCII
       string: ''
@@ -228,7 +228,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body:
       encoding: US-ASCII
       string: ''
@@ -287,7 +287,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=notexists
     body:
       encoding: US-ASCII
       string: ''
@@ -312,7 +312,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
+    uri: https://root:iscool@myhost.com:2087/json-api/restoreaccount?all=0&api.version=1&ip=0&mail=0&mysql=0&subs=0&type=daily&user=changeme
     body:
       encoding: US-ASCII
       string: ''

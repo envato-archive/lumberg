@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/getzonerecord?Line=1&domain=example.com
+    uri: https://root:iscool@myhost.com:2087/json-api/getzonerecord?Line=1&domain=example.com
     body:
       encoding: US-ASCII
       string: ''
@@ -28,7 +28,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/getzonerecord?Line=1&domain=notexists.com
+    uri: https://root:iscool@myhost.com:2087/json-api/getzonerecord?Line=1&domain=notexists.com
     body:
       encoding: US-ASCII
       string: ''
@@ -53,7 +53,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/getzonerecord?Line=20&domain=example.com
+    uri: https://root:iscool@myhost.com:2087/json-api/getzonerecord?Line=20&domain=example.com
     body:
       encoding: US-ASCII
       string: ''

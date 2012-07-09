@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/savemxs?api.version=1&domain=example.com&exchange=example.com&name=mail.example.com&preference=10
+    uri: https://root:iscool@myhost.com:2087/json-api/savemxs?api.version=1&domain=example.com&exchange=example.com&name=mail.example.com&preference=10
     body:
       encoding: US-ASCII
       string: ''

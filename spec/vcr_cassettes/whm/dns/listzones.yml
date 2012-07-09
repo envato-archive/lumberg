@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/listzones
+    uri: https://root:iscool@myhost.com:2087/json-api/listzones
     body:
       encoding: US-ASCII
       string: ''

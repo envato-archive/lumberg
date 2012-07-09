@@ -180,7 +180,7 @@ module Lumberg
           c.response :format_whm, @force_response_type, @key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
-          c.adapter :excon
+          c.adapter :net_http
         end.get(function).body
         @force_response_type = nil
         @response
