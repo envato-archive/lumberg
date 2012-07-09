@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/removeacct?user=removeme
+    uri: https://root:iscool@myhost.com:2087/json-api/removeacct?user=removeme
     body:
       encoding: US-ASCII
       string: ''
@@ -47,7 +47,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/removeacct?keepdns=1&user=removeme
+    uri: https://root:iscool@myhost.com:2087/json-api/removeacct?keepdns=1&user=removeme
     body:
       encoding: US-ASCII
       string: ''
@@ -89,7 +89,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/removeacct?keepdns=0&user=removeme
+    uri: https://root:iscool@myhost.com:2087/json-api/removeacct?keepdns=0&user=removeme
     body:
       encoding: US-ASCII
       string: ''
@@ -134,7 +134,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/removeacct?user=notreal
+    uri: https://root:iscool@myhost.com:2087/json-api/removeacct?user=notreal
     body:
       encoding: US-ASCII
       string: ''

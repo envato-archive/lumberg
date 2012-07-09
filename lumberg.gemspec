@@ -22,7 +22,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webmock', '~> 1.8.7'
   s.add_development_dependency 'vcr', '~> 2.0.0rc2'
   s.add_development_dependency 'rake', '~> 0.9.2.2'
-  s.add_development_dependency 'excon' , '~> 0.14.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

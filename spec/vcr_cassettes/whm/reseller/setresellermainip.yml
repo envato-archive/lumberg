@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/setresellermainip?ip=192.1.2.3&user=bob
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellermainip?ip=192.1.2.3&user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -28,7 +28,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/setresellermainip?ip=10&user=bob
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellermainip?ip=10&user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -53,7 +53,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/setresellermainip?ip=192.1.2.3&user=notexists
+    uri: https://root:iscool@myhost.com:2087/json-api/setresellermainip?ip=192.1.2.3&user=notexists
     body:
       encoding: US-ASCII
       string: ''
