@@ -174,7 +174,11 @@ module Lumberg
 
       def do_request(uri, function, params)
         @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
-          c.basic_auth @user, @hash
+          if basic_auth
+            c.basic_auth @user, @hash
+          else
+            c.headers['Authorization'] = "WHM #{@user}:#{@hash}"
+          end
           c.params = params
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @key, @boolean_params

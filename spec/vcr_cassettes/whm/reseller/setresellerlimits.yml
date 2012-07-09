@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellerlimits?diskspace_limit=1024&enable_overselling=1&enable_overselling_diskspace=1&user=bob
+    uri: https://myhost.com:2087/json-api/setresellerlimits?diskspace_limit=1024&enable_overselling=1&enable_overselling_diskspace=1&user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -28,7 +28,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/setresellerlimits?diskspace_limit=1024&enable_overselling=1&enable_overselling_diskspace=1&user=ob
+    uri: https://myhost.com:2087/json-api/setresellerlimits?diskspace_limit=1024&enable_overselling=1&enable_overselling_diskspace=1&user=ob
     body:
       encoding: US-ASCII
       string: ''

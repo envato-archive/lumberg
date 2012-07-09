@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts
+    uri: https://myhost.com:2087/json-api/listaccts
     body:
       encoding: US-ASCII
       string: ''
@@ -46,7 +46,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=%2Fch.%2A%3Fme
+    uri: https://myhost.com:2087/json-api/listaccts?search=%2Fch.%2A%3Fme
     body:
       encoding: US-ASCII
       string: ''
@@ -90,7 +90,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=changeme&searchtype=user
+    uri: https://myhost.com:2087/json-api/listaccts?search=changeme&searchtype=user
     body:
       encoding: US-ASCII
       string: ''
@@ -116,7 +116,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=192.1.2.3&searchtype=ip
+    uri: https://myhost.com:2087/json-api/listaccts?search=192.1.2.3&searchtype=ip
     body:
       encoding: US-ASCII
       string: ''
@@ -152,7 +152,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=change.com&searchtype=domain
+    uri: https://myhost.com:2087/json-api/listaccts?search=change.com&searchtype=domain
     body:
       encoding: US-ASCII
       string: ''
@@ -178,7 +178,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=192%5C..*?%5C.1%5C.20&searchtype=ip
+    uri: https://myhost.com:2087/json-api/listaccts?search=192%5C..*?%5C.1%5C.20&searchtype=ip
     body:
       encoding: US-ASCII
       string: ''
@@ -214,7 +214,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/listaccts?search=ch.*?e.com&searchtype=domain
+    uri: https://myhost.com:2087/json-api/listaccts?search=ch.*?e.com&searchtype=domain
     body:
       encoding: US-ASCII
       string: ''

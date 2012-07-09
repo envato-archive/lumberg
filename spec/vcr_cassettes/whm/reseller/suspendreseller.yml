@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/suspendreseller?user=bob
+    uri: https://myhost.com:2087/json-api/suspendreseller?user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -35,7 +35,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/suspendreseller?reason=some%20reason&user=bob
+    uri: https://myhost.com:2087/json-api/suspendreseller?reason=some%20reason&user=bob
     body:
       encoding: US-ASCII
       string: ''
@@ -68,7 +68,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/suspendreseller?user=notexists
+    uri: https://myhost.com:2087/json-api/suspendreseller?user=notexists
     body:
       encoding: US-ASCII
       string: ''
