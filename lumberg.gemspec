@@ -14,8 +14,7 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "lumberg"
 
-  s.add_dependency 'json', '~> 1.7.3'
-  s.add_dependency 'excon' , '~> 0.14.0'
+  s.add_runtime_dependency 'json', '~> 1.7.3'
   s.add_runtime_dependency 'faraday', '~> 0.8.1'
   s.add_runtime_dependency 'faraday_middleware', '~> 0.8.4'
   s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
@@ -23,6 +22,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'webmock', '~> 1.8.7'
   s.add_development_dependency 'vcr', '~> 2.0.0rc2'
   s.add_development_dependency 'rake', '~> 0.9.2.2'
+  s.add_development_dependency 'excon' , '~> 0.14.0'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")
