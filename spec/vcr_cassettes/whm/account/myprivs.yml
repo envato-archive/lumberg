@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/accountsummary?user=privs
+    uri: https://root:iscool@myhost.com:2087/json-api/accountsummary?user=privs
     body:
       encoding: US-ASCII
       string: ''
@@ -28,7 +28,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/myprivs?username=privs
+    uri: https://root:iscool@myhost.com:2087/json-api/myprivs?username=privs
     body:
       encoding: US-ASCII
       string: ''
