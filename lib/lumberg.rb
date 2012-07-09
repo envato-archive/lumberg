@@ -1,6 +1,7 @@
 $:.unshift(File.dirname(__FILE__))
 
 # External Libs
+require 'openssl'
 require 'json'
 require 'uri'
 require 'faraday'

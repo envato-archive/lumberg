@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/passwd?pass=superpass&user=changeme
+    uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=changeme
     body:
       encoding: US-ASCII
       string: ''
@@ -30,7 +30,7 @@ http_interactions:
   recorded_at: Wed, 07 Mar 2012 21:53:52 GMT
 - request:
     method: get
-    uri: https://root:iscool@myhost.com:2087/json-api/passwd?pass=superpass&user=dontchangeme
+    uri: https://myhost.com:2087/json-api/passwd?pass=superpass&user=dontchangeme
     body:
       encoding: US-ASCII
       string: ''
