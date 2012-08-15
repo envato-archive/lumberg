@@ -57,7 +57,7 @@ module Lumberg
 
     describe "#format_hash" do
       it "raises an error if hash is not a string" do
-        expect{  Whm::Server.new(:host => @whm_host, :hash => nil) }.
+        expect{  Whm::Server.new(:host => @whm_host, :hash => 1) }.
           to raise_error(Lumberg::WhmArgumentError, "Missing WHM hash")
       end
 
