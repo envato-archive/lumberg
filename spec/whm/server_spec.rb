@@ -236,14 +236,6 @@ module Lumberg
     describe "#add_ip" do
       use_vcr_cassette "whm/server/addip"
 
-      it "requires an ip address" do
-        requires_attr('ip') { @whm.add_ip(:netmask => '255.255.255.250') }
-      end
-
-      it "requires a netmask" do
-        requires_attr('netmask') { @whm.add_ip(:ip => '123.123.123.123') }
-      end
-
       it "adds the ip address" do
         result = @whm.add_ip(:ip => '208.77.188.166', :netmask => '255.255.255.0')
         result[:success].should be_true
@@ -252,10 +244,6 @@ module Lumberg
 
     describe "#delete_ip" do
       use_vcr_cassette "whm/server/delip"
-
-      it "requires an ip address" do
-        requires_attr('ip') { @whm.delete_ip }
-      end
 
       it "deletes the ip address" do
         result = @whm.delete_ip(:ip => '208.77.188.166')
@@ -266,10 +254,6 @@ module Lumberg
     describe "#set_hostname" do
       use_vcr_cassette "whm/server/sethostname"
 
-      it "requires a hostname" do
-        requires_attr('hostname') { @whm.set_hostname }
-      end
-
       it "changes the server's hostname" do
         result = @whm.set_hostname(:hostname => "myhost.com")
         result[:success].should be_true
@@ -278,10 +262,6 @@ module Lumberg
 
     describe "#set_resolvers" do
       use_vcr_cassette "whm/server/setresolvers"
-
-      it "requires a nameserver1" do
-        requires_attr('nameserver1') { @whm.set_resolvers }
-      end
 
       it "configures the nameservers" do
         result = @whm.set_resolvers(:nameserver1 => "123.123.123.123", :nameserver2 => "123.123.123.124")

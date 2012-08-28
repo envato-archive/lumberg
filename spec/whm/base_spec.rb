@@ -10,10 +10,6 @@ module Lumberg
     end
 
     describe "#initialize" do
-      it "creates a new instance of server" do
-        expect { Whm::Base.new }.to raise_error(WhmArgumentError, /Missing required param/)
-      end
-
       it "allows a server instance to be passed in" do
         @base.server.should be_a(Whm::Server)
       end
