@@ -13,7 +13,6 @@ require 'lumberg/format_whm'
 require 'lumberg/version'
 require 'lumberg/exceptions'
 require 'lumberg/config'
-require 'lumberg/whm/args'
 require 'lumberg/whm'
 
 module Lumberg

@@ -10,25 +10,6 @@ module Lumberg
     end
 
     describe "#addzone" do
-      it "requires a domain" do
-        @dns.stub(:perform_request)
-        requires_attr('domain') { @dns.add_zone }
-      end
-
-      it "requires an ip" do
-        requires_attr('ip') { @dns.add_zone(:domain => 'example.com') } 
-      end
-
-      it "allows template" do
-        @dns.server.stub(:perform_request)
-        @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1', :template => 'something')
-      end
-
-      it "allows trueowner" do
-        @dns.server.stub(:perform_request)
-        @dns.add_zone(:domain => 'example.com', :ip => '127.0.0.1', :trueowner => 'something')
-      end
-
       use_vcr_cassette "whm/dns/adddns"
 
       it "creates a zone" do
@@ -45,14 +26,10 @@ module Lumberg
     end
 
     describe "#addzonerecord" do
-      it "requires a zone" do
-        requires_attr('zone') { @dns.add_zone_record }
-      end
-
       use_vcr_cassette "whm/dns/addzonerecord"
 
       it "adds a zone record" do
-        result = @dns.add_zone_record(:zone => 'example.com', 
+        result = @dns.add_zone_record(:zone => 'example.com',
                                       :name => 'example.com.',
                                       :address => '192.1.2.3',
                                       :type => 'A')
@@ -85,14 +62,6 @@ module Lumberg
     describe "#getzonerecord" do
       use_vcr_cassette "whm/dns/getzonerecord"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.get_zone_record(:Line => 1) }
-      end
-
-      it "requires a Line" do
-        requires_attr('Line') { @dns.get_zone_record(:domain => "example.com") }
-      end
-
       it "returns the zone" do
         result = @dns.get_zone_record(:domain => "example.com", :Line => 1)
         result[:success].should be_true
@@ -117,10 +86,6 @@ module Lumberg
     describe "#dumpzone" do
       use_vcr_cassette "whm/dns/dumpzone"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.dump_zone }
-      end
-
       it "dumps the zone" do
         result = @dns.dump_zone(:domain => "example.com")
         result[:success].should be_true
@@ -139,14 +104,6 @@ module Lumberg
     describe "#resolvedomainname" do
       use_vcr_cassette "whm/dns/resolvedomainname"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.resolve_domain("api.version".to_sym => 1) }
-      end
-
-      it "requires the api version" do
-        requires_attr('api.version') { @dns.resolve_domain(:domain => "example.com") }
-      end
-
       it "returns the ip address of the domain" do
         result = @dns.resolve_domain(:domain => "example.com", "api.version".to_sym => 1)
         result[:params][:ip].should == "192.1.2.3"
@@ -161,14 +118,6 @@ module Lumberg
 
     describe "#editzonerecord" do
       use_vcr_cassette "whm/dns/editzonerecord"
-
-      it "requires a domain" do
-        requires_attr('domain') { @dns.edit_zone_record(:Line => 1) }
-      end
-
-      it "requires a Line" do
-        requires_attr('Line') { @dns.edit_zone_record(:domain => "example.com") }
-      end
 
       it "updates the zone record" do
         result = @dns.edit_zone_record(:domain => "example.com", :Line => 1, :ttl => "86400")
@@ -192,10 +141,6 @@ module Lumberg
     describe "#killdns" do
       use_vcr_cassette "whm/dns/killdns"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.kill_dns }
-      end
-
       it "kills the dns" do
         result = @dns.kill_dns(:domain => "example.com")
         result[:success].should be_true
@@ -212,10 +157,6 @@ module Lumberg
     describe "#lookupnsip" do
       use_vcr_cassette "whm/dns/lookupnsip"
 
-      it "requires a nameserver" do
-        requires_attr('nameserver') { @dns.lookup_nameserver_ip }
-      end
-
       it "returns the nameserver's ip" do
         result = @dns.lookup_nameserver_ip(:nameserver => "example.com")
         result[:params][:ip].should == "192.1.2.3"
@@ -229,14 +170,6 @@ module Lumberg
 
     describe "#removezonerecord" do
       use_vcr_cassette "whm/dns/removezonerecord"
-
-      it "requires a zone" do
-        requires_attr('zone') { @dns.remove_zone_record(:Line => 1) }
-      end
-
-      it "requires a Line" do
-        requires_attr('Line') { @dns.remove_zone_record(:zone => "example.com") }
-      end
 
       it "removes the zone record" do
         result = @dns.remove_zone_record(:zone => "example.com", :Line => 1)
@@ -260,14 +193,6 @@ module Lumberg
     describe "#resetzone" do
       use_vcr_cassette "whm/dns/resetzone"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.reset_zone(:zone => "example.com") }
-      end
-
-      it "requires a zone" do
-        requires_attr('zone') { @dns.reset_zone(:domain => "example.com") }
-      end
-
       it "resets the zone" do
         result = @dns.reset_zone(:domain => "example.com", :zone => "example.com")
         result[:success].should be_true
@@ -284,14 +209,6 @@ module Lumberg
     describe "#listmxs" do
       use_vcr_cassette "whm/dns/listmxs"
 
-      it "requires a domain" do
-        requires_attr('domain') { @dns.list_mxs("api.version".to_sym => 1) }
-      end
-
-      it "requires the api.version" do
-        requires_attr('api.version') { @dns.list_mxs(:domain => "example.com") }
-      end
-
       it "returns a list of mxs" do
         result = @dns.list_mxs(:domain => "example.com", "api.version".to_sym => 1)
         result[:params][:record].should be_a_kind_of Array
@@ -304,46 +221,11 @@ module Lumberg
     describe "#savemxs" do
       use_vcr_cassette "whm/dns/savemxs"
 
-      it "requires the api.version" do
-        requires_attr('api.version') { @dns.save_mx(:domain => "example.com", 
-                                                    :name => "mail.example.com", 
-                                                    :exchange => "example.com", 
-                                                    :preference => 10) }
-      end
-
-      it "requires a domain" do
-        requires_attr('domain') { @dns.save_mx("api.version".to_sym => 1, 
-                                               :name => "mail.example.com", 
-                                               :exchange => "example.com", 
-                                               :preference => 10) }
-      end
-
-      it "requires a name" do
-        requires_attr('name') { @dns.save_mx("api.version".to_sym => 1, 
-                                             :domain => "example.com", 
-                                             :exchange => "example.com", 
-                                             :preference => 10) }
-      end
-
-      it "requires an exchange" do
-        requires_attr('exchange') { @dns.save_mx("api.version".to_sym => 1, 
-                                                 :domain => "example.com", 
-                                                 :name => "mail.example.com", 
-                                                 :preference => 10) }
-      end
-
-      it "requires a preference" do
-        requires_attr('preference') { @dns.save_mx("api.version".to_sym => 1, 
-                                                   :domain => "example.com", 
-                                                   :name => "mail.example.com", 
-                                                   :exchange => "example.com") }
-      end
-
       it "saves the mx record" do
-        result = @dns.save_mx("api.version".to_sym => 1, 
-                              :domain => "example.com", 
-                              :name => "mail.example.com", 
-                              :exchange => "example.com", 
+        result = @dns.save_mx("api.version".to_sym => 1,
+                              :domain => "example.com",
+                              :name => "mail.example.com",
+                              :exchange => "example.com",
                               :preference => 10)
         result[:message].should match(/Bind reloading on .*example.com/i)
       end

@@ -49,11 +49,6 @@ module Lumberg
       #  * <tt>:ssl</tt> - PENDING
       #  * <tt>:basic_auth</tt>
       def initialize(options)
-        Args.new(options) do |c|
-          c.requires  :host, :hash
-          c.optionals :user, :ssl, :basic_auth
-        end
-
         @ssl_verify ||= false
         @ssl        = options.delete(:ssl)
         @host       = options.delete(:host)
@@ -90,10 +85,6 @@ module Lumberg
       end
 
       def system_load_average(options = {})
-        Args.new(options) do |c|
-          c.requires "api.version".to_sym
-        end
-
         perform_request('systemloadavg', options.merge(:key => 'data'))
       end
 
@@ -106,63 +97,30 @@ module Lumberg
       end
 
       def add_ip(options = {})
-        Args.new(options) do |c|
-          c.requires :ip, :netmask
-        end
-
         perform_request('addip', options.merge(:key => 'addip'))
       end
 
       def delete_ip(options = {})
-        Args.new(options) do |c|
-          c.requires :ip
-          c.optionals :ethernetdev
-          c.booleans :skipifshutdown
-        end
-
         perform_request('delip', options.merge(:key => 'delip'))
       end
 
       def set_hostname(options = {})
-        Args.new(options) do |c|
-          c.requires :hostname
-        end
-
         perform_request('sethostname', options.merge(:key => 'sethostname'))
       end
 
       def set_resolvers(options = {})
-        Args.new(options) do |c|
-          c.requires :nameserver1
-          c.optionals :nameserver2, :nameserver3
-        end
-
         perform_request('setresolvers', options.merge(:key => 'setresolvers'))
       end
 
       def show_bandwidth(options = {})
-        Args.new(options) do |c|
-          c.optionals :month, :year, :showres, :search, :searchtype
-        end
-
         perform_request('showbw', options.merge(:key => 'bandwidth'))
       end
 
       def set_nv_var(options = {})
-        Args.new(options) do |c|
-          c.requires :key
-          c.optionals :value
-        end
-
         perform_request('nvset', options.merge(:key => 'nvset'))
       end
 
       def get_nv_var(options = {})
-        Args.new(options) do |c|
-          c.requires :key
-          c.optionals :value
-        end
-
         perform_request('nvget', options.merge(:key => 'nvget'))
       end
 

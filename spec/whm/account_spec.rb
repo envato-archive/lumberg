@@ -12,29 +12,15 @@ module Lumberg
     describe "#create" do
       use_vcr_cassette "whm/account/createacct"
 
-      it "requires a username" do
-        requires_attr('username') { @account.create }
-      end
-
-      it "requires a domain" do
-        requires_attr('domain') { @account.create(:username => 'user') }
-      end
-
-      it "requires a password" do
-        requires_attr('password') { 
-          @account.create(:username => 'user', :domain => 'example.com')
-        }
-      end
-
       it "creates the account with proper params" do
         result = @account.create(:username => 'valid', :password => 'hummingbird123', :domain => 'valid-thing.com')
         result[:success].should be_true
         result[:message].should match(/Account Creation Ok/i)
         result[:params].should_not be_empty
         result[:params].should have_key(:options)
-        result[:params][:options].should include(:nameserver4, :nameserver, :nameserverentry2, :nameserverentry3, 
-                                                  :nameserverentry4, :nameserverentry, :ip, :nameservera2, 
-                                                  :nameservera3, :package, :nameservera4, :nameserver2, 
+        result[:params][:options].should include(:nameserver4, :nameserver, :nameserverentry2, :nameserverentry3,
+                                                  :nameserverentry4, :nameserverentry, :ip, :nameservera2,
+                                                  :nameservera3, :package, :nameservera4, :nameserver2,
                                                   :nameservera, :nameserver3)
       end
 
@@ -47,10 +33,6 @@ module Lumberg
 
     describe "#remove" do
       use_vcr_cassette "whm/account/removeacct"
-
-      it "requires a username" do
-        requires_attr('username') { @account.remove }
-      end
 
       it "removes a user and keeps DNS by default" do
         result = @account.remove(:username => 'removeme')
@@ -80,14 +62,6 @@ module Lumberg
     describe "#change_password" do
       use_vcr_cassette "whm/account/passwd"
 
-      it "requires a username" do
-        requires_attr('username') { @account.change_password }
-      end
-
-      it "requires a password" do
-        requires_attr('password') { @account.change_password(:username => 'changeme') }
-      end
-
       it "changes the password" do
         result = @account.change_password(:username => 'changeme', :password => 'superpass')
         result[:success].should be_true
@@ -104,14 +78,6 @@ module Lumberg
     describe "#limit bandwidth" do
       use_vcr_cassette "whm/account/limitbw"
 
-      it "requires a user" do
-        requires_attr('username') { @account.limit_bandwidth(:bwlimit => 99999) }
-      end
-
-      it "requires a bandwidth" do
-        requires_attr('bwlimit') { @account.limit_bandwidth(:username => 'changeme') }
-      end
-
       it "sets the bandwidth limit" do
         result = @account.limit_bandwidth(:username => 'changeme', :bwlimit => 99999)
         result[:success].should be_true
@@ -121,11 +87,11 @@ module Lumberg
       end
 
       it "isn't successful when the user doesn't exist" do
-        expect { 
-          @account.limit_bandwidth(:username => 'notexists', :bwlimit => 99999) 
+        expect {
+          @account.limit_bandwidth(:username => 'notexists', :bwlimit => 99999)
         }.to raise_error(WhmInvalidUser, /User notexists does not exist/i)
       end
-    end 
+    end
 
     describe "#list" do
       use_vcr_cassette "whm/account/listaccts"
@@ -165,7 +131,7 @@ module Lumberg
         result[:success].should be_true
         result[:params][:acct].should have(1).account
       end
-    end 
+    end
 
     describe "#modify" do
       use_vcr_cassette "whm/account/modifyacct"
@@ -184,7 +150,7 @@ module Lumberg
 
       it "returns the bandwidth limit" do
         result = @account.modify(:username => 'changeme')
-        result[:params][:newcfg][:cpuser][:BWLIMIT].should == "unlimited" 
+        result[:params][:newcfg][:cpuser][:BWLIMIT].should == "unlimited"
       end
 
       it "returns the primary contact email" do
@@ -206,7 +172,7 @@ module Lumberg
         result = @account.modify(:username => 'changeme')
         result[:params][:newcfg][:cpuser][:HASCGI].should be_true
       end
-    end 
+    end
 
     describe "#editquota" do
       use_vcr_cassette "whm/account/editquota"
@@ -232,9 +198,6 @@ module Lumberg
 
     describe "#summary" do
       use_vcr_cassette "whm/account/accountsummary"
-      it "requires a user" do
-        requires_attr('username') { @account.create }
-      end
 
       it "returns an error for invalid users" do
         result = @account.summary(:username => 'notexists')
@@ -247,14 +210,10 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/ok/i)
       end
-    end 
+    end
 
     describe "#suspend" do
       use_vcr_cassette "whm/account/suspend"
-
-      it "requires a username" do
-        requires_attr('username') { @account.suspend }
-      end
 
       it "returns an error for invalid users" do
         result = @account.suspend(:username => 'notexists')
@@ -272,13 +231,10 @@ module Lumberg
         @account.server.should_receive(:perform_request).with('suspendacct', hash_including(:user => 'suspendme', :reason => 'abusive user'))
         @account.suspend(:username => 'suspendme', :reason => 'abusive user')
       end
-    end 
+    end
 
     describe "#unsuspend" do
       use_vcr_cassette "whm/account/unsuspend"
-      it "require a username" do
-        requires_attr('username') { @account.unsuspend }
-      end
 
       it "returns an error for invalid users" do
         result = @account.unsuspend(:username => 'notexists')
@@ -291,10 +247,11 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/unsuspending .* account/i)
       end
-    end 
+    end
 
     describe "#list_suspended" do
       use_vcr_cassette 'whm/account/listsuspended'
+
       it "returns non-empty result" do
         # empty isn't a real param. VCR Hacks
         result = @account.list_suspended(:empty => true)
@@ -308,7 +265,7 @@ module Lumberg
         result[:success].should be_true
         result[:params][:accts].should be_empty
       end
-    end 
+    end
 
     describe "#change package" do
       use_vcr_cassette "whm/account/changepackage"
@@ -317,14 +274,6 @@ module Lumberg
         result = @account.change_package(:username => 'notexists', :pkg => 'default')
         result[:success].should_not be_true
         result[:message].should match(/user notexists does not exist/i)
-      end
-
-      it "requires a username" do
-        requires_attr('username') { @account.change_package(:pkg => '') }
-      end
-
-      it "requires a pkg" do
-        requires_attr('pkg') { @account.change_package(:username => 'changeme') }
       end
 
       it "fails if the package was not found" do
@@ -338,13 +287,10 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/Account Upgrade\/Downgrade Complete for changeme/i)
       end
-    end 
+    end
 
     describe "#privs" do
       use_vcr_cassette 'whm/account/myprivs'
-      it "requires a user" do
-        requires_attr('username') { @account.privs }
-      end
 
       it "has a result" do
         result = @account.privs(:username => 'privs')
@@ -352,12 +298,12 @@ module Lumberg
 
         params = result[:params]
         expected = {
-                    :kill_dns => false, :edit_dns => false, :edit_mx => false, :add_pkg => false, 
-                    :suspend_acct => false, :add_pkg_shell => false, :viewglobalpackages => false, 
-                    :resftp => false, :list_accts => false, :all => true, :passwd => false, :quota => false, 
-                    :park_dns => false, :rearrange_accts => false, :allow_addoncreate => false, :demo => false, 
-                    :news => false, :edit_account => false, :allow_unlimited_disk_pkgs => false, :allow_parkedcreate => false, 
-                    :frontpage => false, :restart => false, :ssl_gencrt => false, :allow_unlimited_pkgs => false, 
+                    :kill_dns => false, :edit_dns => false, :edit_mx => false, :add_pkg => false,
+                    :suspend_acct => false, :add_pkg_shell => false, :viewglobalpackages => false,
+                    :resftp => false, :list_accts => false, :all => true, :passwd => false, :quota => false,
+                    :park_dns => false, :rearrange_accts => false, :allow_addoncreate => false, :demo => false,
+                    :news => false, :edit_account => false, :allow_unlimited_disk_pkgs => false, :allow_parkedcreate => false,
+                    :frontpage => false, :restart => false, :ssl_gencrt => false, :allow_unlimited_pkgs => false,
                     :add_pkg_ip => false, :disallow_shell => false, :res_cart => false, :ssl_buy => false, :kill_acct => false,
                     :allow_unlimited_bw_pkgs => false, :create_dns => false, :mailcheck => false, :clustering => false, :ssl => false,
                     :edit_pkg => false, :locale_edit => false, :show_bandwidth => false, :upgrade_account => false, :thirdparty => false,
@@ -365,7 +311,7 @@ module Lumberg
 
         params.should include(expected)
       end
-    end 
+    end
 
     describe "#domainuserdata" do
       use_vcr_cassette "whm/account/domainuserdata"
@@ -374,10 +320,6 @@ module Lumberg
         result = @account.domain_user_data(:domain => 'notexists.com')
         result[:success].should_not be_true
         result[:message].should match(/Unable to determine account owner for domain\./i)
-      end
-
-      it "requires a domain" do
-        requires_attr('domain') { @account.domain_user_data }
       end
 
       it "returns the correct data" do
@@ -397,18 +339,10 @@ module Lumberg
         result[:params][:servername].should == "example.com"
         result[:params][:user].should == "changeme"
       end
-    end 
+    end
 
     describe "#setsiteip" do
       use_vcr_cassette "whm/account/setsiteip"
-
-      it "requires an ip" do
-        requires_attr('ip') { @account.set_site_ip }
-      end
-
-      it "requires a username or a domain" do
-        expect { @account.set_site_ip(:ip => '1.1.1.1') }.to raise_error(WhmArgumentError, /may include only one of 'username, domain'/i)
-      end
 
       it "accepts a username for the account to use" do
         result = @account.set_site_ip(:ip => '192.1.2.3', :username => 'changeme')
@@ -425,131 +359,39 @@ module Lumberg
         result[:success].should be_true
         result[:message].should match(/OK/i)
       end
-    end 
+    end
 
     describe "#restore" do
       # 11.27/11.28+ only
       use_vcr_cassette "whm/account/restoreaccount"
-      it "requires api.version" do
-        requires_attr('api.version') { 
-          @account.restore_account(:username => 'changeme', 
-                                   :type => 'monthly', 
-                                   :all => false, 
-                                   :ip => false, 
-                                   :mail => false, 
-                                   :mysql => false, 
-                                   :subs => false) 
-        }
-      end
-
-      it "requires a username" do
-        requires_attr('username') { 
-          @account.restore_account("api.version".to_sym => 1, 
-                                   :type => 'monthly', 
-                                   :all => false, 
-                                   :ip => false, 
-                                   :mail => false, 
-                                   :mysql => false, 
-                                   :subs => false) 
-        }
-      end
-
-      it "requires type" do
-        requires_attr('type') { 
-          @account.restore_account("api.version".to_sym => 1, 
-                                   :username => 'changeme', 
-                                   :all => false, 
-                                   :ip => false, 
-                                   :mail => false, 
-                                   :mysql => false, 
-                                   :subs => false) 
-        }
-      end
-
-      it "requires all" do
-        requires_attr('all') { 
-          @account.restore_account("api.version".to_sym => 1, 
-                                   :username => 'changeme', 
-                                   :type => 'monthly', 
-                                   :ip => false, 
-                                   :mail => false, 
-                                   :mysql => false, 
-                                   :subs => false) 
-        }
-      end
-
-      it "requires ip" do
-        requires_attr('ip') { 
-          @account.restore_account("api.version".to_sym => 1, 
-                                   :username => 'changeme', 
-                                   :type => 'monthly', 
-                                   :all => false, 
-                                   :mail => false, 
-                                   :mysql => false, 
-                                   :subs => false) 
-        }
-      end
-
-      it "requires mail" do
-        requires_attr('mail') { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mysql => false, 
-                                          :subs => false) 
-        }
-      end
-
-      it "requires mysql" do
-        requires_attr('mysql') { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :subs => false) 
-        }
-      end
-
-      it "require subs" do
-       requires_attr('subs') { @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'monthly', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false) 
-        }
-      end
 
       it "returns an error if it can't find the backup" do
-        result = @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'notexists', 
-                                          :type => 'daily', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
+        result = @account.restore_account("api.version".to_sym => 1,
+                                          :username => 'notexists',
+                                          :type => 'daily',
+                                          :all => false,
+                                          :ip => false,
+                                          :mail => false,
+                                          :mysql => false,
                                           :subs => false)
         result[:params][:result].to_i.should == 0
         result[:params][:reason].should match(/Unable to find archive/i)
       end
 
       it "restores the account" do
-        result = @account.restore_account("api.version".to_sym => 1, 
-                                          :username => 'changeme', 
-                                          :type => 'daily', 
-                                          :all => false, 
-                                          :ip => false, 
-                                          :mail => false, 
-                                          :mysql => false, 
+        result = @account.restore_account("api.version".to_sym => 1,
+                                          :username => 'changeme',
+                                          :type => 'daily',
+                                          :all => false,
+                                          :ip => false,
+                                          :mail => false,
+                                          :mysql => false,
                                           :subs => false)
         result[:params][:result].to_i.should == 1
         result[:params][:reason].should == "OK"
         result[:params][:output][:raw].should match(/Account Restore Complete/i)
       end
-    end 
+    end
 
     describe "#verify_user" do
       use_vcr_cassette "whm/account/accountsummary"
@@ -558,7 +400,7 @@ module Lumberg
 
       it "does not call the block if the user doesn't exist" do
         @something.should_not_receive(:gold)
-        expect { 
+        expect {
           @account.send(:verify_user, 'notexists') do
             @something.gold
           end
