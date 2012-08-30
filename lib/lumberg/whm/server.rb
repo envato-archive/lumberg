@@ -128,6 +128,18 @@ module Lumberg
         perform_request('reboot', {:key => "reboot"})
       end
 
+      def account
+        @account ||= Account.new(:server => self)
+      end
+
+      def dns
+        @dns ||= Dns.new(:server => self)
+      end
+
+      def reseller
+        @reseller ||= Reseller.new(:server => self)
+      end
+
     private
 
       def do_request(uri, function, params)
@@ -186,27 +198,6 @@ module Lumberg
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
         hash.gsub(/\n|\s/, '')
       end
-
-      # Creates WHM::Whatever.new(:server => @server)
-      # automagically
-      def auto_accessors
-        [:account, :dns, :reseller]
-      end
-
-      def method_missing(meth, *args, &block)
-        if auto_accessors.include?(meth.to_sym)
-          ivar = instance_variable_get("@#{meth}")
-          if ivar.nil?
-            constant = Whm.const_get(meth.to_s.capitalize)
-            return instance_variable_set("@#{meth}", constant.new(:server => self))
-          else
-            return ivar
-          end
-        else
-          super
-        end
-      end
-
     end
   end
 end

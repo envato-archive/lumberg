@@ -188,19 +188,18 @@ module Lumberg
         @whm.account.should be_an(Whm::Account)
       end
 
-      it "returns the same thing twice" do
-        @whm.account.should be_a(Whm::Account)
-        @whm.account.should respond_to(:list)
-
-        @whm.account.should be_a(Whm::Account)
-        @whm.account.should respond_to(:list)
+      it "sets the server" do
+        @whm.account.server.should == @whm
       end
-
     end
 
     describe "#dns" do
       it "has an dns accessor" do
         @whm.dns.should be_an(Whm::Dns)
+      end
+
+      it "sets the server" do
+        @whm.dns.server.should == @whm
       end
     end
 
@@ -208,17 +207,9 @@ module Lumberg
       it "has an reseller accessor" do
         @whm.reseller.should be_an(Whm::Reseller)
       end
-    end
 
-    describe "#method_missing" do
-      it "caches @vars" do
-        Whm.should_receive(:const_get).once.and_return(Whm::Account)
-        @whm.account
-        @whm.account
-      end
-
-      it "raises to super" do
-        expect { @whm.asdf }.to raise_error(NoMethodError)
+      it "sets the server" do
+        @whm.reseller.server.should == @whm
       end
     end
 
