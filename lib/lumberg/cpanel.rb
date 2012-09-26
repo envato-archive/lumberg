@@ -8,5 +8,6 @@ module Lumberg
 
     require "lumberg/cpanel/backups"
     require "lumberg/cpanel/box_trapper"
+    require "lumberg/cpanel/branding"
   end
 end

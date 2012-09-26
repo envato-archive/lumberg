@@ -1,0 +1,48 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=showpkgs&cpanel_jsonapi_module=Branding&cpanel_jsonapi_user=lumberg&onlyshowyours&showroot&skipglobal&skiphidden
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 21:37:44 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "120"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAKh1Y1AAA22MsQ6DMAwF937Gm7O0Y8b+BmKwiKERqWPFCQwo/w6q1I31
+        7nQHJiXhVNhaqvAHAlWCH0YH3lh+6C+f3eGbQ0sMj3chCVEWOJDGjYvFLPAv
+        h7nJdAX2ybuui12BZqu3Ny18w3t/nKyWIB6YAAAA
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 21:37:43 GMT
+recorded_with: VCR 2.0.1
