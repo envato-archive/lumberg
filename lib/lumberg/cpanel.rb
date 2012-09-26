@@ -5,5 +5,7 @@ module Lumberg
     autoload :SubDomain,   'lumberg/cpanel/sub_domain'
     autoload :Park,        'lumberg/cpanel/park'
     autoload :Email,       'lumberg/cpanel/email'
+
+    require "lumberg/cpanel/backups"
   end
 end
