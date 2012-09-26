@@ -7,5 +7,6 @@ module Lumberg
     autoload :Email,       'lumberg/cpanel/email'
 
     require "lumberg/cpanel/backups"
+    require "lumberg/cpanel/box_trapper"
   end
 end
