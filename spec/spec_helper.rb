@@ -5,6 +5,11 @@ require 'lumberg/exceptions'
 require 'vcr'
 require 'timeout'
 
+# Load supporting files in spec/support
+Dir["#{Lumberg::base_path}/../spec/support/**/*.rb"].each do |f|
+  require f
+end
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
