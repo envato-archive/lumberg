@@ -1,30 +1,48 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listlists&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=&regex=
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listlists&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain&regex
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 17:27:05 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:24 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "564"
-    body: |
-      {"cpanelresult":{"data":[{"humandiskused":"17.13 KB","list":"salt@eeeee.at","desthost":"mail.lumberg-test.com","diskused":"17541","listid":"salt_eeeee.at"},{"humandiskused":"19.86 KB","list":"test1@lumberg-test.com","desthost":"mail.lumberg-test.com","diskused":"20332","listid":"test1_lumberg-test.com"},{"humandiskused":"20.77 KB","list":"test2@linty.net","desthost":"mail.lumberg-test.com","diskused":"21272","listid":"test2_linty.net"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listlists","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "116"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAKxOY1AAA22MOw6AIBAFe4/xahot6T2FsdjImpCsQFigMdzdT2Jn8ZqZ
+        yTuxJQosmbVKgT3hqBDsshpw4/CiT47d4IiuCsNiPsgLDCj5xll9DLCTwV7D
+        dlvxWp7pXaSo5fcrZf7hvQ8XR745yZYAAAA=
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:23 GMT
+recorded_with: VCR 2.0.1

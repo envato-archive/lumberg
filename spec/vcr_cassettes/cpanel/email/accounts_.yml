@@ -1,30 +1,49 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&regex=
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&regex
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 17:27:06 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:25 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "265"
-    body: |
-      {"cpanelresult":{"data":[{"login":"test@add.lumberg-test.com","email":"test@add.lumberg-test.com"},{"login":"Main Account","email":"lumberg"}],"event":{"result":1},"module":"Email","apiversion":2,"func":"listpops","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "143"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAK1OY1AAA22MOw7CMBAFe06BXu0GSncUlJwAUSzOEq3kz8qfNJbvjolE
+        l3Y0Mx1OKbLPXJqvsB0LVYJ9dvi0SoTFgySeb86lFisMOJD4iX0Lb84rxmuy
+        jeMe/zeXYRDS0jxP874XBqSycS6S5vVq8GnR/T5SqiYtU9BU6uFKMx/wMU5f
+        qzwZrb8AAAA=
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:24 GMT
+recorded_with: VCR 2.0.1

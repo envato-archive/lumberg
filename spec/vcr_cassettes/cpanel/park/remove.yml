@@ -1,59 +1,99 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain=
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:25 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:32 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "305"
-    body: |
-      {"cpanelresult":{"error":"Error from park wrapper: test-park.com is already configured.\n","data":[{"result":0,"reason":"Error from park wrapper: test-park.com is already configured.\n"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"park","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "174"
     body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALROY1AAA62OsQ7CMAxEd74i8hwqYMzOzg4MVuKiiDaxnKQIVfl3UlC3
+        jky27nTvbgbLGGgQSmXIYGYgkShg4Lxc1UscFaM81UuQmcSoTCnvF6mzzfNJ
+        YUujeysbQ+8fRch1twAaHGYEc51hhR90ezHF8Ad8vWugicJ381pwrBrG6MpA
+        reHSGG0Fsp9Ikl9aTxr6Emwz+WdyTHmTwkIbeq27D0xTZvExAQAA
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:32 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+    body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:25 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:32 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "532"
-    body: |
-      {"cpanelresult":{"data":[{"result":1,"reason":"DNS server connection established.\nThere was a problem: The zone for 'test-park.com' was not found in named.conf! There is no DNS zone 'entry' to remove! We will still remove the 'zone file' if it exists.\r\nThe zone file entries and files for 'test-park.com' have been removed from the DNS server.\r\nSession completed.\ntest-park.com was successfully unparked"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"unpark","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "317"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALZOY1AAA21RsU7DMBDd+YrrLVlCJBgzMyOkIjFQBje5qBbO2fLZhVLl
+        3zk7UITUxbLee37v+e6MQzBMLpJkl7A/42iSwf71jL/QXatXI56xx4fHLQjF
+        I0UYPDMNyXoGkmT2zsqBxm7HzweKBB9GwECIfu9o7kFB+PJMMPkITdIXt8HE
+        927wc1O17JNymUewDGxmtdKEaQOrnS0KKPHVpSFO8dRA8hBp9kfawItmWudA
+        UjlXFJLGNmuuddSAncAmoE8rSbpdrGXhwkNxtaTFtUYB5Grdg1HnPRH/pKg2
+        +rlm/c2num9JpAxInwVHqY7nn1n9uuRhUOGUnTtB5sLRiMtbi3TURmUpl10s
+        Lc5+zI50GU8qxBZNsJpXcrC/b3HKPCi5+igdvKSrPiHSFXxZbr4BaPao/RQC
+        AAA=
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:34 GMT
+recorded_with: VCR 2.0.1

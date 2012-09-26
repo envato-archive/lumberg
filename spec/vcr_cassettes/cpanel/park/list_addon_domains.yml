@@ -1,59 +1,93 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex=
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:29 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:35 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "1059"
-    body: |
-      {"cpanelresult":{"data":[{"domainkey":"linty_lumberg-test.com","status":"not redirected","dir":"/home/lumberg/public_html/linty.net","reldir":"home:public_html/linty.net","subdomain":"linty","rootdomain":"lumberg-test.com","fullsubdomain":"linty.lumberg-test.com","domain":"linty.net","basedir":"public_html/linty.net"},{"domainkey":"add_lumberg-test.com","status":"not redirected","dir":"/home/lumberg/public_html/lumberg-addon.com","reldir":"home:public_html/lumberg-addon.com","subdomain":"add","rootdomain":"lumberg-test.com","fullsubdomain":"add.lumberg-test.com","domain":"lumberg-addon.com","basedir":"public_html/lumberg-addon.com"},{"domainkey":"team_lumberg-test.com","status":"not redirected","dir":"/home/lumberg/public_html/team.com","reldir":"home:public_html/team.com","subdomain":"team","rootdomain":"lumberg-test.com","fullsubdomain":"team.lumberg-test.com","domain":"team.com","basedir":"public_html/team.com"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"listaddondomains","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex=
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "121"
     body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALdOY1AAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
+        d9yFrZBKruI9N8QLTI0QlzVATtEf+svXCDiMexZEzFR3BFBJp1RPpojvgE/X
+        7ZY5eSNmU7aDkvodFvP2eCxVHvgY0xfb+n/ynAAAAA==
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:35 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex
+    body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:29 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:36 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "156"
-    body: |
-      {"cpanelresult":{"data":[],"event":{"result":1},"module":"Park","apiversion":2,"func":"listaddondomains","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "121"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALhOY1AAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
+        d9yFrZBKruI9N8QLTI0QlzVATtEf+svXCDiMexZEzFR3BFBJp1RPpojvgE/X
+        7ZY5eSNmU7aDkvodFvP2eCxVHvgY0xfb+n/ynAAAAA==
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:36 GMT
+recorded_with: VCR 2.0.1

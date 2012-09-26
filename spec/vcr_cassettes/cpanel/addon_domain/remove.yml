@@ -1,59 +1,97 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html%2Ftest-addon.com%2F&newdomain=test-addon.com&subdomain=testadd
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html/test-addon.com/&newdomain=test-addon.com&subdomain=testadd
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:08:39 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:00 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "258"
-    body: |
-      {"cpanelresult":{"data":[{"result":1,"reason":"test-addon.com was successfully parked on top of testadd.lumberg-test.com"}],"event":{"result":1},"module":"AddonDomain","apiversion":2,"func":"addaddondomain","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-addon.com&subdomain=testadd_lumberg-test.com
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "180"
     body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAJZOY1AAA22OsQrDMAxE936F0ewE2jFboX9ROqi2UkJty1h2Sgn599qB
+        dMomHXf3bgETMZBLJMVlGBawmBGG+wK7dNb1ROEAA2SS3KG1HHrDXn1QlBRj
+        SGQszn1VxPQmqziozFHxqFqg+ntX/JPSq2t/i8L60EAzhY35R60aPNviqLKu
+        DXNjj1MADRinmZJMbcZFw1iCqZ5ava2xuy2y5MPamOhAX9fTD5yABoACAQAA
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:02 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-addon.com&subdomain=testadd_lumberg-test.com
+    body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:08:42 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:03 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "404"
-    body: |
-      {"cpanelresult":{"data":[{"result":1,"reason":"Deleted domain: testadd.lumberg-test.com\nThe zone file for 'lumberg-test.com' has been edited and your new data has been added to it.\r\nsaved lumberg-test.com\nThe subdomain, testadd.lumberg-test.com has been removed."}],"event":{"result":1},"module":"AddonDomain","apiversion":2,"func":"deladdondomain","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "235"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAJtOY1AAA3WQv2rDQAyH9z6F0JLlamhHb4U8Qrc6g2wpzcFZMvfHpTV+
+        955T0kBxl+MkPj79pAWHiVRClFRCxnZBpkzYvi14az25+qVkii0eJUgWBraR
+        vLaQJWVibkIZe4nvj1vdDDZ2+noR+DIVOPtQH4tw+Asd4EIJehEFYb9pSRk+
+        rURQ+YAtyJ2oUyqQDXxuuthpornW+3NT6X8Cun8D3sVRRquqBteTQ5lFr1f4
+        XX51OBqXIHX7F2bT49WMDmnys8Tkt8M8OzwXHSrDEmjD+IZNlvKudoqy01/X
+        h29T9GRYlAEAAA==
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:06 GMT
+recorded_with: VCR 2.0.1

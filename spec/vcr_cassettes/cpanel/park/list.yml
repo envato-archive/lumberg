@@ -1,59 +1,93 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex=
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:28 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:35 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "428"
-    body: |
-      {"cpanelresult":{"data":[{"status":"not redirected","reldir":"home:public_html","dir":"/home/lumberg/public_html","basedir":"public_html","domain":"eeeee.at"},{"status":"not redirected","reldir":"home:public_html","dir":"/home/lumberg/public_html","basedir":"public_html","domain":"eeeeeeeee.io"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"listparkeddomains","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex=
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "121"
     body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALdOY1AAA22MsQqEMBAFez/j1Wm0zFfYH1csZg+CcbNkExvJv18Q7Gxn
+        hrmwKQmnwtZShb8QqBL85+vAJ8uNHjl3hyOHlhgeK5UdDqTx5GIxC/zi8Guy
+        DZmiVR0Bh5APimKj1Gz1damFX3jv0x+jZmXRnQAAAA==
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:35 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listparkeddomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex
+    body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:28 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:35 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "157"
-    body: |
-      {"cpanelresult":{"data":[],"event":{"result":1},"module":"Park","apiversion":2,"func":"listparkeddomains","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "121"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALdOY1AAA22MsQqEMBAFez/j1Wm0zFfYH1csZg+CcbNkExvJv18Q7Gxn
+        hrmwKQmnwtZShb8QqBL85+vAJ8uNHjl3hyOHlhgeK5UdDqTx5GIxC/zi8Guy
+        DZmiVR0Bh5APimKj1Gz1damFX3jv0x+jZmXRnQAAAA==
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:35 GMT
+recorded_with: VCR 2.0.1

@@ -1,59 +1,96 @@
 --- 
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
     body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:23 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:30 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "335"
-    body: |
-      {"cpanelresult":{"error":"Error from park wrapper: Sorry, you do not control the domain test-park.com\n","data":[{"result":0,"reason":"Error from park wrapper: Sorry, you do not control the domain test-park.com\n"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"unpark","postevent":{"result":1},"preevent":{"result":1}}}
-
-    http_version: "1.1"
-- !ruby/struct:VCR::HTTPInteraction 
-  request: !ruby/struct:VCR::Request 
-    method: :get
-    uri: https://<FILTERED_HOST>:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain=
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "186"
     body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALJOY1AAA62PsQ7CMAxEd77C8hwQMGZnR2IEhqg1oiK1Iycpqqr8Oymo
+        W0cmW3e233nCJjgmrxSzT2gnJFVRtHiaKzxUeghOX/BWFwKphYuojgZGydAK
+        sCRohJOKh/SkKvWuY0gU03be2zXS3xgNti45tNcJF9Te1NZF4b/Dyt0gDcTf
+        fxbcoRjspc2eKu9ch2smF7qBNHZzhqPBR+ammpnDzw4S0+qdoLSil7L5ALpB
+        HjRPAQAA
+
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:30 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain
+    body: 
+      encoding: US-ASCII
+      string: ""
     headers: 
-      authorization: 
-      - WHM root:<FILTERED_HASH>
-  response: !ruby/struct:VCR::Response 
-    status: !ruby/struct:VCR::ResponseStatus 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
       code: 200
       message: OK
     headers: 
-      x-keep-alive-count: 
+      X-Keep-Alive-Count: 
       - "1"
-      keep-alive: 
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
       - timeout=70, max=200
-      server: 
-      - cpsrvd/11.30.4.6
-      date: 
-      - Fri, 09 Dec 2011 14:38:23 GMT
-      content-type: 
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Wed, 26 Sep 2012 18:51:31 GMT
+      Content-Type: 
       - text/plain; charset="utf-8"
-      content-length: 
-      - "232"
-    body: |
-      {"cpanelresult":{"data":[{"result":1,"reason":"test-park.com was successfully parked on top of lumberg-test.com"}],"event":{"result":1},"module":"Park","apiversion":2,"func":"park","postevent":{"result":1},"preevent":{"result":1}}}
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "165"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALNOY1AAA22NsQ7CMAxEd77C8pwiwdivYEcMJnVRRRpHcdIKVfl3EhBM
+        3U73dPc2tIE8u8iaXcJ+w4ESYX/d8FedTI2k4rHHxJq6QPF5tDLDSgqarWXV
+        MTv3gkZ4APGQJICM4PJ85/jo2q5NsNwM8sL+o/obisFZhuy4Ki71Aw1SmBaO
+        OjXt2eCYva0wfGEQTbsvIfJOX8rhDTq1vdToAAAA
 
-    http_version: "1.1"
+    http_version: 
+  recorded_at: Wed, 26 Sep 2012 18:51:31 GMT
+recorded_with: VCR 2.0.1
