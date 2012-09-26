@@ -11,10 +11,6 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:regex</tt> - PENDING
       def forwarders(options = {})
-        Args.new(options) do |c|
-          c.optionals :domain, :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listforwards",
@@ -31,10 +27,6 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:regex</tt> - PENDING
       def mailing_lists(options = {})
-        Args.new(options) do |c|
-          c.optionals :domain, :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listlists",
@@ -50,10 +42,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:skipmain</tt> - PENDING
       def domains(options = {})
-        Args.new(options) do |c|
-          c.optionals :skipmain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listmaildomains",
@@ -68,10 +56,6 @@ module Lumberg
       # ==== Required
       #  * <tt>:domain</tt> - PENDING
       def mx(options = {})
-        Args.new(options) do |c|
-          c.requires :domain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listmxs",
@@ -87,10 +71,6 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:delivery</tt> - PENDING
       def set_mail_delivery(options = {})
-        Args.new(options) do |c|
-          c.requires :domain, :delivery
-        end
-
         delivery_vals = [:local, :remote, :auto, :secondary]
         unless delivery_vals.include?(options[:delivery].to_sym)
           raise "Invalid :delivery option"
@@ -119,10 +99,6 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:regex</tt> - PENDING
       def accounts(options = {})
-        Args.new(options) do |c|
-          c.optionals :domain, :nearquotaonly, :no_validate, :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listpopswithdisk",
@@ -141,10 +117,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
       def accounts_(options = {})
-        Args.new(options) do |c|
-          c.optionals :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listpops",

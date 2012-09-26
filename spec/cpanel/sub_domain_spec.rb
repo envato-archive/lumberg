@@ -53,10 +53,6 @@ module Lumberg
     describe "#remove" do
       use_vcr_cassette "cpanel/sub_domain/remove"
 
-      it "requires domain" do
-        requires_attr("domain") { @subd.remove }
-      end
-
       it "removes a subdomain" do
         # Add the subdomain first
         @subd.add(:domain => "foo", :rootdomain => "lumberg-test.com")
@@ -68,18 +64,6 @@ module Lumberg
 
     describe "#add" do
       use_vcr_cassette "cpanel/sub_domain/add"
-
-      it "requires domain" do
-        requires_attr("domain") {
-          @subd.add(:rootdomain => "domain.com")
-        }
-      end
-
-      it "requires rootdomain" do
-        requires_attr("rootdomain") {
-          @subd.add(:domain => "sub")
-        }
-      end
 
       it "adds a subdomain" do
         # Delete the subdomain first

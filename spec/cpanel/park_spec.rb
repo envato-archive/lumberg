@@ -24,10 +24,6 @@ module Lumberg
     describe "#add" do
       use_vcr_cassette "cpanel/park/add"
 
-      it "requires domain" do
-        requires_attr("domain") { @park.add }
-      end
-
       it "creates a new parked domain" do
         # Remove first
         @park.remove(:domain => "test-park.com")
@@ -39,10 +35,6 @@ module Lumberg
 
     describe "#remove" do
       use_vcr_cassette "cpanel/park/remove"
-
-      it "requires domain" do
-        requires_attr("domain") { @park.remove }
-      end
 
       it "removes a parked domain" do
         # Add first

@@ -11,18 +11,6 @@ module Lumberg
     end
 
     describe "#initialize" do
-      it "requires a server" do
-        requires_attr("server") {
-          Cpanel::Base.new(:api_username => "foodawg")
-        }
-      end
-
-      it "requires an api_username" do
-        requires_attr("api_username") {
-          Cpanel::Base.new(:server => @server)
-        }
-      end
-
       it "assigns api_username param to @api_username" do
         @base.api_username.should == "foodawg"
       end
@@ -57,27 +45,6 @@ module Lumberg
           )
           @base.perform_request(:api_module => "SomeModule", :api_function => "some_function")
         end
-
-        it "raises error if api_username is not saved" do
-          base = @base.dup
-          base.api_username = nil
-
-          requires_attr("api_username") {
-            base.perform_request(:api_module => "SomeModule", :api_function => "some_function")
-          }
-        end
-      end
-
-      it "requires api_module" do
-        requires_attr("api_module") {
-          @base.perform_request(:api_username => "foodawg")
-        }
-      end
-
-      it "requires api_function" do
-        requires_attr("api_function") {
-          @base.perform_request(:api_username => "foodawg", :api_module => "SomeModule")
-        }
       end
 
       context "optional api_version is specified" do

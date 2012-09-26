@@ -24,16 +24,6 @@ module Lumberg
     describe "#remove" do
       use_vcr_cassette "cpanel/addon_domain/remove"
 
-      it "requires domain" do
-        requires_attr("domain") { @addond.remove }
-      end
-
-      it "requires subdomain" do
-        requires_attr("subdomain") {
-          @addond.remove(:domain => "example.com")
-        }
-      end
-
       it "removes an addon domain" do
         # Create the addon domain to be removed
         @addond.add(
@@ -54,22 +44,6 @@ module Lumberg
 
     describe "#add" do
       use_vcr_cassette "cpanel/addon_domain/add"
-
-      it "requires dir" do
-        requires_attr("dir") { @addond.add }
-      end
-
-      it "requires newdomain" do
-        requires_attr("newdomain") {
-          @addond.add(:dir => "/some/path")
-        }
-      end
-
-      it "requires subdomain" do
-        requires_attr("subdomain") {
-          @addond.add(:dir => "/some/path", :newdomain => "new.com")
-        }
-      end
 
       it "adds an addon domain" do
         result = @addond.add(

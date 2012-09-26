@@ -10,10 +10,6 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:subdomain</tt> - PENDING
       def remove(options = {})
-        Args.new(options) do |c|
-          c.requires :domain, :subdomain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "deladdondomain",
@@ -31,10 +27,6 @@ module Lumberg
       #  * <tt>:newdomain</tt> - PENDING
       #  * <tt>:subdomain</tt> - PENDING
       def add(options = {})
-        Args.new(options) do |c|
-          c.requires :dir, :newdomain, :subdomain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "addaddondomain",
@@ -51,10 +43,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
       def list(options={})
-        Args.new(options) do |c|
-          c.optionals :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listaddondomains",

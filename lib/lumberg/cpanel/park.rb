@@ -11,11 +11,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:topdomain</tt> - PENDING
       def add(options = {})
-        Args.new(options) do |c|
-          c.requires :domain
-          c.optionals :topdomain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "park",
@@ -31,10 +26,6 @@ module Lumberg
       # ==== Required
       #  * <tt>:domain</tt> - PENDING
       def remove(options = {})
-        Args.new(options) do |c|
-          c.requires :domain
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "unpark",
@@ -49,10 +40,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
       def list(options = {})
-        Args.new(options) do |c|
-          c.optionals :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listparkeddomains",
@@ -67,10 +54,6 @@ module Lumberg
       # ==== Optional
       #  * <tt>:regex</tt> - PENDING
       def list_addon_domains(options = {})
-        Args.new(options) do |c|
-          c.optionals :regex
-        end
-
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "listaddondomains",
