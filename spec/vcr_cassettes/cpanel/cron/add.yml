@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?command=foo&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=add_line&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&day=1&hour=1&minute=1&month=1&weekday=1
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=add_line&api_module=Cron&api_username=lumberg&command=foo&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=add_line&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&day=1&hour=1&minute=1&month=1&weekday=1
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Thu, 27 Sep 2012 16:54:22 GMT
+      - Thu, 27 Sep 2012 20:07:12 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,17 +39,17 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAL6EZFAAA22OTQ6CMBBG956CzLoxFgKYbr2CO2PMQAetQiGdlkhI7241
+        H4sIAPCxZFAAA22OTQ6CMBBG956CzLoxFgKYbr2CO2PMQAetQiGdlkhI7241
         unM3P9+8Nyu0E1rqHXHoPagVNHoEdVqBPfrAoHbiWw58BQXHm+GsdaPN7mOT
         YbpEvWT0NOx5CwJ6Y+lBS0qSbElWqKuyrLuyyfOukKhRFrXU+66uIZ4F0Ez2
         4/19IKOAYdShp4Q4JE9i4mRmcmxSo3IBXbBtWqLWl7ctBaaR/V/S5OjPPMbN
         Cypnavj5AAAA
 
     http_version: 
-  recorded_at: Thu, 27 Sep 2012 16:54:21 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:11 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listcron&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listcron&api_module=Cron&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listcron&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -76,24 +76,25 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Thu, 27 Sep 2012 16:54:22 GMT
+      - Thu, 27 Sep 2012 20:07:12 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
       - gzip
       Content-Length: 
-      - "282"
+      - "318"
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAL6EZFAAA62SzW6EIBCA730Mzh74EWG99jGaphlhiGYVjOI2zcZ3L7hu
-        u5t4adLb/DDffAGuxIzgsZ9wXvpI6iuxEIHUbzn4IjVhpCCfiOffbOj8EnFP
-        2rBM93rwsd1jExafaCxHwwDepnrbpUbfeTzjhiq5k6g5co0lVVpYFFpgcxJG
-        KuoE+Zn9aOPQz+DwBlmLf3Hjj24uhCc5ZAZZBbaSUjnZcO4EAwtMKGa1U+pY
-        LlP+aieO7cSjXQTzrEcZOoZAJZhSMMEtWn2qDFhNjW6oPtbbMNlv31Gu7wXB
-        C/rt3e8/gK1ZyC59Hnmdgk8wGLsLTnOXknxvbvEmNftujuZ2YAxzPCSNEx7U
-        1/XlGz48PY15AgAA
+        H4sIAPCxZFAAA62SS26DMBBA9z2G11ngv8m2x6iqamyPBQoYBIaoirh7cULa
+        RGJTKbv5eJ6f7LkQ10PEZsBxahI5XoiHBOT4kYNvciSUHMgZ8fSXtXWcEm5J
+        1U3Dvd7FVG2x66a40miO2haiX+tVvTaaOuIJryjBgkTDkBkUhTbcIzccbcmd
+        1EXg5Hf2q0ptM0LAG2Q5vMSNPbqFrnuSQ+qQKvBKSh2kZSxwCh4o19SboPW+
+        XKb8147v2/FHuwTuWa+gGChCIcEJTjnz6E2pHHhTOGMLs693xbzo9cSj37mC
+        hPOzYRk0V0py4aR3glpBS6W4sNYyIT3dN9xA2XG7Ry6fB4Izxutu3reULlnK
+        T00eeh+6uOKgr2ccxnpN8t+GKbq12dRjcrcDfTemXVI/4E59Wd5+AGYv9gsd
+        AwAA
 
     http_version: 
-  recorded_at: Thu, 27 Sep 2012 16:54:22 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:12 GMT
 recorded_with: VCR 2.0.1

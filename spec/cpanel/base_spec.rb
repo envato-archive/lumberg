@@ -97,7 +97,7 @@ module Lumberg
           anything,
           hash_including(:awesome => "sauce")
         )
-        @base.perform_request(valid_options, { :awesome => "sauce" })
+        @base.perform_request(valid_options.merge({ :awesome => "sauce" }))
       end
 
       context "@api_username is not nil" do

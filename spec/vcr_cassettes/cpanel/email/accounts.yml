@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain&nearquotaonly&no_validate&regex
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listpopswithdisk&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:24 GMT
+      - Thu, 27 Sep 2012 20:07:01 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,10 +39,10 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKxOY1AAA22MsQ7CMAwFdz7jzVnomJ2vQAxRY4SFm1ix0w5V/p2qElvX
+        H4sIAOWxZFAAA22MsQ7CMAwFdz7jzVnomJ2vQAxRY4SFm1ix0w5V/p2qElvX
         u9PtmDUVkkbWxRF35OQJ8fkKoJXKif7yPgKWmrsQIh5LYkFAUl6pGdeCOAW8
         e5kPK2yuVW1j/2S27xFqNb9caqMLPsbtB8HL4qCdAAAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:24 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:01 GMT
 recorded_with: VCR 2.0.1

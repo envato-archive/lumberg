@@ -9,18 +9,18 @@ module Lumberg
         super options
       end
 
-      def perform_request(options = {}, call_options = {})
+      def perform_request(options = {})
         if !options[:api_username] && !api_username.nil?
           options[:api_username] = api_username
         end
 
         params = {
-          :key                       => options.delete(:key) || "cpanelresult",
-          :cpanel_jsonapi_user       => options.delete(:api_username),
-          :cpanel_jsonapi_module     => options.delete(:api_module),
-          :cpanel_jsonapi_func       => options.delete(:api_function),
-          :cpanel_jsonapi_apiversion => options.delete(:api_version) || 2
-        }.merge(options).merge(call_options)
+          :key                       => options[:key] || "cpanelresult",
+          :cpanel_jsonapi_user       => api_username,
+          :cpanel_jsonapi_module     => options[:api_module],
+          :cpanel_jsonapi_func       => options[:api_function],
+          :cpanel_jsonapi_apiversion => options[:api_version] || 2
+        }.merge(options)
 
         server.perform_request("cpanel", params)
       end

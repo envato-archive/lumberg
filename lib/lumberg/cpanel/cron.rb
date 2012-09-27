@@ -10,11 +10,8 @@ module Lumberg
       def set_email(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "set_email",
-          :api_username => options.delete(:api_username)
-        }, {
-          :email => options.delete(:email)
-        })
+          :api_function => "set_email"
+        }.merge(options))
       end
 
 
@@ -22,18 +19,16 @@ module Lumberg
       def email(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "get_email",
-          :api_username => options.delete(:api_username)
-        })
+          :api_function => "get_email"
+        }.merge(options))
       end
 
       # List cron jobs
       def list(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listcron",
-          :api_username => options.delete(:api_username)
-        })
+          :api_function => "listcron"
+        }.merge(options))
       end
 
       # Add a cron job
@@ -48,16 +43,8 @@ module Lumberg
       def add(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "add_line",
-          :api_username => options.delete(:api_username)
-        }, {
-          :command => options.delete(:command),
-          :day     => options.delete(:day),
-          :hour    => options.delete(:hour),
-          :minute  => options.delete(:minute),
-          :month   => options.delete(:month),
-          :weekday => options.delete(:weekday)
-        })
+          :api_function => "add_line"
+        }.merge(options))
       end
 
       # Remove a cron job
@@ -67,11 +54,8 @@ module Lumberg
       def remove(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "remove_line",
-          :api_username => options.delete(:api_username)
-        }, {
-          :linekey => options.delete(:linekey)
-        })
+          :api_function => "remove_line"
+        }.merge(options))
       end
 
       # Edit a crontab entry
@@ -92,18 +76,8 @@ module Lumberg
       def edit(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "edit_line",
-          :api_username => options.delete(:api_username)
-        }, {
-          :command       => options.delete(:command),
-          :day           => options.delete(:day),
-          :hour          => options.delete(:hour),
-          :minute        => options.delete(:minute),
-          :month         => options.delete(:month),
-          :weekday       => options.delete(:weekday),
-          :commandnumber => options.delete(:commandnumber),
-          :linekey       => options.delete(:linekey)
-        })
+          :api_function => "edit_line"
+        }.merge(options))
       end
     end
   end

@@ -10,11 +10,8 @@ module Lumberg
       def list(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "accountmanagelist",
-          :api_username => options.delete(:api_username)
-        }, {
-          :regex  => options.delete(:regex)
-        })
+          :api_function => "accountmanagelist"
+        }.merge(options))
       end
     end
   end

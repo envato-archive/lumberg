@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html/test-magic.com/&newdomain=test-magic.com&subdomain=tmagic
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addaddondomain&api_module=AddonDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html/test-magic.com/&newdomain=test-magic.com&subdomain=tmagic
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:07 GMT
+      - Thu, 27 Sep 2012 20:06:08 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,16 +39,16 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAJ9OY1AAA22OQQrCMBBF954izDoVdNmd4C3ExZhMSzHJhExSkZK72yh1
+        H4sIANWxZFAAA22OQQrCMBBF954izDoVdNmd4C3ExZhMSzHJhExSkZK72yh1
         1d3wef+/WcBEDOQSSXEZ+gUsZoT+tsAWnfR6onCAHjJJ7jyOkzka9uqFoqQY
         QyJDce6tIqYnWcVBZY6KB5V/sCv+QWnsWr81od410Ezhq/ybqgbPtjhaVRdr
         OVzZ4xRAA8ZppiRT++KsYSjBrAxaiw2zGxZZ8u5sTLST13r4AG6SHV8BAQAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:11 GMT
+  recorded_at: Thu, 27 Sep 2012 20:06:45 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-magic.com&subdomain=tmagic_lumberg-test.com
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=deladdondomain&api_module=AddonDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-magic.com&subdomain=tmagic_lumberg-test.com
     body: 
       encoding: US-ASCII
       string: ""
@@ -75,7 +75,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:11 GMT
+      - Thu, 27 Sep 2012 20:06:45 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -85,7 +85,7 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKNOY1AAA3WQv2rDQAyH9z6F0JLlamhHb4U8Qre6g2wpycFZMvfHpTV+
+        H4sIANmxZFAAA3WQv2rDQAyH9z6F0JLlamhHb4U8Qre6g2wpycFZMvfHpTV+
         955T0kBxl0MnPj79pAWHiVRClFRCxnZBpkzYvi14az25WlIyxRaPEiQLA9tI
         XlvII5390IQy9hLPj1lSbgYbO329CHyZCpx8qI9FOPyFDnChBL2IgrDfrKQM
         n1YiqHzAluNOEHMFsoHPTRc7TTTX//7cVPqffO6/fHdvlNGqqcH13aHMotcb
@@ -93,5 +93,5 @@ http_interactions:
         68M341ivM5IBAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:14 GMT
+  recorded_at: Thu, 27 Sep 2012 20:06:49 GMT
 recorded_with: VCR 2.0.1

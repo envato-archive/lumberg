@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=showpkgs&cpanel_jsonapi_module=Branding&cpanel_jsonapi_user=lumberg&onlyshowyours&showroot&skipglobal&skiphidden
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=showpkgs&api_module=Branding&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=showpkgs&cpanel_jsonapi_module=Branding&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 21:37:44 GMT
+      - Thu, 27 Sep 2012 20:07:07 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,10 +39,10 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKh1Y1AAA22MsQ6DMAwF937Gm7O0Y8b+BmKwiKERqWPFCQwo/w6q1I31
+        H4sIAOuxZFAAA22MsQ6DMAwF937Gm7O0Y8b+BmKwiKERqWPFCQwo/w6q1I31
         7nQHJiXhVNhaqvAHAlWCH0YH3lh+6C+f3eGbQ0sMj3chCVEWOJDGjYvFLPAv
         h7nJdAX2ybuui12BZqu3Ny18w3t/nKyWIB6YAAAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 21:37:43 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:07 GMT
 recorded_with: VCR 2.0.1

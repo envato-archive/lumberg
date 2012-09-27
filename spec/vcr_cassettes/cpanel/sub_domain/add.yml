@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=delsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&domain=sub.lumberg-test.com
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=delsubdomain&api_module=SubDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=delsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&domain=sub.lumberg-test.com
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:20 GMT
+      - Thu, 27 Sep 2012 20:06:55 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,7 +39,7 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKlOY1AAA22Qy2rDMBBF9/2KYTbZqIZm6XX+oN3VXcjWTSOQZ4weLo3x
+        H4sIAOOxZFAAA22Qy2rDMBBF9/2KYTbZqIZm6XX+oN3VXcjWTSOQZ4weLo3x
         v1dOaQLFGyENhzP3auFhsoIQkUrI3C7sbLbcvi/8N3ox9WqTCrd8QkCGI6ej
         9dJSKn0Tytgjfj5npNwMOnbydgFdVUBnH+qhkQ7/oQNdbKIeEILzm9KKo28t
         kQRftIV4ENa5CmQln5sudpLsXN/7e2ui33BmN9xDGjFq1TS8fhjGDLm1v5de
@@ -47,10 +47,10 @@ http_interactions:
         O86IAQAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:21 GMT
+  recorded_at: Thu, 27 Sep 2012 20:06:58 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&dir&disallowdot&domain=sub&rootdomain=lumberg-test.com
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addsubdomain&api_module=SubDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addsubdomain&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg&domain=sub&rootdomain=lumberg-test.com
     body: 
       encoding: US-ASCII
       string: ""
@@ -77,7 +77,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:22 GMT
+      - Thu, 27 Sep 2012 20:06:59 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -87,12 +87,12 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKtOY1AAA22PzarCQAxG9z5FyMbN3MJ12bVv4N3Zu0g7UQemSZmfipa+
+        H4sIAOWxZFAAA22PzarCQAxG9z5FyMbN3MJ12bVv4N3Zu0g7UQemSZmfipa+
         u1NBheImJB+HE74Ju4GEfeCYfcJ6QkuJsD5O+Ip+TVkpqmCNfxeGuwrDyfky
         NMDW577lcP5JHFPVab+FC0VomQXYusQWSCzcNAcQvsKi/xBkbQGSgktVExqJ
         NJZ7rWxk+Rtza7UnJ2ZZqzW0klY4/xvkkeXZ6l1mNtirzZ5Lm0Nu908jGqTB
         jRyiW2ruDJ6ydIUoqvfbAg0a01flEPhLPs+bB7zl1kZgAQAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:23 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:00 GMT
 recorded_with: VCR 2.0.1

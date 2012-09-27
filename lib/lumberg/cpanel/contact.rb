@@ -12,13 +12,8 @@ module Lumberg
       def contact(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "sendcontact",
-          :api_username => options.delete(:api_username)
-        }, {
-          :email   => options.delete(:email),
-          :issue   => options.delete(:issue),
-          :subject => options.delete(:subject)
-        })
+          :api_function => "sendcontact"
+        }.merge(options))
       end
 
       # Is the account's contact option enabled?
@@ -26,8 +21,7 @@ module Lumberg
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "isenabled",
-          :api_username => options.delete(:api_username)
-        })
+        }.merge(options))
       end
     end
   end

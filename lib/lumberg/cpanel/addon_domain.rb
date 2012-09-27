@@ -12,12 +12,8 @@ module Lumberg
       def remove(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "deladdondomain",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain    => options.delete(:domain),
-          :subdomain => options.delete(:subdomain)
-        })
+          :api_function => "deladdondomain"
+        }.merge(options))
       end
 
       # Add an addon domain with a coresponding subdomain
@@ -29,13 +25,8 @@ module Lumberg
       def add(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "addaddondomain",
-          :api_username => options.delete(:api_username)
-        }, {
-          :dir       => options.delete(:dir),
-          :newdomain => options.delete(:newdomain),
-          :subdomain => options.delete(:subdomain)
-        })
+          :api_function => "addaddondomain"
+        }.merge(options))
       end
 
       # List addon domains
@@ -45,11 +36,8 @@ module Lumberg
       def list(options={})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listaddondomains",
-          :api_username => options.delete(:api_username)
-        }, {
-          :regex => options.delete(:regex)
-        })
+          :api_function => "listaddondomains"
+        }.merge(options))
       end
     end
   end

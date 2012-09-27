@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=applist&cpanel_jsonapi_module=Branding&cpanel_jsonapi_user=lumberg&nvarglist
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=applist&api_module=Branding&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=applist&cpanel_jsonapi_module=Branding&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 21:37:44 GMT
+      - Thu, 27 Sep 2012 20:07:08 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,10 +39,10 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKh1Y1AAA22MOwqAMBAFe4/x6jRapvQaYrEkqwTiZsnHRnJ3RbCznRnm
+        H4sIAOyxZFAAA22MOwqAMBAFe4/x6jRapvQaYrEkqwTiZsnHRnJ3RbCznRnm
         glMSjplLixX2gqdKsMtqwCfLiz45doMj+RYZFnMm8UF2GJCGk3MJSWAng62J
         ewJSjaHUx2sq9XemmX9478MNbkiCN5cAAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 21:37:44 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:08 GMT
 recorded_with: VCR 2.0.1

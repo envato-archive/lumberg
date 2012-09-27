@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listforwards&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain&regex
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listforwards&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listforwards&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:24 GMT
+      - Thu, 27 Sep 2012 20:07:01 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,10 +39,10 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAKxOY1AAA22MMQqFMBAF+3+MV6fRMv0/hVgsZoXAmoTdRAvJ3RXBznZm
+        H4sIAOWxZFAAA22MMQqFMBAF+3+MV6fRMv0/hVgsZoXAmoTdRAvJ3RXBznZm
         mBNLocSibE0q/IlAleCn2YF3Tg965dAdthyaMDz+G0WBA5W4s1rMCX50WFta
         bivR6pr1IA12RyVb/dwV5Q/e++8CfWCTeJkAAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:24 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:01 GMT
 recorded_with: VCR 2.0.1

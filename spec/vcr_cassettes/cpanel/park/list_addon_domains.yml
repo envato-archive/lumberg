@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&regex
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listaddondomains&api_module=Park&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:35 GMT
+      - Thu, 27 Sep 2012 20:07:56 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,15 +39,15 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIALdOY1AAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
+        H4sIAByyZFAAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
         d9yFrZBKruI9N8QLTI0QlzVATtEf+svXCDiMexZEzFR3BFBJp1RPpojvgE/X
         7ZY5eSNmU7aDkvodFvP2eCxVHvgY0xfb+n/ynAAAAA==
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:35 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:56 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal&regex
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listaddondomains&api_module=Park&api_username=minimal&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal
     body: 
       encoding: US-ASCII
       string: ""
@@ -74,7 +74,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:36 GMT
+      - Thu, 27 Sep 2012 20:07:57 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -84,10 +84,10 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIALhOY1AAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
+        H4sIAB2yZFAAA22MsQrDMAwF93zGm720o78ie8ggIhVMHMlYdpbgf28odMt6
         d9yFrZBKruI9N8QLTI0QlzVATtEf+svXCDiMexZEzFR3BFBJp1RPpojvgE/X
         7ZY5eSNmU7aDkvodFvP2eCxVHvgY0xfb+n/ynAAAAA==
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:36 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:56 GMT
 recorded_with: VCR 2.0.1

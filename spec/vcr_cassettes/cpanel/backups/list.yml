@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfullbackups&cpanel_jsonapi_module=Backups&cpanel_jsonapi_user=lumberg
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listfullbackups&api_module=Backups&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfullbackups&cpanel_jsonapi_module=Backups&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 19:23:19 GMT
+      - Thu, 27 Sep 2012 20:06:50 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,7 +39,7 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIACdWY1AAA52Qy07DMBBF93xFNOskyrhuWrzkF1iwQKhynGkVMYktP7og
+        H4sIANqxZFAAA52Qy07DMBBF93xFNOskyrhuWrzkF1iwQKhynGkVMYktP7og
         8r/jRsCqEojtfZy5mhWM0wuxp5A4glph1FGDel0hRB1TAAXGzo4pEtTA1miO
         00xFfqGxeiZXib5CqQQqlJXoUJTYeeJbYtDmPbnmsRV9e3NOKBuBDcoTp3kg
         f2mj9u3lozS+mLiTx/54EAcJuf7HhH33twn77rcJO+wgv9VAV1q2v3x/CHMN
@@ -47,5 +47,5 @@ http_interactions:
         IKMBAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 19:23:19 GMT
+  recorded_at: Thu, 27 Sep 2012 20:06:50 GMT
 recorded_with: VCR 2.0.1

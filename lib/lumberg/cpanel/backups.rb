@@ -6,9 +6,8 @@ module Lumberg
       def list(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listfullbackups",
-          :api_username => options.delete(:api_username)
-        })
+          :api_function => "listfullbackups"
+        }.merge(options))
       end
     end
   end

@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithimage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listpopswithimage&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithimage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:25 GMT
+      - Thu, 27 Sep 2012 20:07:02 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,11 +39,11 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAK1OY1AAA22NOw7CMBAFe06Bto6wSBkBHacgFIuzMYv8k9cOReS7YyLR
+        H4sIAOaxZFAAA22NOw7CMBAFe06Bto6wSBkBHacgFIuzMYv8k9cOReS7YyLR
         0Y7em1lBR/RkE0mxGYYVJswIw20FGwx7GODEzuwl6fMIak7BZ/KTEuwVOzQk
         yiF71DofXtGMcIEOqCHbnra4ByUD9d7YQn7z/0rH2oELU7HUltft0QFGXigJ
         hxbuO5iL118PS44hypvzc4u2ZQyS/zpjoj+81t0HwXmyq+sAAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:25 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:02 GMT
 recorded_with: VCR 2.0.1

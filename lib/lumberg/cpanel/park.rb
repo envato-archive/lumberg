@@ -13,12 +13,8 @@ module Lumberg
       def add(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "park",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain    => options.delete(:domain),
-          :topdomain => options.delete(:topdomain)
-        })
+          :api_function => "park"
+        }.merge(options))
       end
 
       # Remove a parked domain
@@ -28,11 +24,8 @@ module Lumberg
       def remove(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "unpark",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain => options.delete(:domain)
-        })
+          :api_function => "unpark"
+        }.merge(options))
       end
 
       # List parked domains
@@ -42,11 +35,8 @@ module Lumberg
       def list(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listparkeddomains",
-          :api_username => options.delete(:api_username)
-        }, {
-          :regex => options.delete(:regex)
-        })
+          :api_function => "listparkeddomains"
+        }.merge(options))
       end
 
       # List addon domains
@@ -56,11 +46,8 @@ module Lumberg
       def list_addon_domains(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listaddondomains",
-          :api_username => options.delete(:api_username)
-        }, {
-          :regex => options.delete(:regex)
-        })
+          :api_function => "listaddondomains"
+        }.merge(options))
       end
 
     end

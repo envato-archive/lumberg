@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=accountmanagelist&cpanel_jsonapi_module=BoxTrapper&cpanel_jsonapi_user=lumberg&regex
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=accountmanagelist&api_module=BoxTrapper&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=accountmanagelist&cpanel_jsonapi_module=BoxTrapper&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 19:47:53 GMT
+      - Thu, 27 Sep 2012 20:07:09 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,11 +39,11 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAOpbY1AAA22NvQ7CMAyEdx7DcwZgzMgzsCEGNzFVpNSJ4qRCqvLuNeVH
+        H4sIAO2xZFAAA22NvQ7CMAyEdx7DcwZgzMgzsCEGNzFVpNSJ4qRCqvLuNeVH
         DN3su+/uFnAZmWIhabGCXcBjRbC3BaRibQIWfBAcInkwMIz600ysNzqXGmsG
         YpsGKqNqxG/SHn9+K+EP6Xez5bep7+ipG5iSb5GUvKTntWDOVF4bOcxUJCQG
         ezbwaOwU+TRPyDhSDFKVzEnqbnEutKP3flgBNvELG/sAAAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 19:47:53 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:09 GMT
 recorded_with: VCR 2.0.1

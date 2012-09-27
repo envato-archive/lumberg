@@ -13,14 +13,8 @@ module Lumberg
       def list_pkgs(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "showpkgs",
-          :api_username => options.delete(:api_username)
-        }, {
-          :onlyshowyours => options.delete(:onlyshowyours),
-          :showroot      => options.delete(:showroot),
-          :skipglobal    => options.delete(:skipglobal),
-          :skiphidden    => options.delete(:skiphidden)
-        })
+          :api_function => "showpkgs"
+        }.merge(options))
       end
 
       # Retrieve URL locations for specific sprites
@@ -37,16 +31,8 @@ module Lumberg
       def list_sprites(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "spritelist",
-          :api_username => options.delete(:api_username)
-        }, {
-          :img        => options.delete(:img),
-          :imgtype    => options.delete(:imgtype),
-          :method     => options.delete(:method),
-          :subtype    => options.delete(:subtype),
-          :image      => options.delete(:image),
-          :skipgroups => options.delete(:skipgroups),
-        })
+          :api_function => "spritelist"
+        }.merge(options))
       end
 
       # Retrieve a list of icons within the x3 interface
@@ -56,29 +42,24 @@ module Lumberg
       def list_icons(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "applist",
-          :api_username => options.delete(:api_username)
-        }, {
-          :nvarglist => options.delete(:nvarglist)
-        })
+          :api_function => "applist"
+        }.merge(options))
       end
 
       # List branding object types
       def list_object_types(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listobjecttypes",
-          :api_username => options.delete(:api_username)
-        })
+          :api_function => "listobjecttypes"
+        }.merge(options))
       end
 
       # List branding image types
       def list_image_types(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listimgtypes",
-          :api_username => options.delete(:api_username)
-        })
+          :api_function => "listimgtypes"
+        }.merge(options))
       end
     end
   end

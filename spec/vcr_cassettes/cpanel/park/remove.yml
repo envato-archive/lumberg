@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com&topdomain
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=park&api_module=Park&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,7 +29,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:32 GMT
+      - Thu, 27 Sep 2012 20:07:53 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -39,16 +39,16 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIALROY1AAA62OsQ7CMAxEd74i8hwqYMzOzg4MVuKiiDaxnKQIVfl3UlC3
+        H4sIABmyZFAAA62OsQ7CMAxEd74i8hwqYMzOzg4MVuKiiDaxnKQIVfl3UlC3
         jky27nTvbgbLGGgQSmXIYGYgkShg4Lxc1UscFaM81UuQmcSoTCnvF6mzzfNJ
         YUujeysbQ+8fRch1twAaHGYEc51hhR90ezHF8Ad8vWugicJ381pwrBrG6MpA
         reHSGG0Fsp9Ikl9aTxr6Emwz+WdyTHmTwkIbeq27D0xTZvExAQAA
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:32 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:53 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=unpark&api_module=Park&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
     body: 
       encoding: US-ASCII
       string: ""
@@ -75,7 +75,7 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Wed, 26 Sep 2012 18:51:32 GMT
+      - Thu, 27 Sep 2012 20:07:53 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
@@ -85,7 +85,7 @@ http_interactions:
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIALZOY1AAA21RsU7DMBDd+YrrLVlCJBgzMyOkIjFQBje5qBbO2fLZhVLl
+        H4sIABuyZFAAA21RsU7DMBDd+YrrLVlCJBgzMyOkIjFQBje5qBbO2fLZhVLl
         3zk7UITUxbLee37v+e6MQzBMLpJkl7A/42iSwf71jL/QXatXI56xx4fHLQjF
         I0UYPDMNyXoGkmT2zsqBxm7HzweKBB9GwECIfu9o7kFB+PJMMPkITdIXt8HE
         927wc1O17JNymUewDGxmtdKEaQOrnS0KKPHVpSFO8dRA8hBp9kfawItmWudA
@@ -95,5 +95,5 @@ http_interactions:
         AAA=
 
     http_version: 
-  recorded_at: Wed, 26 Sep 2012 18:51:34 GMT
+  recorded_at: Thu, 27 Sep 2012 20:07:55 GMT
 recorded_with: VCR 2.0.1

@@ -13,12 +13,8 @@ module Lumberg
       def forwarders(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listforwards",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain => options.delete(:domain),
-          :regex  => options.delete(:regex)
-        })
+          :api_function => "listforwards"
+        }.merge(options))
       end
 
       # List Mailman mailing lists
@@ -29,12 +25,8 @@ module Lumberg
       def mailing_lists(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listlists",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain => options.delete(:domain),
-          :regex  => options.delete(:regex)
-        })
+          :api_function => "listlists"
+        }.merge(options))
       end
 
       # List domains that can send/receive mail
@@ -44,11 +36,8 @@ module Lumberg
       def domains(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listmaildomains",
-          :api_username => options.delete(:api_username)
-        }, {
-          :skipmain => options.delete(:skipmain)
-        })
+          :api_function => "listmaildomains"
+        }.merge(options))
       end
 
       # List mail exchanger information
@@ -58,11 +47,8 @@ module Lumberg
       def mx(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listmxs",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain => options.delete(:domain)
-        })
+          :api_function => "listmxs"
+        }.merge(options))
       end
 
       # Set mail delivery for a domain
@@ -79,11 +65,8 @@ module Lumberg
         perform_request({
           :api_module   => self.class.api_module,
           :api_function => "setalwaysaccept",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain  => options.delete(:domain),
-          :mxcheck => options.delete(:delivery)
-        })
+          :mxcheck      => options[:delivery]
+        }.merge(options))
       end
 
       def getalwaysaccept; end
@@ -101,14 +84,8 @@ module Lumberg
       def accounts(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listpopswithdisk",
-          :api_username => options.delete(:api_username)
-        }, {
-          :domain        => options.delete(:domain),
-          :regex         => options.delete(:regex),
-          :nearquotaonly => options.delete(:nearquotaonly),
-          :no_validate   => options.delete(:no_validate)
-        })
+          :api_function => "listpopswithdisk"
+        }.merge(options))
       end
 
       # List email accounts.
@@ -119,11 +96,8 @@ module Lumberg
       def accounts_(options = {})
         perform_request({
           :api_module   => self.class.api_module,
-          :api_function => "listpops",
-          :api_username => options.delete(:api_username)
-        }, {
-          :regex => options.delete(:regex),
-        })
+          :api_function => "listpops"
+        }.merge(options))
       end
 
       # List email accounts.
@@ -131,8 +105,7 @@ module Lumberg
       def accounts_with_image(options = {})
         perform_request(
           :api_module   => self.class.api_module,
-          :api_function => "listpopswithimage",
-          :api_username => options.delete(:api_username)
+          :api_function => "listpopswithimage"
         )
       end
 
@@ -141,8 +114,7 @@ module Lumberg
       def accounts_single(options = {})
         perform_request(
           :api_module   => self.class.api_module,
-          :api_function => "listpopssingle",
-          :api_username => options.delete(:api_username)
+          :api_function => "listpopssingle"
         )
       end
 
