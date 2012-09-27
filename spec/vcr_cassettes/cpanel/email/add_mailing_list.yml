@@ -2,7 +2,7 @@
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?api_function=addforward&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addforward&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=test-fwd&fwdemail=foo@bar.com&fwdopt=fwd
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addlist&api_module=Email&api_username=lumberg&api_version=1&arg-0=add-test&arg-1=s3cr3t5&arg-2=lumberg-test.com&cpanel_jsonapi_apiversion=1&cpanel_jsonapi_func=addlist&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -29,26 +29,28 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Thu, 27 Sep 2012 21:51:54 GMT
+      - Thu, 27 Sep 2012 21:51:52 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
       - gzip
       Content-Length: 
-      - "162"
+      - "245"
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAHrKZFAAA22OvQ7CMAyEdx7Dc4oEY6cuPAVicGsXVUriKD/tEOXdMRWd
-        6Gbdd767ClNAzzZyKjZDX4EwI/TPCrPEDSNBr5cMI8brJA4MkDhcvMq2uJHj
-        u8uc8o+xIqvoK3XzRsOfp73UtbLfu47WWzPghIpl/X3sGQYwLCvHtIh23Q3M
-        xU9KkegYZiBIyqdhIfKJ3trlA1oIY9zwAAAA
+        H4sIAHjKZFAAA21Qy24CMQz8FStnoOKKqqpV1Y+oxMW7HiBSHqs4gSLEv9eh
+        i8qBmz0zHo99cTz5I4r6nNzGrd3C1fMEK3FEqtbGLC104CuyDwbsWhqtZZHg
+        tSs0tzJ2xSxdOOHKbnNxBdpCNeazgKtPe+JE6D7UZ2nsMJSiqfwUMHO7XE5c
+        xFKZXignkFca0A2aQoiDDcp59ToUennbpo//kTtH+LEN2gmyqEtbU5cs0af3
+        0OKAsr9BqzHH2eZu9p2bBbJ0goAKqgevD/4DrMZf9B6oHnA7ZpvcdTF/7eH0
+        tYFT1vqcKHiCX38BHb2Yh5UBAAA=
 
     http_version: 
-  recorded_at: Thu, 27 Sep 2012 21:51:54 GMT
+  recorded_at: Thu, 27 Sep 2012 21:51:52 GMT
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?api_function=listforwards&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listforwards&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listlists&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listlists&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
     body: 
       encoding: US-ASCII
       string: ""
@@ -75,22 +77,22 @@ http_interactions:
       Server: 
       - cpsrvd/11.30.6.8
       Date: 
-      - Thu, 27 Sep 2012 21:51:54 GMT
+      - Thu, 27 Sep 2012 21:51:53 GMT
       Content-Type: 
       - text/plain; charset="utf-8"
       Content-Encoding: 
       - gzip
       Content-Length: 
-      - "207"
+      - "212"
     body: 
       encoding: ASCII-8BIT
       string: !binary |
-        H4sIAHvKZFAAA52RzQrCMBCE7z7GgrdUVDz11ItPISJps9VA0pT8tIeSd3db
-        WqQSinhLJrPfZNgBqpY3qCy6oDzkAwjuOeS3AYKVD4GORKh7kXk67i9HFXSJ
-        9jldD5XRwKA2tudWjD5jipLbWX95rb4JRWJ+DFoxKOZD+QEwBaV/EdmqyDiU
-        Eer/Igvh7yJbgK0idwbYYTPtaNnWKTLQRgSF5L5qLhVBeCs7tE6aBvIzlQpN
-        Ra9KOj+THZla43wS11pM6DHu3sJUaHMqAgAA
+        H4sIAHnKZFAAA62QywrCMBBF936FzDottiLarkRw5SeISGxGG8yLpOmm9N9N
+        io+CXbhwEZgkZ85cpoPKUIXCovOigbIDRhsK5bGD2kuqGHd375BBCVmRFvPD
+        DggI7gIKlLGkQddshZcXtLfhklZaBoSFstYDJikX6RTyUeeL5Xr1FHM2Up+/
+        +nryQ7JIJ7H+S7RNPo72dk9kOxHAFtWwx9dGs56A1MwLDM37ODHYqOEtWse1
+        gjIncPWqCr/RGo8LhAkJJ13G4sR7388eIEXcScsBAAA=
 
     http_version: 
-  recorded_at: Thu, 27 Sep 2012 21:51:54 GMT
+  recorded_at: Thu, 27 Sep 2012 21:51:52 GMT
 recorded_with: VCR 2.0.1

@@ -5,6 +5,33 @@ module Lumberg
 
       def checkmaindiscard; end
 
+      # Add a forwarder
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - Forwarder domain
+      #  * <tt>:email</tt> - Local part ("user" if "user@domain.com")
+      #  * <tt>:fwdopt</tt> - :pipe, :fwd, :system, :blackhole, or :fail
+      #  * <tt>:fwdemail</tt> - Destination email address
+      #
+      # ==== Optional
+      #  * <tt>:fwdsystem</tt> - System account to forward to. Should only be
+      #                          used if "fwdopt" is set to "system"
+      #  * <tt>:failmsgs</tt> - Set failure message. Only used if "fwdopt" is
+      #                         set to "fail"
+      #  * <tt>:pipefwd</tt> - Path to program to pipe to. Only used if 
+      #                        "fwdopt" is set to "pipe"
+      def add_forwarder(options = {})
+        fwdopt_vals = [:pipe, :fwd, :system, :blackhole, :fail]
+        unless fwdopt_vals.include?(options[:fwdopt].to_sym)
+          raise "Invalid :fwdopt option"
+        end
+
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "addforward"
+        }.merge(options))
+      end
+
       # List forwarders
       #
       # ==== Optional
@@ -15,6 +42,23 @@ module Lumberg
           :api_module   => self.class.api_module,
           :api_function => "listforwards"
         }.merge(options))
+      end
+
+      # Add a mailing list
+      #
+      # === Required
+      #  * <tt>:list</tt> - Mailing liist name
+      #  * <tt>:password</tt> - Mailing list password
+      #  * <tt>:domain</tt> - Mailing list domain
+      def add_mailing_list(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "addlist",
+          :api_version  => 1, # :(
+          "arg-0"       => options[:list],
+          "arg-1"       => options[:password],
+          "arg-2"       => options[:domain]
+        })
       end
 
       # List Mailman mailing lists
@@ -74,6 +118,21 @@ module Lumberg
       def fetchcharmaps; end
       def listautoresponders; end
       def listdomainforwards; end
+
+      # Add a POP account
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - Domain for the email account
+      #  * <tt>:email</tt> - Local part of email address. 
+      #                      "user" if "user@domain"
+      #  * <tt>:password</tt> - Password for email account
+      #  * <tt>:quota</tt> - Disk space quota in MB. 0 for unlimited
+      def add_account(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "addpop"
+        }.merge(options))
+      end
 
       # List email accounts. Uses the cPanel-preferred
       # API call Email::listpopswithdisk
