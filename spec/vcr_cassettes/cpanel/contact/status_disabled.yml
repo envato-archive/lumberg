@@ -1,0 +1,48 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=isenabled&cpanel_jsonapi_module=Contactus&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 14:18:58 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "125"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAFJgZFAAA22MsQoCMRAFez/j1SnUcls/QyzWZA8CcROym2tC/l0Rrrt2
+        ZpiJ2FildLFRHDSR2Bn0nBDld5EEuq5XgOyif3+UtxXwqWkUAeFR1Tn6MARw
+        y7t0y1VB94BtaPwV2Y5fQKvmp7/W5YSvdfkCHne3RqcAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 14:18:58 GMT
+recorded_with: VCR 2.0.1
