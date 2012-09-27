@@ -1,0 +1,94 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=set_email&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&email=sauron@mordor.com
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 16:54:20 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "158"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALyEZFAAA22NSwpCMQxF565CMi7Cc9iR4DJEJLZRCv3RpG9Sunfjb/Zm
+        ufdwTwa4ipliI+5RwA7wKAj2MoAFpTPYxfzOxE+w4FrJgvd9yNrGSB4MUMIQ
+        lTF2padUmi/t4EqCeVW6Uv6o/0+WaSAV3yPp5qwLVWANKzUOGuzRwKNn9xaS
+        3L5yA7WwbKpqo41+zt0LabPm8t0AAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 16:54:20 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=get_email&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 16:54:21 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "134"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAL2EZFAAA22MzQpCIRBG9z3Gt5aglq6CHiMiBp1CUEdGvRvx3a8U7e7y
+        +zlnwBXKHJVrjw12wFMj2McAJwoRFpW6Sr4lUS96dpIwnwa8cf7+/+RlGiTx
+        PfJi7ouAAZWwsdawgr0avHt2a/xwe/3kBkVqO1QV5YN+ztMOnoryArIAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 16:54:20 GMT
+recorded_with: VCR 2.0.1

@@ -10,5 +10,6 @@ module Lumberg
     require "lumberg/cpanel/box_trapper"
     require "lumberg/cpanel/branding"
     require "lumberg/cpanel/contact"
+    require "lumberg/cpanel/cron"
   end
 end
