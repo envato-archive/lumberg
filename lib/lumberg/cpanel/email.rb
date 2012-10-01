@@ -3,7 +3,13 @@ module Lumberg
     class Email < Base
       def self.api_module; "Email"; end
 
-      def checkmaindiscard; end
+      # Get info about how the main email account handles undeliverable mail
+      def main_discard
+        perform_request(
+          :api_module   => self.class.api_module,
+          :api_function => "checkmaindiscard"
+        )
+      end
 
       # Add a forwarder
       #
@@ -177,13 +183,64 @@ module Lumberg
         )
       end
 
-      def listdefaultaddresses; end
-      def getabsbrowsedir; end
-      def browseboxes; end
+      # Retrieve default address info
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - Default address domain
+      def default_address(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "listdefaultaddresses"
+        }.merge(options))
+      end
+
       def filterlist; end
       def tracefilter; end
       def fetchautoresponder; end
-      def getdiskusage; end
+
+
+      # Retrieve disk usage information for an email account
+      #
+      # ==== Required
+      #  * <tt>:domain</tt> - "domain.com" if "user@domain.com"
+      #  * <tt>:login</tt> - "user" if "user@domain.com"
+      def disk_usage(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "getdiskusage"
+        }.merge(options))
+      end
+
+      # Retrieve full path to a mail folder
+      #
+      # ==== Required
+      #  * <tt>:account</tt> - Email address
+      #
+      # ==== Optional
+      #  * <tt>:dir</tt> - The mail folder you with to query for its
+      #                    full path. Defaults to "mail"
+      def mail_dir(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "getabsbrowsedir"
+        }.merge(options))
+      end
+
+      # Retrieve a list of mail dirs
+      #
+      # === Optional
+      #  * <tt>:account</tt> - Email account to review
+      #  * <tt>:dir</tt> - Which mail directories to display. 
+      #                    "default" or "mail" will list all mail dirs.
+      #                    Providing a domain will list dirs related to 
+      #                    the domain.
+      #  * <tt>:showdotfiles</tt> - View hidden directories? 
+      def mail_dirs(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "browseboxes"
+        }.merge(options))
+      end
 
       def listfilterbackups; end
       def listaliasbackups; end

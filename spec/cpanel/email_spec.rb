@@ -18,14 +18,22 @@ module Lumberg
       it { should == "Email" }
     end
 
+    describe "#main_discard" do
+      use_vcr_cassette("cpanel/email/main_discard")
+
+      it "gets info about main email account undeliverable mail handling" do
+        email.main_discard[:params][:data][0].should have_key(:status)
+      end
+    end
+
     describe "#add_mailing_list" do
       use_vcr_cassette("cpanel/email/add_mailing_list")
 
       it "adds a mailing list" do
         email.add_mailing_list(
-          :list     => "add-test", 
+          :list     => "add-test",
           :domain   => domain,
-          :password => "s3cr3t5" 
+          :password => "s3cr3t5"
         )
 
         email.mailing_lists[:params][:data].find {|l|
@@ -39,13 +47,13 @@ module Lumberg
 
       before do
         email.add_mailing_list(
-          :list     => "test-list", 
+          :list     => "test-list",
           :domain   => domain,
-          :password => "s3cr3t5" 
+          :password => "s3cr3t5"
         )
       end
 
-      it "returns a list of mailing lists" do 
+      it "returns a list of mailing lists" do
         email.mailing_lists[:params][:data].find {|l|
           l[:list] == "test-list@#{domain}"
         }.should_not be_nil
@@ -156,97 +164,145 @@ module Lumberg
       end
     end
 
-    #describe "#domains" do
-    #  use_vcr_cassette "cpanel/email/domains"
+    describe "#domains" do
+      use_vcr_cassette("cpanel/email/domains")
 
-    #  subject { @email.domains[:params][:data] }
-    #  it { should be_an(Array) }
+      it "returns a list of domains" do
+        email.domains[:params][:data].find {|d|
+          d[:domain] == domain
+        }.should_not be_nil
+      end
+    end
 
-    #  it "returns an array with info for each domain" do
-    #    subject.each {|info| info.keys.should include(:domain) }
-    #  end
-    #end
+    describe "#mx" do
+      use_vcr_cassette("cpanel/email/mx")
 
-    #describe "#mx" do
-    #  use_vcr_cassette "cpanel/email/mx"
+      it "returns info for each mail exchanger" do
+        email.mx[:params][:data][0][:entries].find {|m|
+          m[:domain] == domain
+        }.should_not be_nil
+      end
+    end
 
-    #  subject { @email.mx(:domain => domain)[:params][:data] }
-    #  it { should be_an(Array) }
+    describe "#set_mail_delivery" do
+      let(:detected) do
+        email.mx(:domain => domain)[:params][:data][0][:detected]
+      end
 
-    #  it "returns an array with info for each mail exchanger" do
-    #    #puts YAML.dump(subject)
-    #    subject.each {|info|
-    #      info.keys.should include(
-    #        :mxcheck, :entries, :statusmsg, :detected, :secondary, :remote,
-    #        :status, :alwaysaccept, :mx, :domain, :local
-    #      )
+      use_vcr_cassette("cpanel/email/set_mail_delivery")
 
-    #      info[:entries].each {|entry|
-    #        entry.keys.should include(
-    #          :priority, :mx, :domain, :entrycount, :row
-    #        )
-    #      }
-    #    }
-    #  end
-    #end
+      it "raises when given an invalid delivery option" do
+        expect {
+          email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :invalid
+          )
+        }.to raise_error
+      end
 
-    #describe "#set_mail_delivery" do
-    #  use_vcr_cassette("cpanel/email/set_mail_delivery")
+      context "remote delivery" do
+        use_vcr_cassette("cpanel/email/set_mail_delivery.remote")
 
-    #  it "should raise an error if given an invalid delivery option" do
-    #    expect {
-    #      email.set_mail_delivery(
-    #        :domain   => domain,
-    #        :delivery => :invalid
-    #      )
-    #    }.to raise_error("Invalid :delivery option")
-    #  end
+        it "sets remote mail delivery" do
+          email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :remote
+          )
 
-    #  context "remote delivery" do
-    #    subject {
-    #      email.set_mail_delivery(
-    #        :domain   => domain,
-    #        :delivery => "remote"
-    #      )[:params][:data].first
-    #    }
+          detected.should == "remote"
+        end
+      end
 
-    #    it { should be_a(Hash) }
+      context "local delivery" do
+        use_vcr_cassette("cpanel/email/set_mail_delivery.local")
 
-    #    its([:mxcheck])   { should == "remote" }
-    #    its([:secondary]) { should == 0 }
-    #    its([:remote])    { should == 1 }
-    #    its([:local])     { should == 0 }
+        it "sets local mail delivery" do
+          email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :local
+          )
 
-    #    it "returns info for the mail exchanger" do
-    #      subject.keys.should include(
-    #        :mxcheck, :statusmsg, :checkmx, :detected, :results,
-    #        :secondary, :remote, :status, :local
-    #      )
-    #    end
-    #  end
+          detected.should == "local"
+        end
+      end
+    end
 
-    #  context "local delivery" do
-    #    subject {
-    #      @email.set_mail_delivery(
-    #        :domain   => domain,
-    #        :delivery => "local"
-    #      )[:params][:data].first
-    #    }
+    describe "#disk_usage" do
+      let(:local) { "disk-usage-test" }
 
-    #    it { should be_a(Hash) }
-    #    its([:mxcheck])   { should == "local" }
-    #    its([:secondary]) { should == 0 }
-    #    its([:remote])    { should == 0 }
-    #    its([:local])     { should == 1 }
+      use_vcr_cassette("cpanel/email/disk_usage")
 
-    #    it "returns info for the mail exchanger" do
-    #      subject.keys.should include(
-    #        :mxcheck, :statusmsg, :checkmx, :detected, :results,
-    #        :secondary, :remote, :status, :local
-    #      )
-    #    end
-    #  end
-    #end
+      before do
+        email.add_account(
+          :domain   => domain,
+          :email    => local,
+          :password => "s00pers3cr3t",
+          :quota    => 0
+        )
+      end
 
+      it "gets disk usage information for an email account" do
+        email.disk_usage(
+          :domain => domain,
+          :login  => local
+        )[:params][:data].find {|d|
+          d[:login] == local && d[:domain] == domain
+        }.should_not be_nil
+      end
+    end
+
+    describe "#mail_dir" do
+      let(:local) { "mail-dir-test" }
+
+      use_vcr_cassette("cpanel/email/mail_dir")
+
+      before do
+        email.add_account(
+          :domain   => domain,
+          :email    => local,
+          :password => "s00pers3cr3t",
+          :quota    => 0
+        )
+      end
+
+      it "gets disk usage information for an email account" do
+        email.mail_dir(
+          :account => "#{local}@#{domain}"
+        )[:params][:data][0][:absdir].should match(
+          /\/mail\/#{domain}\/#{local}/
+        )
+      end
+    end
+
+    describe "#mail_dirs" do
+      let(:local) { "mail-dirs-test" }
+
+      use_vcr_cassette("cpanel/email/mail_dirs")
+
+      before do
+        email.add_account(
+          :domain   => domain,
+          :email    => local,
+          :password => "s00pers3cr3t",
+          :quota    => 0
+        )
+      end
+
+      it "gets a list of mail-related directories" do
+        email.mail_dirs[:params][:data].find {|m|
+          m[:fullpath] =~ /\/mail\/#{domain}/
+        }.should_not be_nil
+      end
+    end
+
+    describe "#default_address" do
+      use_vcr_cassette("cpanel/email/default_address")
+
+      it "gets default address info for a domain" do
+        email.default_address(
+          :domain => domain
+        )[:params][:data][0][:domain].should == domain
+      end
+    end
   end
 end

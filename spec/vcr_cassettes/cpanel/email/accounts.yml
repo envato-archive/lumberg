@@ -188,4 +188,192 @@ http_interactions:
 
     http_version: 
   recorded_at: Thu, 27 Sep 2012 21:51:56 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addpop&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=test-account&password=sauce&quota=0
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 16:29:38 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "175"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPLEaVAAA6WOvQ7CMAyEd54ieE4RMHZi4Q3YUAeTGIiUPzlJBary7qSI
+        bt3YznfydzeBiujJMqViM/QTEHNg6OHyJIFKheKzyJRy9ztOtrgb8aObzZ0K
+        TmD7Rv0W9DIppy1I0JgR+usEC3Yvm8QU/F/gOkigkfx354I+VAku6GKpsc8O
+        jW0DMJqROJm58CjhXrxqKWodQ2xxDCmvgiLTil/r5gNQXZpnKAEAAA==
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 16:29:38 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listpopswithdisk&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 16:29:38 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "274"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPLEaVAAA82Sz0oDMRDG7z7GnLey2wq1PXnx6gtIKTE7tsH8M5lUYcm7
+        OwlbWXRVEA/eMt98+eWbIQNILyzqgDFpgu0AvSAB23s+qPj0nFypIFmtjCLs
+        oYFjMsJOm3fOIuspYuBKSOmSpQVhJFb3xcmtnlvt9PaojZf3U2Dx0St9FcCQ
+        Mshat7radO31Zr1m8Yz0GCRanqT9pC3bqmp3UPZD0BudzAOGQy0upTOF6Iyo
+        xrne+wAMRPbpH4G5+fVKC2Mx0v/1SqdB/2Sl3wPzjp2nGm2A8w/uMo/j+qTL
+        PLeV04Dw6oQhKsePLxt4TFaWFCqSdz6+KDqW59noXaRZpA84o+d88Qb0kVCG
+        QgMAAA==
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 16:29:38 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listpops&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 16:29:38 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "178"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPLEaVAAA4WPsQ7CIBRFd7/CvJma6NhJB0e/wDggfTYkwCPw6EL4d2mt
+        sUNT13vPPcnNoLx0aALGZBjaDJ1kCe09g6FeO2iBMXIjlaLk+GySfWLomzE8
+        KLIgAK3U5i9XxM84Q1O5Zdzmlsab1G5/+eALwbyB8qjZgG46+L16LAIsdclg
+        Ja/TQoD0esAQNVXrScArOTV6dGRPPlbAU+RVlQ+4kpeyewN7Lz4uYwEAAA==
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 16:29:38 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listpopswithimage&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithimage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 16:29:39 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "208"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPPEaVAAA4WQOw4CMQxEe06BXAdWUK4A0XAKliJkTQjKT7EDxSp3J6xA
+        UCBox89vpBlARenRJqRsGdoBeskS2v0ANmjjoQVG4plUKmTPW5vdEZOePcK5
+        Cg4EoJPG/uWKeBuf0Hj8ZfzNfRpXxukpJbXuoDml4Bl935BcNsZJjdRUoa82
+        nl+i7mDz0fHUQjnU7Ip+3OC1xqIIcKHPFiu5Gz8EyGiumMiEWrwUcMpePTyG
+        OIZIN8PnsbSSMRB/dcaEX/JSJnc/7m/tjwEAAA==
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 16:29:39 GMT
 recorded_with: VCR 2.0.1
