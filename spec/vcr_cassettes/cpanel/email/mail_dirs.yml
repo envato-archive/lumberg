@@ -1,0 +1,96 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addpop&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=mail-dirs-test&password=s00pers3cr3t&quota=0
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 22:03:36 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "177"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIADgTalAAA6XOOw7CMAwG4J1TFM8BAWMnFm7AhhhMYiBSXrKTClTl7qSV
+        unVjs/3Lnz2CThjIMUlxGfoRiDky9HB9U4daxxJy59G6nbEsu0ySz674B/Fr
+        bvY6+g7bPppvRx8rWbagwGBG6G8jLPBBtRIlhj/peldAA4X51wU/VgU+muKo
+        6ZeJbC9gsgOx2OnkScGzBN1SNCbF1OIUJa9CiWllXuvmB7jKpjcsAQAA
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 22:03:36 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=browseboxes&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=browseboxes&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Mon, 01 Oct 2012 22:03:36 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "206"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIADgTalAAA3WPyw6CMBBF937GrFEENSJ7v8K4KHSQJlPa9IEawr/bEtjV
+        XTNz7uncCVrNBiSD1pODegLOHIP6MYFmroca8l5JzMnLBs0rl0wQZCBsfDTq
+        A/UxA4O0wSu3d2jdoVUysJ0n+utKBTjqSJcZSCckhlxxOt+Ksqqul+gTFGeJ
+        oPvquOHCLCcSsi7cNz8zwBGHpd3Ws5iDXXG/qO5rK6bFiMYKNSy/d35ow7Yx
+        6m0xdEUbGK2sS9q0wcR8nnc/Lk98KWMBAAA=
+
+    http_version: 
+  recorded_at: Mon, 01 Oct 2012 22:03:36 GMT
+recorded_with: VCR 2.0.1

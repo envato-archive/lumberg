@@ -1,0 +1,93 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listaddondomains&api_module=AddonDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:50 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "125"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIANqxZFAAA23MsQrDMAyE4b2PcbOXdPRW6FuUDCJSweBIxrKzBL9700C2
+        rP993I6lkEqu4j03xB1MjRA/c4Bsome6xmkErMY9CyJezKZvWykpAqikTaon
+        U8RnwLfrcpicvNHf8en8gMW83R6XKjd9jMcPJUV606MAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:49 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listaddondomains&api_module=AddonDomain&api_username=minimal&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=minimal
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:50 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "125"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIANqxZFAAA23MsQrDMAyE4b2PcbOXdPRW6FuUDCJSweBIxrKzBL9700C2
+        rP993I6lkEqu4j03xB1MjRA/c4Bsome6xmkErMY9CyJezKZvWykpAqikTaon
+        U8RnwLfrcpicvNHf8en8gMW83R6XKjd9jMcPJUV606MAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:50 GMT
+recorded_with: VCR 2.0.1

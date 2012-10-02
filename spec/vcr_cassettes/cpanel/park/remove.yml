@@ -1,0 +1,99 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=park&api_module=Park&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=park&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:53 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "174"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIABmyZFAAA62OsQ7CMAxEd74i8hwqYMzOzg4MVuKiiDaxnKQIVfl3UlC3
+        jky27nTvbgbLGGgQSmXIYGYgkShg4Lxc1UscFaM81UuQmcSoTCnvF6mzzfNJ
+        YUujeysbQ+8fRch1twAaHGYEc51hhR90ezHF8Ad8vWugicJ381pwrBrG6MpA
+        reHSGG0Fsp9Ikl9aTxr6Emwz+WdyTHmTwkIbeq27D0xTZvExAQAA
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:53 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=unpark&api_module=Park&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=unpark&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg&domain=test-park.com
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:53 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "317"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIABuyZFAAA21RsU7DMBDd+YrrLVlCJBgzMyOkIjFQBje5qBbO2fLZhVLl
+        3zk7UITUxbLee37v+e6MQzBMLpJkl7A/42iSwf71jL/QXatXI56xx4fHLQjF
+        I0UYPDMNyXoGkmT2zsqBxm7HzweKBB9GwECIfu9o7kFB+PJMMPkITdIXt8HE
+        927wc1O17JNymUewDGxmtdKEaQOrnS0KKPHVpSFO8dRA8hBp9kfawItmWudA
+        UjlXFJLGNmuuddSAncAmoE8rSbpdrGXhwkNxtaTFtUYB5Grdg1HnPRH/pKg2
+        +rlm/c2num9JpAxInwVHqY7nn1n9uuRhUOGUnTtB5sLRiMtbi3TURmUpl10s
+        Lc5+zI50GU8qxBZNsJpXcrC/b3HKPCi5+igdvKSrPiHSFXxZbr4BaPao/RQC
+        AAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:55 GMT
+recorded_with: VCR 2.0.1

@@ -1,0 +1,49 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=accountmanagelist&api_module=BoxTrapper&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=accountmanagelist&cpanel_jsonapi_module=BoxTrapper&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:09 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "170"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAO2xZFAAA22NvQ7CMAyEdx7DcwZgzMgzsCEGNzFVpNSJ4qRCqvLuNeVH
+        DN3su+/uFnAZmWIhabGCXcBjRbC3BaRibQIWfBAcInkwMIz600ysNzqXGmsG
+        YpsGKqNqxG/SHn9+K+EP6Xez5bep7+ipG5iSb5GUvKTntWDOVF4bOcxUJCQG
+        ezbwaOwU+TRPyDhSDFKVzEnqbnEutKP3flgBNvELG/sAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:09 GMT
+recorded_with: VCR 2.0.1

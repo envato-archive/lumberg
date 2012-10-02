@@ -1,0 +1,95 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listsubdomains&api_module=SubDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listsubdomains&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:50 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "221"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIANuxZFAAA22QwW4DIQxE7/2KyGeaVXPcc/+gx6qKgHUaVMAIm0hVtP8e
+        b0iiKt0LAr9hZuQz+GIzxorcosB4hsmKhfFTL5RsyD/4CyNwc/vYksP6/SrI
+        svWUwACLlcbKM8mm4hQqesFJScWoLyVHSjiW5mLw+6OkOKiV8g6HhQ434+G/
+        Ss/eoldYfInkMVpp9Fe+XeHOMvbs57T5ywCeMF+XcF/H22wg0dQi6o+P5t67
+        vQFbwgkrB9KsnYFDy34pFFgenVllhVhWTUvFlfk8v1wAD03orZEBAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:50 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listsubdomains&api_module=SubDomain&api_username=minimal&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listsubdomains&cpanel_jsonapi_module=SubDomain&cpanel_jsonapi_user=minimal
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:51 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "124"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIANuxZFAAA23MsQqEMBCE4d7HmDrNWab2DSwPi9WsEIibkM3aSN79RLjO
+        9p+PubAVEk6V1VKDvxCoEfx3ceCT5Un/8dMdjhwsMTxmW6d8UBQ4UIknV41Z
+        4EeH3WS7RYra1NbwKL1ZydpeT0vll9778ANUCK0unwAAAA==
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:51 GMT
+recorded_with: VCR 2.0.1

@@ -1,0 +1,97 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addaddondomain&api_module=AddonDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addaddondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&dir=public_html/test-addon.com/&newdomain=test-addon.com&subdomain=testadd
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:05:25 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "180"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAKyxZFAAA22OsQrDMAxE936F0ewE2jFboX9ROqi2UkJty1h2Sgn599qB
+        dMomHXf3bgETMZBLJMVlGBawmBGG+wK7dNb1ROEAA2SS3KG1HHrDXn1QlBRj
+        SGQszn1VxPQmqziozFHxqFqg+ntX/JPSq2t/i8L60EAzhY35R60aPNviqLKu
+        DXNjj1MADRinmZJMbcZFw1iCqZ5ava2xuy2y5MPamOhAX9fTD5yABoACAQAA
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:04 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=deladdondomain&api_module=AddonDomain&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=deladdondomain&cpanel_jsonapi_module=AddonDomain&cpanel_jsonapi_user=lumberg&domain=test-addon.com&subdomain=testadd_lumberg-test.com
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:04 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "235"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIALCxZFAAA3WQv2rDQAyH9z6F0JLlamhHb4U8Qrc6g2wpzcFZMvfHpTV+
+        955T0kBxl+MkPj79pAWHiVRClFRCxnZBpkzYvi14az25+qVkii0eJUgWBraR
+        vLaQJWVibkIZe4nvj1vdDDZ2+noR+DIVOPtQH4tw+Asd4EIJehEFYb9pSRk+
+        rURQ+YAtyJ2oUyqQDXxuuthpornW+3NT6X8Cun8D3sVRRquqBteTQ5lFr1f4
+        XX51OBqXIHX7F2bT49WMDmnys8Tkt8M8OzwXHSrDEmjD+IZNlvKudoqy01/X
+        h29T9GRYlAEAAA==
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:07 GMT
+recorded_with: VCR 2.0.1

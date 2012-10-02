@@ -1,0 +1,95 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listaliasbackups&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaliasbackups&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Tue, 02 Oct 2012 21:39:16 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "150"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAARfa1AAA22NywoCMQxF935G1nVAl937FeIi04lSTB80yWyG/rtVEARn
+        d7mPczcIFTNxIzFW8BssqAj+OkRJGDN4YEsztcdRSXQKJUF3P6nYPP03bg5o
+        pfwhftmn7iCVxZjG7DLmDA6wxpWaxDJYZwd3y+F9GUWRI8qM4WlVRrEW0V1k
+        bbTj9354Ae7NXQzcAAAA
+
+    http_version: 
+  recorded_at: Tue, 02 Oct 2012 21:39:16 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=addforward&api_module=Email&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addforward&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=alias-test&fwdemail=foo@bar.com&fwdopt=fwd
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Tue, 02 Oct 2012 21:45:33 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "162"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAH1ga1AAA22OsQ7CMAxEdz7Dc0CCsVMXvgIxuI2LIiVx5CRliPLvmIpO
+        dLPune+uwZwwkhfK1RcYGlgsCMOjwcLyRrEw6MXjhHKZOYABywFdVNnXMJG8
+        zoVy+TFS5BWhd5g3MP65+lN9K8Wtbe+9dgOBbfWk3/ctxQAmt5Jkx9p2M7DU
+        OH+zrd2nGUicy2FYEjrQez99AA2v+gfyAAAA
+
+    http_version: 
+  recorded_at: Tue, 02 Oct 2012 21:45:32 GMT
+recorded_with: VCR 2.0.1

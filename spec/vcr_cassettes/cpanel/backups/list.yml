@@ -1,0 +1,51 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listfullbackups&api_module=Backups&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfullbackups&cpanel_jsonapi_module=Backups&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:06:50 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "230"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIANqxZFAAA52Qy07DMBBF93xFNOskyrhuWrzkF1iwQKhynGkVMYktP7og
+        8r/jRsCqEojtfZy5mhWM0wuxp5A4glph1FGDel0hRB1TAAXGzo4pEtTA1miO
+        00xFfqGxeiZXib5CqQQqlJXoUJTYeeJbYtDmPbnmsRV9e3NOKBuBDcoTp3kg
+        f2mj9u3lozS+mLiTx/54EAcJuf7HhH33twn77rcJO+wgv9VAV1q2v3x/CHMN
+        sx3Thn/a8KG0tZuu5MNkF1CinE+LKT5PIZ4T8/CTczbEu0zn6Y6e88MnJj4S
+        IKMBAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:06:50 GMT
+recorded_with: VCR 2.0.1

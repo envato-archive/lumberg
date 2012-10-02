@@ -5,6 +5,11 @@ require 'lumberg/exceptions'
 require 'vcr'
 require 'timeout'
 
+# Load supporting files in spec/support
+Dir["#{Lumberg::base_path}/../spec/support/**/*.rb"].each do |f|
+  require f
+end
+
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
@@ -19,6 +24,14 @@ def requires_attr(attr, &block)
   expect { block.call }.to raise_error(Lumberg::WhmArgumentError, /Missing required parameter: #{attr}/i)
 end
 
+def accepts_attr(attr, &block)
+  expect {
+    block.call
+  }.to_not raise_error(
+    Lumberg::WhmArgumentError, /Not a valid parameter: #{attr}/i
+  )
+end
+
 RSpec.configure do |c|
   c.extend VCR::RSpec::Macros
   c.before(:each) do
@@ -31,3 +44,4 @@ RSpec.configure do |c|
     end
   end
 end
+

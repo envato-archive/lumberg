@@ -1,0 +1,147 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=add_line&api_module=Cron&api_username=lumberg&command=whatev&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=add_line&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&day=1&hour=1&minute=1&month=1&weekday=1
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:14 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "191"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPKxZFAAA22Oyw6CMBBF934FmXVjeBQM3foL7owxfQxaLYUwhUgI/241
+        umM3jzvnzAK6lx7dgDS6AGIBI4MEcV6AggwjgUjZr2zpBgJOd0uJHjqfPDqV
+        yHgpzZzgy1KgPTBw1uMT55hM6+ZQVFVZcF0azTPFs7qqCq6UynlpMlgvDHBC
+        //X+P8hWBm1nRocRcYyeyJS9nXAgGxuRM2hGr+NSGnP92GKg7yhskvoBN+br
+        unsDtxYKLvkAAAA=
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:14 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=edit_line&api_module=Cron&api_username=lumberg&command=taco&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=edit_line&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&day=1&hour=3&linekey=09f7366534c5dc41b4196634bbb245d1&minute=1&month=1&weekday=1
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:14 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "189"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPKxZFAAA22OTQ6CMBBG956imXVjCqjBbr2CO2PM0I5ahUKYQiSkd7ca
+        3bGbn2/emxlMh57qnnioA+gZLAYEfZqBA4aBQSv5Kxu+gYbj3bEwfevFo60E
+        pku0k6CX48BrkFA7T0+aUlJldM0I1RbNpsiK3JIt9zuDtlSmrFQJ8SyBRvJf
+        7/+DLEpoWjvUlBCH5ElM7NxIPbvU6FzCdfAmLcm6cPnoUqJrOSyiup4W5jGu
+        3sK8/lb6AAAA
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:14 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?api_function=listcron&api_module=Cron&api_username=lumberg&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listcron&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Ruby
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.30.6.8
+      Date: 
+      - Thu, 27 Sep 2012 20:07:15 GMT
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Encoding: 
+      - gzip
+      Content-Length: 
+      - "318"
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPOxZFAAA62SS26DMBBA9z2G11ngv8m2x6iqamyPBQoYBIaoirh7cULa
+        RGJTKbv5eJ6f7LkQ10PEZsBxahI5XoiHBOT4kYNvciSUHMgZ8fSXtXWcEm5J
+        1U3Dvd7FVG2x66a40miO2haiX+tVvTaaOuIJryjBgkTDkBkUhTbcIzccbcmd
+        1EXg5Hf2q0ptM0LAG2Q5vMSNPbqFrnuSQ+qQKvBKSh2kZSxwCh4o19SboPW+
+        XKb8147v2/FHuwTuWa+gGChCIcEJTjnz6E2pHHhTOGMLs693xbzo9cSj37mC
+        hPOzYRk0V0py4aR3glpBS6W4sNYyIT3dN9xA2XG7Ry6fB4Izxutu3reULlnK
+        T00eeh+6uOKgr2ccxnpN8t+GKbq12dRjcrcDfTemXVI/4E59Wd5+AGYv9gsd
+        AwAA
+
+    http_version: 
+  recorded_at: Thu, 27 Sep 2012 20:07:14 GMT
+recorded_with: VCR 2.0.1
