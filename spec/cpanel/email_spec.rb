@@ -106,6 +106,25 @@ module Lumberg
       end
     end
 
+    describe "#domains_with_aliases" do
+      let(:local) { "alias-test" }
+
+      use_vcr_cassette("cpanel/email/domains_with_aliases")
+
+      before do
+        email.add_forwarder(
+          :domain   => domain,
+          :email    => local,
+          :fwdopt   => :fwd,
+          :fwdemail => "foo@bar.com"
+        )
+      end
+
+      it "gets a list of domains that have aliases" do
+        email.domains_with_aliases[:params][:data][0][:domain].should == domain
+      end
+    end
+
     describe "#add_account" do
       let(:local) { "account-test" }
 
@@ -225,6 +244,54 @@ module Lumberg
           detected.should == "local"
         end
       end
+    end
+
+    describe "#check_local_delivery" do
+      context "local delivery" do
+        use_vcr_cassette("cpanel/email/check_local_delivery.local")
+
+        before do
+          email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :local
+          )
+        end
+
+        it "returns 1" do
+          email.check_local_delivery(
+            :domain => domain
+          )[:params][:data][0][:alwaysaccept].should == 1
+        end
+      end
+
+      context "remote delivery" do
+        use_vcr_cassette("cpanel/email/check_local_delivery.remote")
+
+        before do
+          email.set_mail_delivery(
+            :domain   => domain,
+            :delivery => :remote
+          )
+        end
+
+        it "returns 0" do
+          email.check_local_delivery(
+            :domain => domain
+          )[:params][:data][0][:alwaysaccept].should == 0
+        end
+      end
+    end
+
+    describe "#add_filter" do
+      pending
+    end
+
+    describe "#filters_" do
+      pending
+    end
+
+    describe "#filters" do
+      pending
     end
 
     describe "#disk_usage" do

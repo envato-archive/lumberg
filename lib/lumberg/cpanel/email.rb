@@ -50,6 +50,15 @@ module Lumberg
         }.merge(options))
       end
 
+      # Retrieve a list of domains that use aliases and 
+      # custom catch-all addresses
+      def domains_with_aliases
+        perform_request(
+          :api_module   => self.class.api_module,
+          :api_function => "listaliasbackups"
+        )
+      end
+
       # Add a mailing list
       #
       # === Required
@@ -119,8 +128,63 @@ module Lumberg
         }.merge(options))
       end
 
-      def getalwaysaccept; end
-      def listfilters; end
+      # Check cPanel config for local mail delivery setting.
+      # This function checks cPanel config, not DNS.
+      #
+      # ==== Optional
+      #   * <tt>:domain</tt> - Domain to check. Will return settings for all
+      #                        domains if omitted.
+      def check_local_delivery(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "getalwaysaccept"
+        }.merge(options))
+      end
+
+      # Add a new email filter. See 
+      # http://docs.cpanel.net/twiki/bin/view/ApiDocs/Api2/ApiEmail#Email::storefilter
+      # for gory details.
+      #
+      # ==== Required
+      #  * <tt>:account</tt> - PENDING
+      #  * <tt>:action</tt> - PENDING
+      #  * <tt>:dest</tt> - PENDING
+      #  * <tt>:filtername</tt> - PENDING
+      #  * <tt>:match</tt> - PENDING
+      #  * <tt>:opt</tt> - PENDING
+      #  * <tt>:part</tt> - PENDING
+      #  * <tt>:val</tt> - PENDING
+      #
+      # ==== Optional
+      #  * <tt>:oldfiltername</tt> - PENDING
+      def add_filter(options = {})
+      end
+
+      # Retrieve a list of "old-style" email filters from .filter file.
+      # Lists account-level and user-level filters
+      #
+      # You probably want to use #filters
+      def filters_
+        perform_request(
+          :api_module   => self.class.api_module,
+          :api_function => "listfilters"
+        )
+      end
+
+      # Retrieve a list of email filters
+      #
+      # ==== Optional 
+      #  * <tt>:account</tt> - Lists user-level filters if email address given.
+      #                        Lists user-level filters associated with default
+      #                        address if cPanel username given.
+      #                        Lists account-level filters if omitted.
+      def filters(options = {})
+        perform_request({
+          :api_module   => self.class.api_module,
+          :api_function => "filterlist"
+        }.merge(options))
+      end
+
       def fetchcharmaps; end
       def listautoresponders; end
       def listdomainforwards; end
@@ -139,6 +203,9 @@ module Lumberg
           :api_function => "addpop"
         }.merge(options))
       end
+
+      def remove_account; end # delpop
+      def edit_quota; end # editquota
 
       # List email accounts. Uses the cPanel-preferred
       # API call Email::listpopswithdisk
@@ -194,6 +261,7 @@ module Lumberg
         }.merge(options))
       end
 
+      def listfilterbackups; end
       def filterlist; end
       def tracefilter; end
       def fetchautoresponder; end
@@ -242,8 +310,6 @@ module Lumberg
         }.merge(options))
       end
 
-      def listfilterbackups; end
-      def listaliasbackups; end
 
     end
   end
