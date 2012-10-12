@@ -40,10 +40,6 @@ module Lumberg
     end
 
     describe "setting timeout" do
-      it "defaults to nil" do
-        @whm.timeout.should be_nil
-      end
-
       it "allows setting of timeout" do
         Whm::Server.new(
           @login.merge(:timeout => 1000)
