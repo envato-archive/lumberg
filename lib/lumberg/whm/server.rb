@@ -39,6 +39,9 @@ module Lumberg
       # Force response type...ARG!
       attr_accessor :force_response_type
 
+      # HTTP read/open timeout
+      attr_accessor :timeout
+
       #
       # ==== Required
       #  * <tt>:host</tt> - PENDING
@@ -55,6 +58,7 @@ module Lumberg
         @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
+        @timeout    = options.delete(:timeout)
         @base_url   = format_url(options)
       end
 
@@ -149,12 +153,14 @@ module Lumberg
           else
             c.headers['Authorization'] = "WHM #{@user}:#{@hash}"
           end
+
           c.params = params
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
           c.adapter :net_http
+          c.options[:timeout] = timeout if timeout
         end.get(function).body
         @force_response_type = nil
         @response
