@@ -58,8 +58,8 @@ module Lumberg
         @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
-        @base_url   = format_url(options)
         @timeout    = options.delete(:timeout)
+        @base_url   = format_url(options)
       end
 
       def perform_request(function, options = {})
