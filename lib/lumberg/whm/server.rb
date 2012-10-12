@@ -147,7 +147,7 @@ module Lumberg
     private
 
       def do_request(uri, function, params)
-        @adapter = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
+        @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
           if basic_auth
             c.basic_auth @user, @hash
           else
@@ -161,8 +161,7 @@ module Lumberg
           c.response :json
           c.adapter :net_http
           c.options[:timeout] = timeout if timeout
-        end
-        @response = @adapter.get(function).body
+        end.get(function).body
         @force_response_type = nil
         @response
       end

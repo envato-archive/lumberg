@@ -135,21 +135,28 @@ module Lumberg
         end
 
         describe "setting HTTP timeout" do
+          let(:net_http) { double(Net::HTTP).as_null_object }
+
           use_vcr_cassette "whm/server/applist"
+
+          before(:each) do
+            Net::HTTP.stub(:new) { net_http }
+          end
 
           it "sets HTTP timeout when assigned" do
             @whm.timeout = 1000
+
+            net_http.should_receive(:read_timeout=).with(1000)
+            net_http.should_receive(:open_timeout=).with(1000)
+
             @whm.perform_request("applist")
-            @whm.instance_variable_get(
-              :@adapter
-            ).options[:timeout].should == 1000
           end
 
           it "uses default HTTP timeout when not assigned" do
+            net_http.should_not_receive(:read_timeout=)
+            net_http.should_not_receive(:open_timeout=)
+
             @whm.perform_request("applist")
-            @whm.instance_variable_get(
-              :@adapter
-            ).options[:timeout].should be_nil
           end
         end
       end
