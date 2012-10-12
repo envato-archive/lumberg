@@ -39,6 +39,18 @@ module Lumberg
       end
     end
 
+    describe "setting timeout" do
+      it "defaults to nil" do
+        @whm.timeout.should be_nil
+      end
+
+      it "allows setting of timeout" do
+        Whm::Server.new(
+          @login.merge(:timeout => 1000)
+        ).timeout.should == 1000
+      end
+    end
+
     describe "#format_url" do
       it "converts the host into an SSL URL by default" do
         @whm.send(:format_url).should == "https://myhost.com:2087/json-api/"
@@ -118,6 +130,31 @@ module Lumberg
         it "does not verify SSL certs for HTTP requests when asked" do
           @whm.ssl_verify = false
           @whm.ssl_verify.should be(false)
+        end
+      end
+
+      describe "@timeout" do
+        it "is nil by default" do
+          @whm.timeout.should be_nil
+        end
+
+        describe "setting HTTP timeout" do
+          use_vcr_cassette "whm/server/applist"
+
+          it "sets HTTP timeout when assigned" do
+            @whm.timeout = 1000
+            @whm.perform_request("applist")
+            @whm.instance_variable_get(
+              :@adapter
+            ).options[:timeout].should == 1000
+          end
+
+          it "uses default HTTP timeout when not assigned" do
+            @whm.perform_request("applist")
+            @whm.instance_variable_get(
+              :@adapter
+            ).options[:timeout].should be_nil
+          end
         end
       end
 

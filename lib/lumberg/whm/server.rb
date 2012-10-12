@@ -39,6 +39,9 @@ module Lumberg
       # Force response type...ARG!
       attr_accessor :force_response_type
 
+      # HTTP read/open timeout
+      attr_accessor :timeout
+
       #
       # ==== Required
       #  * <tt>:host</tt> - PENDING
@@ -56,6 +59,7 @@ module Lumberg
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
         @base_url   = format_url(options)
+        @timeout    = options.delete(:timeout)
       end
 
       def perform_request(function, options = {})
@@ -143,19 +147,22 @@ module Lumberg
     private
 
       def do_request(uri, function, params)
-        @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
+        @adapter = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
           if basic_auth
             c.basic_auth @user, @hash
           else
             c.headers['Authorization'] = "WHM #{@user}:#{@hash}"
           end
+
           c.params = params
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
           c.adapter :net_http
-        end.get(function).body
+          c.options[:timeout] = timeout if timeout
+        end
+        @response = @adapter.get(function).body
         @force_response_type = nil
         @response
       end
