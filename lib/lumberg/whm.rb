@@ -5,6 +5,7 @@ module Lumberg
     autoload :Account,  'lumberg/whm/account'
     autoload :Dns,      'lumberg/whm/dns'
     autoload :Reseller, 'lumberg/whm/reseller'
+    autoload :Cert,      'lumberg/whm/cert'
 
     class << self
 
@@ -24,7 +25,7 @@ module Lumberg
             arg
         end
       end
-    
+
       # Recursively converts values of 0 or 1 to true or false
       def to_bool(hash, *keys)
         if keys.empty?

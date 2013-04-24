@@ -1,0 +1,38 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/generatessl?city=houston&co=Company&cod=Dept&country=US&email=test@myhost.com&host=myhost.com&pass=abc123&state=TX&xemail=test@myhost.com
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/plain
+      Date: 
+      - Mon, 29 Apr 2013 17:24:20 GMT
+      Server: 
+      - cpsrvd/11.32.6.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: "{\"results\":{\"email_status\":1,\"statusmsg\":\"Key, Certificate, and CSR generated OK\",\"cert\":\"-----BEGIN CERTIFICATE-----\\nMIIEdDCCA1ygAwIBAgIJAP2xq0y9lyjuMA0GCSqGSIb3DQEBBQUAMIGCMQswCQYD\\nVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB2hvdXN0b24xEDAOBgNVBAoT\\nB0NvbXBhbnkxDTALBgNVBAsTBERlcHQxEzARBgNVBAMTCm15aG9zdC5jb20xHjAc\\nBgkqhkiG9w0BCQEWD3Rlc3RAbXlob3N0LmNvbTAeFw0xMzA0MjkxNzI0MjBaFw0x\\nNDA0MjkxNzI0MjBaMIGCMQswCQYDVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNV\\nBAcTB2hvdXN0b24xEDAOBgNVBAoTB0NvbXBhbnkxDTALBgNVBAsTBERlcHQxEzAR\\nBgNVBAMTCm15aG9zdC5jb20xHjAcBgkqhkiG9w0BCQEWD3Rlc3RAbXlob3N0LmNv\\nbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBANwjY5eUSTqJ/0YeRXPz\\n0KnftKQiEoC6IPLave1B9nodfDjtcUJFG72Ihn2sZo9VyLp1wi+yoN/RfGPAPcgu\\nHW1oVovxlug6/2knxhyUBi5bUopOHuSlidhJwcIkRrOpkCpiP4HBV6LMyAa8RXfm\\n9WDRf1a6He5yFginJhM218dmilXfhfD7PaNW+8ctGT9+a1siJjzQuyJB2GSjkbmb\\nIuQ5RNYOaclU7X8pB71E7OZ4HJmH5iqbv4ZoMllO5TgOAz/9SbMp6u/2fJhqTJNh\\nw0YvzZQdPCTqbrtSHQpAQys3ydqe40APD1KeUvvR1ECFVlpY+OApmN4Cp8MP/oHf\\ngF8CAwEAAaOB6jCB5zAdBgNVHQ4EFgQU7E4PQOkrJoHtE2BH0COQ9xT2gy8wgbcG\\nA1UdIwSBrzCBrIAU7E4PQOkrJoHtE2BH0COQ9xT2gy+hgYikgYUwgYIxCzAJBgNV\\nBAYTAlVTMQswCQYDVQQIEwJUWDEQMA4GA1UEBxMHaG91c3RvbjEQMA4GA1UEChMH\\nQ29tcGFueTENMAsGA1UECxMERGVwdDETMBEGA1UEAxMKbXlob3N0LmNvbTEeMBwG\\nCSqGSIb3DQEJARYPdGVzdEBteWhvc3QuY29tggkA/bGrTL2XKO4wDAYDVR0TBAUw\\nAwEB/zANBgkqhkiG9w0BAQUFAAOCAQEAna78CD5bM1ylL2D4EihDa7UQ9PS7JydX\\nrJjKdqWIO9YdLi8HtvfIdZ+QM3FCP0sgZkJn0+9efGJyrUOrUlPPdOrJnjUUGOgN\\nltjehjpdkjaoiKRXs0I/AsZPXR1GqVkY7woVRUFuvIFLb4Ln68Y5cX9CrpG1KQ/R\\nxMJy9MnpglIL49xlUAJ4qBrY+H9WctVoZph8odx+nFpJ9z6AvfPKKI/vUIkYCiWo\\nVLdLJGXYjPxqEcFkxW6OMxT8AuxalHbsiC/xJpieafeWWfoAVAmoPSlMQZ6pwVCV\\n+fqHPiNJdg2QIHcpd4FVFF48KatWNIZk4/KJsqJdC/Kd1g2yV88pcQ==\\n-----END CERTIFICATE-----\\n\",\"status\":1,\"message\":\"Key, Certificate, and CSR generated OK\",\"email_message\":\"CSR email sent to test@myhost.com\",\"sender\":\"admin\",\"csr\":\"-----BEGIN CERTIFICATE REQUEST-----\\nMIIC3zCCAccCAQAwgYIxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJUWDEQMA4GA1UE\\nBxMHaG91c3RvbjEQMA4GA1UEChMHQ29tcGFueTENMAsGA1UECxMERGVwdDETMBEG\\nA1UEAxMKbXlob3N0LmNvbTEeMBwGCSqGSIb3DQEJARYPdGVzdEBteWhvc3QuY29t\\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA3CNjl5RJOon/Rh5Fc/PQ\\nqd+0pCISgLog8tq97UH2eh18OO1xQkUbvYiGfaxmj1XIunXCL7Kg39F8Y8A9yC4d\\nbWhWi/GW6Dr/aSfGHJQGLltSik4e5KWJ2EnBwiRGs6mQKmI/gcFXoszIBrxFd+b1\\nYNF/Vrod7nIWCKcmEzbXx2aKVd+F8Ps9o1b7xy0ZP35rWyImPNC7IkHYZKORuZsi\\n5DlE1g5pyVTtfykHvUTs5ngcmYfmKpu/hmgyWU7lOA4DP/1Jsynq7/Z8mGpMk2HD\\nRi/NlB08JOpuu1IdCkBDKzfJ2p7jQA8PUp5S+9HUQIVWWlj44CmY3gKnww/+gd+A\\nXwIDAQABoBcwFQYJKoZIhvcNAQkHMQgTBmFiYzEyMzANBgkqhkiG9w0BAQUFAAOC\\nAQEAEUo7VI2uiGLpQU3h1joFX9hQYANNJ9UBgig6CJuZIx60XW90oVoELUyRjp+f\\nN7mZsCai0YwcrC9nT6EF/pBA4obkNhqR00op/R2QzkO33vUjadW+biJj7PfIAF/d\\neahUBLL0UcsnQJ7jYR7ljBrVAI93ULmALLuOvXjM8GI3iBzqWX+w9ySkY9Axz0Bv\\nYjYC7FcS4vShLSnS5tVFVjUVmmUVpn+wm0UlH92XDHk7eaZS6DKylZ/35e8vAPYD\\nMHBj0Sl8/DpNxS4f5CS99b1KASEpqRRyiJEg5Hv84IQCI732tkdpIYbg1faN0acP\\nnSW3bUZXqxdQgecHse/BrzNx3w==\\n-----END CERTIFICATE REQUEST-----\\n\",\"csrfile\":\"/usr/share/ssl/certs/myhost.com.csr\",\"key\":\"-----BEGIN RSA PRIVATE KEY-----\\nMIIEowIBAAKCAQEA3CNjl5RJOon/Rh5Fc/PQqd+0pCISgLog8tq97UH2eh18OO1x\\nQkUbvYiGfaxmj1XIunXCL7Kg39F8Y8A9yC4dbWhWi/GW6Dr/aSfGHJQGLltSik4e\\n5KWJ2EnBwiRGs6mQKmI/gcFXoszIBrxFd+b1YNF/Vrod7nIWCKcmEzbXx2aKVd+F\\n8Ps9o1b7xy0ZP35rWyImPNC7IkHYZKORuZsi5DlE1g5pyVTtfykHvUTs5ngcmYfm\\nKpu/hmgyWU7lOA4DP/1Jsynq7/Z8mGpMk2HDRi/NlB08JOpuu1IdCkBDKzfJ2p7j\\nQA8PUp5S+9HUQIVWWlj44CmY3gKnww/+gd+AXwIDAQABAoIBAFBw7heZrBikDJAG\\nx8JTOdCZWl0PxksbuKaFoBlunS6KT7ZNrbFVp4letiZ+NQvzgOIB3e+oCnk/B4E7\\n4lef4kj0c4u3wDkkNeirDA2tWYTfAg5f9ZH/m5tZeGAE+YD1WSTjuekkSW3H/t/X\\nNFtYHho+85UxdXaIYdzPl242ACtwc1z5pBY82Ua4oDH2HVApxDv/DtYFlMIqrLEN\\nzJfJdVqIrsCkfTcwhIBsPLN8ZRtDnCF5cMAfiXiJBx2fEWweOjRWLM/znDdXVKCS\\nW3AgDpGGdJ20Cm9rJgHivlNhXmhi+4W3zoCWFqOVR6RTfA67jQrReyfKb4XlILl9\\n6QGJ1EECgYEA8iMIyRBQBTD9Tv35dAdmx0FBB0f9kbyldFX0CQJOt0vdvHp0s03W\\nb7wMD4udzmaqLRhab+Xyfa9hD4ODa68sBWL5h8rsXhSnRc5eGxZYM4FIGuiywfi8\\nNhL9pIs3ChXAiNoh4h3FCw4PzgpI+huiwmWrpg4XWq2qHL6CvzmoMMkCgYEA6L3s\\nk5LLS5CPkDHv9xQvMniDZ62rPM/1mVafe1C9YNHjyvZwpN52oHkA3VgU6zETrrZw\\nW0U2xgIaQNLoF0hR6SPyxQxz+yTnLlLuWOLPVl6HQLbeT4wdkpyw/+Rr72QK5x1F\\nwc2ej2OD7FxxM75wHRoxV9pDmDGUNQA0c8DwI+cCgYAmGHr+X1Gnr3B7KBxCNBPo\\nj4yyn5H2hu6lIgzWCgXmcso9KCsKNtnhFH31SCsY2TA3DhjUeCIxwhEMRs27eID9\\ni/fkdHnBx5AVvIUzz80qtVFp4miVehPqkgxUAg8zx/5VybQBBlwFBD5aVWXr68Ms\\nwKBD7P2hp6cXBKY/fcvHeQKBgGRwIboFrUms1ueJRV9BDKUhMMP7RFx3+ir0INrc\\nmv0/Vqht9WqQvmy+C0t6CXz9rtrEzHP2yI5mteGnopT5lq+f3dJ/b0XARSvOiiE9\\nr/A71u5sfD+j3dc5W4DymEm0yKe4EDR0gaqrbXEA67FCy6sjdIvPG0CAlM7SidAy\\nQO+dAoGBAOGXV+D8rZci4CIbL4pr4qxoKsX/tH7NuyrfsqLGXN/gA2ClVVUCfHVK\\ndzD8OIEL7exJsbC68xQLORzQjxNndbLTpPKmHIzkl1UWUgxPemnZYbA7DQ1jCS75\\nG5KnYI4WDaGCxVeMKqvQnLtqt81315aoqV95V7ZaIkpOr+y83dC8\\n-----END RSA PRIVATE KEY-----\\n\",\"args\":{\"cod\":\"Dept\",\"xemail\":\"test@myhost.com\",\"keysize\":2048,\"country\":\"US\",\"city\":\"houston\",\"state\":\"TX\",\"email\":\"test@myhost.com\",\"host\":\"myhost.com\",\"pass\":\"abc123\",\"co\":\"Company\"},\"certfile\":\"/usr/share/ssl/certs/myhost.com.crt\",\"keyfile\":\"/usr/share/ssl/private/myhost.com.key\",\"sender_host\":\"myhost.com\"}}"
+    http_version: 
+  recorded_at: Mon, 29 Apr 2013 17:24:19 GMT

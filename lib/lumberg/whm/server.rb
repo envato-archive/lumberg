@@ -144,6 +144,10 @@ module Lumberg
         @reseller ||= Reseller.new(:server => self)
       end
 
+      def cert
+        @cert ||= Cert.new(:server => self)
+      end
+
     private
 
       def do_request(uri, function, params)
