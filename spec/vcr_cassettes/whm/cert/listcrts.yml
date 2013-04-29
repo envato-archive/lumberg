@@ -1,0 +1,38 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/listcrts
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/plain
+      Date: 
+      - Mon, 29 Apr 2013 17:24:15 GMT
+      Server: 
+      - cpsrvd/11.32.6.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: "{\"crt\":[{\"domain\":\"reseller-template.webserversystems.com\"},{\"domain\":\"reseller.templateupdate.com\"},{\"domain\":\"another.com\"},{\"domain\":\"vpsportal.accountservergroup.com\"},{\"domain\":\"cheque.com\"},{\"domain\":\"vps-template-dev.accountservergroup.com\"},{\"domain\":\"myhost.com\"},{\"domain\":\"myhost.com\"}]}"
+    http_version: 
+  recorded_at: Mon, 29 Apr 2013 17:24:15 GMT

@@ -26,6 +26,8 @@ module Lumberg
           success, message, params = format_action_response(response)
         when :query
           success, message, params = format_query_response(response)
+        when :ssl
+          success, message, params = format_ssl_response(response)
         when :error
           message = response['error']
         when :unknown
@@ -98,5 +100,26 @@ module Lumberg
       return success, message, res
     end
 
+    def format_ssl_response(response)
+      if response.has_key?('crt')
+        success = response['crt'].any?
+        message = true
+        res = response['crt']
+      elsif response.has_key?('sslinfo')
+        success = response['sslinfo'].first.fetch('status').to_i == 1
+        message = response['sslinfo'].first.fetch('statusmsg')
+        # returns the rest as a params arg
+        res = response['sslinfo'].first.dup
+        res.delete('status')
+        res.delete('statusmsg')
+      elsif response.has_key?('results')
+        success, message = response['results'].values_at 'status', 'message'
+        # returns the rest as a params arg
+        res = response['results'].dup
+        res.delete('status')
+        res.delete('message')
+      end
+      return success, message, res
+    end
   end
 end

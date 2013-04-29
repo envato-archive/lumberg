@@ -1,0 +1,38 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/installssl?cert=-----BEGIN%20CERTIFICATE-----%0AMIIEcTCCA1mgAwIBAgIJAN9pFkWkTwcYMA0GCSqGSIb3DQEBBQUAMIGBMQswCQYD%0AVQQGEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xDjAMBgNVBAoT%0ABVNpdGU1MQwwCgYDVQQLEwNFbmcxFDASBgNVBAMTC2Fub3RoZXIuY29tMR8wHQYJ%0AKoZIhvcNAQkBFhBtemFoaXJAZ21haWwuY29tMB4XDTEzMDQyNDE5MzI0OVoXDTE0%0AMDQyNDE5MzI0OVowgYExCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJUWDEQMA4GA1UE%0ABxMHSG91c3RvbjEOMAwGA1UEChMFU2l0ZTUxDDAKBgNVBAsTA0VuZzEUMBIGA1UE%0AAxMLYW5vdGhlci5jb20xHzAdBgkqhkiG9w0BCQEWEG16YWhpckBnbWFpbC5jb20w%0AggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQCcKFzkBgo2QIu53MnPCkC9%0ArwAVZ27e2VG1bwCBS2DpyZrBfr/HFmTXNxOUcq%2Bep2IjbuSKHOXynvjC3fpzGqpK%0AWcy2nK1L11D6b1xP0jeAj54plT//2LDov6H4mhvuV4W1S2AFQhLoXJ%2B0ubUANJQd%0A4kXkS2n/0rd44mZwqdjyA45Ih5YXY7QrGIJ78ib06VYMztU/novyGQlw6fZgOkX0%0AiiXVwkF4pmMe5DKta34fHrOc0Mctnaygql5RkkF4ihs/mml1HbX1hfYuINRtzdcE%0AU6boRp46HhmU9J/KcV1SB%2B87ax18lClXpTejyWdxEwfXe/19qMcqWCnu1zAyA0cT%0AAgMBAAGjgekwgeYwHQYDVR0OBBYEFGOEkPHvcdbDuL7/OVm8w2ra61S8MIG2BgNV%0AHSMEga4wgauAFGOEkPHvcdbDuL7/OVm8w2ra61S8oYGHpIGEMIGBMQswCQYDVQQG%0AEwJVUzELMAkGA1UECBMCVFgxEDAOBgNVBAcTB0hvdXN0b24xDjAMBgNVBAoTBVNp%0AdGU1MQwwCgYDVQQLEwNFbmcxFDASBgNVBAMTC2Fub3RoZXIuY29tMR8wHQYJKoZI%0AhvcNAQkBFhBtemFoaXJAZ21haWwuY29tggkA32kWRaRPBxgwDAYDVR0TBAUwAwEB%0A/zANBgkqhkiG9w0BAQUFAAOCAQEALYKpYqGylClXQvvwYuOU%2BWNoaZtISxycZrRV%0AmYZzGNMFKUronKx7zFUqeoi8S/JVNxK5jkZV%2BJRcpmDe3vEY7zaDsIvo3WAqwvih%0AQmRs67NE39y5h81aRk1LxYIW/EJxZZ91zT8tgFNcgQH/4PlDTG19wVlbixDnybTY%0AeZpOZBxQf%2B8igYJ1xmFgnP6clYWNS6S74slE9y0aQuffwcCQ/2Gg26e0ZVcBOf53%0AZighGGsQVczE6oqpIgBej%2BhijiJ0jLFswyV5eLXShwQvl4ru4VB5%2Bs6uHO03Ufdb%0ASbX7n34TazxMdj%2B8Ja0T8vT7dPyRXRqQTV9XKcJKKcWJ/vJW2g==%0A-----END%20CERTIFICATE-----%0A&domain=check.com&ip=192.1.2.3&key=-----BEGIN%20RSA%20PRIVATE%20KEY-----%0AMIIEpAIBAAKCAQEAnChc5AYKNkCLudzJzwpAva8AFWdu3tlRtW8AgUtg6cmawX6/%0AxxZk1zcTlHKvnqdiI27kihzl8p74wt36cxqqSlnMtpytS9dQ%2Bm9cT9I3gI%2BeKZU/%0A/9iw6L%2Bh%2BJob7leFtUtgBUIS6FyftLm1ADSUHeJF5Etp/9K3eOJmcKnY8gOOSIeW%0AF2O0KxiCe/Im9OlWDM7VP56L8hkJcOn2YDpF9Iol1cJBeKZjHuQyrWt%2BHx6znNDH%0ALZ2soKpeUZJBeIobP5ppdR219YX2LiDUbc3XBFOm6EaeOh4ZlPSfynFdUgfvO2sd%0AfJQpV6U3o8lncRMH13v9fajHKlgp7tcwMgNHEwIDAQABAoIBAC4fadhbxFZj2CFM%0Aijrhv1%2BHOdIYm9GshIq/P3nw5q4GwvPV2RUXky9R8DGPcjm9HKp0jYIRqQVxWO5N%0AnDS1MokFXwas3i6haSSfEbft0kDhqoiDscSCnzYPq%2Bp%2BsjNCnJaArdq/uk/xU6aQ%0Al1p5LSpqc9RLRgKunUxSKomqUQ6h8hKwSws3WrztsVJFmIx2lZ4MGjZ2PW26YaHT%0ACwNcOM%2BFrgQL4oGBDXqYL3DkLZxF7QbyODvsvIb9AmF2qm/jRSdq1aXs%2B25n4Wjz%0AOY5IIP2i1/Ncs5PWUwtXEhvSZxhX53G8YRCoh%2BcHB1W55yZYGXgGIcjsaiUrPP/l%0ASJrQ9NECgYEAzcXzdPfbt%2BQmcLBTy6Fpqk5qdbdRe1AV%2BGhdd8onZUtI3TBUIhFr%0A3SU5B/jMpJLxg7TEp2hj3QadtAaZzYoBnRpVNWGp9dABaP7ukXqEKE7wKDtulPWK%0AQ99oWyXMA%2BokzeUFSSaSZ1iSuktp0dZtZbpRXUDUSZKmwoxLzU187VsCgYEAwkYb%0AtFATWmWmFmXxxTgv2xTgFAJWTC%2ByKc0sCDcnSCNvoYXqdWbI5%2Bz6FMAvMjQJaLXX%0AXc7QgYl/Zu5C5hWT6zRjCeCoudiiuHj/as3q6DpewKBgjCMh3Jc4lh/9j/aMH9/P%0AUPF2Chsfrv7to0aSOJ1t/2D/kGrhhzCTcnG1oqkCgYAsES9xJj98ozSEP47Cdh/d%0A5AsyiH6/rMf3ucoChF1pePTywY3S%2Be4inv0WsvaIbBuivAy9WULBq9AMJLm9Zcew%0AsFn9I5w1U0VqCeZna1hwFW%2Bi/g9RgUAKBwcfNfn6AKO/IEPAha0myrYphUr1MDmf%0AZoZUNTUBSJHD6i21mtmdLwKBgQC6dnvkxu6sVt/go5w4BMO57QFdcxjNKwI/qNNY%0AV0d2r7xXNadhY3P1Vrh47jTeZJ%2BbRt0dBoGNsyD69Dh1icRdffyI4H5RUiJsGIZe%0ARqHunweOrt%2B74YSAqwv%2B21mNsb%2BwYColsHvxGzN/zOLdUcDKYh/Pe5QPUuZ/0RnU%0AQFtrcQKBgQCAJ5JGZundof8nWohu1K5Xo8KuttsDdKFrtkGLYh1%2BjE2v2igLLya4%0AN3ltuWdYdCZH2cZ%2B3bbzHSGHlOGZtbhMTBSyVwLiX%2B0R9codN626v82wI8UmQ8Uz%0AC90UlTURf%2BRlV0rMuZtntC%2BWvhdJcbw1xhToUIWxe6DrCqu8NU/wzw==%0A-----END%20RSA%20PRIVATE%20KEY-----%0A&user=nobody
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Transfer-Encoding: 
+      - chunked
+      Content-Type: 
+      - text/plain
+      Date: 
+      - Mon, 29 Apr 2013 17:25:59 GMT
+      Server: 
+      - cpsrvd/11.32.6.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: "{\"status\":1,\"statusmsg\":\"Certificate successfully installed.\\nFinished SSL Install Process for check.com (www.check.com).\\nApache successfully restarted.\\n\",\"rawout\":\"Certificate verification passed<br />\\n\\n<br />\\nThe Certificate for the domain check.com was installed on the IP 192.1.2.3.\\n<br><b>Finished SSL Install Process for check.com (www.check.com).</b><br>\\n<pre>Apache successfully restarted.\\n</pre>\"}"
+    http_version: 
+  recorded_at: Mon, 29 Apr 2013 17:26:07 GMT
