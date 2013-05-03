@@ -1,44 +1,49 @@
 module Lumberg
   module Whm
-    # Some WHM functions require different params for the same 'thing'
-    # e.g. some accept 'username' while others accept 'user'
-    # Be sure to keep our API consistent and work around those inconsistencies internally
+    # WHM Account functions
     class Account < Base
 
-      # Creates a hosting account and sets up its associated domain information
+      # Create a hosting account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:domain</tt> - PENDING
-      #  * <tt>:password</tt> - PENDING
+      # :domain      - String like domain-name.tld
+      # :username    - String, maximum 8 chars long
+      # :password    - String, mixing alpha and special characters
+      #                Remember to use strong passwords for accounts
       #
-      # ==== Optional
-      #  * <tt>:plan</tt> - PENDING
-      #  * <tt>:pkgname</tt> - PENDING
-      #  * <tt>:savepkg</tt> - PENDING
-      #  * <tt>:featurelist</tt> - PENDING
-      #  * <tt>:quota</tt> - PENDING
-      #  * <tt>:ip</tt> - PENDING
-      #  * <tt>:cgi</tt> - PENDING
-      #  * <tt>:</tt> - PENDING
+      # :plan        - (default: String)
+      # :pkgname     - (default: String)
+      # :savepkg     - (default: String)
+      # :featurelist - (default: String)
+      # :quota       - (default: String)
+      # :ip          - (default: String ip address)
+      # :cgi         - (default: String)
+      #
+      # Examples
+      #   server = Lumberg::Whm::Server.new(host: 'x.x.x.x', hash: '...')
+      #   server.account.create(domain: 'example.com',
+      #     username: 'example', password: '...')
+      #
+      # Returns request status, message and raw html
       def create(options = {})
         server.perform_request('createacct', options)
       end
 
       # Permanently removes a cPanel account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # username - String
+      #
+      # Returns request status, message and raw html
       def remove(options = {})
         options[:user] = options.delete(:username)
         server.perform_request('removeacct', options)
       end
 
-      # Changes the password of a domain owner (cPanel) or reseller (WHM) account
+      # Changes password, valid for accounts and resellers
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:password</tt> - PENDING
+      # username - String
+      # password - String
+      #
+      # Returns request status, message and raw html
       def change_password(options = {})
         options[:user] = options.delete(:username)
         options[:pass] = options.delete(:password)
@@ -47,18 +52,20 @@ module Lumberg
 
       # Displays pertinent information about a specific account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # username - String
+      #
+      # Returns account summary
       def summary(options = {})
         options[:user] = options.delete(:username)
         server.perform_request('accountsummary', options)
       end
 
-      # Modifies the bandwidth usage (transfer) limit for a specific account
+      # Changes bandwidth usage limits for account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:bwlimit</tt> - PENDING
+      # username - String
+      # bwlimit  - String
+      #
+      # Returns request status
       def limit_bandwidth(options = {})
         verify_user(options[:username]) do
           options[:user] = options.delete(:username)
@@ -68,12 +75,13 @@ module Lumberg
         end
       end
 
-      # Lists all accounts on the server, and also allows you to search for a specific account or set of accounts
-
+      # Lists all accounts on the server.
+      # You can also search for specific accounts, or a set of accounts
       #
-      # ==== Optional
-      #  * <tt>:searchtype</tt> - PENDING
-      #  * <tt>:search</tt> - PENDING
+      # searchtype - (default: String)
+      # search     - (default: String)
+      #
+      # Returns existing accounts
       def list(options = {})
         server.perform_request('listaccts', options) do |s|
           s.boolean_params = :suspended
@@ -82,25 +90,25 @@ module Lumberg
 
       # Modifies settings for an account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # :username - String
       #
-      # ==== Optional
-      #  * <tt>:domain</tt> - PENDING
-      #  * <tt>:newuser</tt> - PENDING
-      #  * <tt>:owner</tt> - PENDING
-      #  * <tt>:CPTHEME</tt> - PENDING
-      #  * <tt>:HASCGI</tt> - PENDING
-      #  * <tt>:LANG</tt> - PENDING
-      #  * <tt>:LOCALE</tt> - PENDING
-      #  * <tt>:MAXFTP</tt> - PENDING
-      #  * <tt>:MAXSQL</tt> - PENDING
-      #  * <tt>:MAXPOP</tt> - PENDING
-      #  * <tt>:MAXLST</tt> - PENDING
-      #  * <tt>:MAXSUB</tt> - PENDING
-      #  * <tt>:MAXPARK</tt> - PENDING
-      #  * <tt>:MAXADDON</tt> - PENDING
-      #  * <tt>:shell</tt> - PENDING
+      # :domain   - (default: '')
+      # :newuser  - (default: '')
+      # :owner    - (default: '')
+      # :CPTHEME  - (default: '')
+      # :HASCGI   - (default: '')
+      # :LANG     - (default: '')
+      # :LOCALE   - (default: '')
+      # :MAXFTP   - (default: '')
+      # :MAXSQL   - (default: '')
+      # :MAXPOP   - (default: '')
+      # :MAXLST   - (default: '')
+      # :MAXSUB   - (default: '')
+      # :MAXPARK  - (default: '')
+      # :MAXADDON - (default: '')
+      # :shell    - (default: '')
+      #
+      # Returns request status, message and raw html
       def modify(options = {})
         options[:user] = options.delete(:username)
         server.perform_request('modifyacct', options) do |s|
@@ -110,9 +118,10 @@ module Lumberg
 
       # Changes an account's disk space usage quota
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:quota</tt> - PENDING
+      # :username -  String
+      # :quota    -  String
+      #
+      # Returns request status, message and raw html
       def edit_quota(options = {})
         options[:user] = options.delete(:username)
         server.perform_request('editquota', options)
@@ -120,35 +129,37 @@ module Lumberg
 
       # Adds a new hosting package
       #
-      # ==== Required
-      #  * <tt>:name</tt> - PENDING
+      # :name         -  Package name
       #
-      # ==== Optional
-      #  * <tt>:featurelist</tt> - PENDING
-      #  * <tt>:quota</tt> - PENDING
-      #  * <tt>:ip</tt> - PENDING
-      #  * <tt>:cgi</tt> - PENDING
-      #  * <tt>:frontpage</tt> - PENDING
-      #  * <tt>:cpmod</tt> - PENDING
-      #  * <tt>:language</tt> - PENDING
-      #  * <tt>:maxftp</tt> - PENDING
-      #  * <tt>:maxsql</tt> - PENDING
-      #  * <tt>:maxpop</tt> - PENDING
-      #  * <tt>:maxlists</tt> - PENDING
-      #  * <tt>:maxsub</tt> - PENDING
-      #  * <tt>:maxpark</tt> - PENDING
-      #  * <tt>:maxaddon</tt> - PENDING
-      #  * <tt>:hasshell</tt> - PENDING
-      #  * <tt>:bwlimit</tt> - PENDING
+      # :featurelist  -  (default: '')
+      # :quota        -  (default: '')
+      # :ip           -  (default: '')
+      # :cgi          -  (default: '')
+      # :frontpage    -  (default: '')
+      # :cpmod        -  (default: '')
+      # :language     -  (default: '')
+      # :maxftp       -  (default: '')
+      # :maxsql       -  (default: '')
+      # :maxpop       -  (default: '')
+      # :maxlists     -  (default: '')
+      # :maxsub       -  (default: '')
+      # :maxpark      -  (default: '')
+      # :maxaddon     -  (default: '')
+      # :hasshell     -  (default: '')
+      # :bwlimit      -  (default: '')
+      #
+      # Returns a new hosting package
       def add_package(options = {})
         server.perform_request('addpkg', options)
       end
 
-      # Changes the hosting package associated with a cPanel account
+      # Changes the package associated within a cPanel account
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:pkg</tt> - PENDING
+      # :username -  String
+      # :pkg      -  String
+      #
+      # Returns modified package
+      #
       def change_package(options = {})
         options[:user] = options.delete(:username)
         server.perform_request('changepackage', options)
@@ -156,44 +167,54 @@ module Lumberg
 
       # Obtains user data for a specific domain
       #
-      # ==== Required
-      #  * <tt>:domain</tt> - PENDING
+      # :domain -  (default: String)
+      #
+      # Returns Hash API response
       def domain_user_data(options = {})
         server.perform_request('domainuserdata', options.merge(:response_key => 'userdata')) do |s|
           s.boolean_params = :hascgi
         end
       end
 
-      # Prevents a cPanel user from accessing his or her account. Once an account is suspended, it can be un-suspended to allow a user to access the account again
+      # Prevents a cPanel user from accessing his or her account.
+      # Once an account is suspended, it can be un-suspended to allow a user
+      # to access the account again
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # :username - String
       #
-      # ==== Optional
-      #  * <tt>:reason</tt> - PENDING
+      # :reason   - Suspended reason (default: String)
+      #
+      # Returns request status, message and raw html
       def suspend(options ={})
         options[:user] = options.delete(:username)
         server.perform_request('suspendacct', options)
       end
 
-      # Unsuspend a suspended account. When a user's account is unsuspended, he or she will be able to access cPanel again
+      # Removes account suspension. When a user's account is unsuspended,
+      # it will be able to access cPanel again
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # :username - String
+      #
+      # Returns request status, message and raw html
       def unsuspend(options ={})
         options[:user] = options.delete(:username)
         server.perform_request('unsuspendacct', options)
       end
 
-      # Generates a list of suspended accounts
+      # Gets suspended accounts
+      #
+      # Returns a list of suspended accounts
       def list_suspended(options = {})
         server.perform_request('listsuspended', options)
       end
 
-      # Generates a list of features you are allowed to use in WHM. Each feature will display either a 1 or 0. You are only able to use features with a corresponding 1
+      # Generates a list of features you are allowed to use in WHM. Each feature
+      # will display either a 1 or 0, and you should be able to use only
+      # features marked as "active" or "allowed" (with a corresponding 1)
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
+      # :username - String
+      #
+      # Returns current privileges
       def privs(options ={})
         verify_user(options[:username]) do
           resp = server.perform_request('myprivs', options.merge(:response_key => 'privs')) do |s|
@@ -205,10 +226,12 @@ module Lumberg
         end
       end
 
-      # Changes the IP address of a website, or a user account, hosted on your server
+      # Changes the IP address of a website, or a user account, hosted on your
+      # server
       #
-      # ==== Required
-      #  * <tt>:ip</tt> - PENDING
+      # :ip - String
+      #
+      # Returns the request, status message and raw html
       def set_site_ip(options = {})
         options[:user] = options.delete(:username) if options[:username]
         server.perform_request('setsiteip', options)
@@ -216,28 +239,30 @@ module Lumberg
 
       # Restores a user's account from a backup file. You may restore a monthly, weekly, or daily backup
       #
-      # ==== Required
-      #  * <tt>:username</tt> - PENDING
-      #  * <tt>:type</tt> - PENDING
-      #  * <tt>:all</tt> - PENDING
-      #  * <tt>:ip</tt> - PENDING
-      #  * <tt>:mail</tt> - PENDING
-      #  * <tt>:mysql</tt> - PENDING
-      #  * <tt>:subs</tt> - PENDING
+      # :username - String
+      # :type     - String
+      # :all      - String
+      # :ip       - String
+      # :mail     - String
+      # :mysql    - String
+      # :subs     - String
+      #
       def restore_account(options = {})
         options[:user] = options.delete(:username) if options[:username]
         server.perform_request('restoreaccount', options.merge(:response_key => 'metadata'))
       end
 
       protected
-      # Some WHM API methods always return a result, even if the user
-      # doesn't actually exist. This makes it seem like your request
-      # was successful when it really wasn't
+      # Internal: Some WHM API methods always return a result, even if the user
+      #           doesn't actually exist. This makes it seem like your request
+      #           was successful when it really wasn't
       #
-      # Example
+      # Examples
       #   verify_user('bob') do
       #      change_password()
       #   end
+      #
+      # Returns account verification
       def verify_user(username, &block)
         exists = summary(:username => username)
         if exists[:success]

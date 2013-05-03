@@ -1,6 +1,6 @@
 module Lumberg
-  # WHM Exception for when an argument is invalid, missing, etc.
+  # Raises Lumberg::WhmArgumentError when an argument is invalid or missing
   class WhmArgumentError < ArgumentError; end
-  # WHM Exception for when a request is performed on an invalid user
+  # Raises Lumberg::WhmInvalidUser when request is performed on an invalid user
   class WhmInvalidUser < RuntimeError; end
 end

@@ -1,5 +1,4 @@
 module Lumberg
-  # Holds the configuration for Lumberg
   class Config
     attr_accessor :options
 
@@ -11,7 +10,12 @@ module Lumberg
       @options[v]
     end
 
-    # Debug output.  value can be either true to output to $stderr or a path to a file
+    # Provide debug output
+    #
+    # output - Boolean or String value. Set it to true to output debugging
+    #          messages to $stderr, or specify a file path (default: '')
+    #
+    # Returns nothing
     def debug(output)
       @options[:debug] = output
     end
