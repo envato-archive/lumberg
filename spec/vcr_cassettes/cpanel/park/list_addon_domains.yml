@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "156"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:49 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"preevent":{"result":1},"apiversion":2,"postevent":{"result":1},"module":"Park","data":[],"event":{"result":1},"func":"listaddondomains"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:50 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listaddondomains&cpanel_jsonapi_module=Park&cpanel_jsonapi_user=minimal
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "156"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:49 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"apiversion":2,"event":{"result":1},"data":[],"func":"listaddondomains","preevent":{"result":1},"postevent":{"result":1},"module":"Park"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:50 GMT
+recorded_with: VCR 2.0.1

@@ -14,6 +14,7 @@ require 'lumberg/version'
 require 'lumberg/exceptions'
 require 'lumberg/config'
 require 'lumberg/whm'
+require 'lumberg/cpanel'
 
 module Lumberg
 

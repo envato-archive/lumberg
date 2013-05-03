@@ -1,0 +1,73 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?arg-0=add-test&arg-1=s3cr3t5&arg-2=lumberg-test.com&cpanel_jsonapi_apiversion=1&cpanel_jsonapi_func=addlist&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "567"
+      Date: 
+      - Fri, 03 May 2013 16:47:33 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: "{\"apiversion\":\"1\",\"type\":\"event\",\"module\":\"Email\",\"func\":\"addlist\",\"source\":\"module\",\"data\":{\"result\":\"Creating an email list creates multiple email forwarders and one is being used already.<br />\\nA forwarder already exists for add-test-admin@lumberg-test.com.<br /><br />\\nYou must delete this forwarder before creating the list add-test.\\n\"},\"event\":{\"result\":1},\"preevent\":{\"result\":1},\"postevent\":{\"result\":1},\"error\":\"The requested mailing list address, add-test@lumberg-test.com, conflicts with the forwarder add-test-admin@lumberg-test.com@lumberg-test.com.\"}"
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:34 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listlists&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "463"
+      Date: 
+      - Fri, 03 May 2013 16:47:33 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: "{\"cpanelresult\":{\"event\":{\"result\":1},\"preevent\":{\"result\":1},\"postevent\":{\"result\":1},\"data\":[{\"diskused\":\"21542\",\"humandiskused\":\"21.04\xC2\xA0KB\",\"listid\":\"add-test_lumberg-test.com\",\"list\":\"add-test@lumberg-test.com\",\"desthost\":\"mail.lumberg-test.com\"},{\"diskused\":\"21548\",\"humandiskused\":\"21.04\xC2\xA0KB\",\"listid\":\"test-list_lumberg-test.com\",\"list\":\"test-list@lumberg-test.com\",\"desthost\":\"mail.lumberg-test.com\"}],\"func\":\"listlists\",\"apiversion\":2,\"module\":\"Email\"}}\n"
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:34 GMT
+recorded_with: VCR 2.0.1

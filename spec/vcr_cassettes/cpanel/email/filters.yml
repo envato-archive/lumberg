@@ -1,0 +1,114 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?account=filters-test@lumberg-test.com&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=filterlist&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "318"
+      Date: 
+      - Fri, 03 May 2013 16:48:02 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"postevent":{"result":1},"preevent":{"result":1},"func":"filterlist","apiversion":2,"module":"Email","data":[{"unescaped":"1","filtername":"fail filter","rules":[{"opt":"and","val":"hi","match":"is","part":"$header_from:"}],"actions":[{"dest":"","action":"fail"}],"enabled":1}],"event":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:03 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=filters-test&password=abcdefg&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "296"
+      Date: 
+      - Fri, 03 May 2013 16:48:03 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"module":"Email","event":{"result":1},"func":"addpop","error":"The account filters-test@lumberg-test.com already exists!","data":[{"result":0,"reason":"The account filters-test@lumberg-test.com already exists!"}],"preevent":{"result":1},"apiversion":2,"postevent":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:04 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?account=filters-test@lumberg-test.com&action1=fail&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=storefilter&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&filtername=fail%20filter&match1=is&opt1=and&part1=$header_from:&val1=hi
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "237"
+      Date: 
+      - Fri, 03 May 2013 16:48:04 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"error":0,"result":"Filter Saved.","ok":1,"account":"filters-test@lumberg-test.com"}],"postevent":{"result":1},"apiversion":2,"preevent":{"result":1},"event":{"result":1},"func":"storefilter","module":"Email"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:04 GMT
+recorded_with: VCR 2.0.1

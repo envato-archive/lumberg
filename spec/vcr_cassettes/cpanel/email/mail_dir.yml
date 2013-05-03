@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=mail-dir-test&password=s00pers3cr3t&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "298"
+      Date: 
+      - Fri, 03 May 2013 16:48:05 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"postevent":{"result":1},"func":"addpop","preevent":{"result":1},"apiversion":2,"error":"The account mail-dir-test@lumberg-test.com already exists!","event":{"result":1},"module":"Email","data":[{"reason":"The account mail-dir-test@lumberg-test.com already exists!","result":0}]}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:06 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?account=mail-dir-test@lumberg-test.com&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=getabsbrowsedir&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "218"
+      Date: 
+      - Fri, 03 May 2013 16:48:05 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"func":"getabsbrowsedir","apiversion":2,"data":[{"absdir":"/home/lumberg/mail/lumberg-test.com/mail-dir-test"}],"module":"Email","event":{"result":1},"preevent":{"result":1},"postevent":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:06 GMT
+recorded_with: VCR 2.0.1

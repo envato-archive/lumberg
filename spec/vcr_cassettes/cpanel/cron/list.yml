@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?command=hi&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=add_line&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&day=1&hour=1&minute=1&month=1&weekday=1
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "249"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:56 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"func":"add_line","module":"Cron","postevent":{"result":1},"data":[{"statusmsg":"This cron job already exists.","linekey":"142f5e82e28e40783de383eb93c570f3","status":0}],"preevent":{"result":1},"apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:57 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listcron&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "797"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:57 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"preevent":{"result":1},"func":"listcron","data":[{"count":1,"month":"1","hour":"1","linekey":"142f5e82e28e40783de383eb93c570f3","day":"1","weekday":"1","command":"hi","command_htmlsafe":"hi","minute":"1"},{"count":2,"month":"1","hour":"1","linekey":"e1ce16ad6557f5b22f31ada1371d8f77","day":"1","weekday":"1","command":"foo","command_htmlsafe":"foo","minute":"1"},{"count":3,"month":"1","hour":"3","linekey":"01ef1ea05ac43132ded896cad80c8b08","day":"1","weekday":"1","command":"taco","command_htmlsafe":"taco","minute":"1"},{"count":4,"month":"1","hour":"1","linekey":"09f7366534c5dc41b4196634bbb245d1","day":"1","weekday":"1","command":"whatev","command_htmlsafe":"whatev","minute":"1"},{"count":5}],"postevent":{"result":1},"event":{"result":1},"module":"Cron","apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:57 GMT
+recorded_with: VCR 2.0.1

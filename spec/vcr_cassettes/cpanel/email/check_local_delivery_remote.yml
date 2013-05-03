@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=setalwaysaccept&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&delivery=remote&domain=lumberg-test.com&mxcheck=remote
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "482"
+      Date: 
+      - Fri, 03 May 2013 16:47:59 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"apiversion":2,"preevent":{"result":1},"module":"Email","event":{"result":1},"data":[{"results":"Set Always Accept Status to: remote","local":0,"mxcheck":"remote","statusmsg":"Set Always Accept Status to: remote","detected":"remote","secondary":0,"checkmx":{"local":0,"mxcheck":"remote","warnings":[],"detected":"remote","issecondary":0,"isprimary":0,"secondary":0,"changed":1,"remote":1},"remote":1,"status":1}],"postevent":{"result":1},"func":"setalwaysaccept"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:00 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=getalwaysaccept&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "219"
+      Date: 
+      - Fri, 03 May 2013 16:48:00 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"module":"Email","preevent":{"result":1},"event":{"result":1},"apiversion":2,"postevent":{"result":1},"func":"getalwaysaccept","data":[{"alwaysaccept":0,"mxcheck":"auto","domain":"lumberg-test.com"}]}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:00 GMT
+recorded_with: VCR 2.0.1
