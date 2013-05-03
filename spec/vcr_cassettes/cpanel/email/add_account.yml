@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=account-test&password=magicpants&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "296"
+      Date: 
+      - Fri, 03 May 2013 16:47:37 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"result":0,"reason":"The account account-test@lumberg-test.com already exists!"}],"apiversion":2,"error":"The account account-test@lumberg-test.com already exists!","postevent":{"result":1},"preevent":{"result":1},"event":{"result":1},"func":"addpop","module":"Email"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:38 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "2214"
+      Date: 
+      - Fri, 03 May 2013 16:47:37 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"func":"listpopswithdisk","postevent":{"result":1},"apiversion":2,"event":{"result":1},"data":[{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"account-test@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"account-test@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"account-test","mtime":"1367588811","_diskused":"0","diskusedpercent":0},{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"disk-usage-test@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"disk-usage-test@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"disk-usage-test","mtime":"1367588811","_diskused":"0","diskusedpercent":0},{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"filters-test@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"filters-test@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"filters-test","mtime":"1367588811","_diskused":"0","diskusedpercent":0},{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"mail-dir-test@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"mail-dir-test@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"mail-dir-test","mtime":"1367588811","_diskused":"0","diskusedpercent":0},{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"mail-dirs-test@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"mail-dirs-test@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"mail-dirs-test","mtime":"1367588811","_diskused":"0","diskusedpercent":0},{"diskused":0,"domain":"lumberg-test.com","diskusedpercent20":0,"email":"test-account@lumberg-test.com","txtdiskquota":"unlimited","humandiskused":"None","humandiskquota":"None","login":"test-account@lumberg-test.com","_diskquota":null,"diskquota":"unlimited","user":"test-account","mtime":"1367588811","_diskused":"0","diskusedpercent":0}],"preevent":{"result":1},"module":"Email"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:38 GMT
+recorded_with: VCR 2.0.1

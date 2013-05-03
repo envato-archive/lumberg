@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=set_email&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg&email=sauron@mordor.com
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "221"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:54 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"func":"set_email","module":"Cron","preevent":{"result":1},"postevent":{"result":1},"data":[{"statusmsg":"crontab installed","email":"sauron@mordor.com","status":1}],"apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:55 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=get_email&cpanel_jsonapi_module=Cron&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.3
+      Content-Length: 
+      - "178"
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Date: 
+      - Fri, 03 May 2013 13:47:55 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"email":"sauron@mordor.com"}],"preevent":{"result":1},"module":"Cron","apiversion":2,"func":"get_email","event":{"result":1},"postevent":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 13:47:55 GMT
+recorded_with: VCR 2.0.1

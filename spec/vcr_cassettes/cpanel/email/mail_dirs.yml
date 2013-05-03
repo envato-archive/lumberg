@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=mail-dirs-test&password=s00pers3cr3t&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "300"
+      Date: 
+      - Fri, 03 May 2013 16:48:06 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"preevent":{"result":1},"data":[{"reason":"The account mail-dirs-test@lumberg-test.com already exists!","result":0}],"postevent":{"result":1},"error":"The account mail-dirs-test@lumberg-test.com already exists!","func":"addpop","apiversion":2,"event":{"result":1},"module":"Email"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:07 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=browseboxes&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "355"
+      Date: 
+      - Fri, 03 May 2013 16:48:06 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"module":"Email","apiversion":2,"preevent":{"result":1},"postevent":{"result":1},"func":"browseboxes","data":[{"mtime":"1367420382","file":"lumberg-test.com","depth":2,"isleaf":0,"type":"dir","path":"/home/lumberg/mail","relpath":"/lumberg-test.com","fullpath":"/home/lumberg/mail/lumberg-test.com","ismailbox":0}]}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:48:07 GMT
+recorded_with: VCR 2.0.1

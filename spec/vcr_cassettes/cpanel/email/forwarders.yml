@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addforward&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=test-fwd&fwdemail=foo@bar.com&fwdopt=fwd
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "240"
+      Date: 
+      - Fri, 03 May 2013 16:47:35 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"forward":"foo@bar.com","email":"test-fwd@lumberg-test.com","domain":"lumberg-test.com"}],"module":"Email","preevent":{"result":1},"postevent":{"result":1},"func":"addforward","apiversion":2,"event":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:36 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listforwards&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "761"
+      Date: 
+      - Fri, 03 May 2013 16:47:36 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"forward":"foo@bar.com","dest":"alias-test@lumberg-test.com","html_dest":"alias-test@lumberg-test.com","uri_dest":"alias-test%40lumberg-test.com","uri_forward":"foo%40bar.com","html_forward":"foo@bar.com"},{"forward":"foo@bar.com","dest":"fwd-test@lumberg-test.com","html_dest":"fwd-test@lumberg-test.com","uri_dest":"fwd-test%40lumberg-test.com","uri_forward":"foo%40bar.com","html_forward":"foo@bar.com"},{"forward":"foo@bar.com","dest":"test-fwd@lumberg-test.com","html_dest":"test-fwd@lumberg-test.com","uri_dest":"test-fwd%40lumberg-test.com","uri_forward":"foo%40bar.com","html_forward":"foo@bar.com"}],"preevent":{"result":1},"apiversion":2,"module":"Email","func":"listforwards","event":{"result":1},"postevent":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:37 GMT
+recorded_with: VCR 2.0.1

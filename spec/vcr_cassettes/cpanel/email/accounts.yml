@@ -1,0 +1,188 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "2214"
+      Date: 
+      - Fri, 03 May 2013 16:47:39 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"apiversion":2,"data":[{"domain":"lumberg-test.com","user":"account-test","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"account-test@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"account-test@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"},{"domain":"lumberg-test.com","user":"disk-usage-test","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"disk-usage-test@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"disk-usage-test@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"},{"domain":"lumberg-test.com","user":"filters-test","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"filters-test@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"filters-test@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"},{"domain":"lumberg-test.com","user":"mail-dir-test","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"mail-dir-test@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"mail-dir-test@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"},{"domain":"lumberg-test.com","user":"mail-dirs-test","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"mail-dirs-test@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"mail-dirs-test@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"},{"domain":"lumberg-test.com","user":"test-account","mtime":"1367588811","diskused":0,"_diskquota":null,"email":"test-account@lumberg-test.com","diskusedpercent20":0,"diskusedpercent":0,"diskquota":"unlimited","humandiskused":"None","login":"test-account@lumberg-test.com","_diskused":"0","txtdiskquota":"unlimited","humandiskquota":"None"}],"postevent":{"result":1},"func":"listpopswithdisk","module":"Email","preevent":{"result":1},"event":{"result":1}}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:40 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpops&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "695"
+      Date: 
+      - Fri, 03 May 2013 16:47:40 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"apiversion":2,"preevent":{"result":1},"data":[{"login":"filters-test@lumberg-test.com","email":"filters-test@lumberg-test.com"},{"login":"disk-usage-test@lumberg-test.com","email":"disk-usage-test@lumberg-test.com"},{"login":"account-test@lumberg-test.com","email":"account-test@lumberg-test.com"},{"login":"test-account@lumberg-test.com","email":"test-account@lumberg-test.com"},{"login":"mail-dir-test@lumberg-test.com","email":"mail-dir-test@lumberg-test.com"},{"login":"mail-dirs-test@lumberg-test.com","email":"mail-dirs-test@lumberg-test.com"},{"login":"Main Account","email":"lumberg"}],"func":"listpops","postevent":{"result":1},"module":"Email"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:41 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithimage&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "739"
+      Date: 
+      - Fri, 03 May 2013 16:47:42 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"module":"Email","data":[{"login":"disk-usage-test@lumberg-test.com","email":"disk-usage-test@lumberg-test.com"},{"login":"account-test@lumberg-test.com","email":"account-test@lumberg-test.com"},{"login":"mail-dirs-test@lumberg-test.com","email":"mail-dirs-test@lumberg-test.com"},{"login":"mail-dir-test@lumberg-test.com","email":"mail-dir-test@lumberg-test.com"},{"login":"filters-test@lumberg-test.com","email":"filters-test@lumberg-test.com"},{"login":"test-account@lumberg-test.com","email":"test-account@lumberg-test.com"},{"login":"<img src=\"/frontend/sa2/images/mainacct.jpg\">","email":"lumberg"}],"preevent":{"result":1},"func":"listpopswithimage","postevent":{"result":1},"apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:42 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=test-account&password=sauce&quota=0
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "296"
+      Date: 
+      - Fri, 03 May 2013 16:47:42 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"reason":"The account test-account@lumberg-test.com already exists!","result":0}],"func":"addpop","preevent":{"result":1},"event":{"result":1},"error":"The account test-account@lumberg-test.com already exists!","postevent":{"result":1},"module":"Email","apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:43 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopssingle&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "658"
+      Date: 
+      - Fri, 03 May 2013 16:47:43 GMT
+      Server: 
+      - cpsrvd/11.32.6.3
+    body: 
+      string: |
+        {"cpanelresult":{"preevent":{"result":1},"event":{"result":1},"apiversion":2,"data":[{"login":"mail-dirs-test@lumberg-test.com","email":"mail-dirs-test@lumberg-test.com"},{"login":"account-test@lumberg-test.com","email":"account-test@lumberg-test.com"},{"login":"mail-dir-test@lumberg-test.com","email":"mail-dir-test@lumberg-test.com"},{"login":"filters-test@lumberg-test.com","email":"filters-test@lumberg-test.com"},{"login":"test-account@lumberg-test.com","email":"test-account@lumberg-test.com"},{"login":"disk-usage-test@lumberg-test.com","email":"disk-usage-test@lumberg-test.com"}],"postevent":{"result":1},"module":"Email","func":"listpopssingle"}}
+
+    http_version: 
+  recorded_at: Fri, 03 May 2013 16:47:43 GMT
+recorded_with: VCR 2.0.1
