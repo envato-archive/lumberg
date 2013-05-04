@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=traceroute&cpanel_jsonapi_module=Net&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Server: 
+      - cpsrvd/11.36.0.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "318"
+      Date: 
+      - Wed, 15 May 2013 04:23:49 GMT
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"line":"Traceroute is disabled on this system.  Please ask your System Administrator to enable traceroute."}],"event":{"result":1},"apiversion":2,"error":"Traceroute is disabled on this system.  Please ask your System Administrator to enable traceroute.","func":"traceroute","module":"Net"}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 04:19:08 GMT
+recorded_with: VCR 2.0.1

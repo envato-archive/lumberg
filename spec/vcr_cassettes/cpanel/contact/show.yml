@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=displaycontactinfo&cpanel_jsonapi_module=CustInfo&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Thu, 16 May 2013 06:22:30 GMT
+      Server: 
+      - cpsrvd/11.36.0.4
+      Content-Length: 
+      - "1027"
+      Connection: 
+      - Keep-Alive
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Type: 
+      - application/json; charset="utf-8"
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"type":"string","name":"email","descp":"Email address that you can be contacted at.  This should be an email address that is not on your account if you have one.","enabled":1,"value":"testing@lumberg-test.com"},{"type":"string","name":"second_email","descp":"If you wish to provide a second email address to receive notifications, enter it here.","enabled":1,"value":""},{"type":"boolean","name":"notify_disk_limit","descp":"Send notifications to your contact email address when you are reaching your disk quota.","enabled":0,"value":1},{"type":"boolean","name":"notify_bandwidth_limit","descp":"Send notifications to your contact email address when you are reaching your bandwidth usage limit.","enabled":1,"value":1},{"type":"boolean","name":"notify_email_quota_limit","descp":"Send notifications to your contact email address when one of your email accounts approaches or is over quota.","enabled":0,"value":1}],"apiversion":2,"module":"CustInfo","event":{"result":1},"func":"displaycontactinfo"}}
+
+    http_version: 
+  recorded_at: Thu, 16 May 2013 06:17:42 GMT
+recorded_with: VCR 2.0.1

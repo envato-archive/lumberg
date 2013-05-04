@@ -1,0 +1,77 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=set_digest_auth&cpanel_jsonapi_module=Passwd&cpanel_jsonapi_user=lumberg&enable=1&enabledigest=1&password=realtopsecretpassword
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 15 May 2013 04:25:11 GMT
+      Server: 
+      - cpsrvd/11.36.0.4
+      X-Keep-Alive-Count: 
+      - "1"
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "164"
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"data":[{"reason":"Digest Authentication enabled.","result":"1"}],"apiversion":2,"module":"Passwd","func":"set_digest_auth"}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 04:20:30 GMT
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=set_digest_auth&cpanel_jsonapi_module=Passwd&cpanel_jsonapi_user=lumberg&enable=1&enabledigest=0&password=realtopsecretpassword
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Mon, 10 Jun 2013 18:55:17 GMT
+      Server: 
+      - cpsrvd/11.36.0.4
+      X-Keep-Alive-Count: 
+      - "1"
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "165"
+    body: 
+      string: |
+        {"cpanelresult":{"event":{"result":1},"apiversion":2,"module":"Passwd","data":[{"reason":"Digest Authentication disabled.","result":"1"}],"func":"set_digest_auth"}}
+
+    http_version: 
+  recorded_at: Mon, 10 Jun 2013 18:54:28 GMT
+recorded_with: VCR 2.0.1

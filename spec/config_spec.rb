@@ -20,7 +20,7 @@ describe Lumberg::Config do
 
   describe "#debug" do
     it "configures net/http to log to console" do
-      @config.options[:debug].should be_nil           
+      @config.options[:debug].should be_nil
       @config.debug true
       @config.options[:debug].should == true
     end

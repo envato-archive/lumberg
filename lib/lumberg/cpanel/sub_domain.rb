@@ -42,6 +42,20 @@ module Lumberg
           :api_function => "listsubdomains"
         }.merge(options))
       end
+
+      # Public: Modify the document root of a subdomain
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :dir         - String docroot to which you want to move the subdomain
+      #   :subdomain   - String subdomain whose docroot you want to modify
+      #   :rootdomain  - String domain on which to modify the subdomain
+      #
+      # Returns Hash API response
+      def modify(options = {})
+        perform_request({
+          :api_function => "changedocroot"
+        }.merge(options))
+      end
     end
   end
 end

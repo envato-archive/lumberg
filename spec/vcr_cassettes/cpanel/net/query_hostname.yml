@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=dnszone&cpanel_jsonapi_module=Net&cpanel_jsonapi_user=lumberg&host=google.com
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Server: 
+      - cpsrvd/11.36.0.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "944"
+      Date: 
+      - Wed, 15 May 2013 04:23:49 GMT
+    body: 
+      string: |
+        {"cpanelresult":{"func":"dnszone","apiversion":2,"data":[{"line":"google.com.\t\t300\tIN\tA\t177.99.189.236"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.241"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.227"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.247"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.222"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.231"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.212"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.217"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.216"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.237"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.242"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.246"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.221"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.226"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.251"},{"line":"google.com.\t\t300\tIN\tA\t177.99.189.232"}],"event":{"result":1},"module":"Net"}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 04:19:08 GMT
+recorded_with: VCR 2.0.1

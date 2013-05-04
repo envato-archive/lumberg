@@ -116,7 +116,7 @@ module Lumberg
     describe "#add_account" do
       let(:local) { "account-test" }
 
-      use_vcr_cassette("cpanel/email/add_account")
+      use_vcr_cassette "cpanel/email/add_account"
 
       it "adds an email account" do
         email.add_account(
@@ -132,13 +132,47 @@ module Lumberg
       end
     end
 
-    describe "#remove_account" do
-      pending
+    describe "#edit_quota" do
+      let(:local) { "account-test" }
+
+      use_vcr_cassette "cpanel/email/edit_quota"
+
+      it "modifies an email account quota" do
+        old_quota = email.accounts[:params][:data].find { |a|
+          a[:email] == "#{local}@#{domain}"
+        }[:_diskquota]
+
+        email.edit_quota(
+          :domain => domain,
+          :email  => local,
+          :quota  => 10
+        )
+
+        new_quota = email.accounts[:params][:data].find {|a|
+          a[:email] == "#{local}@#{domain}"
+        }[:_diskquota].to_i
+
+        new_quota.should_not == old_quota
+      end
     end
 
-    describe "#edit_quota" do
-      pending
+    describe "#remove" do
+      let(:local) { "account-test" }
+
+      use_vcr_cassette "cpanel/email/remove"
+
+      it "removes an email account" do
+        email.remove(
+          :domain => domain,
+          :email  => "#{local}@#{domain}"
+        )
+
+        email.accounts[:params][:data].find {|a|
+          a[:email] == "#{local}@#{domain}"
+        }.should be_nil
+      end
     end
+
 
     describe "#accounts" do
       let(:local)         { "test-account" }
@@ -460,16 +494,28 @@ module Lumberg
       end
     end
 
-    describe "#fetchcharmaps" do
-      pending
+    describe "#acceptable_encodings" do
+      use_vcr_cassette "cpanel/email/acceptable_encodings"
+
+      subject do
+        email.acceptable_encodings[:params][:data].find { |m| m[:map] == "utf-8" }[:map]
+      end
+
+      it "lists Cpanel's acceptable character encodings" do
+        should == "utf-8"
+      end
     end
 
     describe "#listautoresponders" do
-      pending
+      use_vcr_cassette("cpanel/email/listautoresponders")
+      subject { email.listautoresponders[:params][:data][0] }
+      should { be_nil }
     end
 
     describe "#listdomainforwards" do
-      pending
+      use_vcr_cassette("cpanel/email/listdomainforwards")
+      subject { email.listdomainforwards[:params][:data][0] }
+      should { be_nil }
     end
 
     describe "#disk_usage" do
