@@ -105,6 +105,38 @@ module Lumberg
         }.merge(options))
       end
 
+      # Public: Change values for a specific MX record
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :domain        - String domain for the MX record you wish to change.
+      #   :exchange      - String name of the new exchanger.
+      #   :oldexchange   - String name of the exchanger to replace (optional).
+      #   :oldpreference - Integer priority value of the old exchanger.
+      #   :preference    - Integer priority value for the new exchange.
+      #   :alwaysaccept  - String setting to define behavior for the exchanger.
+      #                    Accepted: "backup", "local", "secondary", "remote".
+      #                    (optional)
+      #
+      # Returns Hash API response.
+      def change_mx(options = {})
+        perform_request({ :api_function => "changemx" }.merge(options))
+      end
+
+      # Public: Add an MX record
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :domain       - String domain for the MX record you wish to change.
+      #   :exchange     - String name of the new exchanger.
+      #   :preference   - Integer priority value for the new exchange.
+      #   :alwaysaccept - String setting to define behavior for the exchanger.
+      #                   Accepted: "backup", "local", "secondary", "remote".
+      #                   (optional)
+      #
+      # Returns Hash API response.
+      def add_mx(options = {})
+        perform_request({ :api_function => "addmx" }.merge(options))
+      end
+
       # Public: Get list of mail exchanger information.
       #
       # options - Hash options for API call params (default: {}):
