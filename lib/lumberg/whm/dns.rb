@@ -131,6 +131,30 @@ module Lumberg
         server.perform_request('resetzone', options)
       end
 
+      # This function will change a specified domain's MX records
+      #
+      # ==== Required
+      #  * <tt>:domain</tt>        - PENDING
+      #  * <tt>:exchange</tt>      - PENDING
+      #  * <tt>:oldexchange</tt>   - PENDING
+      #  * <tt>:oldpreference</tt> - PENDING
+      #  * <tt>:preference</tt>    - PENDING
+      #  * <tt>:alwaysaccept</tt>  - PENDING
+      def change_mx(options = {})
+        server.perform_request('changemx', options.merge(:key => 'data'))
+      end
+
+      # This function will add an MX record to a  specified domain
+      #
+      # ==== Required
+      #  * <tt>:domain</tt>        - PENDING
+      #  * <tt>:exchange</tt>      - PENDING
+      #  * <tt>:preference</tt>    - PENDING
+      #  * <tt>:alwaysaccept</tt>  - PENDING
+      def add_mx(options = {})
+        server.perform_request('addmx', options.merge(:key => 'data'))
+      end
+
       # This function will list a specified domain's MX records
       #
       # *This function is only available in version 11.27/11.28+*
