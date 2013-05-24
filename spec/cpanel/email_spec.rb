@@ -234,6 +234,31 @@ module Lumberg
       end
     end
 
+    describe "#add_mx" do
+      use_vcr_cassette("cpanel/email/add_mx")
+
+      it "adds an mx record" do
+        email.add_mx(
+          :domain     => domain,
+          :exchange   => "mail.#{domain}",
+          :preference => 2
+        )[:params][:data][0][:status].should eq(1)
+      end
+    end
+
+    describe "#change_mx" do
+      use_vcr_cassette("cpanel/email/change_mx")
+
+      it "changes an existing mx record" do
+        email.add_mx(
+          :domain        => domain,
+          :exchange      => "mail.#{domain}",
+          :oldpreference => 2,
+          :preference    => 1
+        )[:params][:data][0][:status].should eq(1)
+      end
+    end
+
     describe "#mx" do
       use_vcr_cassette("cpanel/email/mx")
 
