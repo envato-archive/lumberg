@@ -269,6 +269,29 @@ module Lumberg
       end
     end
 
+    describe "#delete_mx" do
+      use_vcr_cassette("cpanel/email/delete_mx")
+
+      it "delete an existing mx record" do
+        email.delete_mx(
+          :domain        => domain,
+          :exchange      => "mail.#{domain}",
+          :preference    => 1
+        )[:params][:data][0][:status].should eq(1)
+      end
+    end
+
+    describe "#set_mx_type" do
+      use_vcr_cassette("cpanel/email/set_mx_type")
+
+      it "sets an existing mx record to use remote" do
+        email.set_mx_type(
+          :domain        => domain,
+          :mxcheck       => "remote"
+        )[:params][:data][0][:detected].should  == "remote"
+      end
+    end
+
     describe "#set_mail_delivery" do
       let(:detected) do
         email.mx(:domain => domain)[:params][:data][0][:detected]

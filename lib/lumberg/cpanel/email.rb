@@ -149,6 +149,31 @@ module Lumberg
         }.merge(options))
       end
 
+      # Public: Delete an MX record
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :domain       - String domain for the MX record you wish to change.
+      #   :exchange     - String name of the new exchanger.
+      #   :preference   - Integer priority value for the new exchange.
+      #
+      # Returns Hash API response.
+      def delete_mx(options = {})
+        perform_request({ :api_function => "delmx" }.merge(options))
+      end
+
+      # Public: Set a mail exchanger for a specified domain to local,
+      # remote, secondary, or auto
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :domain       - String domain for the MX record you wish to change.
+      #   :mxcheck      - String setting to define behavior for the exchanger.
+      #                   Accepted: "auto", "local", "secondary", "remote".
+      #
+      # Returns Hash API response.
+      def set_mx_type(options = {})
+        perform_request({ :api_function => "setmxcheck" }.merge(options))
+      end
+
       # Public: Set mail delivery for a domain.
       #
       # options - Hash options for API call params (default: {}):

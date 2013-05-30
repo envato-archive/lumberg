@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=setmxcheck&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&mxcheck=remote
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Server: 
+      - cpsrvd/11.32.6.4
+      Date: 
+      - Thu, 30 May 2013 18:16:07 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Content-Length: 
+      - "428"
+    body: 
+      string: |
+        {"cpanelresult":{"module":"Email","event":{"result":1},"data":[{"statusmsg":"Set Always Accept Status to: remote","status":1,"detected":"remote","remote":1,"secondary":0,"checkmx":{"issecondary":0,"isprimary":0,"detected":"remote","remote":1,"secondary":0,"warnings":[],"local":0,"mxcheck":"remote","changed":1},"local":0,"mxcheck":"remote","results":"Set Always Accept Status to: remote"}],"func":"setmxcheck","apiversion":2}}
+
+    http_version: 
+  recorded_at: Thu, 30 May 2013 18:16:08 GMT
