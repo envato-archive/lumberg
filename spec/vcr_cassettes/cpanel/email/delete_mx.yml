@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=delmx&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&exchange=mail.lumberg-test.com&preference=1
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Thu, 30 May 2013 18:15:10 GMT
+      Content-Length: 
+      - "398"
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Connection: 
+      - Keep-Alive
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.32.6.4
+      X-Keep-Alive-Count: 
+      - "1"
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"statusmsg":"Bind reloading on rye01 using rndc zone: [lumberg-test.com]\n","status":1,"checkmx":{"detected":"local","local":1,"mxcheck":"auto","remote":0,"secondary":0,"isprimary":1,"changed":1,"warnings":[],"issecondary":0},"results":"Bind reloading on rye01 using rndc zone: [lumberg-test.com]\n"}],"func":"delmx","event":{"result":1},"module":"Email","apiversion":2}}
+
+    http_version: 
+  recorded_at: Thu, 30 May 2013 18:15:11 GMT
