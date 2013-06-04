@@ -1,0 +1,38 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?arg-0=lumberg-test.com&arg-1=0&cpanel_jsonapi_apiversion=1&cpanel_jsonapi_func=showcsr&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&user=api_username
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 05 Jun 2013 16:56:48 GMT
+      Content-Length: 
+      - "1233"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Server: 
+      - cpsrvd/11.32.6.4
+      Content-Type: 
+      - text/plain; charset="utf-8"
+    body: 
+      string: "{\"apiversion\":\"1\",\"type\":\"event\",\"module\":\"SSL\",\"func\":\"showcsr\",\"source\":\"module\",\"data\":{\"result\":\"-----BEGIN CERTIFICATE REQUEST-----\\nMIIC6zCCAdMCAQAwgYsxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJJTDEQMA4GA1UE\\nBxMHQ2hpY2FnbzEQMA4GA1UEChMHSW5pdGVjaDEMMAoGA1UECxMDVFBTMRkwFwYD\\nVQQDExBsdW1iZXJnLXRlc3QuY29tMSIwIAYJKoZIhvcNAQkBFhNsdW1iZXJnQGlu\\naXRlY2guY29tMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAo2oEb080\\nn9x3S7gC5hv4bjAmA4iBZ8N4ncBrMc8qpPeXBKSzWWk6B8Ntx0ohygPmc3K6D8Lg\\n96DAq35m0Cx/IqxuKO9Bqr5XfMW9c0di2K7RqoEqvnEIn/BU1UQipbiTBKDqsu5o\\nYl0Q9t8rIklX8Mmd5uHcUrkzaaV76FbL/QYRXepVI2/xcmfWZ5Mst79eGKueznb3\\nrLlYVWp3vLJbViSH9Ubmre+nAf55jhuUXhCwmpzyh1TNfqTWtn25BuUFCofsTe3C\\nCmQyokpmQdYK5BCcX705MrYJ1CutZlmqxYRKxztgBC+WrtYwyjn0NURLlWW7ky0j\\n0XpT131+IgLOAQIDAQABoBowGAYJKoZIhvcNAQkHMQsTCVRydTNTdDByeTANBgkq\\nhkiG9w0BAQUFAAOCAQEAG5mkU1gdBFvtipdw79AqJTTxPoLljfqplcmM64zMCnZ8\\nd4sWkLmaYcOqa+SFkY4g5vsqCa1beNHsC0KhmOh3y/oslP07OPPByFqOkOG0gyYC\\nv+qEqmhggjINTTZ44G7kI5CVsyQV6XsrmPz6hzT/CYg04MG3XPfoDmXgy9igz3GF\\n3ty/e/J/A2Bo1ZAF4UFOmTuklrxn8mJz6qaO2Bn92TQpTE1wU2WSLToomoUCh6Jx\\nBTsurTVNjDsWlB5s94kiPkyYd0uPWqlTqYHnSG/CGlmaMTuujjX3gK+X+ETk8lqi\\nbZSL2O1+byn8Z2oB9I+0EzNiZV7QRPV6zGfyHBxWdg==\\n-----END CERTIFICATE REQUEST-----\\n\"},\"event\":{\"result\":1}}"
+    http_version: 
+  recorded_at: Wed, 05 Jun 2013 16:56:39 GMT
