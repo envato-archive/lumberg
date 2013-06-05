@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listkeys&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&user=api_username
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - cpsrvd/11.32.6.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Date: 
+      - Tue, 04 Jun 2013 19:20:36 GMT
+      Content-Length: 
+      - "125"
+      Connection: 
+      - Keep-Alive
+      X-Keep-Alive-Count: 
+      - "1"
+    body: 
+      string: |
+        {"cpanelresult":{"apiversion":2,"func":"listkeys","event":{"result":1},"data":[{"host":"lumberg-test.com"}],"module":"SSL"}}
+
+    http_version: 
+  recorded_at: Tue, 04 Jun 2013 19:20:27 GMT
+recorded_with: VCR 2.0.1

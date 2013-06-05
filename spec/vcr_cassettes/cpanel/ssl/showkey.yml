@@ -1,0 +1,38 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?arg-0=lumberg-test.com&arg-1=0&cpanel_jsonapi_apiversion=1&cpanel_jsonapi_func=showkey&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&user=api_username
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Tue, 04 Jun 2013 19:38:33 GMT
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Server: 
+      - cpsrvd/11.32.6.4
+      X-Keep-Alive-Count: 
+      - "1"
+      Content-Length: 
+      - "1831"
+    body: 
+      string: "{\"apiversion\":\"1\",\"type\":\"event\",\"module\":\"SSL\",\"func\":\"showkey\",\"source\":\"module\",\"data\":{\"result\":\"-----BEGIN RSA PRIVATE KEY-----\\nMIIEpAIBAAKCAQEAo2oEb080n9x3S7gC5hv4bjAmA4iBZ8N4ncBrMc8qpPeXBKSz\\nWWk6B8Ntx0ohygPmc3K6D8Lg96DAq35m0Cx/IqxuKO9Bqr5XfMW9c0di2K7RqoEq\\nvnEIn/BU1UQipbiTBKDqsu5oYl0Q9t8rIklX8Mmd5uHcUrkzaaV76FbL/QYRXepV\\nI2/xcmfWZ5Mst79eGKueznb3rLlYVWp3vLJbViSH9Ubmre+nAf55jhuUXhCwmpzy\\nh1TNfqTWtn25BuUFCofsTe3CCmQyokpmQdYK5BCcX705MrYJ1CutZlmqxYRKxztg\\nBC+WrtYwyjn0NURLlWW7ky0j0XpT131+IgLOAQIDAQABAoIBAQCD6gk6cY3hnm8O\\nyLROXTXmfSeyoncT9E9hyPq/cqTSFqvqK6o7+x3FNpVf0xADq7JUb8CTCJXiT/o4\\ndgk48zKOIvOqR7mSw6SMLHQKow3ALR9DrJF8unJj6fYRUrdFYAIOMnhDiQDqpoYT\\nQ4PmYZ6D2b2Fq73XaXl/Rv8HR0nULc8bwiZy8OtTYrZUoYuhmkAN8KuKu1sCvdRG\\ndelEKA9YAzDDJahL105yJ1TnOl0gkSpmZULUkvCzTrBYurKKOVtlPMmGMoVeD9Vy\\nrqf4maZ3/uRkL5VHTaCc+QBZY//eCODQu3gzpGDFXD9nRlf3ON+sLQJyPbjo8p+k\\ndr0HVi+BAoGBANd8/Yt7PULhXSRSuujaKfLa3h5k/CjvQgAqCLuEkba/QXFvqxVL\\n3mF7YPLp4RVSt/ka/tSxeOxrqxNSPxq0jHoO5jUIo3EHNLsmErhV/0DqXL7NfULe\\n64oHXoPMWR8f96V605DvpFYPWe6PDP0KHYTk1Aplp0a1pgMjo2OSloZlAoGBAMIi\\nzlmGBMc+ZuX/NKE5B+GU+lKPnbKbH/oeP3oNEuIj+oshHvTMBesC0CBpPEttczhL\\nUeMtquwTov4onSzVhU4Yqh9QJhCrv9gY5v3TXYx0ZHxGKYqFU+0IGY2ywav2Bvrh\\nz8iojhiCY3+6FVD9xwJH/IEQGeuhyw9wbJTSJXFtAoGADuNj4S8ynFxVwxy0LUJl\\ng5H7pr3zbiCZvskosUwHhUjRjLTabS5Avxt3J1Fha8e7Tkq/MJLSeAM4Xq1gDshK\\nrGQ7I47lO/nzerq2sGXArQuEPOqVrPkZ7P91WEXWIoBi69wAohLsl8WXwRPBIfqA\\n752fyNgdJpWGUtEziL2oCMECgYBAGxA6vaeMR43g+vHdHyD8G57Bbo0rclAP3rcl\\nTXXj2O+dy7UWLtzxar9hRH7VhXHbr/t9YhIj3KQg+zZTnLplPH3I00WOkbhK2oZE\\nYOxuOe0IoH6NMFOzXM5bXSDY8OgDJlffsdEiRMQoZEEvum1h0nWOBMwaZBXSplQk\\nnHQizQKBgQDOoOSlZY6vvBnTPHNEmtZifaLpHOg74BUVVOl+uksN0NaXM3iJZRxl\\nXoQMgM2u3Vxfg34Agen/RBf0A17sqsIx0trfKt5hPOm8+j9dFmHHill+6EtC7mA5\\nACRPQCeYdroH66ufLvh3wqDjUoM3vCWk8lyMQR2eJUfBNUALyQoXzQ==\\n-----END RSA PRIVATE KEY-----\\n\"},\"event\":{\"result\":1}}"
+    http_version: 
+  recorded_at: Tue, 04 Jun 2013 19:38:23 GMT
+recorded_with: VCR 2.0.1
