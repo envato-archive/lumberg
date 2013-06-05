@@ -29,7 +29,7 @@ module Lumberg
       #   :api_function - String API function name to call.
       #   :api_module   - String API module on which API function will be
       #                   called (optional, default: self.class.api_module).
-      #   :key          - String key used to select desired part of API
+      #   :response_key - String key used to select desired part of API
       #                   response (optional, default: "cpanelresult").
       #   :api_username - String account username for API call (optional,
       #                   default: @api_username)
@@ -42,7 +42,7 @@ module Lumberg
 
         api_module = options.delete(:api_module) || self.class.api_module
         params = {
-          :key                       => options.delete(:key) || "cpanelresult",
+          :response_key              => options.delete(:response_key) || "cpanelresult",
           :cpanel_jsonapi_user       => options.delete(:api_username),
           :cpanel_jsonapi_module     => api_module,
           :cpanel_jsonapi_func       => options.delete(:api_function),

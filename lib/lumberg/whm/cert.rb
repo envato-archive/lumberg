@@ -50,11 +50,7 @@ module Lumberg
       # ==== Optional
       #  * <tt>none</tt> - PENDING
       def installssl(options = {})
-        cert_key = options[:key]
-        # Compensate automatic removal of options[:key]
-        result = server.perform_request('installssl', options) do |serv|
-          serv.instance_variable_get(:@params)[:key] = cert_key
-        end
+        result = server.perform_request('installssl', options)
       end
 
       # List all the domains on the server that have SSL certificates installed
@@ -66,7 +62,7 @@ module Lumberg
       #  * <tt>none</tt> - PENDING
       def listcrts(options = {})
         server.force_response_type = :ssl
-        result = server.perform_request('listcrts', options.merge(:key => 'crt'))
+        result = server.perform_request('listcrts', options.merge(:response_key => 'crt'))
       end
     end
   end
