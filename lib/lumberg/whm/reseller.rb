@@ -15,7 +15,7 @@ module Lumberg
       # Lists the usernames of all resellers on the server
       def list
         # This method is funky. That is all
-        result = server.perform_request('listresellers', :key => 'reseller')
+        result = server.perform_request('listresellers', :response_key => 'reseller')
         result[:success] = true
         result[:params]  = {:resellers => result.delete(:params)}
         result
@@ -115,7 +115,7 @@ module Lumberg
       #  * <tt>:username</tt> - PENDING
       def account_counts(options = {})
         options[:user] = options.delete(:username)
-        server.perform_request('acctcounts', options.merge(:key => 'reseller'))
+        server.perform_request('acctcounts', options.merge(:response_key => 'reseller'))
       end
 
       # Defines a reseller's nameservers. Additionally, you may use it to reset a reseller's nameservers to the default settings
@@ -140,7 +140,7 @@ module Lumberg
 
       # Lists the saved reseller ACL lists on the server
       def list_acls
-        server.perform_request('listacls', {:key => 'acls'})
+        server.perform_request('listacls', {:response_key => 'acls'})
       end
 
       # Creates a new reseller ACL list
@@ -148,7 +148,7 @@ module Lumberg
       # ==== Required
       #  * <tt>:acllist</tt> - PENDING
       def save_acl_list(options = {})
-        server.perform_request('saveacllist', options.merge(:key => 'results'))
+        server.perform_request('saveacllist', options.merge(:response_key => 'results'))
       end
 
       # Sets the ACL for a reseller, or modifies specific ACL items for a reseller
