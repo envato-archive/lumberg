@@ -10,5 +10,6 @@ module Lumberg
     require "lumberg/cpanel/branding"
     require "lumberg/cpanel/contact"
     require "lumberg/cpanel/cron"
+    require "lumberg/cpanel/ssl"
   end
 end

@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listsslitems&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&domains=lumberg-test.com&items=key
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Keep-Alive: 
+      - timeout=70, max=200
+      X-Keep-Alive-Count: 
+      - "1"
+      Connection: 
+      - Keep-Alive
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Date: 
+      - Tue, 04 Jun 2013 18:58:59 GMT
+      Server: 
+      - cpsrvd/11.32.6.4
+      Content-Length: 
+      - "142"
+    body: 
+      string: |
+        {"cpanelresult":{"module":"SSL","apiversion":2,"event":{"result":1},"data":[{"host":"lumberg-test.com","type":"key"}],"func":"listsslitems"}}
+
+    http_version: 
+  recorded_at: Tue, 04 Jun 2013 18:58:51 GMT

@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=uploadcrt&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&crt=-----BEGIN%20CERTIFICATE-----%0AMIIEjzCCA3egAwIBAgIJAKUkEYvfuZIgMA0GCSqGSIb3DQEBBQUAMIGLMQswCQYD%0AVQQGEwJVUzELMAkGA1UECBMCSUwxEDAOBgNVBAcTB0NoaWNhZ28xEDAOBgNVBAoT%0AB0luaXRlY2gxDDAKBgNVBAsTA1RQUzEZMBcGA1UEAxMQbHVtYmVyZy10ZXN0LmNv%0AbTEiMCAGCSqGSIb3DQEJARYTbHVtYmVyZ0Bpbml0ZWNoLmNvbTAeFw0xMzA2MDQx%0AODE1NDFaFw0xNDA2MDQxODE1NDFaMIGLMQswCQYDVQQGEwJVUzELMAkGA1UECBMC%0ASUwxEDAOBgNVBAcTB0NoaWNhZ28xEDAOBgNVBAoTB0luaXRlY2gxDDAKBgNVBAsT%0AA1RQUzEZMBcGA1UEAxMQbHVtYmVyZy10ZXN0LmNvbTEiMCAGCSqGSIb3DQEJARYT%0AbHVtYmVyZ0Bpbml0ZWNoLmNvbTCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoC%0AggEBAKNqBG9PNJ/cd0u4AuYb%2BG4wJgOIgWfDeJ3AazHPKqT3lwSks1lpOgfDbcdK%0AIcoD5nNyug/C4PegwKt%2BZtAsfyKsbijvQaq%2BV3zFvXNHYtiu0aqBKr5xCJ/wVNVE%0AIqW4kwSg6rLuaGJdEPbfKyJJV/DJnebh3FK5M2mle%2BhWy/0GEV3qVSNv8XJn1meT%0ALLe/Xhirns5296y5WFVqd7yyW1Ykh/VG5q3vpwH%2BeY4blF4QsJqc8odUzX6k1rZ9%0AuQblBQqH7E3twgpkMqJKZkHWCuQQnF%2B9OTK2CdQrrWZZqsWESsc7YAQvlq7WMMo5%0A9DVES5Vlu5MtI9F6U9d9fiICzgECAwEAAaOB8zCB8DAdBgNVHQ4EFgQU79zSJfI8%0AmcE3Mhgq3MHSgCZq408wgcAGA1UdIwSBuDCBtYAU79zSJfI8mcE3Mhgq3MHSgCZq%0A40%2BhgZGkgY4wgYsxCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJJTDEQMA4GA1UEBxMH%0AQ2hpY2FnbzEQMA4GA1UEChMHSW5pdGVjaDEMMAoGA1UECxMDVFBTMRkwFwYDVQQD%0AExBsdW1iZXJnLXRlc3QuY29tMSIwIAYJKoZIhvcNAQkBFhNsdW1iZXJnQGluaXRl%0AY2guY29tggkApSQRi9%2B5kiAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOC%0AAQEAKYfSEqYYwyrMhT9d84KWfJsOdjibnCDwMSVQ9SzS/mEJ0ReJL0WuFmChbN6r%0APQvJs3S9AoNmAFCcGFT0Fb/UWbVIajZ%2BzwfqjlWQpoN6/RHmFDT7KmK6OE1p8ZvZ%0AUQeN1PPF5MsT3RmBpOySd4Jprg9ZJ%2BGsL3yjOySSFRZvz8ocUHGF8Rw%2BM8hvoeUH%0AiQMx1IFC7yXpeLXxZ3AODzgLj4mqqyf9C/%2BsOuymO7xfLtU3fQUO7uRba7yQELWF%0A%2B4ttDOOOd%2Bgac5zeADNe0Y6Vlwg92lyW%2BW1c8Uf%2BtqFoFjwdOd/vaJbheJFJua41%0A7bmjPpc2xnl0km2M0y7J4FcysA==%0A-----END%20CERTIFICATE-----%0A%0A&host=lumberg-test.com&user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - cpsrvd/11.32.6.4
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Length: 
+      - "156"
+      X-Keep-Alive-Count: 
+      - "1"
+      Content-Type: 
+      - text/plain; charset="utf-8"
+      Date: 
+      - Wed, 05 Jun 2013 13:20:38 GMT
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: |
+        {"cpanelresult":{"func":"uploadcrt","data":[{"result":1,"output":"lumberg-test.com (auto-detected) "}],"apiversion":2,"event":{"result":1},"module":"SSL"}}
+
+    http_version: 
+  recorded_at: Wed, 05 Jun 2013 13:20:35 GMT
