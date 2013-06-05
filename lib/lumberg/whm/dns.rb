@@ -37,7 +37,7 @@ module Lumberg
 
       # Generates a list of all domains and corresponding DNS zones associated with your server
       def list_zones(options = {})
-        server.perform_request('listzones', options.merge(:key => 'zone'))
+        server.perform_request('listzones', options.merge(:response_key => 'zone'))
       end
 
       # Return zone records for a domain.
@@ -66,7 +66,7 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:"api.version".to_sym</tt> - PENDING
       def resolve_domain(options = {})
-        server.perform_request('resolvedomainname', options.merge(:key => 'data'))
+        server.perform_request('resolvedomainname', options.merge(:response_key => 'data'))
       end
 
       # Allows you to edit a DNS zone record on the server.
@@ -104,7 +104,7 @@ module Lumberg
       # ==== Required
       #  * <tt>:nameserver</tt> - PENDING
       def lookup_nameserver_ip(options = {})
-        server.perform_request('lookupnsip', options.merge(:key => 'ip'))
+        server.perform_request('lookupnsip', options.merge(:response_key => 'ip'))
       end
 
       # Allows you to remove a DNS zone record from the server.
@@ -141,7 +141,7 @@ module Lumberg
       #  * <tt>:preference</tt>    - PENDING
       #  * <tt>:alwaysaccept</tt>  - PENDING
       def change_mx(options = {})
-        server.perform_request('changemx', options.merge(:key => 'data'))
+        server.perform_request('changemx', options.merge(:response_key => 'data'))
       end
 
       # This function will add an MX record to a  specified domain
@@ -152,7 +152,7 @@ module Lumberg
       #  * <tt>:preference</tt>    - PENDING
       #  * <tt>:alwaysaccept</tt>  - PENDING
       def add_mx(options = {})
-        server.perform_request('addmx', options.merge(:key => 'data'))
+        server.perform_request('addmx', options.merge(:response_key => 'data'))
       end
 
       # This function will list a specified domain's MX records
@@ -163,7 +163,7 @@ module Lumberg
       #  * <tt>:domain</tt> - PENDING
       #  * <tt>:"api.version".to_sym</tt> - PENDING
       def list_mxs(options = {})
-        server.perform_request('listmxs', options.merge(:key => 'data'))
+        server.perform_request('listmxs', options.merge(:response_key => 'data'))
       end
 
       # This function will add an MX record

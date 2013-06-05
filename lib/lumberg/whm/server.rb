@@ -64,7 +64,7 @@ module Lumberg
 
       def perform_request(function, options = {})
         # WHM sometime uses different keys for the result hash
-        @key      = options.delete(:key) || 'result'
+        @response_key = options.delete(:response_key) || 'result'
         @function = function
         @params   = format_query(options)
 
@@ -74,11 +74,11 @@ module Lumberg
       end
 
       def get_hostname
-        perform_request('gethostname', {:key => 'hostname'})
+        perform_request('gethostname', {:response_key => 'hostname'})
       end
 
       def version
-        perform_request('version', {:key => 'version'})
+        perform_request('version', {:response_key => 'version'})
       end
 
       def load_average
@@ -89,47 +89,47 @@ module Lumberg
       end
 
       def system_load_average(options = {})
-        perform_request('systemloadavg', options.merge(:key => 'data'))
+        perform_request('systemloadavg', options.merge(:response_key => 'data'))
       end
 
       def languages
-        perform_request('getlanglist', {:key => 'lang'})
+        perform_request('getlanglist', {:response_key => 'lang'})
       end
 
       def list_ips
-        perform_request('listips', {:key => 'result'})
+        perform_request('listips', {:response_key => 'result'})
       end
 
       def add_ip(options = {})
-        perform_request('addip', options.merge(:key => 'addip'))
+        perform_request('addip', options.merge(:response_key => 'addip'))
       end
 
       def delete_ip(options = {})
-        perform_request('delip', options.merge(:key => 'delip'))
+        perform_request('delip', options.merge(:response_key => 'delip'))
       end
 
       def set_hostname(options = {})
-        perform_request('sethostname', options.merge(:key => 'sethostname'))
+        perform_request('sethostname', options.merge(:response_key => 'sethostname'))
       end
 
       def set_resolvers(options = {})
-        perform_request('setresolvers', options.merge(:key => 'setresolvers'))
+        perform_request('setresolvers', options.merge(:response_key => 'setresolvers'))
       end
 
       def show_bandwidth(options = {})
-        perform_request('showbw', options.merge(:key => 'bandwidth'))
+        perform_request('showbw', options.merge(:response_key => 'bandwidth'))
       end
 
       def set_nv_var(options = {})
-        perform_request('nvset', options.merge(:key => 'nvset'))
+        perform_request('nvset', options.merge(:response_key => 'nvset'))
       end
 
       def get_nv_var(options = {})
-        perform_request('nvget', options.merge(:key => 'nvget'))
+        perform_request('nvget', options.merge(:response_key => 'nvget'))
       end
 
       def reboot
-        perform_request('reboot', {:key => "reboot"})
+        perform_request('reboot', {:response_key => "reboot"})
       end
 
       def account
@@ -160,7 +160,7 @@ module Lumberg
 
           c.params = params
           c.request :url_encoded
-          c.response :format_whm, @force_response_type, @key, @boolean_params
+          c.response :format_whm, @force_response_type, @response_key, @boolean_params
           c.response :logger, create_logger_instance
           c.response :json
           c.adapter :net_http

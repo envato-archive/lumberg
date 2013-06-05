@@ -80,9 +80,9 @@ module Lumberg
         it "performs the request with specified key" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:key => "some_key")
+            hash_including(:response_key => "some_key")
           )
-          @base.perform_request(valid_options.merge(:key => "some_key"))
+          @base.perform_request(valid_options.merge(:response_key => "some_key"))
         end
       end
 
@@ -90,7 +90,7 @@ module Lumberg
         it "sets key to \"cpanelresult\"" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:key => "cpanelresult")
+            hash_including(:response_key => "cpanelresult")
           )
           @base.perform_request(valid_options)
         end

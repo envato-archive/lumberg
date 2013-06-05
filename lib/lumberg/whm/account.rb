@@ -42,7 +42,7 @@ module Lumberg
       def change_password(options = {})
         options[:user] = options.delete(:username)
         options[:pass] = options.delete(:password)
-        server.perform_request('passwd', options.merge(:key => 'passwd'))
+        server.perform_request('passwd', options.merge(:response_key => 'passwd'))
       end
 
       # Displays pertinent information about a specific account
@@ -159,7 +159,7 @@ module Lumberg
       # ==== Required
       #  * <tt>:domain</tt> - PENDING
       def domain_user_data(options = {})
-        server.perform_request('domainuserdata', options.merge(:key => 'userdata')) do |s|
+        server.perform_request('domainuserdata', options.merge(:response_key => 'userdata')) do |s|
           s.boolean_params = :hascgi
         end
       end
@@ -196,7 +196,7 @@ module Lumberg
       #  * <tt>:username</tt> - PENDING
       def privs(options ={})
         verify_user(options[:username]) do
-          resp = server.perform_request('myprivs', options.merge(:key => 'privs')) do |s|
+          resp = server.perform_request('myprivs', options.merge(:response_key => 'privs')) do |s|
             s.boolean_params = :all
           end
           # if you get this far, it's successful
@@ -226,7 +226,7 @@ module Lumberg
       #  * <tt>:subs</tt> - PENDING
       def restore_account(options = {})
         options[:user] = options.delete(:username) if options[:username]
-        server.perform_request('restoreaccount', options.merge(:key => 'metadata'))
+        server.perform_request('restoreaccount', options.merge(:response_key => 'metadata'))
       end
 
       protected
