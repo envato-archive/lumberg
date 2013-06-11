@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=get_encoding&cpanel_jsonapi_module=Locale&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Content-Length: 
+      - "125"
+      Server: 
+      - cpsrvd/11.36.0.4
+      Date: 
+      - Fri, 17 May 2013 04:14:22 GMT
+      Connection: 
+      - Keep-Alive
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"encoding":"utf-8"}],"event":{"result":1},"func":"get_encoding","module":"Locale","apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 17 May 2013 04:09:29 GMT
+recorded_with: VCR 2.0.1

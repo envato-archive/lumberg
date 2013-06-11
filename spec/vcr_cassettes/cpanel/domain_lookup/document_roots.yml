@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=getdocroots&cpanel_jsonapi_module=DomainLookup&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Keep-Alive: 
+      - timeout=70, max=200
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "273"
+      X-Keep-Alive-Count: 
+      - "1"
+      Date: 
+      - Wed, 15 May 2013 03:23:06 GMT
+      Server: 
+      - cpsrvd/11.36.0.4
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"domain":"lumberg-test.com","docroot":"/home/lumberg/public_html"},{"domain":"other-example.lumberg-test.com","docroot":"/home/lumberg/public_html/other-example"}],"event":{"result":1},"module":"DomainLookup","apiversion":2,"func":"getdocroots"}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 03:18:25 GMT

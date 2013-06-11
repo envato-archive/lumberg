@@ -1,0 +1,38 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=statfiles&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir&file=.lastlogin
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 15 May 2013 04:22:41 GMT
+      X-Keep-Alive-Count: 
+      - "1"
+      Server: 
+      - cpsrvd/11.36.0.4
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Content-Length: 
+      - "330"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: "{\"cpanelresult\":{\"func\":\"statfiles\",\"module\":\"Fileman\",\"apiversion\":2,\"data\":[{\"user\":\"lumberg\",\"group\":\"lumberg\",\"mimeinfo\":\"homeb\",\"type\":\"dir\",\"ctime\":\"1368587735\",\"size\":4096,\"path\":\"/home\",\"gid\":520,\"file\":\"lumberg\",\"nicemode\":\"0711\",\"mtime\":\"1368587735\",\"mode\":16841,\"humansize\":\"4\xC2\xA0KB\",\"uid\":\"522\"}],\"event\":{\"result\":1}}}\n"
+    http_version: 
+  recorded_at: Wed, 15 May 2013 04:18:00 GMT
+recorded_with: VCR 2.0.1

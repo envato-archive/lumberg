@@ -16,32 +16,34 @@ module Lumberg
     describe "::api_module" do
       subject { described_class::api_module }
 
-      it { should == "Contactus" }
+      it { should == "CustInfo" }
     end
 
-    describe "#contact" do
-      use_vcr_cassette("cpanel/contact/contact")
-
-      subject { contact.contact[:params][:data].first[:status] }
-
+    describe "#show" do
+      use_vcr_cassette("cpanel/contact/show", :record => :new_episodes)
+      subject { contact.show[:params][:data].first[:enabled] }
       it { should == 1 }
     end
 
-    describe "#status" do
-      context "contact option enabled" do
-        use_vcr_cassette("cpanel/contact/status")
+    describe "#update" do
+      let(:email_address) { "testing@lumberg-test.com" }
+      let(:result) { Hash.new }
 
-        subject { contact.status[:params][:data].first[:enabled] }
+      use_vcr_cassette("cpanel/contact/update", :record => :new_episodes)
 
-        it { should == 1 }
-      end
+      context "configure contact email address and enables notifications" do
+        it "should setup email address and bandwidth limit notification" do
+          res = contact.update({ :email => email_address, :bandwidth => 1 })
 
-      context "contact option disabled" do
-        use_vcr_cassette("cpanel/contact/status.disabled")
+          res[:params][:data].collect do |r|
+            if ((r[:name] == 'email') or (r[:name] == 'notify_bandwidth_limit'))
+              result[:"#{r[:name]}"] = r[:value]
+            end
+          end
 
-        subject { contact.status[:params][:data].first[:enabled] }
-
-        it { should == 0 }
+          result[:email].should === email_address
+          result[:notify_bandwidth_limit].should === 1
+        end
       end
     end
   end
