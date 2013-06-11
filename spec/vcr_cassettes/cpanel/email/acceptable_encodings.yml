@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=fetchcharmaps&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+      Authorization: 
+      - WHM root:iscool
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Date: 
+      - Wed, 15 May 2013 03:15:38 GMT
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "4741"
+      Server: 
+      - cpsrvd/11.36.0.4
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Keep-Alive: 
+      - timeout=70, max=200
+      X-Keep-Alive-Count: 
+      - "1"
+    body: 
+      string: |
+        {"cpanelresult":{"func":"fetchcharmaps","module":"Email","apiversion":2,"data":[{"map":"ansi_x3.110-1983"},{"map":"ansi_x3.4-1968"},{"map":"armscii-8"},{"map":"ascii"},{"map":"asmo_449"},{"map":"big5"},{"map":"big5-eten"},{"map":"big5-hkscs"},{"map":"bs_4730"},{"map":"bs_viewdata"},{"map":"cp10007"},{"map":"cp1125"},{"map":"cp1250"},{"map":"cp1251"},{"map":"cp1252"},{"map":"cp1253"},{"map":"cp1254"},{"map":"cp1255"},{"map":"cp1256"},{"map":"cp1257"},{"map":"cp1258"},{"map":"cp737"},{"map":"cp775"},{"map":"cp936"},{"map":"cp949"},{"map":"csa_z243.4-1985-1"},{"map":"csa_z243.4-1985-2"},{"map":"csa_z243.4-1985-gr"},{"map":"csn_369103"},{"map":"cwi"},{"map":"dec-mcs"},{"map":"din_66003"},{"map":"ds_2089"},{"map":"ebcdic-at-de"},{"map":"ebcdic-at-de-a"},{"map":"ebcdic-ca-fr"},{"map":"ebcdic-dk-no"},{"map":"ebcdic-dk-no-a"},{"map":"ebcdic-es"},{"map":"ebcdic-es-a"},{"map":"ebcdic-es-s"},{"map":"ebcdic-fi-se"},{"map":"ebcdic-fi-se-a"},{"map":"ebcdic-fr"},{"map":"ebcdic-is-friss"},{"map":"ebcdic-it"},{"map":"ebcdic-pt"},{"map":"ebcdic-uk"},{"map":"ebcdic-us"},{"map":"ecma-cyrillic"},{"map":"es"},{"map":"es2"},{"map":"euc-cn"},{"map":"euc-jisx0213"},{"map":"euc-jp"},{"map":"euc-jp-ms"},{"map":"euc-kr"},{"map":"euc-tw"},{"map":"gb18030"},{"map":"gb2312"},{"map":"gb_1988-80"},{"map":"gbk"},{"map":"georgian-academy"},{"map":"georgian-ps"},{"map":"gost_19768-74"},{"map":"greek-ccitt"},{"map":"greek7"},{"map":"greek7-old"},{"map":"gsm03.38"},{"map":"hp-roman8"},{"map":"hz"},{"map":"hz-gb-2312"},{"map":"ibm037"},{"map":"ibm038"},{"map":"ibm1004"},{"map":"ibm1026"},{"map":"ibm1047"},{"map":"ibm1124"},{"map":"ibm1129"},{"map":"ibm1132"},{"map":"ibm1133"},{"map":"ibm1160"},{"map":"ibm1161"},{"map":"ibm1162"},{"map":"ibm1163"},{"map":"ibm1164"},{"map":"ibm256"},{"map":"ibm273"},{"map":"ibm274"},{"map":"ibm275"},{"map":"ibm277"},{"map":"ibm278"},{"map":"ibm280"},{"map":"ibm281"},{"map":"ibm284"},{"map":"ibm285"},{"map":"ibm290"},{"map":"ibm297"},{"map":"ibm420"},{"map":"ibm423"},{"map":"ibm424"},{"map":"ibm437"},{"map":"ibm500"},{"map":"ibm850"},{"map":"ibm851"},{"map":"ibm852"},{"map":"ibm855"},{"map":"ibm856"},{"map":"ibm857"},{"map":"ibm860"},{"map":"ibm861"},{"map":"ibm862"},{"map":"ibm863"},{"map":"ibm864"},{"map":"ibm865"},{"map":"ibm866"},{"map":"ibm866nav"},{"map":"ibm868"},{"map":"ibm869"},{"map":"ibm870"},{"map":"ibm871"},{"map":"ibm874"},{"map":"ibm875"},{"map":"ibm880"},{"map":"ibm891"},{"map":"ibm903"},{"map":"ibm904"},{"map":"ibm905"},{"map":"ibm918"},{"map":"ibm922"},{"map":"iec_p27-1"},{"map":"inis"},{"map":"inis-8"},{"map":"inis-cyrillic"},{"map":"invariant"},{"map":"isiri-3342"},{"map":"iso-8859-1"},{"map":"iso-8859-10"},{"map":"iso-8859-11"},{"map":"iso-8859-13"},{"map":"iso-8859-14"},{"map":"iso-8859-15"},{"map":"iso-8859-16"},{"map":"iso-8859-2"},{"map":"iso-8859-3"},{"map":"iso-8859-4"},{"map":"iso-8859-5"},{"map":"iso-8859-6"},{"map":"iso-8859-7"},{"map":"iso-8859-8"},{"map":"iso-8859-9"},{"map":"iso-ir-197"},{"map":"iso-ir-209"},{"map":"iso-ir-90"},{"map":"iso_10367-box"},{"map":"iso_10646"},{"map":"iso_11548-1"},{"map":"iso_2033-1983"},{"map":"iso_5427"},{"map":"iso_5427-ext"},{"map":"iso_5428"},{"map":"iso_646.basic"},{"map":"iso_646.irv"},{"map":"iso_6937"},{"map":"iso_6937-2-25"},{"map":"iso_6937-2-add"},{"map":"iso_8859-1,gl"},{"map":"iso_8859-supp"},{"map":"it"},{"map":"jis_c6220-1969-jp"},{"map":"jis_c6220-1969-ro"},{"map":"jis_c6229-1984-a"},{"map":"jis_c6229-1984-b"},{"map":"jis_c6229-1984-b-add"},{"map":"jis_c6229-1984-hand"},{"map":"jis_c6229-1984-hand-add"},{"map":"jis_c6229-1984-kana"},{"map":"jis_x0201"},{"map":"johab"},{"map":"jus_i.b1.002"},{"map":"jus_i.b1.003-mac"},{"map":"jus_i.b1.003-serb"},{"map":"koi-8"},{"map":"koi8-r"},{"map":"koi8-t"},{"map":"koi8-u"},{"map":"ks_c_5601"},{"map":"ks_c_5601-1987"},{"map":"ksc5636"},{"map":"latin-greek"},{"map":"latin-greek-1"},{"map":"mac-cyrillic"},{"map":"mac-is"},{"map":"mac-sami"},{"map":"mac-uk"},{"map":"macintosh"},{"map":"mik"},{"map":"msz_7795.3"},{"map":"nats-dano"},{"map":"nats-dano-add"},{"map":"nats-sefi"},{"map":"nats-sefi-add"},{"map":"nc_nc00-10"},{"map":"nextstep"},{"map":"nf_z_62-010"},{"map":"nf_z_62-010_1973"},{"map":"ns_4551-1"},{"map":"ns_4551-2"},{"map":"pt"},{"map":"pt154"},{"map":"pt2"},{"map":"rk1048"},{"map":"sami"},{"map":"sami-ws2"},{"map":"sen_850200_b"},{"map":"sen_850200_c"},{"map":"shift_jis"},{"map":"shift_jisx0213"},{"map":"t.101-g2"},{"map":"t.61-7bit"},{"map":"t.61-8bit"},{"map":"tcvn5712-1"},{"map":"tis-620"},{"map":"tscii"},{"map":"unicode-1-1-utf-7"},{"map":"us-ascii"},{"map":"utf-7"},{"map":"utf-8"},{"map":"utf-8-strict"},{"map":"videotex-suppl"},{"map":"viscii"},{"map":"windows-1251"},{"map":"windows-1252"},{"map":"windows-31j"}],"event":{"result":1}}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 03:10:57 GMT

@@ -1,0 +1,40 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=name2ip&cpanel_jsonapi_module=DnsLookup&cpanel_jsonapi_user=lumberg&domain=google.com
+    body: 
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+      User-Agent: 
+      - Faraday v0.8.7
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Content-Type: 
+      - application/json; charset="utf-8"
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Connection: 
+      - Keep-Alive
+      Content-Length: 
+      - "182"
+      Date: 
+      - Wed, 15 May 2013 04:19:35 GMT
+      Server: 
+      - cpsrvd/11.36.0.4
+    body: 
+      string: |
+        {"cpanelresult":{"apiversion":2,"event":{"result":1},"func":"name2ip","data":[{"ip":"177.99.179.113","status":1,"statusmsg":"Resolved","domain":"google.com"}],"module":"DnsLookup"}}
+
+    http_version: 
+  recorded_at: Wed, 15 May 2013 04:14:54 GMT
+recorded_with: VCR 2.0.1

@@ -1,0 +1,40 @@
+--- 
+recorded_with: VCR 2.0.1
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=install&cpanel_jsonapi_module=DKIMUI&cpanel_jsonapi_user=lumberg
+    body: 
+      string: ""
+    headers: 
+      User-Agent: 
+      - Faraday v0.8.7
+      Authorization: 
+      - WHM root:iscool
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      X-Keep-Alive-Count: 
+      - "1"
+      Keep-Alive: 
+      - timeout=70, max=200
+      Server: 
+      - cpsrvd/11.36.0.4
+      Content-Length: 
+      - "138"
+      Date: 
+      - Fri, 17 May 2013 04:03:49 GMT
+      Content-Type: 
+      - application/json; charset="utf-8"
+      Connection: 
+      - Keep-Alive
+    body: 
+      string: |
+        {"cpanelresult":{"data":[{"installed":"DKIM has been enabled."}],"func":"install","event":{"result":1},"module":"DKIMUI","apiversion":2}}
+
+    http_version: 
+  recorded_at: Fri, 17 May 2013 03:58:56 GMT

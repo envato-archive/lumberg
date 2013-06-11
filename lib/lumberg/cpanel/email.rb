@@ -373,6 +373,119 @@ module Lumberg
           :api_function => "browseboxes"
         }.merge(options))
       end
+
+      # Public: Remove an email account
+      #
+      # options - Hash options for API call params (default: {})
+      #   :domain - String domain for which you wish to remove the email
+      #             account
+      #   :email  - String email address you wish to remove
+      #
+      # Returns Hash API response.
+      def remove(options = {})
+        perform_request({ :api_function => 'delpop' }.merge(options))
+      end
+
+      # Public: Modify an email account's quota.
+      #
+      # options - Hash options for API call params (default: {})
+      #   :domain - String domain for which you wish to modify
+      #   :email  - String username of the email address you wish to modify,
+      #             e.g: 'user' if the address is 'user@domain.com'
+      #   :quota  - Integer indicating the new disk quota value in MB. Enter 0
+      #             for an unlimited quota
+      #
+      # Returns Hash API response.
+      def edit_quota(options = {})
+        perform_request({ :api_function => 'editquota' }.merge(options))
+      end
+
+      # Public: Retrieve a list of character encodings supported by cPanel
+      #
+      # Returns Hash API response.
+      def acceptable_encodings
+        perform_request({ :api_function => 'fetchcharmaps' })
+      end
+
+      # Public: Retrieve the destination for email forwarded by a domain
+      # forwarder
+      # options - Hash options for API call params (default: {})
+      #   :domain - String domain corresponding to the forwarder whose
+      #             destination you wish to view
+      #
+      # Returns Hash API response
+      def listdomainforwards(options = {})
+        perform_request({ :api_function => "listdomainforwards" }.merge(options))
+      end
+
+      # Public: Retrieve a list of auto responders associated with a domain
+      #
+      # options - Hash options for API call params (default: {})
+      #   :domain - String domain whose auto responders you wish to view
+      #             (default: String)
+      #   :regex - String regular expresion to filter search results (default:
+      #            String)
+      #
+      # Returns Hash API response
+      def listautoresponders(options = {})
+        perform_request({ :api_function => "listautoresponders" }.merge(options))
+      end
+
+      # Public: Retrieve a list of domains that use domain-level filters
+      #
+      # Returns Hash API response
+      def listfilterbackups
+        perform_request({ :api_function => "listfilterbackups" })
+      end
+
+      # Public: Retrieve a list of email filters
+      #
+      # options - Hash options for API call params (default: {})
+      #   :account - String parameter allows you to specify an email address or
+      #              account username to review user-level filters. Specifying
+      #              an email address will cause the function to retrieve user
+      #              level filters associated with the account. Entering a
+      #              cPanel username will cause the function to return user
+      #              level filters associated with your account's default email
+      #              address. If you do not specify this value, the function
+      #              will retrieve account level filter information (default:
+      #              String)
+      #
+      # Returns Hash API response
+      def filterlist(options={})
+        perform_request({ :api_function => "filterlist" }.merge(options))
+      end
+
+      # Public: Test the action of account-level mail filters. You can only
+      # test filters for your cPanel account's main domain. This function only
+      # tests the body of the message. You must have access to the 'blockers'
+      # feature to use this function.
+      #
+      # options - Hash options for API call params (default: {})
+      #   :message - String body of the message you wish to test
+      #   :account - String to test old-style Cpanel filters in $home/filters.
+      #              By not specifying this parameter, you will test your main
+      #              domain's filters found in the /etc/vfilters/ directory (
+      #              default: String)
+      #
+      # Returns Hash API response
+      def tracefilter(options={})
+        options[:msg] = options.delete(:message)
+        perform_request({ :api_function => "tracefilter" }.merge(options))
+      end
+
+      # Public: Retrieve information about an auto responder used by a
+      # specified email address
+      #
+      # options - Hash options for API call params (default: {})
+      #   :email - String email address corresponding to the auto responder
+      #            information you wish to review
+      #
+      # Returns Hash API response
+      def fetchautoresponder(options={})
+        perform_request({ :api_function => "fetchautoresponder" }.merge(options))
+      end
     end
   end
 end
+

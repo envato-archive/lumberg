@@ -3,7 +3,7 @@ recorded_with: VCR 2.0.1
 http_interactions: 
 - request: 
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=addpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=account-test&password=magicpants&quota=0
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=delpop&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=lumberg-test.com&email=account-test@lumberg-test.com
     body: 
       string: ""
     headers: 
@@ -19,11 +19,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Wed, 15 May 2013 03:15:33 GMT
+      - Wed, 15 May 2013 03:15:36 GMT
       Connection: 
       - Keep-Alive
       Content-Length: 
-      - "247"
+      - "140"
       Server: 
       - cpsrvd/11.36.0.4
       Content-Type: 
@@ -34,10 +34,10 @@ http_interactions:
       - "1"
     body: 
       string: |
-        {"cpanelresult":{"event":{"result":1},"error":"The account account-test@lumberg-test.com already exists!","apiversion":2,"func":"addpop","data":[{"reason":"The account account-test@lumberg-test.com already exists!","result":0}],"module":"Email"}}
+        {"cpanelresult":{"event":{"result":1},"apiversion":2,"func":"delpop","module":"Email","data":[{"reason":"OK","rawout":"\n\n","result":1}]}}
 
     http_version: 
-  recorded_at: Wed, 15 May 2013 03:10:52 GMT
+  recorded_at: Wed, 15 May 2013 03:10:55 GMT
 - request: 
     method: get
     uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listpopswithdisk&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg
@@ -56,11 +56,11 @@ http_interactions:
       message: OK
     headers: 
       Date: 
-      - Wed, 15 May 2013 03:15:33 GMT
+      - Wed, 15 May 2013 03:15:36 GMT
       Connection: 
       - Keep-Alive
       Content-Length: 
-      - "563"
+      - "108"
       Server: 
       - cpsrvd/11.36.0.4
       Content-Type: 
@@ -71,7 +71,7 @@ http_interactions:
       - "1"
     body: 
       string: |
-        {"cpanelresult":{"event":{"result":1},"apiversion":2,"func":"listpopswithdisk","data":[{"login":"account-test@lumberg-test.com","humandiskused":"None","diskusedpercent":0,"mtime":"1368587691","txtdiskquota":"unlimited","diskused":0,"domain":"lumberg-test.com","_diskused":"0","diskusedpercent20":0,"_diskquota":"0","diskquota":"unlimited","humandiskquota":"None","email":"account-test@lumberg-test.com","user":"account-test"}],"paginate":{"current_page":null,"total_results":null,"total_pages":null,"start_result":null,"results_per_page":null},"module":"Email"}}
+        {"cpanelresult":{"data":[],"event":{"result":1},"func":"listpopswithdisk","apiversion":2,"module":"Email"}}
 
     http_version: 
-  recorded_at: Wed, 15 May 2013 03:10:53 GMT
+  recorded_at: Wed, 15 May 2013 03:10:56 GMT
