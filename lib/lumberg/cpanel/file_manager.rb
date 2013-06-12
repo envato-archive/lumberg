@@ -100,6 +100,46 @@ module Lumberg
       def disk_usage
         perform_request({ :api_function => 'getdiskinfo' })
       end
+
+      # Public: Perform an operation on a file or group of files. You can use
+      # this function to copy, move, rename, chmod, extract and compress, link
+      # and unlink, and trash files and directories.
+      #
+      # options - Hash options for API call params (default: {})
+      #   :name - String naming the operation to perform. Acceptable values
+      #           include 'copy', 'move', 'rename', 'chmod', 'extract',
+      #           'compress', 'link', 'unlink', and 'trash' (move to .trash
+      #           directory)
+      #   :source_files - String files on which you wish to perform the
+      #                   operation. You can include multiple files by
+      #                   separating each file with a comma (,). Do not add
+      #                   spaces.
+      #   :destination_files - String list of destination filenames. If
+      #                        multiple sourcefiles are listed with multiple
+      #                        destination files ('destfiles'), the function
+      #                        attempts to handle each transaction on a 1-to-1
+      #                        basis. If only 1 file is specified in
+      #                        'sourcefiles', it will be moved, or copied, or
+      #                        etc. to the first directory listed.
+      #   :decode_uri - Boolean value. Entering '1' will cause the function to
+      #                 decode the URI-encoded variables :source_files and
+      #                 :destination_files
+      #   :metadata - String parameter which contains any added values required
+      #               by the named operation. When using 'compress', tihs would
+      #               be the archive type. Acceptable values for the compress
+      #               operation include: tar, gz, bz2, zip, tar.gz and tar.bz2.
+      #               The chmod operation requires octal octal permissions like
+      #               0755 or 0700.
+      #
+      # Returns Hash API response
+      def operate(options={})
+        options[:op] = options.delete(:name)
+        options[:doubledecode] = options.delete(:decode_uri)
+        options[:sourcefiles] = options.delete(:source_files)
+        options[:destfiles] = options.delete(:destination_files)
+
+        perform_request({ :api_function => "fileop" }.merge(options))
+      end
     end
   end
 end
