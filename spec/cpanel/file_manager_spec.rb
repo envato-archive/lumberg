@@ -49,5 +49,25 @@ module Lumberg
         result[:params][:data][0][:spaceused].to_i.should > 0
       end
     end
+
+    describe "#operate" do
+      use_vcr_cassette "cpanel/file_manager/operate"
+
+      it "copies a non-existent file" do
+        file_manager.operate({
+          :name              => "copy",
+          :source_files      => ".shouldneverexist",
+          :destination_files => ".someotherfile"
+        })[:params][:data][0][:result].should == 0
+      end
+
+      it "copies a file" do
+        file_manager.operate({
+          :name              => "copy",
+          :source_files      => ".lastlogin",
+          :destination_files => "sample-last-login.txt"
+        })[:params][:data][0][:result].should == 1
+      end
+    end
   end
 end
