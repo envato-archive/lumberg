@@ -59,6 +59,9 @@ module Lumberg
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
         @timeout    = options.delete(:timeout)
+
+        validate_server_host
+
         @base_url   = format_url(options)
       end
 
@@ -207,6 +210,14 @@ module Lumberg
       def format_hash(hash)
         raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
         hash.gsub(/\n|\s/, '')
+      end
+
+      def validate_server_host
+        Resolv.getaddress(@host)
+      rescue Resolv::ResolvError
+        raise Lumberg::WhmArgumentError.new(
+          "Unable to resolve #{@host}"
+        )
       end
     end
   end

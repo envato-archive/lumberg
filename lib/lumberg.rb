@@ -7,6 +7,7 @@ require 'uri'
 require 'faraday'
 require 'faraday_middleware'
 require 'logger'
+require 'resolv'
 
 # Internal Libs
 require 'lumberg/format_whm'
