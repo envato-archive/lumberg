@@ -16,7 +16,7 @@ module Lumberg
         @whm.host.should == @login[:host]
       end
 
-      it "should set the url" do
+      it "sets the url" do
         @whm.base_url.should == "https://#{@login[:host]}:2087/json-api/"
       end
 
@@ -36,6 +36,15 @@ module Lumberg
       it "should allow setting of basic_auth" do
         @whm = Whm::Server.new(@login.merge(:basic_auth => true))
         @whm.basic_auth.should be_true
+      end
+
+      it "raises message for invalid domain" do
+        Resolv.stub(:getaddress).and_raise(Resolv::ResolvError)
+        expect do
+          Whm::Server.new(:host => "nxdomain.tld", :hash => "")
+        end.to raise_error(
+         Lumberg::WhmArgumentError, "Unable to resolve nxdomain.tld"
+        )
       end
     end
 
