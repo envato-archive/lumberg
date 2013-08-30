@@ -16,8 +16,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = "lumberg"
 
   s.add_runtime_dependency 'json', '~> 1.7.3'
-  s.add_runtime_dependency 'faraday', '~> 0.8.1'
-  s.add_runtime_dependency 'faraday_middleware', '~> 0.8.4'
+  s.add_runtime_dependency 'faraday', '~> 0.8.8'
+  s.add_runtime_dependency 'faraday_middleware', '~> 0.9.0'
   s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
   s.add_development_dependency 'rspec', '~> 2.10.0'
   s.add_development_dependency 'webmock', '~> 1.8.7'
