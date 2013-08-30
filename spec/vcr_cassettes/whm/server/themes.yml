@@ -1,0 +1,48 @@
+--- 
+http_interactions: 
+- request: 
+    method: get
+    uri: https://myhost.com:2087/json-api/getlanglist
+    body: 
+      encoding: US-ASCII
+      string: ""
+    headers: 
+      Authorization: 
+      - WHM root:iscool
+      User-Agent: 
+      - Faraday v0.8.8
+      Accept-Encoding: 
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept: 
+      - "*/*"
+  response: 
+    status: 
+      code: 200
+      message: OK
+    headers: 
+      Server: 
+      - cpsrvd/11.36.0.4
+      Connection: 
+      - close
+      Transfer-Encoding: 
+      - chunked
+      Content-Encoding: 
+      - gzip
+      Date: 
+      - Fri, 30 Aug 2013 18:52:41 GMT
+      Content-Type: 
+      - application/json
+    body: 
+      encoding: ASCII-8BIT
+      string: !binary |
+        H4sIAPnpIFIAA8SSwQrCMAyG3yXniYgX2auISDa7NdJVaVcQh+9us61rJyoe
+        RC/jS7L+Sf62A4W6hnwLaLCgEjIohK5REZPBKylCvTifTOtqJ6xYuLba+Fop
+        SfvQ08G1pQxpf1aRlZFCoTJCl3KCkK6FaVBPENJe/MATUCGM77+3Z9SD7BE9
+        Do3jULMgaBhnLfXa8fRIwy+7DFopGmEh72DJn6FtvoqHmV/bwNVnuWAhczCK
+        Od2d48Q6DmfTcSK4yfxoxbx3It/jZFMiE3XHu2ZMfY9xOo7nWwaXdYOkXpv0
+        zIZ3q6cWvd37pzt+8xF8uv1fH8EdAAD//yIlgGprAQAAAP//AwBIawqyLgQA
+        AA==
+
+    http_version: 
+  recorded_at: Fri, 30 Aug 2013 18:50:45 GMT
+recorded_with: VCR 2.5.0
