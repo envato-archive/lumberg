@@ -99,6 +99,10 @@ module Lumberg
         perform_request('getlanglist', {:response_key => 'lang'})
       end
 
+      def themes
+        perform_request('getlanglist', {:response_key => 'themes'})
+      end
+
       def list_ips
         perform_request('listips', {:response_key => 'result'})
       end

@@ -232,6 +232,15 @@ module Lumberg
       end
     end
 
+    describe "#themes" do
+      use_vcr_cassette "whm/server/themes"
+
+      it "returns list of themes" do
+        result = @whm.themes
+        result[:params].should include :x3
+      end
+    end
+
     describe "#account" do
       it "has an account accessor" do
         @whm.account.should be_an(Whm::Account)
