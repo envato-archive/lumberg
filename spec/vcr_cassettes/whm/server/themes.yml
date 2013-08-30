@@ -1,48 +1,38 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://myhost.com:2087/json-api/getlanglist
-    body: 
+    body:
       encoding: US-ASCII
-      string: ""
-    headers: 
-      Authorization: 
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-      User-Agent: 
+      User-Agent:
       - Faraday v0.8.8
-      Accept-Encoding: 
+      Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept: 
-      - "*/*"
-  response: 
-    status: 
+      Accept:
+      - '*/*'
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Server: 
+    headers:
+      Server:
       - cpsrvd/11.36.0.4
-      Connection: 
+      Connection:
       - close
-      Transfer-Encoding: 
+      Transfer-Encoding:
       - chunked
-      Content-Encoding: 
-      - gzip
-      Date: 
-      - Fri, 30 Aug 2013 18:52:41 GMT
-      Content-Type: 
+      Date:
+      - Fri, 30 Aug 2013 19:42:25 GMT
+      Content-Type:
       - application/json
-    body: 
-      encoding: ASCII-8BIT
-      string: !binary |
-        H4sIAPnpIFIAA8SSwQrCMAyG3yXniYgX2auISDa7NdJVaVcQh+9us61rJyoe
-        RC/jS7L+Sf62A4W6hnwLaLCgEjIohK5REZPBKylCvTifTOtqJ6xYuLba+Fop
-        SfvQ08G1pQxpf1aRlZFCoTJCl3KCkK6FaVBPENJe/MATUCGM77+3Z9SD7BE9
-        Do3jULMgaBhnLfXa8fRIwy+7DFopGmEh72DJn6FtvoqHmV/bwNVnuWAhczCK
-        Od2d48Q6DmfTcSK4yfxoxbx3It/jZFMiE3XHu2ZMfY9xOo7nWwaXdYOkXpv0
-        zIZ3q6cWvd37pzt+8xF8uv1fH8EdAAD//yIlgGprAQAAAP//AwBIawqyLgQA
-        AA==
-
+    body:
+      encoding: UTF-8
+      string: '{"themes":{"x3":{"portuguese-utf8":1,"chinese":1,"bengali":1,"arabic":1,"hindi":1,"iberian_spanish":1,"russian":1,"french":1,"german-utf8":1,"french-utf8":1,"german":1,"spanish-utf8":1,"dutch-utf8":1,"portuguese":1,"brazilian-portuguese-utf8":1,"english":1,"spanish":1,"japanese":1,"english-utf8":1},"/":{"bengali":1,"portuguese-utf8":1,"chinese":1,"arabic":1,"hindi":1,"iberian_spanish":1,"russian":1,"french":1,"german-utf8":1,"french-utf8":1,"german":1,"spanish-utf8":1,"dutch-utf8":1,"portuguese":1,"brazilian-portuguese-utf8":1,"english":1,"spanish":1,"japanese":1,"english-utf8":1},"x3mail":{"portuguese-utf8":1,"chinese":1,"bengali":1,"portuguese":1,"arabic":1,"hindi":1,"english":1,"spanish":1,"japanese":1,"russian":1,"english-utf8":1,"french":1,"german-utf8":1,"french-utf8":1,"spanish-utf8":1,"german":1}},"lang":["arabic","bengali","brazilian-portuguese-utf8","chinese","dutch-utf8","english","english-utf8","french","french-utf8","german","german-utf8","hindi","iberian_spanish","japanese","portuguese","portuguese-utf8","russian","spanish","spanish-utf8"]}'
     http_version: 
-  recorded_at: Fri, 30 Aug 2013 18:50:45 GMT
-recorded_with: VCR 2.5.0
+  recorded_at: Fri, 30 Aug 2013 19:40:29 GMT
+recorded_with: VCR 2.4.0

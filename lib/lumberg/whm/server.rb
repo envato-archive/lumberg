@@ -100,7 +100,7 @@ module Lumberg
       end
 
       def themes
-        result = perform_request('getlanglist', {:response_key => 'themes'})
+        perform_request('getlanglist', {:response_key => 'themes'})
       end
 
       def list_ips
