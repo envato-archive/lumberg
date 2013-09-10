@@ -107,6 +107,30 @@ module Lumberg
         perform_request('listips', {:response_key => 'result'})
       end
 
+      def get_tweaksetting(options = {})
+        request = perform_request('get_tweaksetting',
+          options.merge(
+            :response_key  => 'data',
+            :'api.version' => 1
+          )
+        )
+
+        request[:success] = !request[:params].empty?
+        request
+      end
+
+      def set_tweaksetting(options = {})
+        request = perform_request('set_tweaksetting',
+          options.merge(
+            :response_key  => 'metadata',
+            :'api.version' => 1
+          )
+        )
+
+        request[:success] = (request[:params][:reason] == 'OK')
+        request
+      end
+
       def add_ip(options = {})
         perform_request('addip', options.merge(:response_key => 'addip'))
       end
