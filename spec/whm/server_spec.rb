@@ -309,6 +309,24 @@ module Lumberg
       end
     end
 
+    describe "#get_tweaksetting" do
+      use_vcr_cassette "whm/server/gettweaksetting"
+
+      it "gets a tweak setting" do
+        result = @whm.get_tweaksetting(:key => 'skipwebalizer')
+        result[:success].should be_true
+      end
+    end
+
+    describe "#set_tweaksetting" do
+      use_vcr_cassette "whm/server/settweaksetting"
+
+      it "sets a tweak setting" do
+        result = @whm.set_tweaksetting(:key => 'skipwebalizer', :value => 0)
+        result[:success].should be_true
+      end
+    end
+
     describe "#set_resolvers" do
       use_vcr_cassette "whm/server/setresolvers"
 
