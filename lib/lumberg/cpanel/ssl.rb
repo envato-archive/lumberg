@@ -133,17 +133,21 @@ module Lumberg
       # Public: Generate a certificate signing request.
       #
       # options - Hash options for API call params (default: {}):
-      #  :city     - The city in which your server resides.
-      #  :company  - The name of the company.
-      #  :companydivision - The division of your company.
-      #  :country  - A two letter abbreviation for the country.
-      #  :email    - A valid email address that will correspond to the csr.
-      #  :host     - The domain that corresponds to the csr.
-      #  :state    - A two letter abbreviation that corresponds to the state.
-      #  :password - The password of the csr.
+      #           :city     - The city in which your server resides.
+      #           :company  - The name of the company.
+      #           :company_division - The division of your company.
+      #           :country  - A two letter abbreviation for the country.
+      #           :email    - A valid email address that will correspond to
+      #                       the certificate signing request
+      #           :host     - The domain that corresponds to the csr.
+      #           :state    - A two letter abbreviation that corresponds to the
+      #                       state.
+      #           :pass     - The password of the csr.
       #
       # Returns Hash API response.
       def gencsr(options = {})
+        options[:companydivision] = options.delete(:company_division)
+
         perform_request({
           :api_function => "gencsr",
           :response_key => "cpanelresult",
@@ -153,16 +157,20 @@ module Lumberg
       # Public: Generate a self-signed SSL certificate for a specific domain.
       #
       # options - Hash options for API call params (default: {}):
-      #  :city     - The city in which your server resides.
-      #  :company  - The name of the company.
-      #  :companydivision - The division of your company.
-      #  :country  - A two letter abbreviation for the country.
-      #  :email    - A valid email address that will correspond to the csr.
-      #  :host     - The domain that corresponds to the csr.
-      #  :state    - A two letter abbreviation that corresponds to the state.
+      #           :city     - The city in which your server resides.
+      #           :company  - The name of the company.
+      #           :company_division - The division of your company.
+      #           :country  - A two letter abbreviation for the country.
+      #           :email    - A valid email address that will correspond to
+      #                       the certificate signing request
+      #           :host     - The domain that corresponds to the csr.
+      #           :state    - A two letter abbreviation that corresponds to the
+      #                       state.
       #
       # Returns Hash API response.
       def gencrt(options = {})
+        options[:companydivision] = options.delete(:company_division)
+
         perform_request({
           :api_function => "gencrt",
         }.merge(options))

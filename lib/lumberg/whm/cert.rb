@@ -2,8 +2,8 @@ module Lumberg
   module Whm
     class Cert < Base
 
-      # Displays the SSL certificate, private key, and CA bundle/intermediate 
-      # certificate associated with a specified domain. Alternatively, it can 
+      # Displays the SSL certificate, private key, and CA bundle/intermediate
+      # certificate associated with a specified domain. Alternatively, it can
       # display the private key and CA bundle associated with a specified cert
       #
       # ==== Required
@@ -17,22 +17,29 @@ module Lumberg
         result = server.perform_request('fetchsslinfo', options)
       end
 
-      # Generates a CSR
+      # Public: Generates a Certificate Signing Request
       #
-      # ==== Required
-      #  * <tt>:xemail</tt> - PENDING
-      #  * <tt>:host</tt> - PENDING
-      #  * <tt>:country</tt> - PENDING
-      #  * <tt>:state</tt> - PENDING
-      #  * <tt>:city</tt> - PENDING
-      #  * <tt>:co</tt> - PENDING
-      #  * <tt>:cod</tt> - PENDING
-      #  * <tt>:email</tt> - PENDING
-      #  * <tt>:pass</tt> - PENDING
+      # options - Hash options for API call params (default: {}):
+      #           :city     - The city in which your server resides.
+      #           :company  - The name of the company.
+      #           :company_division - The division of your company.
+      #           :country  - A two letter abbreviation for the country.
+      #           :email    - A valid email address that will correspond to
+      #                       the certificate signing request
+      #           :host     - The domain that corresponds to the csr.
+      #           :state    - A two letter abbreviation that corresponds to the
+      #                       state.
+      #           :pass     - The password of the csr.
+      #           :xemail   - Email address to which the certificate will be
+      #                       sent (String)
+      #           :noemail  - (Boolean) and dependent value. Set to "1" when
+      #                       :xemail is empty
       #
-      # ==== Optional
-      #  * <tt>none</tt> - PENDING
+      # Returns Hash API response.
       def generatessl(options = {})
+        options[:co]  = options.delete(:company)
+        options[:cod] = options.delete(:company_division)
+
         server.force_response_type = :ssl
         result = server.perform_request('generatessl', options)
       end
