@@ -7,9 +7,9 @@ SELF_KEY = File.read('./spec/sample_certs/sample.key')
 module Lumberg
   describe Whm::Cert do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
-      @server   = Whm::Server.new(@login.dup)
-      @cert      = Whm::Cert.new(:server => @server.dup)
+      @login  = { :host => @whm_host, :hash => @whm_hash }
+      @server = Whm::Server.new(@login.dup)
+      @cert   = Whm::Cert.new(:server => @server.dup)
     end
 
     describe "#listcrts" do
@@ -37,15 +37,52 @@ module Lumberg
     describe "#generatessl" do
       use_vcr_cassette "whm/cert/generatessl"
 
-      it "generates a CSR" do
-        result = @cert.generatessl(:city => "houston", :xemail => "test@myhost.com", :host => "myhost.com", 
-                                   :country => "US", :state => "TX", :co => "Company", :cod => "Dept", 
-                                   :email => "test@myhost.com", :pass => "abc123")
-        result[:success].should be_true
-        result[:message].should == "Key, Certificate, and CSR generated OK"
-        result[:params][:csr].should match(/.*BEGIN CERTIFICATE REQUEST.*/)
-        result[:params][:cert].should match(/.*BEGIN CERTIFICATE.*/)
-        result[:params][:key].should match(/.*BEGIN RSA PRIVATE KEY.*/)
+      context "generating a new CSR" do
+        subject do
+          @cert.generatessl(
+            :city             => "houston",
+            :host             => "myhost.com",
+            :country          => "US",
+            :state            => "TX",
+            :company          => "Company",
+            :company_division => "Dept",
+            :email            => "test@myhost.com",
+            :pass             => "abc123",
+            :xemail           => "",
+            :noemail          => 1
+          )
+        end
+
+        its([:success]) { should be_true }
+        its([:message]) { should == "Key, Certificate, and CSR generated OK" }
+
+        its([:params])  { should have_key :csr }
+        its([:params])  { should have_key :key }
+        its([:params])  { should have_key :cert }
+      end
+
+      context "generating a new CSR with an ampersand in company name" do
+        subject do
+          @cert.generatessl(
+            :city             => "houston",
+            :host             => "myhost.com",
+            :country          => "US",
+            :state            => "TX",
+            :company          => "Foo & Bar",
+            :company_division => "Dept",
+            :email            => "test@myhost.com",
+            :pass             => "abc123",
+            :xemail           => "",
+            :noemail          => 1
+          )
+        end
+
+        its([:success]) { should be_true }
+        its([:message]) { should == "Key, Certificate, and CSR generated OK" }
+
+        its([:params])  { should have_key :csr }
+        its([:params])  { should have_key :key }
+        its([:params])  { should have_key :cert }
       end
     end
 

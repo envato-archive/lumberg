@@ -10,10 +10,20 @@ module Lumberg
     CP_CERT = File.read('./spec/sample_certs/cpanel.crt')
     CP_KEY = File.read('./spec/sample_certs/cpanel.key')
 
-    let(:cert_params) {{ :user => :api_username, :city => "Chicago", :company => "Initech",
-                           :companydivision => "TPS", :country => "US", :state => "IL",
-                           :email => "lumberg@initech.com", :host => domain,
-                           :pass => "Tru3St0ry", :key => CP_KEY}}
+    let(:cert_params) do
+      {
+        :user             => :api_username,
+        :city             => "Chicago",
+        :company          => "Initech",
+        :company_division => "TPS",
+        :country          => "US",
+        :state            => "IL",
+        :email            => "lumberg@initech.com",
+        :host             => domain,
+        :pass             => "Tru3St0ry",
+        :key              => CP_KEY
+      }
+    end
 
     let(:ssl) do
       described_class.new(
@@ -102,7 +112,7 @@ module Lumberg
     end
 
     describe "#gencsr" do
-      use_vcr_cassette("cpanel/ssl/gencsr")
+      use_vcr_cassette "cpanel/ssl/gencsr"
 
       it "generates a certificate signing request" do
         ssl.gencsr(cert_params)[:params][:data][0][:result].should eq(1)
@@ -110,7 +120,7 @@ module Lumberg
     end
 
     describe "#gencrt" do
-      use_vcr_cassette("cpanel/ssl/gencrt")
+      use_vcr_cassette "cpanel/ssl/gencrt"
 
       it "generates a certificate" do
         ssl.gencrt(cert_params.merge(:key => CP_KEY))[:params][:data][0][:result].should eq(1)
