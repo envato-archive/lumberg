@@ -1,40 +1,43 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://myhost.com:2087/json-api/cpanel?city=Chicago&company=Initech&companydivision=TPS&country=US&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=gencrt&cpanel_jsonapi_module=SSL&cpanel_jsonapi_user=lumberg&email=lumberg@initech.com&host=lumberg-test.com&key=-----BEGIN%20RSA%20PRIVATE%20KEY-----%0AMIIEpAIBAAKCAQEAo2oEb080n9x3S7gC5hv4bjAmA4iBZ8N4ncBrMc8qpPeXBKSz%0AWWk6B8Ntx0ohygPmc3K6D8Lg96DAq35m0Cx/IqxuKO9Bqr5XfMW9c0di2K7RqoEq%0AvnEIn/BU1UQipbiTBKDqsu5oYl0Q9t8rIklX8Mmd5uHcUrkzaaV76FbL/QYRXepV%0AI2/xcmfWZ5Mst79eGKueznb3rLlYVWp3vLJbViSH9Ubmre%2BnAf55jhuUXhCwmpzy%0Ah1TNfqTWtn25BuUFCofsTe3CCmQyokpmQdYK5BCcX705MrYJ1CutZlmqxYRKxztg%0ABC%2BWrtYwyjn0NURLlWW7ky0j0XpT131%2BIgLOAQIDAQABAoIBAQCD6gk6cY3hnm8O%0AyLROXTXmfSeyoncT9E9hyPq/cqTSFqvqK6o7%2Bx3FNpVf0xADq7JUb8CTCJXiT/o4%0Adgk48zKOIvOqR7mSw6SMLHQKow3ALR9DrJF8unJj6fYRUrdFYAIOMnhDiQDqpoYT%0AQ4PmYZ6D2b2Fq73XaXl/Rv8HR0nULc8bwiZy8OtTYrZUoYuhmkAN8KuKu1sCvdRG%0AdelEKA9YAzDDJahL105yJ1TnOl0gkSpmZULUkvCzTrBYurKKOVtlPMmGMoVeD9Vy%0Arqf4maZ3/uRkL5VHTaCc%2BQBZY//eCODQu3gzpGDFXD9nRlf3ON%2BsLQJyPbjo8p%2Bk%0Adr0HVi%2BBAoGBANd8/Yt7PULhXSRSuujaKfLa3h5k/CjvQgAqCLuEkba/QXFvqxVL%0A3mF7YPLp4RVSt/ka/tSxeOxrqxNSPxq0jHoO5jUIo3EHNLsmErhV/0DqXL7NfULe%0A64oHXoPMWR8f96V605DvpFYPWe6PDP0KHYTk1Aplp0a1pgMjo2OSloZlAoGBAMIi%0AzlmGBMc%2BZuX/NKE5B%2BGU%2BlKPnbKbH/oeP3oNEuIj%2BoshHvTMBesC0CBpPEttczhL%0AUeMtquwTov4onSzVhU4Yqh9QJhCrv9gY5v3TXYx0ZHxGKYqFU%2B0IGY2ywav2Bvrh%0Az8iojhiCY3%2B6FVD9xwJH/IEQGeuhyw9wbJTSJXFtAoGADuNj4S8ynFxVwxy0LUJl%0Ag5H7pr3zbiCZvskosUwHhUjRjLTabS5Avxt3J1Fha8e7Tkq/MJLSeAM4Xq1gDshK%0ArGQ7I47lO/nzerq2sGXArQuEPOqVrPkZ7P91WEXWIoBi69wAohLsl8WXwRPBIfqA%0A752fyNgdJpWGUtEziL2oCMECgYBAGxA6vaeMR43g%2BvHdHyD8G57Bbo0rclAP3rcl%0ATXXj2O%2Bdy7UWLtzxar9hRH7VhXHbr/t9YhIj3KQg%2BzZTnLplPH3I00WOkbhK2oZE%0AYOxuOe0IoH6NMFOzXM5bXSDY8OgDJlffsdEiRMQoZEEvum1h0nWOBMwaZBXSplQk%0AnHQizQKBgQDOoOSlZY6vvBnTPHNEmtZifaLpHOg74BUVVOl%2BuksN0NaXM3iJZRxl%0AXoQMgM2u3Vxfg34Agen/RBf0A17sqsIx0trfKt5hPOm8%2Bj9dFmHHill%2B6EtC7mA5%0AACRPQCeYdroH66ufLvh3wqDjUoM3vCWk8lyMQR2eJUfBNUALyQoXzQ==%0A-----END%20RSA%20PRIVATE%20KEY-----%0A%0A&pass=Tru3St0ry&state=IL&user=api_username
-    body: 
-      string: ""
-    headers: 
-      Accept: 
-      - "*/*"
-      Authorization: 
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
       - WHM root:iscool
-      User-Agent: 
-      - Faraday v0.8.7
-  response: 
-    status: 
+      User-Agent:
+      - Faraday v0.8.8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Content-Length: 
-      - "142"
-      Server: 
-      - cpsrvd/11.32.6.4
-      Keep-Alive: 
-      - timeout=70, max=200
-      Connection: 
+    headers:
+      Server:
+      - cpsrvd/11.36.0.4
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
       - Keep-Alive
-      X-Keep-Alive-Count: 
-      - "1"
-      Date: 
-      - Wed, 05 Jun 2013 17:39:55 GMT
-      Content-Type: 
-      - text/plain; charset="utf-8"
-    body: 
+      Keep-Alive:
+      - timeout=70, max=200
+      Date:
+      - Mon, 30 Sep 2013 17:21:54 GMT
+      Content-Type:
+      - application/json; charset="utf-8"
+      Content-Length:
+      - '131'
+    body:
+      encoding: UTF-8
       string: |
-        {"cpanelresult":{"func":"gencrt","module":"SSL","event":{"result":1},"data":[{"output":"Certificate generated!","result":1}],"apiversion":2}}
-
+        {"cpanelresult":{"module":"SSL","event":{"result":1},"apiversion":2,"data":[{"output":"Certificate generated!","result":1}],"func":"gencrt"}}
     http_version: 
-  recorded_at: Wed, 05 Jun 2013 17:39:45 GMT
-recorded_with: VCR 2.0.1
+  recorded_at: Mon, 30 Sep 2013 17:19:55 GMT
+recorded_with: VCR 2.4.0
