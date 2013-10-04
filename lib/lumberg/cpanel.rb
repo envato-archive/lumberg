@@ -14,6 +14,7 @@ module Lumberg
     require "lumberg/cpanel/dns_lookup"
     require "lumberg/cpanel/domain_lookup"
     require "lumberg/cpanel/password"
+    require "lumberg/cpanel/password_strength"
     require "lumberg/cpanel/file_manager"
     require "lumberg/cpanel/zone_edit"
     require "lumberg/cpanel/support"
