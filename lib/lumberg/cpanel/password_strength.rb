@@ -1,7 +1,6 @@
 module Lumberg
   module Cpanel
-    # Public: The Passwd module allows users to change their cPanel account's
-    # password.
+    # Public: This module provides access to cPanel's password scoring system.
     class PasswordStrength < Base
       def self.api_module; "PasswdStrength"; end
 
@@ -19,7 +18,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def strength(options = {})
-        perform_request({ :api_function => 'get_password_strength' }.merge(options))
+        perform_request(options.merge( :api_function => 'get_password_strength' ))
       end
 
       # Public: Return the required password strength for a specific
@@ -39,7 +38,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def required_strength(options = {})
-        perform_request({ :api_function => 'get_required_strength' }.merge(options))
+        perform_request(options.merge( :api_function => 'get_required_strength' ))
       end
 
       # Public: Return password strength settings set in WHM's 'Main >>
@@ -53,11 +52,11 @@ module Lumberg
       #   api_args = { host: "x.x.x.x", hash: "pass", api_username: "user" }
       #   password_strength = Lumberg::Cpanel::PasswordStrength.new(api_args.dup)
       #
-      #   password_strength.required_strength(app: 'htaccess')
+      #   password_strength.all_required_strength
       #
       # Returns Hash API response.
       def all_required_strengths(options = {})
-        perform_request({ :api_function => 'appstrengths' }.merge(options))
+        perform_request(options.merge( :api_function => 'appstrengths' ))
       end
     end
   end

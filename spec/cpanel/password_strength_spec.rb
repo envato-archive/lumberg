@@ -18,33 +18,30 @@ module Lumberg
       use_vcr_cassette "cpanel/password_strength/strength"
 
       it "tests a weak password" do
-        result = password_strength.strength({ :password => weak_password })
+        result = password_strength.strength( :password => weak_password )
         result[:params][:data][0][:strength].should be_an(Integer)
-        result[:params][:data][0][:strength].should be == 24
       end
 
       it "tests a strong password" do
-        result = password_strength.strength({ :password => strong_password })
+        result = password_strength.strength( :password => strong_password )
         result[:params][:data][0][:strength].should be_an(Integer)
-        result[:params][:data][0][:strength].should be == 82
       end
     end
 
     describe "#required_strength" do
       use_vcr_cassette "cpanel/password_strength/required_strength"
 
-      it "gets required password strength" do
-        result = password_strength.required_strength({ :app => 'htaccess' })
+      it "gets required password strength for a specific app" do
+        result = password_strength.required_strength( :app => 'htaccess' )
         result[:params][:data][0][:strength].should be_an(Integer)
-        result[:params][:data][0][:strength].should be == 70
       end
     end
 
     describe "#all_required_strengths" do
       use_vcr_cassette "cpanel/password_strength/all_required_strengths"
 
-      it "gets required password strengths" do
-        result = password_strength.all_required_strengths()
+      it "gets required password strengths for all apps" do
+        result = password_strength.all_required_strengths
         result[:params][:data][0].should be_a(Hash)
       end
     end
