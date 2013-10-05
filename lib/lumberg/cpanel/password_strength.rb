@@ -52,7 +52,7 @@ module Lumberg
       #   api_args = { host: "x.x.x.x", hash: "pass", api_username: "user" }
       #   password_strength = Lumberg::Cpanel::PasswordStrength.new(api_args.dup)
       #
-      #   password_strength.all_required_strength
+      #   password_strength.all_required_strengths
       #
       # Returns Hash API response.
       def all_required_strengths(options = {})
