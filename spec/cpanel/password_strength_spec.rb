@@ -19,12 +19,12 @@ module Lumberg
 
       it "tests a weak password" do
         result = password_strength.strength( :password => weak_password )
-        result[:params][:data][0][:strength].should be_an(Integer)
+        result[:params][:data][0][:strength].to_s.should =~ /\A\d+\z/
       end
 
       it "tests a strong password" do
         result = password_strength.strength( :password => strong_password )
-        result[:params][:data][0][:strength].should be_an(Integer)
+        result[:params][:data][0][:strength].to_s.should =~ /\A\d+\z/
       end
     end
 
