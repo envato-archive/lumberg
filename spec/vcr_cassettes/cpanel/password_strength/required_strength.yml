@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?app=htaccess&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=get_required_strength&cpanel_jsonapi_module=PasswdStrength&cpanel_jsonapi_user=lumberg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      User-Agent:
+      - Faraday v0.8.8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.36.2.3
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Date:
+      - Wed, 09 Oct 2013 15:07:09 GMT
+      Content-Type:
+      - text/plain; charset="utf-8"
+      Content-Length:
+      - '137'
+    body:
+      encoding: UTF-8
+      string: |
+        {"cpanelresult":{"data":[{"strength":70}],"module":"PasswdStrength","func":"get_required_strength","preevent":{"result":1},"postevent":{"result":1},"event":{"result":1},"apiversion":2}}
+    http_version: 
+  recorded_at: Wed, 09 Oct 2013 15:07:09 GMT
+recorded_with: VCR 2.4.0
