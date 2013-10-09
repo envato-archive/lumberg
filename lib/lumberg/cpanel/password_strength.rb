@@ -18,7 +18,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def strength(options = {})
-        perform_request(options.merge( :api_function => 'get_password_strength' ))
+        perform_request(options.merge(:api_function => 'get_password_strength'))
       end
 
       # Public: Return the required password strength for a specific
@@ -38,7 +38,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def required_strength(options = {})
-        perform_request(options.merge( :api_function => 'get_required_strength' ))
+        perform_request(options.merge(:api_function => 'get_required_strength'))
       end
 
       # Public: Return password strength settings set in WHM's 'Main >>
@@ -56,9 +56,8 @@ module Lumberg
       #
       # Returns Hash API response.
       def all_required_strengths(options = {})
-        perform_request(options.merge( :api_function => 'appstrengths' ))
+        perform_request(options.merge(:api_function => 'appstrengths'))
       end
     end
   end
 end
-
