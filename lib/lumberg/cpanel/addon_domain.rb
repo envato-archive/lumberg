@@ -13,7 +13,7 @@ module Lumberg
       # Returns Hash API response.
       def remove(options = {})
         perform_request({
-          :api_function => "deladdondomain"
+          api_function: "deladdondomain"
         }.merge(options))
       end
 
@@ -28,7 +28,7 @@ module Lumberg
       # Returns Hash API response.
       def add(options = {})
         perform_request({
-          :api_function => "addaddondomain"
+          api_function: "addaddondomain"
         }.merge(options))
       end
 
@@ -41,7 +41,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options={})
         perform_request({
-          :api_function => "listaddondomains"
+          api_function: "listaddondomains"
         }.merge(options))
       end
     end

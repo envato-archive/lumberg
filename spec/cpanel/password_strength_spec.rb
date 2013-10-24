@@ -2,12 +2,12 @@ require "spec_helper"
 
 module Lumberg
   describe Cpanel::PasswordStrength do
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:password_strength) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server:       server,
+        api_username: api_username
       )
     end
 
@@ -18,12 +18,12 @@ module Lumberg
       use_vcr_cassette "cpanel/password_strength/strength"
 
       it "tests a weak password" do
-        result = password_strength.strength( :password => weak_password )
+        result = password_strength.strength( password: weak_password )
         result[:params][:data][0][:strength].to_s.should =~ /\A\d+\z/
       end
 
       it "tests a strong password" do
-        result = password_strength.strength( :password => strong_password )
+        result = password_strength.strength( password: strong_password )
         result[:params][:data][0][:strength].to_s.should =~ /\A\d+\z/
       end
     end
@@ -32,7 +32,7 @@ module Lumberg
       use_vcr_cassette "cpanel/password_strength/required_strength"
 
       it "gets required password strength for a specific app" do
-        result = password_strength.required_strength( :app => 'htaccess' )
+        result = password_strength.required_strength( app: 'htaccess' )
         result[:params][:data][0][:strength].should be_an(Integer)
       end
     end

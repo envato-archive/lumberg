@@ -19,7 +19,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def modify(options = {})
-        perform_request({ :api_function => 'change_password' }.merge(options))
+        perform_request({ api_function: 'change_password' }.merge(options))
       end
 
       # Public: Enables or disables Digest Authentication for an account.
@@ -44,7 +44,7 @@ module Lumberg
       # Returns Hash API response.
       def digest_authentication(options = {})
         options[:enabledigest] = options.delete([:enable]) ? 1 : 0
-        perform_request({ :api_function => 'set_digest_auth' }.merge(options))
+        perform_request({ api_function: 'set_digest_auth' }.merge(options))
       end
     end
   end

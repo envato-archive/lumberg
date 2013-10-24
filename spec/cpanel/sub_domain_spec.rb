@@ -3,13 +3,13 @@ require "spec_helper"
 module Lumberg
   describe Cpanel::SubDomain do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
+      @login    = { host: @whm_host, hash: @whm_hash }
       @server   = Whm::Server.new(@login.dup)
 
       @api_username = "lumberg"
       @subd = Cpanel::SubDomain.new(
-        :server       => @server.dup,
-        :api_username => @api_username
+        server:       @server.dup,
+        api_username: @api_username
       )
     end
 
@@ -47,9 +47,9 @@ module Lumberg
 
       it "removes a subdomain" do
         # Add the subdomain first
-        @subd.add(:domain => "foo", :rootdomain => "lumberg-test.com")
+        @subd.add(domain: "foo", rootdomain: "lumberg-test.com")
 
-        result = @subd.remove(:domain => "foo.lumberg-test.com")
+        result = @subd.remove(domain: "foo.lumberg-test.com")
         result[:params][:data][0][:result].should == 1
       end
     end
@@ -59,11 +59,11 @@ module Lumberg
 
       it "adds a subdomain" do
         # Delete the subdomain first
-        @subd.remove(:domain => "sub.lumberg-test.com")
+        @subd.remove(domain: "sub.lumberg-test.com")
 
         result = @subd.add(
-          :domain     => "sub",
-          :rootdomain => "lumberg-test.com"
+          domain:     "sub",
+          rootdomain: "lumberg-test.com"
         )
         result[:params][:data][0][:result].should == 1
       end

@@ -6,7 +6,7 @@ module Lumberg
       #
       # Returns Hash API Response
       def list
-        perform_request({ :api_function => 'fetchzones' })
+        perform_request({ api_function: 'fetchzones' })
       end
 
       # Public: Add an A, CNAME, or TXT record to a zone file, specified by
@@ -30,7 +30,7 @@ module Lumberg
       # Returns Hash API response.
       def create(options = {})
         options[:txtdata] = options.delete(:txt)
-        perform_request({ :api_function => 'add_zone_record' }.merge(options))
+        perform_request({ api_function: 'add_zone_record' }.merge(options))
       end
 
       # Public: Show dns zone for a domain
@@ -51,7 +51,7 @@ module Lumberg
       # Returns Hash API response.
       def show(options = {})
         options[:customonly] = options.delete(:get_custom_entries)
-        perform_request({ :api_function => 'fetchzone' }.merge(options))
+        perform_request({ api_function: 'fetchzone' }.merge(options))
       end
 
       # Public: Revert a zone file to its original state.
@@ -62,7 +62,7 @@ module Lumberg
       #
       # Returns Hash API response
       def reset(options = {})
-        perform_request({ :api_function => 'resetzone' })
+        perform_request({ api_function: 'resetzone' })
       end
 
       # Public: Edit an A, CNAME, or TXT record in a zone file, specified by
@@ -89,7 +89,7 @@ module Lumberg
       def edit(options = {})
         options[:Line]    = options.delete(:line)
         options[:txtdata] = options.delete(:txt)
-        perform_request({ :api_function => 'edit_zone_record' }.merge(options))
+        perform_request({ api_function: 'edit_zone_record' }.merge(options))
       end
 
       # Public: Remove lines from a DNS zone file. You may only remove A, TXT,
@@ -103,7 +103,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def remove(options = {})
-        perform_request({ :api_function => 'remove_zone_record' }.merge(options))
+        perform_request({ api_function: 'remove_zone_record' }.merge(options))
       end
 
       # Public: Retrieve a list of domains, created within cPanel, associated
@@ -116,7 +116,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def show_domains(options = {})
-        perform_request({ :api_function => 'fetch_cpanel_generated_domains' })
+        perform_request({ api_function: 'fetch_cpanel_generated_domains' })
       end
 
       # Public: Retrieve a list of zone modifications for a specific domain.
@@ -126,7 +126,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def modifications_for(options = {})
-        perform_request({ :api_function => 'fetchzone_records' }.merge(options))
+        perform_request({ api_function: 'fetchzone_records' }.merge(options))
       end
     end
   end

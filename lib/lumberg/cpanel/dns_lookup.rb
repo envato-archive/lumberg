@@ -16,7 +16,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def name_to_ip(options = {})
-        perform_request({ :api_function => 'name2ip' }.merge(options))
+        perform_request({ api_function: 'name2ip' }.merge(options))
       end
     end
   end

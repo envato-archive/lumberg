@@ -5,7 +5,7 @@ require 'spec_helper'
 module Lumberg
   describe Whm::Server do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
+      @login    = { host: @whm_host, hash: @whm_hash }
       @whm      = Whm::Server.new(@login.dup)
       @url_base = "https://myhost.com:2087/json-api"
     end
@@ -25,7 +25,7 @@ module Lumberg
       end
 
       it "should allow setting of the username" do
-        @whm = Whm::Server.new(@login.merge(:user => 'bob'))
+        @whm = Whm::Server.new(@login.merge(user: 'bob'))
         @whm.user.should == 'bob'
       end
 
@@ -34,14 +34,14 @@ module Lumberg
       end
 
       it "should allow setting of basic_auth" do
-        @whm = Whm::Server.new(@login.merge(:basic_auth => true))
+        @whm = Whm::Server.new(@login.merge(basic_auth: true))
         @whm.basic_auth.should be_true
       end
 
       it "raises message for invalid domain" do
         Resolv.stub(:getaddress).and_raise(Resolv::ResolvError)
         expect do
-          Whm::Server.new(:host => "nxdomain.tld", :hash => "")
+          Whm::Server.new(host: "nxdomain.tld", hash: "")
         end.to raise_error(
          Lumberg::WhmArgumentError, "Unable to resolve nxdomain.tld"
         )
@@ -51,7 +51,7 @@ module Lumberg
     describe "setting timeout" do
       it "allows setting of timeout" do
         Whm::Server.new(
-          @login.merge(:timeout => 1000)
+          @login.merge(timeout: 1000)
         ).timeout.should == 1000
       end
     end
@@ -62,31 +62,31 @@ module Lumberg
       end
 
       it "converts the host into an SSL URL when asked" do
-        @whm = Whm::Server.new(@login.dup.merge(:ssl => true))
+        @whm = Whm::Server.new(@login.dup.merge(ssl: true))
         @whm.send(:format_url).should == "https://myhost.com:2087/json-api/"
       end
 
       it "converts the host into a non SSL URL when asked" do
-        @whm = Whm::Server.new(@login.dup.merge(:ssl => false))
+        @whm = Whm::Server.new(@login.dup.merge(ssl: false))
         @whm.send(:format_url).should == "http://myhost.com:2086/json-api/"
       end
     end
 
     describe "#format_hash" do
       it "raises an error if hash is not a string" do
-        expect{  Whm::Server.new(:host => @whm_host, :hash => nil) }.
+        expect{  Whm::Server.new(host: @whm_host, hash: nil) }.
           to raise_error(Lumberg::WhmArgumentError, "Missing WHM hash")
       end
 
       it "removes \\n's from the hash" do
         hash =  "my\nhash\n\n\n\n"
-        @whm = Whm::Server.new(:host => @whm_host, :hash => hash)
+        @whm = Whm::Server.new(host: @whm_host, hash: hash)
         @whm.hash.should == 'myhash'
       end
 
       it "removes whitespace from the hash" do
         hash = "    my hash "
-        @whm = Whm::Server.new(:host => @whm_host, :hash => hash)
+        @whm = Whm::Server.new(host: @whm_host, hash: hash)
         @whm.hash.should == 'myhash'
       end
     end
@@ -107,16 +107,16 @@ module Lumberg
 
           it "calls the proper URL and arguments" do
             JSON.should_receive(:parse).with("[]").and_return([])
-            @whm.perform_request('my_function', :arg1 => 1, :arg2 => 'test')
+            @whm.perform_request('my_function', arg1: 1, arg2: 'test')
             @whm.function.should == 'my_function'
-            @whm.params.should == {:arg1 => 1, :arg2 => 'test'}
+            @whm.params.should == {arg1: 1, arg2: 'test'}
           end
 
           it "changes params to booleans when given a block" do
-            req = @whm.perform_request('my_function', :block => 1) do |p|
+            req = @whm.perform_request('my_function', block: 1) do |p|
               p.boolean_params =  :true, :false
             end
-            req[:params].should include(:true => true, :false => false, :other => 2)
+            req[:params].should include(true: true, false: false, other: 2)
           end
 
         end
@@ -174,7 +174,7 @@ module Lumberg
         use_vcr_cassette "whm/server/applist"
 
         it "sets a response message" do
-          @whm = Whm::Server.new(:host => @whm_host, :hash => @whm_hash)
+          @whm = Whm::Server.new(host: @whm_host, hash: @whm_hash)
           @whm.perform_request('applist')
           @whm.function.should == 'applist'
         end
@@ -286,7 +286,7 @@ module Lumberg
       use_vcr_cassette "whm/server/addip"
 
       it "adds the ip address" do
-        result = @whm.add_ip(:ip => '208.77.188.166', :netmask => '255.255.255.0')
+        result = @whm.add_ip(ip: '208.77.188.166', netmask: '255.255.255.0')
         result[:success].should be_true
       end
     end
@@ -295,7 +295,7 @@ module Lumberg
       use_vcr_cassette "whm/server/delip"
 
       it "deletes the ip address" do
-        result = @whm.delete_ip(:ip => '208.77.188.166')
+        result = @whm.delete_ip(ip: '208.77.188.166')
         result[:success].should be_true
       end
     end
@@ -304,7 +304,7 @@ module Lumberg
       use_vcr_cassette "whm/server/sethostname"
 
       it "changes the server's hostname" do
-        result = @whm.set_hostname(:hostname => "myhost.com")
+        result = @whm.set_hostname(hostname: "myhost.com")
         result[:success].should be_true
       end
     end
@@ -313,7 +313,7 @@ module Lumberg
       use_vcr_cassette "whm/server/gettweaksetting"
 
       it "gets a tweak setting" do
-        result = @whm.get_tweaksetting(:key => 'skipwebalizer')
+        result = @whm.get_tweaksetting(key: 'skipwebalizer')
         result[:success].should be_true
       end
     end
@@ -322,7 +322,7 @@ module Lumberg
       use_vcr_cassette "whm/server/settweaksetting"
 
       it "sets a tweak setting" do
-        result = @whm.set_tweaksetting(:key => 'skipwebalizer', :value => 0)
+        result = @whm.set_tweaksetting(key: 'skipwebalizer', value: 0)
         result[:success].should be_true
       end
     end
@@ -331,7 +331,7 @@ module Lumberg
       use_vcr_cassette "whm/server/setresolvers"
 
       it "configures the nameservers" do
-        result = @whm.set_resolvers(:nameserver1 => "123.123.123.123", :nameserver2 => "123.123.123.124")
+        result = @whm.set_resolvers(nameserver1: "123.123.123.123", nameserver2: "123.123.123.124")
         result[:success].should be_true
       end
     end
@@ -340,7 +340,7 @@ module Lumberg
       use_vcr_cassette "whm/server/showbw"
 
       it "shows the bandwidth information" do
-        result = @whm.show_bandwidth(:year => 2011, :month => 5)
+        result = @whm.show_bandwidth(year: 2011, month: 5)
         result[:params][:month].to_i.should == 5
         result[:params][:acct].should have(3).accounts
       end

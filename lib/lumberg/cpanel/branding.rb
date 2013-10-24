@@ -16,7 +16,7 @@ module Lumberg
       # Returns Hash API response.
       def list_pkgs(options = {})
         perform_request({
-          :api_function => "showpkgs"
+          api_function: "showpkgs"
         }.merge(options))
       end
 
@@ -43,7 +43,7 @@ module Lumberg
       # Returns Hash API response.
       def list_sprites(options = {})
         perform_request({
-          :api_function => "spritelist"
+          api_function: "spritelist"
         }.merge(options))
       end
 
@@ -59,7 +59,7 @@ module Lumberg
       # Returns Hash API response.
       def list_icons(options = {})
         perform_request({
-          :api_function => "applist"
+          api_function: "applist"
         }.merge(options))
       end
 
@@ -70,7 +70,7 @@ module Lumberg
       # Returns Hash API response.
       def list_object_types(options = {})
         perform_request({
-          :api_function => "listobjecttypes"
+          api_function: "listobjecttypes"
         }.merge(options))
       end
 
@@ -81,7 +81,7 @@ module Lumberg
       # Returns Hash API response.
       def list_image_types(options = {})
         perform_request({
-          :api_function => "listimgtypes"
+          api_function: "listimgtypes"
         }.merge(options))
       end
     end

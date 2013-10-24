@@ -9,7 +9,7 @@ module Lumberg
       # Returns Hash API response.
       def set_email(options = {})
         perform_request({
-          :api_function => "set_email"
+          api_function: "set_email"
         }.merge(options))
       end
 
@@ -20,7 +20,7 @@ module Lumberg
       # Returns Hash API response.
       def email(options = {})
         perform_request({
-          :api_function => "get_email"
+          api_function: "get_email"
         }.merge(options))
       end
 
@@ -31,7 +31,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options = {})
         perform_request({
-          :api_function => "listcron"
+          api_function: "listcron"
         }.merge(options))
       end
 
@@ -48,7 +48,7 @@ module Lumberg
       # Returns Hash API response.
       def add(options = {})
         perform_request({
-          :api_function => "add_line"
+          api_function: "add_line"
         }.merge(options))
       end
 
@@ -60,7 +60,7 @@ module Lumberg
       # Returns Hash API response.
       def remove(options = {})
         perform_request({
-          :api_function => "remove_line"
+          api_function: "remove_line"
         }.merge(options))
       end
 
@@ -81,7 +81,7 @@ module Lumberg
       # Returns Hash API response.
       def edit(options = {})
         perform_request({
-          :api_function => "edit_line"
+          api_function: "edit_line"
         }.merge(options))
       end
     end

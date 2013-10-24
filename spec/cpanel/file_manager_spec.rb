@@ -2,12 +2,12 @@ require "spec_helper"
 
 module Lumberg
   describe Cpanel::FileManager do
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:file_manager) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server:       server,
+        api_username: api_username
       )
     end
 
@@ -27,7 +27,7 @@ module Lumberg
       use_vcr_cassette "cpanel/file_manager/show"
 
       it "gets information about files and directories" do
-        result = file_manager.show({ :file => wanted_file })
+        result = file_manager.show({ file: wanted_file })
         result[:params][:data][0][:file].should === wanted_file
       end
     end
@@ -36,7 +36,7 @@ module Lumberg
       use_vcr_cassette "cpanel/file_manager/stat"
 
       it "gets system information about files" do
-        result = file_manager.stat({ :file => wanted_file })
+        result = file_manager.stat({ file: wanted_file })
         result[:params][:data][0][:user].should === api_username
       end
     end
@@ -55,17 +55,17 @@ module Lumberg
 
       it "copies a non-existent file" do
         file_manager.operate({
-          :name              => "copy",
-          :source_files      => ".shouldneverexist",
-          :destination_files => ".someotherfile"
+          name:              "copy",
+          source_files:      ".shouldneverexist",
+          destination_files: ".someotherfile"
         })[:params][:data][0][:result].should == 0
       end
 
       it "copies a file" do
         file_manager.operate({
-          :name              => "copy",
-          :source_files      => ".lastlogin",
-          :destination_files => "sample-last-login.txt"
+          name:              "copy",
+          source_files:      ".lastlogin",
+          destination_files: "sample-last-login.txt"
         })[:params][:data][0][:result].should == 1
       end
     end

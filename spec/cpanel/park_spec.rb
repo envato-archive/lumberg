@@ -3,13 +3,13 @@ require "spec_helper"
 module Lumberg
   describe Cpanel::Park do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
+      @login    = { host: @whm_host, hash: @whm_hash }
       @server   = Whm::Server.new(@login.dup)
 
       @api_username = "lumberg"
       @park = Cpanel::Park.new(
-        :server       => @server.dup,
-        :api_username => @api_username
+        server:       @server.dup,
+        api_username: @api_username
       )
     end
 
@@ -18,9 +18,9 @@ module Lumberg
 
       it "creates a new parked domain" do
         # Remove first
-        @park.remove(:domain => "test-park.com")
+        @park.remove(domain: "test-park.com")
 
-        result = @park.add(:domain => "test-park.com")
+        result = @park.add(domain: "test-park.com")
         result[:params][:data].first[:result].should == 1
       end
     end
@@ -30,9 +30,9 @@ module Lumberg
 
       it "removes a parked domain" do
         # Add first
-        @park.add(:domain => "test-park.com")
+        @park.add(domain: "test-park.com")
 
-        result = @park.remove(:domain => "test-park.com")
+        result = @park.remove(domain: "test-park.com")
         result[:params][:data].first[:result].should == 1
       end
     end

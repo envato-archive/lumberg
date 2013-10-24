@@ -3,28 +3,28 @@ require 'spec_helper'
 module Lumberg
   describe Whm::Reseller do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
+      @login    = { host: @whm_host, hash: @whm_hash }
       @whm      = Whm::Server.new(@login.dup)
-      @reseller = Whm::Reseller.new(:server => @whm)
+      @reseller = Whm::Reseller.new(server: @whm)
     end
 
     describe "#setup_reseller" do
       use_vcr_cassette "whm/reseller/setupreseller"
 
       it "fails when the user doesn't exist" do
-        result = @reseller.create(:username => 'invalid')
+        result = @reseller.create(username: 'invalid')
         result[:success].should be_false
         result[:message].should match(/does not exist/i)
       end
 
       it "creates a reseller" do
-        result = @reseller.create(:username => 'bob')
+        result = @reseller.create(username: 'bob')
         result[:success].should be_true
       end
 
       it "accepts makeowner option" do
-        @reseller.server.should_receive(:perform_request).with('setupreseller', hash_including(:makeowner => true))
-        @reseller.create(:username => 'bob', :makeowner => true)
+        @reseller.server.should_receive(:perform_request).with('setupreseller', hash_including(makeowner: true))
+        @reseller.create(username: 'bob', makeowner: true)
       end
     end
 
@@ -43,12 +43,12 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellerips"
 
       it "adds the ip address to the reseller account" do
-        result = @reseller.add_ips(:username => 'bob', :ips =>'192.1.2.3')
+        result = @reseller.add_ips(username: 'bob', ips:'192.1.2.3')
         result[:message].should match(/Successfully configured IP addresses delegation to reseller/i)
       end
 
       it "returns an error for invalid ip addresses" do
-        result = @reseller.add_ips(:username => 'bob', :ips =>'1.2.3.4')
+        result = @reseller.add_ips(username: 'bob', ips:'1.2.3.4')
         result[:message].should match(/The list of supplied IP addresses contains inappropriate values/i)
       end
     end
@@ -57,8 +57,8 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellerlimits"
 
       it "sets the limits" do
-        result = @reseller.set_limits(:username => 'bob', :diskspace_limit => 1024, :enable_overselling => true,
-                                      :enable_overselling_diskspace => true)
+        result = @reseller.set_limits(username: 'bob', diskspace_limit: 1024, enable_overselling: true,
+                                      enable_overselling_diskspace: true)
         result[:success].should be_true
         result[:message].should match(/Successfully set reseller account .*limits/i)
       end
@@ -68,21 +68,21 @@ module Lumberg
       use_vcr_cassette "whm/reseller/terminatereseller"
 
       it "terminates the reseller" do
-        result = @reseller.terminate(:reseller => 'terminat')
+        result = @reseller.terminate(reseller: 'terminat')
         result[:success].should be_true
         result[:message].should match(/account terminations complete/i)
         result[:params][:accts].should be_empty
       end
 
       it "terminates the main account" do
-        result = @reseller.terminate(:reseller => 'terminat', :terminatereseller => true)
+        result = @reseller.terminate(reseller: 'terminat', terminatereseller: true)
         result[:success].should be_true
         result[:message].should match(/account terminations complete/i)
         result[:params][:accts][:terminat][:rawout].should match(/Account Removal Complete/i)
       end
 
       it "errors on non-existaet user" do
-        result = @reseller.terminate(:reseller => 'what')
+        result = @reseller.terminate(reseller: 'what')
         result[:success].should be_false
         result[:message].should match(/does not exist/i)
       end
@@ -93,19 +93,19 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellermainip"
 
       it "sets the main ip" do
-        result = @reseller.set_main_ip(:username => 'bob', :ip => '192.1.2.3')
+        result = @reseller.set_main_ip(username: 'bob', ip: '192.1.2.3')
         result[:success].should be_true
         result[:message].should match(/Successfully set main IP address of the reseller/i)
       end
 
       it "returns an error when the IP is invalid" do
-        result = @reseller.set_main_ip(:username => 'bob', :ip => '10')
+        result = @reseller.set_main_ip(username: 'bob', ip: '10')
         result[:success].should be_false
         result[:message].should match(/Supplied IP address is invalid/)
       end
 
       it "returns an error when the user is invalid" do
-        result = @reseller.set_main_ip(:username => 'notexists', :ip => '192.1.2.3')
+        result = @reseller.set_main_ip(username: 'notexists', ip: '192.1.2.3')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
@@ -115,13 +115,13 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellerpackagelimit"
 
       it "sets the package limit" do
-        result = @reseller.set_package_limit(:username => 'bob', :no_limit => false, :package => 'gold', :allowed => true)
+        result = @reseller.set_package_limit(username: 'bob', no_limit: false, package: 'gold', allowed: true)
         result[:success].should be_true
         result[:message].should match(/Successfully set reseller package limit/i)
       end
 
       it "sets no limit" do
-        result = @reseller.set_package_limit(:username => 'bob', :no_limit => true, :package => 'gold')
+        result = @reseller.set_package_limit(username: 'bob', no_limit: true, package: 'gold')
         result[:success].should be_true
         result[:message].should match(/Successfully set reseller package limit/i)
       end
@@ -131,19 +131,19 @@ module Lumberg
       use_vcr_cassette "whm/reseller/suspendreseller"
 
       it "suspends the reseller" do
-        result = @reseller.suspend(:username => 'bob')
+        result = @reseller.suspend(username: 'bob')
         result[:success].should be_true
         result[:message].should match(/Finished suspending reseller/i)
       end
 
       it "can take a reason" do
-        result = @reseller.suspend(:username => 'bob', :reason => 'some reason')
+        result = @reseller.suspend(username: 'bob', reason: 'some reason')
         result[:success].should be_true
         result[:message].should match(/Finished suspending reseller/i)
       end
 
       it "returns an error when the user is invalid" do
-        result = @reseller.suspend(:username => 'notexists')
+        result = @reseller.suspend(username: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
@@ -153,13 +153,13 @@ module Lumberg
       use_vcr_cassette "whm/reseller/unsuspendreseller"
 
       it "should unsuspend the user" do
-        result = @reseller.unsuspend(:username => 'bob')
+        result = @reseller.unsuspend(username: 'bob')
         result[:success].should be_true
         result[:message].should match(/Finished unsuspending reseller/i)
       end
 
       it "return an error when the user is invalid" do
-        result = @reseller.unsuspend(:username => 'notexists')
+        result = @reseller.unsuspend(username: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
@@ -169,7 +169,7 @@ module Lumberg
       use_vcr_cassette "whm/reseller/acctcounts"
 
       it "returns the account counts" do
-        result = @reseller.account_counts(:username => 'bob')
+        result = @reseller.account_counts(username: 'bob')
         result[:success].should be_true
         result[:message].should match(/Obtained reseller account counts/i)
         result[:params][:account].should == "bob"
@@ -179,7 +179,7 @@ module Lumberg
       end
 
       it "returns an error when the user is invalid" do
-        result = @reseller.account_counts(:username => 'notexists')
+        result = @reseller.account_counts(username: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
@@ -189,19 +189,19 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setresellernameservers"
 
       it "sets the default nameservers" do
-        result = @reseller.set_nameservers(:username => 'bob')
+        result = @reseller.set_nameservers(username: 'bob')
         result[:success].should be_true
         result[:message].should match(/Set resellers nameservers/i)
       end
 
       it "sets the specified nameservers" do
-        result = @reseller.set_nameservers(:username => 'bob', :nameservers => 'ns1.example.com')
+        result = @reseller.set_nameservers(username: 'bob', nameservers: 'ns1.example.com')
         result[:success].should be_true
         result[:message].should match(/Set resellers nameservers/i)
       end
 
       it "returns an error for an invalid username" do
-        result = @reseller.account_counts(:username => 'notexists')
+        result = @reseller.account_counts(username: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Specified user is not a reseller/i)
       end
@@ -211,7 +211,7 @@ module Lumberg
       use_vcr_cassette "whm/reseller/resellerstats"
 
       it "returns the stats of the reseller" do
-        result = @reseller.stats(:reseller => 'bob')
+        result = @reseller.stats(reseller: 'bob')
         result[:success].should be_true
         result[:message].should match(/Fetched Reseller Data OK/i)
         result[:params][:diskquota].to_i.should == 0
@@ -220,7 +220,7 @@ module Lumberg
       end
 
       it "returns an error for an invalid reseller" do
-        result = @reseller.stats(:reseller => 'notexists')
+        result = @reseller.stats(reseller: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Reseller Does Not Exist/i)
       end
@@ -242,13 +242,13 @@ module Lumberg
       use_vcr_cassette "whm/reseller/saveacllist"
 
       it "creates a new reseller ACL list" do
-        result = @reseller.save_acl_list(:acllist => 'testacllist')
+        result = @reseller.save_acl_list(acllist: 'testacllist')
         result[:success].should be_true
         result[:message].should match(/ACL List testacllist saved/i)
       end
 
       it "creates a new reseller ACL list with optional settings" do
-        result = @reseller.save_acl_list(:acllist => 'testacllist',
+        result = @reseller.save_acl_list(acllist: 'testacllist',
                                          "acl-ssl".to_sym => true,
                                          "acl-add-pkg".to_sym => true,
                                          "acl-stats".to_sym => true)
@@ -261,13 +261,13 @@ module Lumberg
       use_vcr_cassette "whm/reseller/setacls"
 
       it "sets the ACL for the reseller" do
-        result = @reseller.set_acls(:reseller => 'bob', :acllist => 'testacllist')
+        result = @reseller.set_acls(reseller: 'bob', acllist: 'testacllist')
         result[:success].should be_true
         result[:message].should match(/Reseller Acls Saved/i)
       end
 
       it "returns an error for an invalid reseller" do
-        result = @reseller.set_acls(:reseller => 'notexists')
+        result = @reseller.set_acls(reseller: 'notexists')
         result[:success].should be_false
         result[:message].should match(/Not a reseller/i)
       end
@@ -277,12 +277,12 @@ module Lumberg
       use_vcr_cassette "whm/reseller/unsetupreseller"
 
       it "removes the reseller status from the user" do
-        result = @reseller.unsetup(:username => 'bob')
+        result = @reseller.unsetup(username: 'bob')
         result[:success].should be_true
       end
 
       it "returns an error if the user does not exist" do
-        result = @reseller.unsetup(:username => 'notexists')
+        result = @reseller.unsetup(username: 'notexists')
         result[:success].should be_false
         result[:message].should match(/called for a user that does not exist/i)
       end

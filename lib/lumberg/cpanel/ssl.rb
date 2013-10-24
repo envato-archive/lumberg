@@ -15,7 +15,7 @@ module Lumberg
       # Returns Hash API response.
       def installssl(options = {})
         perform_request({
-          :api_function => "installssl"
+          api_function: "installssl"
         }.merge(options))
       end
 
@@ -26,7 +26,7 @@ module Lumberg
       # Returns Hash API response.
       def listcsrs(options = {})
         perform_request({
-          :api_function => "listcsrs",
+          api_function: "listcsrs",
         }.merge(options))
       end
 
@@ -39,10 +39,10 @@ module Lumberg
       # Returns Hash API response.
       def showcsr(options = {})
         perform_request({
-          :api_function => "showcsr",
-          :api_version  => 1,
-          :user         => options[:user],
-          :response_key => "data",
+          api_function:    "showcsr",
+          api_version:     1,
+          user:            options[:user],
+          response_key:    "data",
           "arg-0"       => options[:domain],
           "arg-1"       => options[:textmode]
         })
@@ -57,10 +57,10 @@ module Lumberg
       # Returns Hash API response.
       def showkey(options = {})
         perform_request({
-          :api_function => "showkey",
-          :api_version  => 1,
-          :user         => options[:user],
-          :response_key => "data",
+          api_function:    "showkey",
+          api_version:     1,
+          user:            options[:user],
+          response_key:    "data",
           "arg-0"       => options[:domain],
           "arg-1"       => options[:textmode]
         })
@@ -73,10 +73,10 @@ module Lumberg
       # Returns Hash API response.
       def showcrt(options = {})
         perform_request({
-          :api_function => "showcrt",
-          :api_version  => 1,
-          :user         => options[:user],
-          :response_key => "data",
+          api_function:    "showcrt",
+          api_version:     1,
+          user:            options[:user],
+          response_key:    "data",
           "arg-0"       => options[:domain],
           "arg-1"       => options[:textmode]
         })
@@ -89,7 +89,7 @@ module Lumberg
       # Returns Hash API response.
       def listcrts(options = {})
         perform_request({
-          :api_function => "listcrts",
+          api_function: "listcrts",
         }.merge(options))
       end
 
@@ -100,7 +100,7 @@ module Lumberg
       # Returns Hash API response.
       def listkeys(options = {})
         perform_request({
-          :api_function => "listkeys",
+          api_function: "listkeys",
         }.merge(options))
       end
 
@@ -112,7 +112,7 @@ module Lumberg
       # Returns Hash API response.
       def fetchcabundle(options = {})
         perform_request({
-          :api_function => "fetchcabundle",
+          api_function: "fetchcabundle",
         }.merge(options))
       end
 
@@ -126,7 +126,7 @@ module Lumberg
       # Returns Hash API response.
       def listsslitems(options = {})
         perform_request({
-          :api_function => "listsslitems",
+          api_function: "listsslitems",
         }.merge(options))
       end
 
@@ -149,8 +149,8 @@ module Lumberg
         options[:companydivision] = options.delete(:company_division)
 
         perform_request({
-          :api_function => "gencsr",
-          :response_key => "cpanelresult",
+          api_function: "gencsr",
+          response_key: "cpanelresult",
         }.merge(options))
       end
 
@@ -172,7 +172,7 @@ module Lumberg
         options[:companydivision] = options.delete(:company_division)
 
         perform_request({
-          :api_function => "gencrt",
+          api_function: "gencrt",
         }.merge(options))
       end
 
@@ -186,7 +186,7 @@ module Lumberg
       # Returns Hash API response.
       def genkey(options = {})
         perform_request({
-          :api_function => "genkey",
+          api_function: "genkey",
         }.merge(options))
       end
 
@@ -198,7 +198,7 @@ module Lumberg
       # Returns Hash API response.
       def uploadcrt(options = {})
         perform_request({
-          :api_function => "uploadcrt",
+          api_function: "uploadcrt",
         }.merge(options))
       end
     end

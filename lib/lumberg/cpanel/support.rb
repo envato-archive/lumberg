@@ -13,7 +13,7 @@ module Lumberg
       # Returns Hash API response.
       def open_ticket(options = {})
         perform_request({
-          :api_function => "sendcontact"
+          api_function: "sendcontact"
         }.merge(options))
       end
 
@@ -22,7 +22,7 @@ module Lumberg
       #
       # Returns Hash API response
       def contactable
-        perform_request({ :api_function => "isenabled" })
+        perform_request({ api_function: "isenabled" })
       end
     end
   end

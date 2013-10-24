@@ -2,12 +2,12 @@ require "spec_helper"
 
 module Lumberg
   describe Cpanel::Cron do
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:cron) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server:       server,
+        api_username: api_username
       )
     end
 
@@ -17,7 +17,7 @@ module Lumberg
       use_vcr_cassette("cpanel/cron/set_email")
 
       it "sets cron notification email address" do
-        cron.set_email(:email => email)
+        cron.set_email(email: email)
         cron.email[:params][:data][0][:email].should == email
       end
     end
@@ -27,7 +27,7 @@ module Lumberg
 
       use_vcr_cassette("cpanel/cron/email")
 
-      before { cron.set_email(:email => email) }
+      before { cron.set_email(email: email) }
 
       it "gets cron notification email address" do
         cron.email[:params][:data][0][:email].should == email
@@ -41,12 +41,12 @@ module Lumberg
 
       before do
         cron.add(
-          :command => command,
-          :minute  => 1,
-          :hour    => 1,
-          :day     => 1,
-          :month   => 1,
-          :weekday => 1
+          command: command,
+          minute:  1,
+          hour:    1,
+          day:     1,
+          month:   1,
+          weekday: 1
         )
       end
 
@@ -54,12 +54,12 @@ module Lumberg
         cron.list[:params][:data].find {|e|
           e[:command] == command
         }.should include(
-          :command => command,
-          :minute  => "1",
-          :hour    => "1",
-          :day     => "1",
-          :month   => "1",
-          :weekday => "1"
+          command: command,
+          minute:  "1",
+          hour:    "1",
+          day:     "1",
+          month:   "1",
+          weekday: "1"
         )
       end
     end
@@ -71,23 +71,23 @@ module Lumberg
 
       it "adds a crontab entry" do
         cron.add(
-          :command => command,
-          :minute  => 1,
-          :hour    => 1,
-          :day     => 1,
-          :month   => 1,
-          :weekday => 1
+          command: command,
+          minute:  1,
+          hour:    1,
+          day:     1,
+          month:   1,
+          weekday: 1
         )
 
         cron.list[:params][:data].find {|e|
           e[:command] == command
         }.should include(
-          :command => command,
-          :minute  => "1",
-          :hour    => "1",
-          :day     => "1",
-          :month   => "1",
-          :weekday => "1"
+          command: command,
+          minute:  "1",
+          hour:    "1",
+          day:     "1",
+          month:   "1",
+          weekday: "1"
         )
       end
     end
@@ -104,15 +104,15 @@ module Lumberg
 
       before do
         cron.add(
-          :command => command,
-          :minute  => 1,
-          :hour    => 1,
-          :day     => 1,
-          :month   => 1,
-          :weekday => 1
+          command: command,
+          minute:  1,
+          hour:    1,
+          day:     1,
+          month:   1,
+          weekday: 1
         )
 
-        cron.remove(:linekey => linekey)
+        cron.remove(linekey: linekey)
       end
 
       it "removes a crontab entry" do
@@ -129,31 +129,31 @@ module Lumberg
 
       before do
         @linekey = cron.add(
-          :command => command,
-          :minute  => 1,
-          :hour    => 1,
-          :day     => 1,
-          :month   => 1,
-          :weekday => 1
+          command: command,
+          minute:  1,
+          hour:    1,
+          day:     1,
+          month:   1,
+          weekday: 1
         )[:params][:data][0][:linekey]
       end
 
       it "edits a crontab entry" do
         @linekey = cron.edit(
-          :linekey => @linekey,
-          :command => "taco",
-          :day     => 1,
-          :hour    => 3,
-          :minute  => 1,
-          :month   => 1,
-          :weekday => 1
+          linekey: @linekey,
+          command: "taco",
+          day:     1,
+          hour:    3,
+          minute:  1,
+          month:   1,
+          weekday: 1
         )[:params][:data][0][:linekey]
 
         cron.list[:params][:data].find {|e|
           e[:linekey] == @linekey
         }.should include(
-          :command => "taco",
-          :hour    => "3"
+          command: "taco",
+          hour:    "3"
         )
       end
     end

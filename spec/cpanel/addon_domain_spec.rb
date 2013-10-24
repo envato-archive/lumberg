@@ -3,13 +3,13 @@ require "spec_helper"
 module Lumberg
   describe Cpanel::AddonDomain do
     before(:each) do
-      @login    = { :host => @whm_host, :hash => @whm_hash }
+      @login    = { host: @whm_host, hash: @whm_hash }
       @server   = Whm::Server.new(@login.dup)
 
       @api_username = "lumberg"
       @addond = Cpanel::AddonDomain.new(
-        :server       => @server.dup,
-        :api_username => @api_username
+        server:       @server.dup,
+        api_username: @api_username
       )
     end
 
@@ -19,14 +19,14 @@ module Lumberg
       it "removes an addon domain" do
         # Create the addon domain to be removed
         @addond.add(
-          :dir       => "public_html/test-addon.com/",
-          :newdomain => "test-addon.com",
-          :subdomain => "testadd"
+          dir:       "public_html/test-addon.com/",
+          newdomain: "test-addon.com",
+          subdomain: "testadd"
         )
 
         result = @addond.remove(
-          :domain    => "test-addon.com",
-          :subdomain => "testadd_lumberg-test.com"
+          domain:    "test-addon.com",
+          subdomain: "testadd_lumberg-test.com"
         )
 
         result[:params][:data][0][:result].should == 1
@@ -39,16 +39,16 @@ module Lumberg
 
       it "adds an addon domain" do
         result = @addond.add(
-          :dir       => "public_html/test-magic.com/",
-          :newdomain => "test-magic.com",
-          :subdomain => "tmagic"
+          dir:       "public_html/test-magic.com/",
+          newdomain: "test-magic.com",
+          subdomain: "tmagic"
         )
         result[:params][:data][0][:result].should == 1
 
         # Remove the addon domain
         result = @addond.remove(
-          :domain    => "test-magic.com",
-          :subdomain => "tmagic_lumberg-test.com"
+          domain:    "test-magic.com",
+          subdomain: "tmagic_lumberg-test.com"
         )
       end
     end

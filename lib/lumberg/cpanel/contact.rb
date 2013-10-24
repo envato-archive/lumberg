@@ -8,7 +8,7 @@ module Lumberg
       #
       # Returns Hash API response
       def show
-        perform_request({ :api_function => 'displaycontactinfo' })
+        perform_request({ api_function: 'displaycontactinfo' })
       end
 
       # Public: Updates the user's contact info and settings for email
@@ -31,7 +31,7 @@ module Lumberg
         options[:notify_disk_limit] = options.delete(:disk_quota)
         options[:notify_bandwidth_limit] = options.delete(:bandwidth)
         options[:notify_email_quota_limit] = options.delete(:email_quota)
-        perform_request({ :api_function => 'savecontactinfo' }.merge(options))
+        perform_request({ api_function: 'savecontactinfo' }.merge(options))
       end
     end
   end

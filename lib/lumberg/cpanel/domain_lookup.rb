@@ -13,7 +13,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def list
-        perform_request({ :api_function => 'getbasedomains' })
+        perform_request({ api_function: 'getbasedomains' })
       end
 
       # Public: Retrieve the absolute and relative paths to a specific domain's
@@ -34,7 +34,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def document_root(options = {})
-        perform_request({ :api_function => 'getdocroot' }.merge(options))
+        perform_request({ api_function: 'getdocroot' }.merge(options))
       end
       alias :docroot :document_root
 
@@ -48,7 +48,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def document_roots
-        perform_request({ :api_function => 'getdocroots' })
+        perform_request({ api_function: 'getdocroots' })
       end
       alias :docroots :document_roots
 
@@ -63,7 +63,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def count
-        perform_request({ :api_function => 'countbasedomains' })
+        perform_request({ api_function: 'countbasedomains' })
       end
     end
   end

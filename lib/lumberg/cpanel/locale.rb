@@ -6,7 +6,7 @@ module Lumberg
       #
       # Returns Hash API response
       def show
-        perform_request({ :api_function => 'get_encoding' })
+        perform_request({ api_function: 'get_encoding' })
       end
     end
   end

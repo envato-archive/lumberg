@@ -17,7 +17,7 @@ module Lumberg
       #
       # Returns Hash API response
       def show(options = {})
-        perform_request({ :api_function => 'getranddata' }.merge(options))
+        perform_request({ api_function: 'getranddata' }.merge(options))
       end
     end
   end

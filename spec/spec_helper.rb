@@ -13,7 +13,7 @@ end
 VCR.configure do |c|
   c.cassette_library_dir = 'spec/vcr_cassettes'
   c.hook_into :webmock
-  c.default_cassette_options = {:record => :none, :serialize_with => :syck}
+  c.default_cassette_options = { record: :none }
 end
 
 def live_test?

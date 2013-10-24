@@ -42,11 +42,11 @@ module Lumberg
 
         api_module = options.delete(:api_module) || self.class.api_module
         params = {
-          :response_key              => options.delete(:response_key) || "cpanelresult",
-          :cpanel_jsonapi_user       => options.delete(:api_username),
-          :cpanel_jsonapi_module     => api_module,
-          :cpanel_jsonapi_func       => options.delete(:api_function),
-          :cpanel_jsonapi_apiversion => options.delete(:api_version) || 2,
+          response_key:              options.delete(:response_key) || "cpanelresult",
+          cpanel_jsonapi_user:       options.delete(:api_username),
+          cpanel_jsonapi_module:     api_module,
+          cpanel_jsonapi_func:       options.delete(:api_function),
+          cpanel_jsonapi_apiversion: options.delete(:api_version) || 2,
         }.merge(options)
 
         server.perform_request("cpanel", params)
