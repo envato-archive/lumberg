@@ -9,7 +9,7 @@ module Lumberg
       # Returns Hash API response.
       def main_discard(options = {})
         perform_request(
-          :api_function => "checkmaindiscard"
+          api_function: "checkmaindiscard"
         )
       end
 
@@ -31,7 +31,7 @@ module Lumberg
       # Returns Hash API response.
       def add_forwarder(options = {})
         perform_request({
-          :api_function => "addforward"
+          api_function: "addforward"
         }.merge(options))
       end
 
@@ -44,7 +44,7 @@ module Lumberg
       # Returns Hash API response.
       def forwarders(options = {})
         perform_request({
-          :api_function => "listforwards"
+          api_function: "listforwards"
         }.merge(options))
       end
 
@@ -56,7 +56,7 @@ module Lumberg
       # Returns Hash API response.
       def domains_with_aliases(options = {})
         perform_request(
-          :api_function => "listaliasbackups"
+          api_function: "listaliasbackups"
         )
       end
 
@@ -71,11 +71,11 @@ module Lumberg
       # Returns Hash API response.
       def add_mailing_list(options = {})
         perform_request({
-          :api_function => "addlist",
-          :api_version  => 1,
-          "arg-0"       => options[:list],
-          "arg-1"       => options[:password],
-          "arg-2"       => options[:domain]
+          api_function: "addlist",
+          api_version:  1,
+          "arg-0"    => options[:list],
+          "arg-1"    => options[:password],
+          "arg-2"    => options[:domain]
         })
       end
 
@@ -89,7 +89,7 @@ module Lumberg
       # Returns Hash API response.
       def mailing_lists(options = {})
         perform_request({
-          :api_function => "listlists"
+          api_function: "listlists"
         }.merge(options))
       end
 
@@ -101,7 +101,7 @@ module Lumberg
       # Returns Hash API response.
       def domains(options = {})
         perform_request({
-          :api_function => "listmaildomains"
+          api_function: "listmaildomains"
         }.merge(options))
       end
 
@@ -119,7 +119,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def change_mx(options = {})
-        perform_request({ :api_function => "changemx" }.merge(options))
+        perform_request({ api_function: "changemx" }.merge(options))
       end
 
       # Public: Add an MX record
@@ -134,7 +134,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def add_mx(options = {})
-        perform_request({ :api_function => "addmx" }.merge(options))
+        perform_request({ api_function: "addmx" }.merge(options))
       end
 
       # Public: Get list of mail exchanger information.
@@ -145,7 +145,7 @@ module Lumberg
       # Returns Hash API response.
       def mx(options = {})
         perform_request({
-          :api_function => "listmxs"
+          api_function: "listmxs"
         }.merge(options))
       end
 
@@ -158,7 +158,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def delete_mx(options = {})
-        perform_request({ :api_function => "delmx" }.merge(options))
+        perform_request({ api_function: "delmx" }.merge(options))
       end
 
       # Public: Set a mail exchanger for a specified domain to local,
@@ -171,7 +171,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def set_mx_type(options = {})
-        perform_request({ :api_function => "setmxcheck" }.merge(options))
+        perform_request({ api_function: "setmxcheck" }.merge(options))
       end
 
       # Public: Set mail delivery for a domain.
@@ -186,8 +186,8 @@ module Lumberg
       # Returns Hash API response.
       def set_mail_delivery(options = {})
         perform_request({
-          :api_function => "setalwaysaccept",
-          :mxcheck      => options[:delivery]
+          api_function: "setalwaysaccept",
+          mxcheck:      options[:delivery]
         }.merge(options))
       end
 
@@ -201,7 +201,7 @@ module Lumberg
       # Returns Hash API response.
       def check_local_delivery(options = {})
         perform_request({
-          :api_function => "getalwaysaccept"
+          api_function: "getalwaysaccept"
         }.merge(options))
       end
 
@@ -245,7 +245,7 @@ module Lumberg
       # Returns Hash API response.
       def add_filter(options = {})
         perform_request({
-          :api_function => "storefilter"
+          api_function: "storefilter"
         }.merge(options))
       end
 
@@ -264,7 +264,7 @@ module Lumberg
         func = options.delete(:old_style) ? "listfilters" : "filterlist"
 
         perform_request({
-          :api_function => func
+          api_function: func
         }.merge(options))
       end
 
@@ -280,7 +280,7 @@ module Lumberg
       # Returns Hash API response.
       def add_account(options = {})
         perform_request({
-          :api_function => "addpop"
+          api_function: "addpop"
         }.merge(options))
       end
 
@@ -306,15 +306,15 @@ module Lumberg
       # Returns Hash API response.
       def accounts(options = {})
         styles = {
-          :with_disk    => "listpopswithdisk",
-          :without_disk => "listpops",
-          :with_image   => "listpopswithimage",
-          :single       => "listpopssingle"
+          with_disk:    "listpopswithdisk",
+          without_disk: "listpops",
+          with_image:   "listpopswithimage",
+          single:       "listpopssingle"
         }
         func = styles.fetch(options.delete(:style), styles[:with_disk])
 
         perform_request({
-          :api_function => func
+          api_function: func
         }.merge(options))
       end
 
@@ -326,7 +326,7 @@ module Lumberg
       # Returns Hash API response.
       def default_address(options = {})
         perform_request({
-          :api_function => "listdefaultaddresses"
+          api_function: "listdefaultaddresses"
         }.merge(options))
       end
 
@@ -339,7 +339,7 @@ module Lumberg
       # Returns Hash API response.
       def disk_usage(options = {})
         perform_request({
-          :api_function => "getdiskusage"
+          api_function: "getdiskusage"
         }.merge(options))
       end
 
@@ -353,7 +353,7 @@ module Lumberg
       # Returns Hash API response.
       def mail_dir(options = {})
         perform_request({
-          :api_function => "getabsbrowsedir"
+          api_function: "getabsbrowsedir"
         }.merge(options))
       end
 
@@ -370,7 +370,7 @@ module Lumberg
       # Returns Hash API response.
       def mail_dirs(options = {})
         perform_request({
-          :api_function => "browseboxes"
+          api_function: "browseboxes"
         }.merge(options))
       end
 
@@ -383,7 +383,7 @@ module Lumberg
       #
       # Returns Hash API response.
       def remove(options = {})
-        perform_request({ :api_function => 'delpop' }.merge(options))
+        perform_request({ api_function: 'delpop' }.merge(options))
       end
 
       # Public: Modify an email account's quota.
@@ -397,14 +397,14 @@ module Lumberg
       #
       # Returns Hash API response.
       def edit_quota(options = {})
-        perform_request({ :api_function => 'editquota' }.merge(options))
+        perform_request({ api_function: 'editquota' }.merge(options))
       end
 
       # Public: Retrieve a list of character encodings supported by cPanel
       #
       # Returns Hash API response.
       def acceptable_encodings
-        perform_request({ :api_function => 'fetchcharmaps' })
+        perform_request({ api_function: 'fetchcharmaps' })
       end
 
       # Public: Retrieve the destination for email forwarded by a domain
@@ -415,7 +415,7 @@ module Lumberg
       #
       # Returns Hash API response
       def listdomainforwards(options = {})
-        perform_request({ :api_function => "listdomainforwards" }.merge(options))
+        perform_request({ api_function: "listdomainforwards" }.merge(options))
       end
 
       # Public: Retrieve a list of auto responders associated with a domain
@@ -428,14 +428,14 @@ module Lumberg
       #
       # Returns Hash API response
       def listautoresponders(options = {})
-        perform_request({ :api_function => "listautoresponders" }.merge(options))
+        perform_request({ api_function: "listautoresponders" }.merge(options))
       end
 
       # Public: Retrieve a list of domains that use domain-level filters
       #
       # Returns Hash API response
       def listfilterbackups
-        perform_request({ :api_function => "listfilterbackups" })
+        perform_request({ api_function: "listfilterbackups" })
       end
 
       # Public: Retrieve a list of email filters
@@ -453,7 +453,7 @@ module Lumberg
       #
       # Returns Hash API response
       def filterlist(options={})
-        perform_request({ :api_function => "filterlist" }.merge(options))
+        perform_request({ api_function: "filterlist" }.merge(options))
       end
 
       # Public: Test the action of account-level mail filters. You can only
@@ -471,7 +471,7 @@ module Lumberg
       # Returns Hash API response
       def tracefilter(options={})
         options[:msg] = options.delete(:message)
-        perform_request({ :api_function => "tracefilter" }.merge(options))
+        perform_request({ api_function: "tracefilter" }.merge(options))
       end
 
       # Public: Retrieve information about an auto responder used by a
@@ -483,7 +483,7 @@ module Lumberg
       #
       # Returns Hash API response
       def fetchautoresponder(options={})
-        perform_request({ :api_function => "fetchautoresponder" }.merge(options))
+        perform_request({ api_function: "fetchautoresponder" }.merge(options))
       end
     end
   end

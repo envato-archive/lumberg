@@ -3,12 +3,12 @@ require "spec_helper"
 module Lumberg
   describe Cpanel::Email do
     let(:domain) { "lumberg-test.com" }
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:email) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server:       server,
+        api_username: api_username
       )
     end
 
@@ -25,9 +25,9 @@ module Lumberg
 
       it "adds a mailing list" do
         email.add_mailing_list(
-          :list     => "add-test",
-          :domain   => domain,
-          :password => "s3cr3t5"
+          list:     "add-test",
+          domain:   domain,
+          password: "s3cr3t5"
         )
 
         email.mailing_lists[:params][:data].find {|l|
@@ -41,9 +41,9 @@ module Lumberg
 
       before do
         email.add_mailing_list(
-          :list     => "test-list",
-          :domain   => domain,
-          :password => "s3cr3t5"
+          list:     "test-list",
+          domain:   domain,
+          password: "s3cr3t5"
         )
       end
 
@@ -61,10 +61,10 @@ module Lumberg
 
       it "adds a forwarder" do
         email.add_forwarder(
-          :domain   => domain,
-          :email    => local,
-          :fwdopt   => :fwd,
-          :fwdemail => "foo@bar.com"
+          domain:   domain,
+          email:    local,
+          fwdopt:   :fwd,
+          fwdemail: "foo@bar.com"
         )
 
         email.forwarders[:params][:data].find {|f|
@@ -80,10 +80,10 @@ module Lumberg
 
       before do
         email.add_forwarder(
-          :domain   => domain,
-          :email    => local,
-          :fwdopt   => :fwd,
-          :fwdemail => "foo@bar.com"
+          domain:   domain,
+          email:    local,
+          fwdopt:   :fwd,
+          fwdemail: "foo@bar.com"
         )
       end
 
@@ -101,10 +101,10 @@ module Lumberg
 
       before do
         email.add_forwarder(
-          :domain   => domain,
-          :email    => local,
-          :fwdopt   => :fwd,
-          :fwdemail => "foo@bar.com"
+          domain:   domain,
+          email:    local,
+          fwdopt:   :fwd,
+          fwdemail: "foo@bar.com"
         )
       end
 
@@ -120,10 +120,10 @@ module Lumberg
 
       it "adds an email account" do
         email.add_account(
-          :domain   => domain,
-          :email    => local,
-          :password => "magicpants",
-          :quota    => 0
+          domain:   domain,
+          email:    local,
+          password: "magicpants",
+          quota:    0
         )
 
         email.accounts[:params][:data].find {|a|
@@ -143,9 +143,9 @@ module Lumberg
         }[:_diskquota]
 
         email.edit_quota(
-          :domain => domain,
-          :email  => local,
-          :quota  => 10
+          domain: domain,
+          email:  local,
+          quota:  10
         )
 
         new_quota = email.accounts[:params][:data].find {|a|
@@ -163,8 +163,8 @@ module Lumberg
 
       it "removes an email account" do
         email.remove(
-          :domain => domain,
-          :email  => "#{local}@#{domain}"
+          domain: domain,
+          email:  "#{local}@#{domain}"
         )
 
         email.accounts[:params][:data].find {|a|
@@ -182,32 +182,32 @@ module Lumberg
 
       before(:each) do
         email.add_account(
-          :domain   => domain,
-          :email    => local,
-          :password => "sauce",
-          :quota    => 0
+          domain:   domain,
+          email:    local,
+          password: "sauce",
+          quota:    0
         )
       end
 
       context ":style option is :with_disk" do
         it "uses Email::listpopswithdisk" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listpopswithdisk")
+            hash_including(api_function: "listpopswithdisk")
           )
 
-          email.accounts(:style => :with_disk)
+          email.accounts(style: :with_disk)
         end
 
         it "is the default seting" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listpopswithdisk")
+            hash_including(api_function: "listpopswithdisk")
           )
 
           email.accounts
         end
 
         it "returns a list of email accounts" do
-          data = email.accounts(:style => :with_disk)[:params][:data]
+          data = email.accounts(style: :with_disk)[:params][:data]
           data.any? {|d| d[:email] == email_address }.should be_true
         end
       end
@@ -215,14 +215,14 @@ module Lumberg
       context ":style option is :without_disk" do
         it "uses Email::listpops" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listpops")
+            hash_including(api_function: "listpops")
           )
 
-          email.accounts(:style => :without_disk)
+          email.accounts(style: :without_disk)
         end
 
         it "returns a list of email accounts" do
-          data = email.accounts(:style => :without_disk)[:params][:data]
+          data = email.accounts(style: :without_disk)[:params][:data]
           data.any? {|d| d[:email] == email_address }.should be_true
         end
       end
@@ -230,14 +230,14 @@ module Lumberg
       context ":style option is :with_image" do
         it "uses Email::listpopswithimage" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listpopswithimage")
+            hash_including(api_function: "listpopswithimage")
           )
 
-          email.accounts(:style => :with_image)
+          email.accounts(style: :with_image)
         end
 
         it "returns a list of email accounts" do
-          data = email.accounts(:style => :with_image)[:params][:data]
+          data = email.accounts(style: :with_image)[:params][:data]
           data.any? {|d| d[:email] == email_address }.should be_true
         end
       end
@@ -245,14 +245,14 @@ module Lumberg
       context ":style option is :single" do
         it "uses Email::listpopssingle" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listpopssingle")
+            hash_including(api_function: "listpopssingle")
           )
 
-          email.accounts(:style => :single)
+          email.accounts(style: :single)
         end
 
         it "returns a list of email accounts" do
-          data = email.accounts(:style => :single)[:params][:data]
+          data = email.accounts(style: :single)[:params][:data]
           data.any? {|d| d[:email] == email_address }.should be_true
         end
       end
@@ -273,9 +273,9 @@ module Lumberg
 
       it "adds an mx record" do
         email.add_mx(
-          :domain     => domain,
-          :exchange   => "mail.#{domain}",
-          :preference => 2
+          domain:     domain,
+          exchange:   "mail.#{domain}",
+          preference: 2
         )[:params][:data][0][:status].should eq(1)
       end
     end
@@ -285,10 +285,10 @@ module Lumberg
 
       it "changes an existing mx record" do
         email.add_mx(
-          :domain        => domain,
-          :exchange      => "mail.#{domain}",
-          :oldpreference => 2,
-          :preference    => 1
+          domain:        domain,
+          exchange:      "mail.#{domain}",
+          oldpreference: 2,
+          preference:    1
         )[:params][:data][0][:status].should eq(1)
       end
     end
@@ -308,9 +308,9 @@ module Lumberg
 
       it "delete an existing mx record" do
         email.delete_mx(
-          :domain        => domain,
-          :exchange      => "mail.#{domain}",
-          :preference    => 1
+          domain:     domain,
+          exchange:   "mail.#{domain}",
+          preference: 1
         )[:params][:data][0][:status].should eq(1)
       end
     end
@@ -320,15 +320,15 @@ module Lumberg
 
       it "sets an existing mx record to use remote" do
         email.set_mx_type(
-          :domain        => domain,
-          :mxcheck       => "remote"
+          domain:  domain,
+          mxcheck: "remote"
         )[:params][:data][0][:detected].should  == "remote"
       end
     end
 
     describe "#set_mail_delivery" do
       let(:detected) do
-        email.mx(:domain => domain)[:params][:data][0][:detected]
+        email.mx(domain: domain)[:params][:data][0][:detected]
       end
 
       use_vcr_cassette("cpanel/email/set_mail_delivery")
@@ -338,8 +338,8 @@ module Lumberg
 
         it "sets remote mail delivery" do
           email.set_mail_delivery(
-            :domain   => domain,
-            :delivery => :remote
+            domain:   domain,
+            delivery: :remote
           )
 
           detected.should == "remote"
@@ -351,8 +351,8 @@ module Lumberg
 
         it "sets local mail delivery" do
           email.set_mail_delivery(
-            :domain   => domain,
-            :delivery => :local
+            domain:   domain,
+            delivery: :local
           )
 
           detected.should == "local"
@@ -366,14 +366,14 @@ module Lumberg
 
         before do
           email.set_mail_delivery(
-            :domain   => domain,
-            :delivery => :local
+            domain:   domain,
+            delivery: :local
           )
         end
 
         it "returns 1" do
           email.check_local_delivery(
-            :domain => domain
+            domain: domain
           )[:params][:data][0][:alwaysaccept].should == 1
         end
       end
@@ -383,14 +383,14 @@ module Lumberg
 
         before do
           email.set_mail_delivery(
-            :domain   => domain,
-            :delivery => :remote
+            domain:   domain,
+            delivery: :remote
           )
         end
 
         it "returns 0" do
           email.check_local_delivery(
-            :domain => domain
+            domain: domain
           )[:params][:data][0][:alwaysaccept].should == 0
         end
       end
@@ -404,22 +404,22 @@ module Lumberg
 
       before do
         email.add_account(
-          :email    => local,
-          :domain   => domain,
-          :password => "abcdefg",
-          :quota    => 0
+          email:    local,
+          domain:   domain,
+          password: "abcdefg",
+          quota:    0
         )
       end
 
       it "adds an email filter" do
         result = email.add_filter(
-          :account    => "#{local}@#{domain}",
-          :filtername => filter_name,
-          :action1    => "fail",
-          :match1     => "is",
-          :opt1       => "and",
-          :part1      => "$header_from:",
-          :val1       => "hi"
+          account:    "#{local}@#{domain}",
+          filtername: filter_name,
+          action1:    "fail",
+          match1:     "is",
+          opt1:       "and",
+          part1:      "$header_from:",
+          val1:       "hi"
         )[:params][:data][0]
 
         result[:error].should == 0
@@ -436,38 +436,38 @@ module Lumberg
 
       before do
         email.add_account(
-          :email    => local,
-          :domain   => domain,
-          :password => "abcdefg",
-          :quota    => 0
+          email:    local,
+          domain:   domain,
+          password: "abcdefg",
+          quota:    0
         )
 
         email.add_filter(
-          :account    => "#{local}@#{domain}",
-          :filtername => filter_name,
-          :action1    => "fail",
-          :match1     => "is",
-          :opt1       => "and",
-          :part1      => "$header_from:",
-          :val1       => "hi"
+          account:    "#{local}@#{domain}",
+          filtername: filter_name,
+          action1:    "fail",
+          match1:     "is",
+          opt1:       "and",
+          part1:      "$header_from:",
+          val1:       "hi"
         )
       end
 
       it "returns a list of email filters" do
         email.filters(
-          :account => "#{local}@#{domain}"
+          account: "#{local}@#{domain}"
         )[:params][:data][0][:filtername].should == filter_name
       end
 
       context ":old_style option truthy" do
         it "uses deprecated Email::listfilters" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "listfilters")
+            hash_including(api_function: "listfilters")
           )
 
           email.filters(
-            :account   => "#{local}@#{domain}",
-            :old_style => true
+            account:   "#{local}@#{domain}",
+            old_style: true
           )
         end
       end
@@ -475,18 +475,18 @@ module Lumberg
       context ":old_style option falsy" do
         it "uses Email::filterlist" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "filterlist")
+            hash_including(api_function: "filterlist")
           )
 
           email.filters(
-            :account   => "#{local}@#{domain}",
-            :old_style => false
+            account:   "#{local}@#{domain}",
+            old_style: false
           )
         end
 
         it "is the default setting" do
           email.should_receive(:perform_request).with(
-            hash_including(:api_function => "filterlist")
+            hash_including(api_function: "filterlist")
           )
 
           email.filters
@@ -525,17 +525,17 @@ module Lumberg
 
       before do
         email.add_account(
-          :domain   => domain,
-          :email    => local,
-          :password => "s00pers3cr3t",
-          :quota    => 0
+          domain:   domain,
+          email:    local,
+          password: "s00pers3cr3t",
+          quota:    0
         )
       end
 
       it "gets disk usage information for an email account" do
         email.disk_usage(
-          :domain => domain,
-          :login  => local
+          domain: domain,
+          login:  local
         )[:params][:data].find {|d|
           d[:login] == local && d[:domain] == domain
         }.should_not be_nil
@@ -549,16 +549,16 @@ module Lumberg
 
       before do
         email.add_account(
-          :domain   => domain,
-          :email    => local,
-          :password => "s00pers3cr3t",
-          :quota    => 0
+          domain:   domain,
+          email:    local,
+          password: "s00pers3cr3t",
+          quota:    0
         )
       end
 
       it "gets disk usage information for an email account" do
         email.mail_dir(
-          :account => "#{local}@#{domain}"
+          account: "#{local}@#{domain}"
         )[:params][:data][0][:absdir].should match(
           /\/mail\/#{domain}\/#{local}/
         )
@@ -572,10 +572,10 @@ module Lumberg
 
       before do
         email.add_account(
-          :domain   => domain,
-          :email    => local,
-          :password => "s00pers3cr3t",
-          :quota    => 0
+          domain:   domain,
+          email:    local,
+          password: "s00pers3cr3t",
+          quota:    0
         )
       end
 
@@ -591,7 +591,7 @@ module Lumberg
 
       it "gets default address info for a domain" do
         email.default_address(
-          :domain => domain
+          domain: domain
         )[:params][:data][0][:domain].should == domain
       end
     end

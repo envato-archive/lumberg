@@ -10,7 +10,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options = {})
         perform_request({
-          :api_function => "accountmanagelist"
+          api_function: "accountmanagelist"
         }.merge(options))
       end
     end

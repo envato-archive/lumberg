@@ -2,12 +2,12 @@ require "spec_helper"
 
 module Lumberg
   describe Cpanel::Backups do
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:backups) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server: server,
+        api_username: api_username
       )
     end
 

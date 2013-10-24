@@ -14,7 +14,7 @@ module Lumberg
       #
       # Returns Hash API response
       def list(options = {})
-        perform_request({ :api_function => 'listredirects' }.merge(options))
+        perform_request({ api_function: 'listredirects' }.merge(options))
       end
 
       # Public: This function returns either the domain name entered or '** All
@@ -35,7 +35,7 @@ module Lumberg
             "#{self.class.name}##{__method__} cannot accept both `:url` and `:domain`"
         end
         function = options[:domain].present? ? 'redirectname' : 'redirecturlname'
-        perform_request({ :api_function => function }.merge(options))
+        perform_request({ api_function: function }.merge(options))
       end
     end
   end

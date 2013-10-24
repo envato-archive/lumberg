@@ -57,7 +57,7 @@ module Lumberg
         options[:checkleaf]    = options.delete(:check_leaf)
         options[:showdotfiles] = options.delete(:show_dot_files)
 
-        perform_request({ :api_function => 'listfiles' }.merge(options))
+        perform_request({ api_function: 'listfiles' }.merge(options))
       end
 
       # Public: View a file within your home directory. This function also
@@ -74,7 +74,7 @@ module Lumberg
       def show(options = {})
         options[:dir] = options.delete(:directory)
 
-        perform_request({ :api_function => 'viewfile' }.merge(options))
+        perform_request({ api_function: 'viewfile' }.merge(options))
       end
 
       # Public: Retrieve information about specific files
@@ -91,14 +91,14 @@ module Lumberg
       def stat(options = {})
         options[:dir] = options.delete(:directory)
 
-        perform_request({ :api_function => 'statfiles' }.merge(options))
+        perform_request({ api_function: 'statfiles' }.merge(options))
       end
 
       # Public: Retrieve disk usage statistics about your account.
       #
       # Returns Hash API response.
       def disk_usage
-        perform_request({ :api_function => 'getdiskinfo' })
+        perform_request({ api_function: 'getdiskinfo' })
       end
 
       # Public: Perform an operation on a file or group of files. You can use
@@ -138,7 +138,7 @@ module Lumberg
         options[:sourcefiles] = options.delete(:source_files)
         options[:destfiles] = options.delete(:destination_files)
 
-        perform_request({ :api_function => "fileop" }.merge(options))
+        perform_request({ api_function: "fileop" }.merge(options))
       end
     end
   end

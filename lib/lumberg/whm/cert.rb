@@ -69,7 +69,7 @@ module Lumberg
       #  * <tt>none</tt> - PENDING
       def listcrts(options = {})
         server.force_response_type = :ssl
-        result = server.perform_request('listcrts', options.merge(:response_key => 'crt'))
+        result = server.perform_request('listcrts', options.merge(response_key: 'crt'))
       end
     end
   end

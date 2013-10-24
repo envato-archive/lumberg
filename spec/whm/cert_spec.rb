@@ -7,9 +7,9 @@ SELF_KEY = File.read('./spec/sample_certs/sample.key')
 module Lumberg
   describe Whm::Cert do
     before(:each) do
-      @login  = { :host => @whm_host, :hash => @whm_hash }
+      @login  = { host: @whm_host, hash: @whm_hash }
       @server = Whm::Server.new(@login.dup)
-      @cert   = Whm::Cert.new(:server => @server.dup)
+      @cert   = Whm::Cert.new(server: @server.dup)
     end
 
     describe "#listcrts" do
@@ -26,7 +26,7 @@ module Lumberg
       use_vcr_cassette "whm/cert/fetchsslinfo"
 
       it "displays the SSL certificate, private key, and CA bundle/intermediate certificate associated with a specified domain" do
-        result = @cert.fetchsslinfo(:domain => "myhost.com", :crtdata => CERT)
+        result = @cert.fetchsslinfo(domain: "myhost.com", crtdata: CERT)
         result[:success].should be_true
         result[:message].should match("ok")
         result[:params][:crt].should match(/.*BEGIN CERTIFICATE.*/)
@@ -40,16 +40,16 @@ module Lumberg
       context "generating a new CSR" do
         subject do
           @cert.generatessl(
-            :city             => "houston",
-            :host             => "myhost.com",
-            :country          => "US",
-            :state            => "TX",
-            :company          => "Company",
-            :company_division => "Dept",
-            :email            => "test@myhost.com",
-            :pass             => "abc123",
-            :xemail           => "",
-            :noemail          => 1
+            city:             "houston",
+            host:             "myhost.com",
+            country:          "US",
+            state:            "TX",
+            company:          "Company",
+            company_division: "Dept",
+            email:            "test@myhost.com",
+            pass:             "abc123",
+            xemail:           "",
+            noemail:          1
           )
         end
 
@@ -64,16 +64,16 @@ module Lumberg
       context "generating a new CSR with an ampersand in company name" do
         subject do
           @cert.generatessl(
-            :city             => "houston",
-            :host             => "myhost.com",
-            :country          => "US",
-            :state            => "TX",
-            :company          => "Foo & Bar",
-            :company_division => "Dept",
-            :email            => "test@myhost.com",
-            :pass             => "abc123",
-            :xemail           => "",
-            :noemail          => 1
+            city:             "houston",
+            host:             "myhost.com",
+            country:          "US",
+            state:            "TX",
+            company:          "Foo & Bar",
+            company_division: "Dept",
+            email:            "test@myhost.com",
+            pass:             "abc123",
+            xemail:           "",
+            noemail:          1
           )
         end
 
@@ -90,7 +90,7 @@ module Lumberg
       use_vcr_cassette "whm/cert/installssl"
 
       it "installs a certificate" do
-        result = @cert.installssl(:domain => 'check.com', :user => "nobody", :cert => SELF_CERT, :key => SELF_KEY, :ip => '192.1.2.3')
+        result = @cert.installssl(domain: 'check.com', user: "nobody", cert: SELF_CERT, key: SELF_KEY, ip: '192.1.2.3')
         result[:success].should be_true
         result[:message].should match(/Certificate successfully installed/)
       end

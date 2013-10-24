@@ -8,7 +8,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options = {})
         perform_request({
-          :api_function => "listfullbackups"
+          api_function: "listfullbackups"
         }.merge(options))
       end
     end

@@ -12,7 +12,7 @@ module Lumberg
       #
       # Returns Hash API response
       def list(options = {})
-        perform_request({ :api_function => 'listmime' }.merge(options))
+        perform_request({ api_function: 'listmime' }.merge(options))
       end
 
       # Public: List handlers associated with Apache
@@ -25,7 +25,7 @@ module Lumberg
       #
       # Returns Hash API response
       def handlers(options = {})
-        perform_request({ :api_function => 'listhandlers' }.merge(options))
+        perform_request({ api_function: 'listhandlers' }.merge(options))
       end
     end
   end

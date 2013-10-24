@@ -3,9 +3,9 @@ require "spec_helper"
 module Lumberg
   describe Cpanel::Base do
     before(:each) do
-      @login  = { :host => @whm_host, :hash => @whm_hash }
+      @login  = { host: @whm_host, hash: @whm_hash }
       @server = Whm::Server.new(@login.dup)
-      @base   = Cpanel::Base.new(:server => @server, :api_username => "foodawg")
+      @base   = Cpanel::Base.new(server: @server, api_username: "foodawg")
     end
 
     describe "::api_module" do
@@ -29,7 +29,7 @@ module Lumberg
       end
 
       it "allows a server hash to be passed in" do
-        base = Cpanel::Base.new(:server => @login, :api_username => "foodawg")
+        base = Cpanel::Base.new(server: @login, api_username: "foodawg")
         base.server.should be_a(Whm::Server)
       end
 
@@ -37,9 +37,9 @@ module Lumberg
 
     describe "#perform_request" do
       let(:valid_options) {{
-        :api_username => "foodawg",
-        :api_module   => "SomeModule",
-        :api_function => "some_function"
+        api_username: "foodawg",
+        api_module:    "SomeModule",
+        api_function:  "some_function"
       }}
 
       context "requires api_username" do
@@ -47,12 +47,12 @@ module Lumberg
           @base.server.should_receive(:perform_request).with(
             anything,
             hash_including(
-              :cpanel_jsonapi_module   => "SomeModule",
-              :cpanel_jsonapi_func     => "some_function",
-              :cpanel_jsonapi_user     => "foodawg"
+              cpanel_jsonapi_module: "SomeModule",
+              cpanel_jsonapi_func:   "some_function",
+              cpanel_jsonapi_user:   "foodawg"
             )
           )
-          @base.perform_request(:api_module => "SomeModule", :api_function => "some_function")
+          @base.perform_request(api_module: "SomeModule", api_function: "some_function")
         end
       end
 
@@ -60,9 +60,9 @@ module Lumberg
         it "performs the request with specified API version" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:cpanel_jsonapi_apiversion => 1234)
+            hash_including(cpanel_jsonapi_apiversion: 1234)
           )
-          @base.perform_request(valid_options.merge(:api_version => 1234))
+          @base.perform_request(valid_options.merge(api_version: 1234))
         end
       end
 
@@ -70,7 +70,7 @@ module Lumberg
         it "sets API version to 2" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:cpanel_jsonapi_apiversion => 2)
+            hash_including(cpanel_jsonapi_apiversion: 2)
           )
           @base.perform_request(valid_options)
         end
@@ -80,9 +80,9 @@ module Lumberg
         it "performs the request with specified key" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:response_key => "some_key")
+            hash_including(response_key: "some_key")
           )
-          @base.perform_request(valid_options.merge(:response_key => "some_key"))
+          @base.perform_request(valid_options.merge(response_key: "some_key"))
         end
       end
 
@@ -90,7 +90,7 @@ module Lumberg
         it "sets key to \"cpanelresult\"" do
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:response_key => "cpanelresult")
+            hash_including(response_key: "cpanelresult")
           )
           @base.perform_request(valid_options)
         end
@@ -104,9 +104,9 @@ module Lumberg
       it "accepts additional call parameters" do
         @base.server.should_receive(:perform_request).with(
           anything,
-          hash_including(:awesome => "sauce")
+          hash_including(awesome: "sauce")
         )
-        @base.perform_request(valid_options.merge({ :awesome => "sauce" }))
+        @base.perform_request(valid_options.merge({ awesome: "sauce" }))
       end
 
       context "@api_username is not nil" do
@@ -114,7 +114,7 @@ module Lumberg
           @base.api_username = "foodawg"
           @base.server.should_receive(:perform_request).with(
             anything,
-            hash_including(:cpanel_jsonapi_user => "foodawg")
+            hash_including(cpanel_jsonapi_user: "foodawg")
           )
 
           options = valid_options

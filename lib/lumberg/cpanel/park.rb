@@ -11,7 +11,7 @@ module Lumberg
       # Returns Hash API response.
       def add(options = {})
         perform_request({
-          :api_function => "park"
+          api_function: "park"
         }.merge(options))
       end
 
@@ -23,7 +23,7 @@ module Lumberg
       # Returns Hash API response.
       def remove(options = {})
         perform_request({
-          :api_function => "unpark"
+          api_function: "unpark"
         }.merge(options))
       end
 
@@ -36,7 +36,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options = {})
         perform_request({
-          :api_function => "listparkeddomains"
+          api_function: "listparkeddomains"
         }.merge(options))
       end
 
@@ -49,7 +49,7 @@ module Lumberg
       # Returns Hash API response.
       def list_addon_domains(options = {})
         perform_request({
-          :api_function => "listaddondomains"
+          api_function: "listaddondomains"
         }.merge(options))
       end
 

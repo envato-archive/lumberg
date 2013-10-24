@@ -1,4 +1,4 @@
-Faraday.register_middleware :response, :format_whm => Lumberg::FormatWhm
+Faraday.register_middleware :response, format_whm: Lumberg::FormatWhm
 
 module Lumberg
   module Whm
@@ -15,7 +15,7 @@ module Lumberg
       # Enable Basic Authentication with API - default false
       attr_accessor :basic_auth
 
-      # API username - :default => root
+      # API username - default: root
       attr_accessor :user
 
       # WHM parsed response
@@ -77,11 +77,11 @@ module Lumberg
       end
 
       def get_hostname
-        perform_request('gethostname', {:response_key => 'hostname'})
+        perform_request('gethostname', {response_key: 'hostname'})
       end
 
       def version
-        perform_request('version', {:response_key => 'version'})
+        perform_request('version', {response_key: 'version'})
       end
 
       def load_average
@@ -92,25 +92,25 @@ module Lumberg
       end
 
       def system_load_average(options = {})
-        perform_request('systemloadavg', options.merge(:response_key => 'data'))
+        perform_request('systemloadavg', options.merge(response_key: 'data'))
       end
 
       def languages
-        perform_request('getlanglist', {:response_key => 'lang'})
+        perform_request('getlanglist', {response_key: 'lang'})
       end
 
       def themes
-        perform_request('getlanglist', {:response_key => 'themes'})
+        perform_request('getlanglist', {response_key: 'themes'})
       end
 
       def list_ips
-        perform_request('listips', {:response_key => 'result'})
+        perform_request('listips', {response_key: 'result'})
       end
 
       def get_tweaksetting(options = {})
         request = perform_request('get_tweaksetting',
           options.merge(
-            :response_key  => 'data',
+            response_key:     'data',
             :'api.version' => 1
           )
         )
@@ -122,7 +122,7 @@ module Lumberg
       def set_tweaksetting(options = {})
         request = perform_request('set_tweaksetting',
           options.merge(
-            :response_key  => 'metadata',
+            response_key:     'metadata',
             :'api.version' => 1
           )
         )
@@ -132,57 +132,57 @@ module Lumberg
       end
 
       def add_ip(options = {})
-        perform_request('addip', options.merge(:response_key => 'addip'))
+        perform_request('addip', options.merge(response_key: 'addip'))
       end
 
       def delete_ip(options = {})
-        perform_request('delip', options.merge(:response_key => 'delip'))
+        perform_request('delip', options.merge(response_key: 'delip'))
       end
 
       def set_hostname(options = {})
-        perform_request('sethostname', options.merge(:response_key => 'sethostname'))
+        perform_request('sethostname', options.merge(response_key: 'sethostname'))
       end
 
       def set_resolvers(options = {})
-        perform_request('setresolvers', options.merge(:response_key => 'setresolvers'))
+        perform_request('setresolvers', options.merge(response_key: 'setresolvers'))
       end
 
       def show_bandwidth(options = {})
-        perform_request('showbw', options.merge(:response_key => 'bandwidth'))
+        perform_request('showbw', options.merge(response_key: 'bandwidth'))
       end
 
       def set_nv_var(options = {})
-        perform_request('nvset', options.merge(:response_key => 'nvset'))
+        perform_request('nvset', options.merge(response_key: 'nvset'))
       end
 
       def get_nv_var(options = {})
-        perform_request('nvget', options.merge(:response_key => 'nvget'))
+        perform_request('nvget', options.merge(response_key: 'nvget'))
       end
 
       def reboot
-        perform_request('reboot', {:response_key => "reboot"})
+        perform_request('reboot', {response_key: "reboot"})
       end
 
       def account
-        @account ||= Account.new(:server => self)
+        @account ||= Account.new(server: self)
       end
 
       def dns
-        @dns ||= Dns.new(:server => self)
+        @dns ||= Dns.new(server: self)
       end
 
       def reseller
-        @reseller ||= Reseller.new(:server => self)
+        @reseller ||= Reseller.new(server: self)
       end
 
       def cert
-        @cert ||= Cert.new(:server => self)
+        @cert ||= Cert.new(server: self)
       end
 
     private
 
       def do_request(uri, function, params)
-        @response = Faraday.new(:url => uri, :ssl => ssl_options) do |c|
+        @response = Faraday.new(url: uri, ssl: ssl_options) do |c|
           if basic_auth
             c.basic_auth @user, @hash
           else
@@ -217,12 +217,12 @@ module Lumberg
       def ssl_options
         if @ssl_verify
           {
-            :verify_mode => OpenSSL::SSL::VERIFY_PEER,
-            :ca_file     => File.join(Lumberg::base_path, "cacert.pem")
+            verify_mode: OpenSSL::SSL::VERIFY_PEER,
+            ca_file:     File.join(Lumberg::base_path, "cacert.pem")
           }
         else
           {
-            :verify_mode => OpenSSL::SSL::VERIFY_NONE
+            verify_mode: OpenSSL::SSL::VERIFY_NONE
           }
         end
       end

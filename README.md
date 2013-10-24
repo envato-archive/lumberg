@@ -7,7 +7,7 @@ beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Confirmed to work with ruby 1.8.7, 1.9.2, REE and JRuby 1.6.0 on
+Confirmed to work with ruby 1.9.3, 2.0.0 and JRuby 1.9 mode on
 cPanel 11.28+
 
 [Build Status]: http://travis-ci.org/site5/lumberg
@@ -26,8 +26,8 @@ Create a server object and connect to WHM using your host and hash:
 ```ruby
 require 'lumberg'
 server = Lumberg::Whm::Server.new(
-  :host => WHM_HOST,
-  :hash => WHM_HASH
+  host: WHM_HOST,
+  hash: WHM_HASH
 )
 ```
 
@@ -35,9 +35,9 @@ If you are using HTTP Basic Authentication with a username/password:
 
 ```ruby
 server = Lumberg::Whm::Server.new(
-  :host => WHM_HOST,
-  :user => USERNAME,
-  :hash => 'my_password'
+  host: WHM_HOST,
+  user: USERNAME,
+  hash: 'my_password'
 )
 ```
 
@@ -78,29 +78,29 @@ Here's an example of what the returned data looks like for a single account
 pp result[:params][:acct].first
 
 {
-  :startdate=>false,
-  :plan           => "default",
-  :suspended      => false,
-  :theme          => "x3",
-  :shell          => "/usr/local/cpanel/bin/jailshell",
-  :maxpop         => "unlimited",
-  :maxlst         => "unlimited",
-  :maxaddons      => "*unknown*",
-  :suspendtime    => nil,
-  :ip             => false,
-  :maxsub         => "unlimited",
-  :domain         => "bob.com",
-  :maxsql         => "unlimited",
-  :partition      => "home",
-  :maxftp         => "unlimited",
-  :user           => "bob",
-  :suspendreason  => "not suspended",
-  :unix_startdate => false,
-  :diskused       => false,
-  :maxparked      => "*unknown*",
-  :email          => "*unknown*",
-  :disklimit      => "unlimited",
-  :owner          => "root"
+  startdate:      false,
+  plan:           "default",
+  suspended:      false,
+  theme:          "x3",
+  shell:          "/usr/local/cpanel/bin/jailshell",
+  maxpop:         "unlimited",
+  maxlst:         "unlimited",
+  maxaddons:      "*unknown*",
+  suspendtime:    nil,
+  ip:             false,
+  maxsub:         "unlimited",
+  domain:         "bob.com",
+  maxsql:         "unlimited",
+  partition:      "home",
+  maxftp:         "unlimited",
+  user:           "bob",
+  suspendreason:  "not suspended",
+  unix_startdate: false,
+  diskused:       false,
+  maxparked:      "*unknown*",
+  email:          "*unknown*",
+  disklimit:      "unlimited",
+  owner:          "root"
 }
 ```
 
@@ -111,9 +111,9 @@ Creating a new account requires only a username, domain, and password.
 
 ```ruby
 result = server.account.create(
-  :username => 'newuser',
-  :domain   => 'newuser.com',
-  :password => 'password'
+  username: 'newuser',
+  domain:   'newuser.com',
+  password: 'password'
 )
 
 if result[:success]
@@ -126,7 +126,7 @@ Account Creation Ok
 You can list all accounts or search for a specific account.
 
 ```ruby
-result = server.account.list(:search => 'new', :searchtype => 'user')
+result = server.account.list(search: 'new', searchtype: 'user')
 acct   = result[:params][:acct].first
 p "Found user '#{acct[:user]}' with domain '#{acct[:domain]}'"
 
@@ -137,7 +137,7 @@ Found user 'newuser' with domain 'newuser.com'
 Suspending an account is simple and the reason for suspension is optional.
 
 ```ruby
-result = server.account.suspend(:username => 'newuser', :reason => 'bad user')
+result = server.account.suspend(username: 'newuser', reason: 'bad user')
 p "user was suspended successfully" if result[:success]
 
 user was suspended successfully
@@ -147,7 +147,7 @@ We can look at the account list again to see the reason for the user's
 suspension.
 
 ```ruby
-result = server.account.list(:search => 'new', :searchtype => 'user')
+result = server.account.list(search: 'new', searchtype: 'user')
 acct   = result[:params][:acct].first
 p "user '#{acct[:user]}' was suspended with reason '#{acct[:suspendreason]}'"
 
@@ -157,7 +157,7 @@ user 'newuser' was suspended with reason 'bad user'
 Finally, we remove the user and delete their account.
 
 ```ruby
-result = server.account.remove(:username => 'newuser')
+result = server.account.remove(username: 'newuser')
 p result[:message]
 
 newuser account removed
@@ -171,13 +171,13 @@ so first we create a user account and then we can create that user as a reseller
 
 ```ruby
 result = server.account.create(
-  :username => 'rtest',
-  :domain   => 'resellerexample.com',
-  :password => 'password'
+  username: 'rtest',
+  domain:   'resellerexample.com',
+  password: 'password'
 )
 
 if result[:success]
-  result = server.reseller.create(:username => 'rtest', :makeowner => true)
+  result = server.reseller.create(username: 'rtest', makeowner: true)
   p "created reseller rtest" if result[:success]
 end
 
@@ -197,7 +197,7 @@ Suspending a reseller is pretty straightforward. It's optional to provide a
 reason for the suspension.
 
 ```ruby
-result = server.reseller.suspend(:username => 'rtest', :reason => 'bad user')
+result = server.reseller.suspend(username: 'rtest', reason: 'bad user')
 p "reseller was suspended successfully" if result[:success]
 
 user was suspended successfully
@@ -207,7 +207,7 @@ Deleting the reseller removes the reseller status from the user account. To
 also delete the user account, set the `:terminatereseller` argument.
 
 ```ruby
-result = server.reseller.terminate(:reseller => 'rtest', :terminatereseller => true)
+result = server.reseller.terminate(reseller: 'rtest', terminatereseller: true)
 p result[:message]
 
 Account Terminations Complete
@@ -227,8 +227,8 @@ Lumberg::Cpanel](#extending-lumbergcpanel) for details on how you can help.
 ```ruby
 # Create an interface object for cPanel API Email module
 email = Lumberg::Cpanel::Email.new(
-  :server       => server,  # An instance of Lumberg::Server
-  :api_username => "jerry"  # User whose cPanel we'll be interacting with
+  server:       server,  # An instance of Lumberg::Server
+  api_username: "jerry"  # User whose cPanel we'll be interacting with
 )
 
 # Get a list of email accounts
@@ -237,10 +237,10 @@ email.accounts[:params][:data] #=> Array of info hashes for each email account
 # Add an email forwarder to forward mail for my-forwarder@domain.com to
 # dest@other-domain.com
 email.add_forwarder(
-  :domain   => "domain.com",
-  :email    => "my-forwarder",
-  :fwdopt   => "fwd",
-  :fwdemail => "dest@other-domain.com"
+  domain:   "domain.com",
+  email:    "my-forwarder",
+  fwdopt:   "fwd",
+  fwdemail: "dest@other-domain.com"
 )
 
 ```
@@ -309,7 +309,7 @@ email.add_forwarder(
          # Returns Hash API response.
          def list_sprites(options = {})
            perform_request({
-            :api_function => "spritelist"
+            api_function: "spritelist"
            }.merge(options))
          end
        end

@@ -7,7 +7,7 @@ module Lumberg
       #
       # Returns Hash API response
       def traceroute
-        perform_request({ :api_function => 'traceroute' })
+        perform_request({ api_function: 'traceroute' })
       end
 
       # Public: Performs an A record DNS query for the hostname presented via
@@ -20,7 +20,7 @@ module Lumberg
       #
       # Returns Hash API response
       def query_hostname(options = {})
-        perform_request({ :api_function => 'dnszone' }.merge(options))
+        perform_request({ api_function: 'dnszone' }.merge(options))
       end
     end
   end

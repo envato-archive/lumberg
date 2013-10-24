@@ -1,6 +1,6 @@
 module Lumberg
   class FormatWhm < Faraday::Response::Middleware
-    
+
     def initialize(env, *args, &block)
       @type = args[0]
       @key = args[1]
@@ -13,11 +13,11 @@ module Lumberg
     end
 
     def response_values(env)
-      {:status => env[:status], :headers => env[:response_headers], :body => env[:body]}
+      {status: env[:status], headers: env[:response_headers], body: env[:body]}
     end
-    
+
   private
-    
+
     def format_response(response)
       success, message, params = false, nil, {}
 
@@ -33,13 +33,13 @@ module Lumberg
         when :unknown
           message = "Unknown error occurred #{response.inspect}"
       end
-      
+
       params = Whm::symbolize_keys(params)
       params = Whm::to_bool(params, @boolean_params)
 
-      {:success => success, :message => message, :params => params}
+      {success: success, message: message, params: params}
     end
-    
+
     def response_type(response)
       if !response.respond_to?(:has_key?)
         :unknown

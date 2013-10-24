@@ -15,7 +15,7 @@ module Lumberg
       # Returns Hash API response.
       def add(options = {})
         perform_request({
-          :api_function => "addsubdomain"
+          api_function: "addsubdomain"
         }.merge(options))
       end
 
@@ -27,7 +27,7 @@ module Lumberg
       # Returns Hash API response.
       def remove(options = {})
         perform_request({
-          :api_function => "delsubdomain"
+          api_function: "delsubdomain"
         }.merge(options))
       end
 
@@ -39,7 +39,7 @@ module Lumberg
       # Returns Hash API response.
       def list(options = {})
         perform_request({
-          :api_function => "listsubdomains"
+          api_function: "listsubdomains"
         }.merge(options))
       end
 
@@ -53,7 +53,7 @@ module Lumberg
       # Returns Hash API response
       def modify(options = {})
         perform_request({
-          :api_function => "changedocroot"
+          api_function: "changedocroot"
         }.merge(options))
       end
     end

@@ -6,7 +6,7 @@ module Lumberg
       #
       # Returns Hash API response
       def list
-        perform_request({ :api_function => 'listgpgkeys' })
+        perform_request({ api_function: 'listgpgkeys' })
       end
 
       # Public: Count the number of public GPG keys installed for a user. You
@@ -14,21 +14,21 @@ module Lumberg
       #
       # Returns Hash API response
       def count
-        perform_request({ :api_function => 'number_of_public_keys' })
+        perform_request({ api_function: 'number_of_public_keys' })
       end
 
       # Public: List GPG private (secret) keys associated with a user
       #
       # Returns Hash API response
       def list_private
-        perform_request({ :api_function => 'listsecretgpgkeys' })
+        perform_request({ api_function: 'listsecretgpgkeys' })
       end
 
       # Public: Count the number of private GPG keys installed for a user
       #
       # Returns Hash API response
       def count_private
-        perform_request({ :api_function => 'number_of_private_keys' })
+        perform_request({ api_function: 'number_of_private_keys' })
       end
     end
   end

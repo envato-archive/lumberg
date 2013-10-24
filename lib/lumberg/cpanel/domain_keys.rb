@@ -8,28 +8,28 @@ module Lumberg
       #
       # Returns Hash API response
       def add
-        perform_request({ :api_function => "install" })
+        perform_request({ api_function: "install" })
       end
 
       # Public: Remove DomainKeys corresponding to your domain
       #
       # Returns Hash API response
       def remove
-        perform_request({ :api_function => "uninstall" })
+        perform_request({ api_function: "uninstall" })
       end
 
       # Public: Check to see if your domain has DomainKeys installed
       #
       # Returns Hash API response
       def installed
-        perform_request({ :api_function => "installed" })
+        perform_request({ api_function: "installed" })
       end
 
       # Public: Check to see if DomainKeys are available on the server
       #
       # Returns Hash API response
       def available
-        perform_request({ :api_function => "available" })
+        perform_request({ api_function: "available" })
       end
     end
   end

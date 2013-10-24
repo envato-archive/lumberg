@@ -2,12 +2,12 @@ require "spec_helper"
 
 module Lumberg
   describe Cpanel::Support do
-    let(:server) { Whm::Server.new(:host => @whm_host, :hash => @whm_hash) }
+    let(:server) { Whm::Server.new(host: @whm_host, hash: @whm_hash) }
     let(:api_username) { "lumberg" }
     let(:support) do
       described_class.new(
-        :server       => server,
-        :api_username => api_username
+        server:       server,
+        api_username: api_username
       )
     end
 
@@ -27,7 +27,7 @@ module Lumberg
 
     describe "#contactable" do
       context "support option enabled" do
-        use_vcr_cassette("cpanel/support/contactable", :record => :new_episodes)
+        use_vcr_cassette("cpanel/support/contactable", record: :new_episodes)
 
         subject { support.contactable[:params][:data][0][:enabled] }
 
