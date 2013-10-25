@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listftp&cpanel_jsonapi_module=Ftp&cpanel_jsonapi_user=lumberg
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      User-Agent:
+      - Faraday v0.8.8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.36.2.0
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Date:
+      - Fri, 25 Oct 2013 13:23:45 GMT
+      Content-Type:
+      - text/plain; charset="utf-8"
+      Content-Length:
+      - '242'
+    body:
+      encoding: UTF-8
+      string: |
+        {"cpanelresult":{"module":"Ftp","func":"listftp","apiversion":2,"data":[{"homedir":"/home/lumberg/public_html/somethingnew.com","user":"hello","type":"sub"},{"homedir":"/home/lumberg/blah","user":"blah","type":"sub"},{"homedir":"/home/lumberg/moo","user":"moo","type":"sub"},{"homedir":"/home/lumberg","user":"lumberg","type":"main"},{"homedir":"/home/lumberg/public_ftp","user":"ftp","type":"anonymous"},{"homedir":"/home/lumberg/public_ftp","user":"anonymous","type":"anonymous"},{"homedir":"/usr/local/apache/domlogs/lumberg","user":"lumberg_logs","type":"logaccess"}],"event":{"result":1}}}
+    http_version: 
+  recorded_at: Fri, 25 Oct 2013 13:23:45 GMT
+recorded_with: VCR 2.4.0
