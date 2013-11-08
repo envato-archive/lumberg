@@ -201,6 +201,20 @@ module Lumberg
           api_function: "uploadcrt",
         }.merge(options))
       end
+
+      # Public: Removes a domain's SSL certificate. This function requires
+      # access to the 'sslinstall' feature
+      #
+      # options - Hash options for API call params (default: {})
+      #           domain: String domain corresponding to the SSL certificate
+      #           to remove
+      #
+      # Returns Hash API response
+      def remove(options = {})
+        perform_request({
+          api_version: 1, api_function: "delete", response_key: "data"
+        }.merge(options))
+      end
     end
   end
 end

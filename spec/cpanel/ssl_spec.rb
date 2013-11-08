@@ -144,5 +144,15 @@ module Lumberg
           host: domain)[:params][:data][0][:result].should eq(1)
       end
     end
+
+    describe "#remove" do
+      use_vcr_cassette "cpanel/ssl/remove"
+
+      subject { ssl.remove(domain: domain)[:params][:result] }
+
+      it "removes a certificate " do
+        subject.should include "The SSL host was successfully removed."
+      end
+    end
   end
 end
