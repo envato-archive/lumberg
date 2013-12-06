@@ -16,6 +16,7 @@ require 'lumberg/exceptions'
 require 'lumberg/config'
 require 'lumberg/whm'
 require 'lumberg/cpanel'
+require 'lumberg/whostmgr'
 
 module Lumberg
 

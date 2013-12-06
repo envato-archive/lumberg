@@ -42,6 +42,9 @@ module Lumberg
       # HTTP read/open timeout
       attr_accessor :timeout
 
+      # Whostmgr
+      attr_accessor :whostmgr
+
       #
       # ==== Required
       #  * <tt>:host</tt> - PENDING
@@ -59,6 +62,7 @@ module Lumberg
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
         @timeout    = options.delete(:timeout)
+        @whostmgr   = options.delete(:whostmgr)
 
         validate_server_host
 
@@ -193,7 +197,7 @@ module Lumberg
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @response_key, @boolean_params
           c.response :logger, create_logger_instance
-          c.response :json
+          c.response :json unless @force_response_type == :whostmgr
           c.adapter :net_http
           c.options[:timeout] = timeout if timeout
         end.get(function).body
@@ -232,7 +236,9 @@ module Lumberg
         port  = (@ssl ? 2087 : 2086)
         proto = (@ssl ? 'https' : 'http')
 
-        "#{proto}://#{@host}:#{port}/json-api/"
+        api = @whostmgr ? "scripts2" : "json-api"
+
+        "#{proto}://#{@host}:#{port}/#{api}/"
       end
 
       def format_hash(hash)
