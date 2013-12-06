@@ -28,6 +28,8 @@ module Lumberg
           success, message, params = format_query_response(response)
         when :ssl
           success, message, params = format_ssl_response(response)
+        when :whostmgr
+          success, message, params = format_whostmgr_response(response)
         when :error
           message = response['error']
         when :unknown
@@ -120,6 +122,13 @@ module Lumberg
         res.delete('message')
       end
       return success, message, res
+    end
+
+    def format_whostmgr_response(response)
+      message = "You have successfully deleted the SSL host"
+      if res = response.match(/(?<message>#{message})/)
+        return true, res[:message], []
+      end
     end
   end
 end
