@@ -125,9 +125,11 @@ module Lumberg
     end
 
     def format_whostmgr_response(response)
-      message = "You have successfully deleted the SSL host"
+      message = "successfully deleted|deleted successfully"
       if res = response.match(/(?<message>#{message})/)
         return true, res[:message], []
+      else
+        return false, "", []
       end
     end
   end

@@ -66,12 +66,15 @@ module Lumberg
 
         validate_server_host
 
-        @base_url   = format_url(options)
+        @base_url = format_url(options)
       end
 
       def perform_request(function, options = {})
         # WHM sometime uses different keys for the result hash
         @response_key = options.delete(:response_key) || 'result'
+
+        @whostmgr = options.delete(:whostmgr)
+        @base_url = format_url(options) if @whostmgr
         @function = function
         @params   = format_query(options)
 
