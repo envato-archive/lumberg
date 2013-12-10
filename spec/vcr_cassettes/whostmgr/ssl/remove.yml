@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/scripts2/realdelsslhost?host=lumberg-test.com&whostmgr=1
+    uri: https://myhost.com:2087/scripts2/realdelsslhost?host=lumberg-test.com
     body:
       encoding: US-ASCII
       string: ''
@@ -31,7 +31,7 @@ http_interactions:
       Transfer-Encoding:
       - chunked
       Date:
-      - Fri, 06 Dec 2013 21:10:07 GMT
+      - Mon, 09 Dec 2013 20:25:13 GMT
       Content-Type:
       - text/html; charset=utf-8
     body:
@@ -168,5 +168,5 @@ http_interactions:
         MjAxMwogICAgICAgICAgICBodHRwOi8vY3BhbmVsLm5ldC8gIFVuYXV0aG9y
         aXplZCBjb3B5aW5nIGlzIHByb2hpYml0ZWQgLS0+Cg==
     http_version: 
-  recorded_at: Fri, 06 Dec 2013 21:10:08 GMT
+  recorded_at: Mon, 09 Dec 2013 20:25:14 GMT
 recorded_with: VCR 2.4.0

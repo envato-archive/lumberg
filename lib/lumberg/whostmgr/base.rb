@@ -6,8 +6,7 @@ module Lumberg
 
         server.force_response_type = :whostmgr
 
-        server.perform_request(
-          function, { whostmgr: true }.merge(options))
+        server.perform_request function, options.merge({ whostmgr: true })
       end
     end
   end
