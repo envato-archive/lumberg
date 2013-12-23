@@ -1,3 +1,5 @@
+require 'zlib'
+
 module Lumberg
   class FormatWhm < Faraday::Response::Middleware
 
@@ -9,7 +11,22 @@ module Lumberg
     end
 
     def on_complete(env)
-      env[:body] = format_response(env[:body])
+      encoding = env[:response_headers]['content-encoding']
+
+      encoding = encoding.to_s.downcase if encoding
+
+      body = case encoding
+             when 'gzip'
+               env[:response_headers].delete('content-encoding')
+               Zlib::GzipReader.new(StringIO.new(env[:body])).read
+             when 'deflate'
+               env[:response_headers].delete('content-encoding')
+               Zlib::Inflate.inflate(env[:body])
+             else
+               env[:body]
+             end
+
+      env[:body] = format_response body
     end
 
     def response_values(env)
