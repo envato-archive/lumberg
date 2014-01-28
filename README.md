@@ -350,4 +350,4 @@ information still present (check URLs, authorization params, etc.).
 
 ## Copyright
 
-Copyright (c) 2012-2013 Site5.com. See LICENSE for details.
+Copyright (c) 2012-2014 Site5.com. See LICENSE for details.
