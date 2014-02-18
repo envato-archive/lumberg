@@ -71,6 +71,18 @@ module Lumberg
         server.force_response_type = :ssl
         result = server.perform_request('listcrts', options.merge(response_key: 'crt'))
       end
+
+      # Public: Gets information about each vhost on the server and the SSL
+      # certificates that are installed on them.
+      #
+      # Returs a Hash
+      def fetch_ssl_vhosts
+        server.perform_request(
+          'fetch_ssl_vhosts', { 
+            :"api.version" => 1,
+            response_key:  "data"
+          })
+      end
     end
   end
 end
