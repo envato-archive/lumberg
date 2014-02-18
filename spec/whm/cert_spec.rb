@@ -95,5 +95,16 @@ module Lumberg
         result[:message].should match(/Certificate successfully installed/)
       end
     end
+
+    describe "#fetch_ssl_vhosts" do
+      use_vcr_cassette "whm/cert/fetch_ssl_vhosts"
+
+      it "returns SSL vhosts" do
+	result = @cert.fetch_ssl_vhosts
+
+	result[:params][:vhosts].first[:user].should eq "blah"
+	result[:params][:vhosts].first[:domains].should include "example.com"
+      end
+    end
   end
 end

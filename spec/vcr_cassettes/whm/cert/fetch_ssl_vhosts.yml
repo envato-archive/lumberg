@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/fetch_ssl_vhosts?api.version=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      User-Agent:
+      - Faraday v0.8.9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.40.1.11
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 18 Feb 2014 16:03:56 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/plain; charset="utf-8"
+    body:
+      encoding: UTF-8
+      string: '{"data":{"vhosts":[{"user":"blah","servername":"example.com","needs_sni":0,"crt":{"is_self_signed":"1","owner":{"blah":null},"issuer.organizationName":"Blah","modulus_length":"2048","modulus":"79","not_before":"1392193842","subject.commonName":"blah","not_after":"1423729842","created":"1392311070","domains":["example.com"],"issuer.commonName":"blah","issuer_text":"commonName\nexample.com\nemailAddress\nblah@example.com\ncountryName\nRO\nstateOrProvinceName\nIasi\norganizationalUnitName\nSupport\nlocalityName\nIasi\norganizationName\nBlah","id":"example_com_b9004_98a79_1423729842_3d1db388e191d249d8e248cd9e0ca531"},"ip":"192.168.1.1","domains":["example.com"],"docroot":"/home/blah/public_html","iptype":"dedicated","is_primary_on_ip":1}]},"metadata":{"version":1,"result":"1","reason":"OK","command":"fetch_ssl_vhosts"}}'
+    http_version: 
+  recorded_at: Tue, 18 Feb 2014 16:03:57 GMT
+recorded_with: VCR 2.4.0
