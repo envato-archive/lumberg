@@ -29,6 +29,27 @@ module Lumberg
           )[:message].should eq "deleted successfully"
         end
       end
+
+      describe "#create" do
+	use_vcr_cassette "whostmgr/ssl/create"
+
+	subject do
+	  ssl.create(
+            city:             "houston",
+            host:             "myhost.com",
+            country:          "US",
+            state:            "TX",
+            company:          "Company",
+            company_division: "Dept",
+            email:            "test@myhost.com",
+            pass:             "abc123",
+            xemail:           "",
+            noemail:          1)
+	end
+
+	its([:success]) { should be_true }
+	its([:message]) { should eq "successfully generated" }
+      end
     end
   end
 end

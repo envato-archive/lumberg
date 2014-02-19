@@ -25,6 +25,33 @@ module Lumberg
       def remove_data(options = {})
         perform_request({ function: "delssldata" }.merge(options))
       end
+
+      # Public: Generates a SSL certificate
+      #
+      # options - Hash options for API call params (default: {})
+      #           :city     - The city in which your server resides.
+      #           :company  - The name of the company.
+      #           :company_division - The division of your company.
+      #           :country  - A two letter abbreviation for the country (ISO-3166-1).
+      #           :email    - A valid email address that will correspond to
+      #                       the certificate signing request
+      #           :host     - The domain that corresponds to the csr.
+      #           :state    - A two letter abbreviation that corresponds to the
+      #                       state.
+      #           :pass     - The password of the csr.
+      #
+      # Returns a Hash API response.
+      def create(options = {})
+        options[:countryName]            = options.delete(:country).upcase
+        options[:stateOrProvinceName]	   = options.delete(:state)
+        options[:localityName]		       = options.delete(:city)
+        options[:organizationName]	     = options.delete(:company)
+        options[:organizationalUnitName] = options.delete(:company_division)
+        options[:domains]                = options.delete(:host)
+        options[:emailAddress]      		 = options.delete(:email)
+
+        perform_request({ function: "dogencrt" }.merge(options))
+      end
     end
   end
 end
