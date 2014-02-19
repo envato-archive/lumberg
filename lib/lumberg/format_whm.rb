@@ -142,7 +142,8 @@ module Lumberg
     end
 
     def format_whostmgr_response(response)
-      message = "successfully deleted|deleted successfully"
+      message = "successfully deleted|deleted successfully|successfully" \
+		" generated"
       if res = response.match(/(?<message>#{message})/)
         return true, res[:message], []
       else

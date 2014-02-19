@@ -221,6 +221,11 @@ correspond to cPanel API modules. cPanel API module coverage is currently
 incomplete and we're seeking contributions. Check out [Extending
 Lumberg::Cpanel](#extending-lumbergcpanel) for details on how you can help.
 
+#### Cpanel 11.3x vs 11.4x
+
+Prefer Lumberg _v2.0.0.pre10_ if you're running Cpanel 11.3x.
+
+We're targetting Cpanel 11.4x from Lumberg _v2.0.0.pre11_ and above.
 
 #### Email example
 
