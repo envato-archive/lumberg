@@ -1,3 +1,3 @@
 module Lumberg
-  VERSION = '2.0.0.pre11'
+  VERSION = '2.0.0.pre12'
 end
