@@ -27,5 +27,6 @@ module Lumberg
     require "lumberg/cpanel/mysql"
     require "lumberg/cpanel/domain_keys"
     require "lumberg/cpanel/ftp"
+    require "lumberg/cpanel/mysql_db"
   end
 end
