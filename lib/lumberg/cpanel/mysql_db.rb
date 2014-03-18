@@ -3,6 +3,7 @@ module Lumberg
     # Public: Allows you to manage MySQL Databases, users and other related settings.
     class MysqlDb < Base
       def self.api_module; "Mysql"; end
+
       # Public: Add a new MySQL database to a cPanel account.
       #
       # options - Hash options for API call params (default: {}).
@@ -13,7 +14,7 @@ module Lumberg
         perform_request({
           api_function: 'adddb',
           'arg-0' => options.delete(:dbname)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Create a new MySQL user.
@@ -28,7 +29,7 @@ module Lumberg
           api_function: 'adduser',
           'arg-0' => options.delete(:username),
           'arg-1' => options.delete(:password)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Grant a user permission to access a cPanel account's database.
@@ -47,7 +48,7 @@ module Lumberg
           'arg-0' => options.delete(:dbname),
           'arg-1' => options.delete(:dbuser),
           'arg-2' => options.delete(:perms_list)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Retrieve the number of database users an account has created.
@@ -56,7 +57,7 @@ module Lumberg
       def number_of_dbs(options = {})
         perform_request({
           api_function: 'number_of_dbs'
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Run a MySQL database check.
@@ -69,9 +70,8 @@ module Lumberg
         perform_request({
           api_function: 'checkdb',
           'arg-0' => options.delete(:dbname)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
-
 
       # Public: Run a MySQL database repair.
       #
@@ -83,7 +83,7 @@ module Lumberg
         perform_request({
           api_function: 'repairdb',
           'arg-0' => options.delete(:dbname)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Force an update of MySQL privileges and passwords.
@@ -94,7 +94,7 @@ module Lumberg
       def update_privs(options = {})
         perform_request({
           api_function: 'updateprivs'
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Refresh the cache of MySQL information. This includes users,
@@ -106,14 +106,14 @@ module Lumberg
       def init_cache(options = {})
         perform_request({
           api_function: 'initcache'
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Disallow a MySQL user from accessing a database.
       #
       # options - Hash options for API call params (default: {})
-      #   dbname - String MySQL database from which to remove the user's permissions.
-      #   dbuser - String name of the MySQL user to remove.
+      #   :dbname - String MySQL database from which to remove the user's permissions.
+      #   :dbuser - String name of the MySQL user to remove.
       #
       # Returns Hash API response.
       def del_user_db(options = {})
@@ -121,7 +121,7 @@ module Lumberg
           api_function: 'deluserdb',
           'arg-0' => options.delete(:dbname),
           'arg-1' => options.delete(:dbuser)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Remove a user from MySQL.
@@ -136,7 +136,7 @@ module Lumberg
         perform_request({
           api_function: 'deluser',
           'arg-0' => options.delete(:dbuser)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Remove a database from MySQL.
@@ -151,7 +151,7 @@ module Lumberg
         perform_request({
           api_function: 'deldb',
           'arg-0' => options.delete(:dbname)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Authorize a remote host to access a cPanel account's MySQL users.
@@ -164,7 +164,7 @@ module Lumberg
         perform_request({
          api_function: 'addhost',
          'arg-0' => options.delete(:hostname)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       # Public: Remove host access permissions from MySQL.
@@ -177,13 +177,13 @@ module Lumberg
         perform_request({
           api_function: 'delhost',
           'arg-0' => options.delete(:host)
-        }.merge(default_options).merge(options))
+        }.merge(default_options(options)))
       end
 
       private
 
-      def default_options
-        { api_version: 1, response_key: 'data' }
+      def default_options(options)
+        { api_version: 1, response_key: 'data' }.merge(options)
       end
     end
   end
