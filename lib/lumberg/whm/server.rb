@@ -170,6 +170,26 @@ module Lumberg
         perform_request('reboot', {response_key: "reboot"})
       end
 
+      def list_hooks
+        request = perform_request('list_hooks',
+                                  response_key: 'data',
+                                  :'api.version' => 1)
+
+        request[:success] = request.has_key?(:params)
+
+        request
+      end
+
+      def edit_hook(options = {})
+        request = perform_request('edit_hook',
+                                  options.merge(:'api.version' => 1,
+                                                response_key: 'metadata'))
+
+        request[:success] = request[:params][:reason] == 'OK'
+
+        request
+      end
+
       def account
         @account ||= Account.new(server: self)
       end

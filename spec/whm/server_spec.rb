@@ -345,5 +345,23 @@ module Lumberg
         result[:params][:acct].should have(3).accounts
       end
     end
+
+    describe "#list_hooks" do
+      use_vcr_cassette "whm/server/list_hooks"
+
+      it "retrieves available hooks" do
+        result = @whm.list_hooks
+        result[:success].should be_true
+      end
+    end
+
+    describe "#edit_hook" do
+      use_vcr_cassette "whm/server/edit_hook"
+
+      it "changes a hook state" do
+        result = @whm.edit_hook(id: '1234', disabled: 1)
+        result[:success].should be_true
+      end
+    end
   end
 end
