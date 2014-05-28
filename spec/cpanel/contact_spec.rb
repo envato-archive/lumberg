@@ -29,7 +29,7 @@ module Lumberg
       let(:email_address) { "testing@lumberg-test.com" }
       let(:result) { Hash.new }
 
-      use_vcr_cassette("cpanel/contact/update", record: :new_episodes)
+      use_vcr_cassette("cpanel/contact/update")
 
       context "configure contact email address and enables notifications" do
         it "should setup email address and bandwidth limit notification" do

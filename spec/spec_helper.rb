@@ -2,6 +2,7 @@
 require 'rspec'
 require 'lumberg'
 require 'lumberg/exceptions'
+require 'webmock/rspec'
 require 'vcr'
 require 'timeout'
 
@@ -36,4 +37,3 @@ RSpec.configure do |c|
     end
   end
 end
-

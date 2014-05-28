@@ -1,40 +1,40 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=viewfile&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir&file=.lastlogin
-    body: 
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=viewfile&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir=&file=.lastlogin
+    body:
       string: ""
-    headers: 
-      Accept: 
+    headers:
+      Accept:
       - "*/*"
-      Authorization: 
+      Authorization:
       - WHM root:iscool
-      User-Agent: 
+      User-Agent:
       - Faraday v0.8.7
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
+    headers:
+      Date:
       - Wed, 15 May 2013 04:22:40 GMT
-      X-Keep-Alive-Count: 
+      X-Keep-Alive-Count:
       - "1"
-      Server: 
+      Server:
       - cpsrvd/11.36.0.4
-      Content-Type: 
+      Content-Type:
       - application/json; charset="utf-8"
-      Content-Length: 
+      Content-Length:
       - "437"
-      Keep-Alive: 
+      Keep-Alive:
       - timeout=70, max=200
-      Connection: 
+      Connection:
       - Keep-Alive
-    body: 
+    body:
       string: |
         {"cpanelresult":{"func":"viewfile","apiversion":2,"data":[{"formatting_after":"</pre></div>","file":".lastlogin","dir":"/home/lumberg","mimename":"text-x-generic","contents":"192.168.25.11","formatting_before":"<div id=\"file_viewer\" style=\"border: 2px solid #ccc; background: #fff;\"><pre>","fileinfo":" ASCII text, with no line terminators\n","mimetype":"text/x-generic","filetype":"file"}],"module":"Fileman","event":{"result":1}}}
 
-    http_version: 
+    http_version:
   recorded_at: Wed, 15 May 2013 04:17:59 GMT
 recorded_with: VCR 2.0.1
