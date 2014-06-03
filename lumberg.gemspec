@@ -15,13 +15,14 @@ Gem::Specification.new do |s|
 
   s.rubyforge_project = "lumberg"
 
-  s.add_runtime_dependency 'json',               '~> 1.8'
-  s.add_runtime_dependency 'faraday',            '~> 0.8.9'
+  s.add_runtime_dependency 'json',               '>= 1.8'
+  s.add_runtime_dependency 'faraday',            '~> 0.9.0'
   s.add_runtime_dependency 'faraday_middleware', '~> 0.9.0'
-  s.add_runtime_dependency('jruby-openssl', '~> 0.7.3') if RUBY_PLATFORM == 'java'
+  s.add_runtime_dependency('jruby-openssl', '>= 0.7.3') if RUBY_PLATFORM == 'java'
+
   s.add_development_dependency 'rspec', '~> 2.10.0'
-  s.add_development_dependency 'webmock', '~> 1.8.7'
-  s.add_development_dependency 'vcr', '~> 2.4.0'
+  s.add_development_dependency 'webmock', '~> 1.18.0'
+  s.add_development_dependency 'vcr', '~> 2.9.2'
   s.add_development_dependency 'rake', '~> 0.9.2.2'
 
   s.files       += %w[Gemfile LICENSE Rakefile README.md]

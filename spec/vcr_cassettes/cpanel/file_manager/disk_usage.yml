@@ -1,38 +1,38 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
     uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=getdiskinfo&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg
-    body: 
+    body:
       string: ""
-    headers: 
-      Accept: 
+    headers:
+      Accept:
       - "*/*"
-      Authorization: 
+      Authorization:
       - WHM root:iscool
-      User-Agent: 
+      User-Agent:
       - Faraday v0.8.7
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
+    headers:
+      Date:
       - Wed, 15 May 2013 04:22:41 GMT
-      X-Keep-Alive-Count: 
+      X-Keep-Alive-Count:
       - "1"
-      Server: 
+      Server:
       - cpsrvd/11.36.0.4
-      Content-Type: 
+      Content-Type:
       - application/json; charset="utf-8"
-      Content-Length: 
+      Content-Length:
       - "650"
-      Keep-Alive: 
+      Keep-Alive:
       - timeout=70, max=200
-      Connection: 
+      Connection:
       - Keep-Alive
-    body: 
+    body:
       string: "{\"cpanelresult\":{\"apiversion\":2,\"func\":\"getdiskinfo\",\"module\":\"Fileman\",\"data\":[{\"file_upload_max_bytes_humansize\":\"90.95\xC2\xA0TB\",\"file_upload_remain_humansize\":\"\xE2\x88\x9E\",\"spacelimit\":\"\xE2\x88\x9E\",\"spaceremain\":\"\xE2\x88\x9E\",\"spaceremain_humansize\":\"\xE2\x88\x9E\",\"file_upload_must_leave_bytes_humansize\":\"5\xC2\xA0MB\",\"filesused\":\"82\",\"file_upload_remain\":\"\xE2\x88\x9E\",\"spaceused\":\"339968\",\"fileslimit_humansize\":\"0\xC2\xA0bytes\",\"filesremain\":\"\xE2\x88\x9E\",\"filesremain_humansize\":\"\xE2\x88\x9E\",\"fileslimit\":\"0\",\"file_upload_max_bytes\":\"99999999999999\",\"spaceused_humansize\":\"332\xC2\xA0KB\",\"spacelimit_humansize\":\"\xE2\x88\x9E\",\"file_upload_must_leave_bytes\":\"5242880\",\"filesused_humansize\":\"82\xC2\xA0bytes\"}],\"event\":{\"result\":1}}}\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 15 May 2013 04:18:01 GMT
 recorded_with: VCR 2.0.1

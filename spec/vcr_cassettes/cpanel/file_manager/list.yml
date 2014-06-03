@@ -1,38 +1,38 @@
---- 
-http_interactions: 
-- request: 
+---
+http_interactions:
+- request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?checkleaf&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfiles&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir&filelist&filepath&needmime&showdotfiles
-    body: 
+    uri: https://myhost.com:2087/json-api/cpanel?checkleaf=&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfiles&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir=&filelist=&filepath=&needmime=&showdotfiles=
+    body:
       string: ""
-    headers: 
-      Accept: 
+    headers:
+      Accept:
       - "*/*"
-      Authorization: 
+      Authorization:
       - WHM root:iscool
-      User-Agent: 
+      User-Agent:
       - Faraday v0.8.7
-  response: 
-    status: 
+  response:
+    status:
       code: 200
       message: OK
-    headers: 
-      Date: 
+    headers:
+      Date:
       - Wed, 15 May 2013 04:22:40 GMT
-      X-Keep-Alive-Count: 
+      X-Keep-Alive-Count:
       - "1"
-      Server: 
+      Server:
       - cpsrvd/11.36.0.4
-      Content-Type: 
+      Content-Type:
       - application/json; charset="utf-8"
-      Content-Length: 
+      Content-Length:
       - "1784"
-      Keep-Alive: 
+      Keep-Alive:
       - timeout=70, max=200
-      Connection: 
+      Connection:
       - Keep-Alive
-    body: 
+    body:
       string: "{\"cpanelresult\":{\"module\":\"Fileman\",\"event\":{\"result\":1},\"apiversion\":2,\"data\":[{\"mode\":16872,\"uid\":\"\",\"fullpath\":\"/home/lumberg/access-logs\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368589502\",\"gid\":520,\"file\":\"access-logs\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1367898732\",\"nicemode\":\"0750\",\"size\":\"4096\"},{\"mode\":16872,\"uid\":522,\"fullpath\":\"/home/lumberg/etc\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368078989\",\"gid\":12,\"file\":\"etc\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1368078989\",\"nicemode\":\"0750\",\"size\":\"4096\"},{\"mode\":16873,\"uid\":522,\"fullpath\":\"/home/lumberg/mail\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368587735\",\"gid\":520,\"file\":\"mail\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1368587735\",\"nicemode\":\"0751\",\"size\":\"4096\"},{\"mode\":16877,\"uid\":522,\"fullpath\":\"/home/lumberg/public_ftp\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1367898145\",\"gid\":520,\"file\":\"public_ftp\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1367898145\",\"nicemode\":\"0755\",\"size\":\"4096\"},{\"mode\":16872,\"uid\":522,\"fullpath\":\"/home/lumberg/public_html\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368077995\",\"gid\":99,\"file\":\"public_html\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1368077995\",\"nicemode\":\"0750\",\"size\":\"4096\"},{\"mode\":16877,\"uid\":522,\"fullpath\":\"/home/lumberg/tmp\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368587735\",\"gid\":520,\"file\":\"tmp\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1368587735\",\"nicemode\":\"0755\",\"size\":\"4096\"},{\"mode\":16872,\"uid\":522,\"fullpath\":\"/home/lumberg/www\",\"path\":\"/home/lumberg\",\"absdir\":\"/home/lumberg\",\"ctime\":\"1368077995\",\"gid\":99,\"file\":\"www\",\"type\":\"dir\",\"humansize\":\"4\xC2\xA0KB\",\"mtime\":\"1368077995\",\"nicemode\":\"0750\",\"size\":\"4096\"}],\"func\":\"listfiles\"}}\n"
-    http_version: 
+    http_version:
   recorded_at: Wed, 15 May 2013 04:17:59 GMT
 recorded_with: VCR 2.0.1

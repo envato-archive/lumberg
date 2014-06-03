@@ -1,4 +1,4 @@
-Faraday.register_middleware :response, format_whm: Lumberg::FormatWhm
+Faraday::Response.register_middleware format_whm: Lumberg::FormatWhm
 
 module Lumberg
   module Whm
