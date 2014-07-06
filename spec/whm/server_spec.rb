@@ -363,5 +363,14 @@ module Lumberg
         result[:success].should be_true
       end
     end
+
+    describe '#disk_usage' do
+      use_vcr_cassette 'whm/server/disk_usage'
+
+      it 'gets remote server disk usage' do
+        result = @whm.disk_usage
+        result[:success].should be_true
+      end
+    end
   end
 end
