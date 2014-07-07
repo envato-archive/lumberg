@@ -190,6 +190,16 @@ module Lumberg
         request
       end
 
+      def disk_usage
+        request = perform_request('getdiskusage',
+                                  response_key: 'data',
+                                  :'api.version' => 1)
+
+        request[:success] = request.has_key?(:params)
+
+        request
+      end
+
       def account
         @account ||= Account.new(server: self)
       end

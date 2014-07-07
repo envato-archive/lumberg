@@ -1,0 +1,45 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/getdiskusage?api.version=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      User-Agent:
+      - Faraday v0.9.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.42.1.13
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Sun, 06 Jul 2014 23:28:13 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/plain; charset="utf-8"
+    body:
+      encoding: UTF-8
+      string: '{"data":{"partition":[{"total":1912964,"mount":"/var/tmp","used":35664,"available":1780124,"filesystem":"/tmp","percentage":2,"disk":"/tmp"},{"total":1912964,"mount":"/tmp","used":35664,"available":1780124,"filesystem":"/usr/tmpDSK","percentage":2,"disk":"/usr/tmpDSK"},{"total":51606140,"mount":"/","used":11969192,"available":37015508,"filesystem":"/dev/sda1","percentage":24,"disk":"sda1"}]},"metadata":{"result":1,"reason":"Successfully
+        retrieved disk usage","command":"getdiskusage","version":1}}'
+    http_version: 
+  recorded_at: Sun, 06 Jul 2014 23:28:14 GMT
+recorded_with: VCR 2.9.2
