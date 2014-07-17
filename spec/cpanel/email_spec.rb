@@ -596,6 +596,18 @@ module Lumberg
       end
     end
 
+    describe "#set_default_address" do
+      use_vcr_cassette("cpanel/email/set_default_address")
+
+      it "sets the default forwarding address for a domain" do
+        email.set_default_address(
+          domain:   'hello.com',
+          fwdopt:   :fwd,
+          fwdemail: "foo@bar.com"
+        )[:params][:data].first.should == 'success'
+      end
+    end
+
     describe "#listfilterbackups" do
       pending
     end

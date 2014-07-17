@@ -318,6 +318,23 @@ module Lumberg
         }.merge(options))
       end
 
+      # Public: Configure a default (catchall) email address.
+      #
+      # options - Hash options for API call params (default: {}):
+      #   :fwdopt   - String defines how unroutable mail will be handled.
+      #               Valid values are: fail, fwd, blackhole, pipe.
+      #   :domain   - String domain to apply the rule.
+      #   :failmsgs - String failure message for bounces (Optional).
+      #   :fwdemail - String email address to forward to (Optional).
+      #   :pipefwd  - String program to pipe messages to (Optional).
+      #
+      # Returns Hash API response.
+      def set_default_address(options = {})
+        perform_request({
+          api_function: "setdefaultaddress"
+        }.merge(options))
+      end
+
       # Public: Get default address info.
       #
       # options - Hash options for API call params (default: {}):

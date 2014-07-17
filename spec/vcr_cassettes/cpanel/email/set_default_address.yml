@@ -1,0 +1,43 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=setdefaultaddress&cpanel_jsonapi_module=Email&cpanel_jsonapi_user=lumberg&domain=hello.com&fwdemail=foo@bar.com&fwdopt=fwd
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      User-Agent:
+      - Faraday v0.8.9
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.42.1.22
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Date:
+      - Thu, 17 Jul 2014 09:34:41 GMT
+      Content-Type:
+      - text/plain; charset="utf-8"
+      Content-Length:
+      - '214'
+    body:
+      encoding: UTF-8
+      string: |
+        {"cpanelresult":{"module":"Email","postevent":{"result":1},"event":{"result":1},"preevent":{"result":1},"data":["success"],"func":"setdefaultaddress","apiversion":2,"error":"Fatal!Write Failure: /etc/valiases/hello.comIgnore any messages of success. This can only result in failure!"}}
+    http_version:
+  recorded_at: Thu, 17 Jul 2014 09:34:40 GMT
+recorded_with: VCR 2.7.0
