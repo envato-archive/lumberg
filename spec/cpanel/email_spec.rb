@@ -623,5 +623,17 @@ module Lumberg
     describe "#fetchautoresponder" do
       pending
     end
+    
+    describe "#change_password" do
+      use_vcr_cassette("cpanel/email/change_password")
+      
+      it "Modifies the password an e-mail account" do
+        email.change_password(
+          domain:   'myhost.com',
+          email:    'test123@myhost.com',
+          password: 'test123'
+        )[:params][:data].first[:result].should == 1
+      end
+    end
   end
 end
