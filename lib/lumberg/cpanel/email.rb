@@ -502,6 +502,20 @@ module Lumberg
       def fetchautoresponder(options={})
         perform_request({ api_function: "fetchautoresponder" }.merge(options))
       end
+      
+      # Public: This function changes an email account's password.
+      #
+      # options - Hash options for API call params (default: {}):
+      #  :domain   - String domain for the email address for which you wish
+      #              to change the password.
+      #  :email    - String username for the email address for
+      #              which you wish to change the password.
+      #  :password - String value. The desired password for the account.
+      #
+      # Returns Hash API response
+      def change_password(options={})
+        perform_request({ api_function: "passwdpop" }.merge(options))
+      end
     end
   end
 end
