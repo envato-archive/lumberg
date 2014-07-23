@@ -3,7 +3,7 @@ script: "bundle exec rake spec"
 notifications:
   email:
     recipients:
-      - engineering@internal.site5.com
+      - softwaredev-notify@wwwh.com
     on_success: never
     on_failure: always
 rvm:
