@@ -200,6 +200,22 @@ module Lumberg
         request
       end
 
+      # Public: Gets IP address for a given hostname.
+      #
+      # options - Hash of options (default: {})
+      #   :host - String host name
+      #
+      # Returns a Hash API Response
+      def lookup_nameserver_ip(options = {})
+        request = perform_request('lookupnsip',
+                                  options.merge(:'api.version' => 1,
+                                                response_key: 'data'))
+
+        request[:success] = request[:params].has_key?(:ip)
+
+        request
+      end
+
       def account
         @account ||= Account.new(server: self)
       end
