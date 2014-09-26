@@ -226,7 +226,7 @@ module Lumberg
       end
     end
 
-    describe "#listacls" do
+    describe "#list_acls" do
       use_vcr_cassette "whm/reseller/listacls"
 
       it "lists the saved reseller ACL lists" do
