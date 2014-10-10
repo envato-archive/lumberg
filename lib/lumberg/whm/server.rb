@@ -242,6 +242,7 @@ module Lumberg
             c.headers['Authorization'] = "WHM #{@user}:#{@hash}"
           end
 
+          c.headers['Accept-Encoding'] = 'deflate'
           c.params = params
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @response_key, @boolean_params
