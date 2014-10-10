@@ -7,7 +7,7 @@ beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Confirmed to work with ruby 1.9.3, 2.0.0, 2.1.0 and JRuby 1.9 mode on
+Confirmed to work with ruby 1.9.3, 2.0.0, 2.1.3 and JRuby 1.9 mode on
 cPanel 11.28+
 
 [Build Status]: http://travis-ci.org/site5/lumberg
