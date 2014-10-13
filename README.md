@@ -222,11 +222,11 @@ correspond to cPanel API modules. cPanel API module coverage is currently
 incomplete and we're seeking contributions. Check out [Extending
 Lumberg::Cpanel](#extending-lumbergcpanel) for details on how you can help.
 
-#### Cpanel 11.3x vs 11.4x
+#### cPanel 11.3x vs 11.4x
 
-Prefer Lumberg _v2.0.0.pre10_ if you're running Cpanel 11.3x.
+Prefer Lumberg _v2.0.0.pre10_ if you're running cPanel 11.3x.
 
-We're targetting Cpanel 11.4x from Lumberg _v2.0.0.pre11_ and above.
+We're targeting cPanel 11.4x from Lumberg _v2.0.0.pre11_ and above.
 
 #### Email example
 
@@ -325,7 +325,7 @@ email.add_forwarder(
 
    - In many cases, you'll name your methods to match up
      with the documented cPanel API methods. However, the documented method
-     names are sometimes a bit lengthy, confusing, or otherwise unwiedly; feel
+     names are sometimes a bit lengthy, confusing, or otherwise unwieldy; feel
      free to give your corresponding method an improved name.
    - Use [TomDoc](http://tomdoc.org/) documentation for your methods.
      Be sure to document all required and optional parameters from the
@@ -350,7 +350,7 @@ information still present (check URLs, authorization params, etc.).
 * Make your feature addition or bug fix.
 * Add tests for it. This is important so I don't break it in a
   future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
+* Commit, do not mess with Rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a
   commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
