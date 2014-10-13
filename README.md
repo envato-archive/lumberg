@@ -35,9 +35,10 @@ If you are using HTTP Basic Authentication with a username/password:
 
 ```ruby
 server = Lumberg::Whm::Server.new(
-  host: WHM_HOST,
-  user: USERNAME,
-  hash: 'my_password'
+  host:       WHM_HOST,
+  user:       USERNAME,
+  hash:       'my_password',
+  basic_auth: true
 )
 ```
 
