@@ -1,11 +1,12 @@
 module Lumberg
   module Whm
-    autoload :Base,     'lumberg/whm/base'
-    autoload :Server,   'lumberg/whm/server'
-    autoload :Account,  'lumberg/whm/account'
-    autoload :Dns,      'lumberg/whm/dns'
-    autoload :Reseller, 'lumberg/whm/reseller'
-    autoload :Cert,      'lumberg/whm/cert'
+    autoload :Base,         'lumberg/whm/base'
+    autoload :Server,       'lumberg/whm/server'
+    autoload :Account,      'lumberg/whm/account'
+    autoload :Dns,          'lumberg/whm/dns'
+    autoload :Reseller,     'lumberg/whm/reseller'
+    autoload :Cert,         'lumberg/whm/cert'
+    autoload :TransferTool, 'lumberg/whm/transfer_tool'
 
     class << self
 
@@ -16,7 +17,7 @@ module Lumberg
             arg.map { |elem| symbolize_keys elem }
           when Hash
             Hash[
-              arg.map { |key, value|  
+              arg.map { |key, value|
                 k = key.is_a?(String) ? key.gsub('-', '_').to_sym : key
                 v = symbolize_keys value
                 [k,v]
@@ -57,8 +58,8 @@ module Lumberg
         elsif input == true
           1
         elsif input.is_a?(Hash)
-          Hash[ 
-            input.map {|k,v| 
+          Hash[
+            input.map {|k,v|
               v = from_bool(v)
               [k,v]
             }
