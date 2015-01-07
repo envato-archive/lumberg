@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/fetch_transfer_session_log?api.version=1&logfile=master.log&transfer_session_id=x
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      Accept-Encoding:
+      - deflate
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.44.1.23
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Wed, 07 Jan 2015 13:18:00 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/plain; charset="utf-8"
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"reason":"OK","command":"fetch_transfer_session_log","version":1,"result":"1"},"data":{"log":"{\"type\":\"control\",\"contents\":{\"action\":\"start\",\"child_number\":0},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"initiator\",\"child_number\":0,\"msg\":\"copyacct\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"version\",\"child_number\":0,\"msg\":\"1.9\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"queue_count\",\"child_number\":0,\"msg\":\"1\",\"queue\":\"TRANSFER\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"queue_size\",\"child_number\":0,\"msg\":\"73682944\",\"queue\":\"TRANSFER\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"queue_count\",\"child_number\":0,\"msg\":\"1\",\"queue\":\"RESTORE\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"queue_size\",\"child_number\":0,\"msg\":\"73682944\",\"queue\":\"RESTORE\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"remotehost\",\"child_number\":0,\"msg\":\"192.168.1.100\"},\"pid\":\"30831\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"start\",\"item\":\"another\",\"logfile\":\"item-TRANSFER_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"queue\":\"TRANSFER\"},\"pid\":\"30833\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"process-item\",\"item\":\"another\",\"logfile\":\"item-TRANSFER_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":\"item-TRANSFER_AccountRemoteRoot_another\",\"queue\":\"TRANSFER\"},\"pid\":\"30833\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"start-item\",\"item\":\"another\",\"logfile\":\"item-TRANSFER_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":{\"size\":\"73682944\"},\"queue\":\"TRANSFER\"},\"pid\":\"30833\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"success-item\",\"item\":\"another\",\"logfile\":\"item-TRANSFER_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":{\"altered_items\":0,\"message\":null,\"dangerous_items\":0,\"contents\":{\"altered_items\":null,\"dangerous_items\":null,\"skipped_items\":null,\"warnings\":null},\"skipped_items\":0,\"warnings\":0,\"size\":\"73682944\"},\"queue\":\"TRANSFER\"},\"pid\":\"30833\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"complete\",\"child_number\":1,\"queue\":\"TRANSFER\"},\"pid\":\"30833\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"start\",\"item\":\"another\",\"logfile\":\"item-RESTORE_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"queue\":\"RESTORE\"},\"pid\":\"30835\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"process-item\",\"item\":\"another\",\"logfile\":\"item-RESTORE_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":\"item-RESTORE_AccountRemoteRoot_another\",\"queue\":\"RESTORE\"},\"pid\":\"30835\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"start-item\",\"item\":\"another\",\"logfile\":\"item-RESTORE_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":{\"size\":\"73682944\"},\"queue\":\"RESTORE\"},\"pid\":\"30835\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"success-item\",\"item\":\"another\",\"logfile\":\"item-RESTORE_AccountRemoteRoot_another\",\"item_type\":\"AccountRemoteRoot\",\"local_item\":\"another\",\"item_name\":\"Account\",\"child_number\":1,\"msg\":{\"altered_items\":0,\"message\":null,\"dangerous_items\":0,\"contents\":{\"altered_items\":[],\"dangerous_items\":[],\"skipped_items\":[],\"warnings\":[]},\"skipped_items\":0,\"warnings\":0,\"size\":\"73682944\"},\"queue\":\"RESTORE\"},\"pid\":\"30835\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"complete\",\"child_number\":1,\"queue\":\"RESTORE\"},\"pid\":\"30835\"}\n{\"type\":\"control\",\"contents\":{\"action\":\"complete\",\"child_number\":0},\"pid\":\"30831\"}\n"}}'
+    http_version: 
+  recorded_at: Wed, 07 Jan 2015 13:18:00 GMT
+recorded_with: VCR 2.9.2

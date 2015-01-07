@@ -1,0 +1,72 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/create_remote_root_transfer_session?api.version=1&compressed=1&enable_custom_pkgacct=0&host=192.168.1.100&low_priority=0&password=t00r&port=22&remote_server_type=auto&restore_threads=2&root_escalation_method=sudo&transfer_threads=2&unencrypted=0&unrestricted_restore=1&use_backups=1&user=mylogin
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      Accept-Encoding:
+      - deflate
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.44.1.23
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 06 Jan 2015 14:34:06 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/plain; charset="utf-8"
+    body:
+      encoding: ASCII-8BIT
+      string: !binary |-
+        eyJtZXRhZGF0YSI6eyJyZXN1bHQiOiIxIiwicmVhc29uIjoiT0siLCJjb21t
+        YW5kIjoiY3JlYXRlX3JlbW90ZV9yb290X3RyYW5zZmVyX3Nlc3Npb24iLCJ2
+        ZXJzaW9uIjoxfSwiZGF0YSI6eyJhbmFseXplX3Jhd291dCI6IkZldGNoaW5n
+        IGluZm9ybWF0aW9uIGZyb20gcmVtb3RlIGhvc3Q6IOKAnDE5Mi4xNjguMS4x
+        MDDigJ0g4oCmIOKAplxuRG9uZVxuRmV0Y2hpbmcgaW5mb3JtYXRpb24gZnJv
+        bSByZW1vdGUgaG9zdDog4oCcMTkyLjE2OC4xLjEwMOKAnSDigKYg4oCmXG5E
+        b25lXG4iLCJjcmVhdGVfcmF3b3V0IjoiQmFzaWMgY3JlZGVudGlhbCBjaGVj
+        ayDigKYg4oCmXG5Eb25lXG5GZXRjaGluZyBpbmZvcm1hdGlvbiBmcm9tIHJl
+        bW90ZSBob3N0OiDigJwxOTIuMTY4LjEuMTAw4oCdIOKApiDigKZcbkRvbmVc
+        bkZldGNoaW5nIFdITSBWZXJzaW9uIOKAplxuRG9uZVxuVGVzdGluZyDigJwx
+        OTIuMTY4LjEuMTAw4oCdIGZvciB0cmFuc2ZlciBzdHJlYW1pbmcgc3VwcG9y
+        dCB3aXRoIHBhc3N3b3JkIGF1dGhlbnRpY2F0aW9uLi4uLjxzdHJvbmc+VGhl
+        IHN5c3RlbSBpcyB1bmFibGUgdG8gc3RyZWFtIGFjY291bnQgdHJhbnNmZXJz
+        IHdpdGggcGFzc3dvcmQgYXV0aGVudGljYXRpb246PC9zdHJvbmc+IOKAnFN0
+        cmVhbWluZyBub3Qgc3VwcG9ydGVkOiBGZXRjaGluZyBzdHJlYW0gZnJvbSBS
+        ZW1vdGUgV0hNIHVzaW5nIOKAnGh0dHBz4oCdIGZyb20gaG9zdCDigJwxOTIu
+        MTY4LjEuMTAw4oCdIOKAplxuSFRUUC8xLjEgNDAxIEFjY2VzcyBEZW5pZWRc
+        clxuXG7igJ1cbkZldGNoaW5nIGluZm9ybWF0aW9uIGZyb20gcmVtb3RlIGhv
+        c3Q6IOKAnDE5Mi4xNjguMS4xMDDigJ0g4oCmIOKAplxuRG9uZVxuVGVzdGlu
+        ZyDigJwxOTIuMTY4LjEuMTAw4oCdIGZvciB0cmFuc2ZlciBzdHJlYW1pbmcg
+        c3VwcG9ydCB3aXRoIGFjY2Vzc2hhc2ggYXV0aGVudGljYXRpb24uLi4uPHN0
+        cm9uZz5UaGUgc3lzdGVtIGlzIHVuYWJsZSB0byBzdHJlYW0gYWNjb3VudCB0
+        cmFuc2ZlcnMgd2l0aCBhY2Nlc3NoYXNoIGF1dGhlbnRpY2F0aW9uOjwvc3Ry
+        b25nPiDigJxTdHJlYW1pbmcgbm90IHN1cHBvcnRlZDogRmV0Y2hpbmcgc3Ry
+        ZWFtIGZyb20gUmVtb3RlIFdITSB1c2luZyDigJxodHRwc+KAnSBmcm9tIGhv
+        c3Qg4oCcMTkyLjE2OC4xLjEwMOKAnSDigKZcbkFjY2VzcyBkZW5pZWRcclxu
+        RG9uZVxu4oCdXG5SZW1vdGUgU2VydmVyIFR5cGU6IOKAnFdITTExMzDigJ1c
+        biIsInRyYW5zZmVyX3Nlc3Npb25faWQiOiJ4In19
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 14:34:06 GMT
+recorded_with: VCR 2.9.2

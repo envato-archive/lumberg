@@ -1,0 +1,44 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/retrieve_transfer_session_remote_analysis?api.version=1&transfer_session_id=x
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+      Accept-Encoding:
+      - deflate
+      User-Agent:
+      - Faraday v0.9.0
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.44.1.23
+      X-Keep-Alive-Count:
+      - '1'
+      Connection:
+      - Keep-Alive
+      Keep-Alive:
+      - timeout=70, max=200
+      Transfer-Encoding:
+      - chunked
+      Date:
+      - Tue, 06 Jan 2015 15:00:03 GMT
+      Cache-Control:
+      - no-cache
+      Content-Type:
+      - text/plain; charset="utf-8"
+    body:
+      encoding: UTF-8
+      string: '{"metadata":{"reason":"OK","result":"1","version":1,"command":"retrieve_transfer_session_remote_analysis"},"data":{"transfer_session_id":"x","local":{"dbs":{"dbs":{"MYSQL":{"db_db":{"owner":"db"}},"PGSQL":{}},"users":{"MYSQL":{"db_db":{"owner":"db"}},"PGSQL":{}}},"domains":{"db.local":"db","*":"nobody"},"users":{"named":1,"sync":1,"cpaneleximscanner":1,"rpc":1,"mail":1,"xfs":1,"nfsnobody":1,"cpanelhorde":1,"mysql":1,"shutdown":1,"cpanel":1,"operator":1,"cpanelroundcube":1,"vcsa":1,"dbus":1,"db":1,"news":1,"uucp":1,"haldaemon":1,"adm":1,"cpanelphpmyadmin":1,"root":1,"dovenull":1,"rpcuser":1,"gopher":1,"cpses":1,"cpaneleximfilter":1,"cpanellogaholic":1,"bin":1,"mailman":1,"mailnull":1,"cpanellogin":1,"pcap":1,"avahi-autoipd":1,"sshd":1,"lp":1,"cpanelphppgadmin":1,"games":1,"daemon":1,"smmsp":1,"dovecot":1,"ftp":1,"nobody":1,"nscd":1,"halt":1},"dedicated_ips":{},"available_ips":[],"groups":{"kmem":1,"audio":1,"utempter":1,"named":1,"man":1,"disk":1,"mail":1,"cpaneleximscanner":1,"rpc":1,"xfs":1,"cpanelhorde":1,"nfsnobody":1,"mysql":1,"slocate":1,"compiler":1,"cpanel":1,"screen":1,"cpanelroundcube":1,"vcsa":1,"dbus":1,"mailtrap":1,"proftpd":1,"wheel":1,"db":1,"mem":1,"news":1,"dip":1,"haldaemon":1,"uucp":1,"adm":1,"cpanelphpmyadmin":1,"root":1,"dovenull":1,"rpcuser":1,"gopher":1,"cpses":1,"cpaneleximfilter":1,"cpanellogaholic":1,"bin":1,"floppy":1,"mailman":1,"mailnull":1,"users":1,"cpanellogin":1,"pcap":1,"sshd":1,"utmp":1,"tty":1,"avahi-autoipd":1,"sys":1,"lp":1,"games":1,"cpanelphppgadmin":1,"smmsp":1,"daemon":1,"dovecot":1,"ftp":1,"nobody":1,"lock":1,"nscd":1}},"options":{"skip_reseller_privs":"0","unrestricted":"1"},"config":{"shared_mysql_server":"0"},"remote":{"has_owners":1,"has_package_extensions":1,"cpversion":"11.30","has_disk_used":1,"host":"192.168.1.100","dbs":{"dbs":{"MYSQL":{"mylogin_pres411":{"owner":"mylogin"}}},"PGSQL":{}},"users":{"MYSQL":{"mylogin_pres411":{"owner":"mylogin"}},"PGSQL":{}},"resellers":{"reseller":1,"root":1},"conflicts":{},"has_xfertool":1,"server_type":"WHM1130","version":"11.44.1.23"},"items":{"packages":[{"name":"reseller_one","featurelist":"default"}],"accounts":[{"has_dedicated_ip":0,"owner":"root","bytesused":73682944,"user":"mylogin","domain":"mylogin-account.local"},{"has_dedicated_ip":0,"owner":"reseller","bytesused":172032,"user":"reseller","domain":"reseller-test.com"}]}}}'
+    http_version: 
+  recorded_at: Tue, 06 Jan 2015 15:00:04 GMT
+recorded_with: VCR 2.9.2

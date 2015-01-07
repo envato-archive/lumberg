@@ -39,24 +39,26 @@ module Lumberg
       success, message, params = false, nil, {}
 
       case @type || response_type(response)
-        when :action
-          success, message, params = format_action_response(response)
-        when :query
-          success, message, params = format_query_response(response)
-        when :ssl
-          success, message, params = format_ssl_response(response)
-        when :whostmgr
-          success, message, params = format_whostmgr_response(response)
-        when :error
-          message = response['error']
-        when :unknown
-          message = "Unknown error occurred #{response.inspect}"
+      when :action
+        success, message, params = format_action_response(response)
+      when :query
+        success, message, params = format_query_response(response)
+      when :ssl
+        success, message, params = format_ssl_response(response)
+      when :whostmgr
+        success, message, params = format_whostmgr_response(response)
+      when :error
+        message = response['error']
+      when :xfer
+        success, message, params = format_xfer_response(response)
+      else
+        message = "Unknown error occurred #{response.inspect}"
       end
 
       params = Whm::symbolize_keys(params)
       params = Whm::to_bool(params, @boolean_params)
 
-      {success: success, message: message, params: params}
+      { success: success, message: message, params: params }
     end
 
     def response_type(response)
@@ -149,6 +151,12 @@ module Lumberg
       else
         return false, "", []
       end
+    end
+
+    def format_xfer_response(response)
+      metadata = response['metadata']
+
+      return metadata['result'].to_i == 1, metadata['reason'], response['data']
     end
   end
 end
