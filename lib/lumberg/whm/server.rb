@@ -232,6 +232,10 @@ module Lumberg
         @cert ||= Cert.new(server: self)
       end
 
+      def transfer_tool
+        @transfer_tool ||= TransferTool.new(server: self)
+      end
+
     private
 
       def do_request(uri, function, params)

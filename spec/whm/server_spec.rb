@@ -382,5 +382,11 @@ module Lumberg
         result[:params][:ip].should =~ Resolv::IPv4::Regex
       end
     end
+
+    describe '#transfer_tool' do
+      subject { @whm.transfer_tool }
+
+      it { should be_a Whm::TransferTool }
+    end
   end
 end
