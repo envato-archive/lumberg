@@ -132,7 +132,7 @@ module Lumberg
       #
       # Returns Hash API Response.
       def show_log(transfer_session_id, log_type = :common)
-        options = { logfile: log_type == :common ? 'master.log' : 'master.err',
+        options = { logfile: log_type == :common ? 'master.log' : 'master.error_log',
                     transfer_session_id: transfer_session_id }
 
         server.force_response_type = :xfer
