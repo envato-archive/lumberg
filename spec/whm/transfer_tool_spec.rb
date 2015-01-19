@@ -71,17 +71,50 @@ module Lumberg
     end
 
     describe '#enqueue' do
-      use_vcr_cassette 'whm/transfer_tool/enqueue'
+      context 'enqueueing a migration' do
+        use_vcr_cassette 'whm/transfer_tool/enqueue'
 
-      subject do
-        @xfer_tool.enqueue(
-          transfer_session_id: xfer_id,
-          size: 73682944, user: 'another')
+        subject do
+          @xfer_tool.enqueue(
+            transfer_session_id: xfer_id,
+            size: 73682944, user: 'another')
+        end
+
+        its([:success]) { should be_true }
+        its([:message]) { should eq 'OK' }
+        its([:params])  { should be_nil }
       end
 
-      its([:success]) { should be_true }
-      its([:message]) { should eq 'OK' }
-      its([:params])  { should be_nil }
+      context 'copying package' do
+        let(:enqueue_transfer_options) do
+          { transfer_session_id: xfer_id,
+          package: 'some_package' }
+        end
+
+        let(:queue) { 'PackageRemoteRoot' }
+
+        before do
+          stub_request(
+            :get,
+            /enqueue_transfer_item\?api\.version=1&module=PackageRemoteRoot&package=some_package&transfer_session_id=x/
+          ).to_return(
+            status: 200,
+            body: '{"metadata":{"reason":"OK","result":"1","version":1,"command":"enqueue_transfer_item"}}'
+          )
+
+          enqueue_transfer_options.merge!(
+            "module"      => "PackageRemoteRoot",
+            "api.version" => "1"
+          )
+        end
+
+        it 'enqueues migration to PackageRemoteRoot queue and does not pass :localuser to cPanel/WHM' do
+          Lumberg::Whm::Server.any_instance.should_receive(:perform_request)
+            .with 'enqueue_transfer_item', enqueue_transfer_options
+
+          @xfer_tool.enqueue enqueue_transfer_options.merge(queue: queue)
+        end
+      end
     end
 
     describe '#start' do

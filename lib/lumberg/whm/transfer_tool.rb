@@ -83,9 +83,11 @@ module Lumberg
       def enqueue(options = {})
         default_options = { "api.version" => "1" }
 
-        options[:localuser] = options.delete(:localuser) || options[:user]
-
         options["module"] = options.delete(:queue) || "AccountRemoteRoot"
+
+        if %w(AccountRemoteRoot AccountRemoteUser AccountLocal).include?(options["module"])
+          options[:localuser] = options.delete(:localuser) || options[:user]
+        end
 
         server.force_response_type = :xfer
 
