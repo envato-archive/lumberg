@@ -7,11 +7,17 @@ beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Confirmed to work with ruby 1.9.3, 2.0.0, 2.1.3, 2.2.0 and JRuby 1.9 mode on
-cPanel 11.28+
+Confirmed to work with ruby 1.9.3, 2.0.0, 2.1.3, 2.2.0 and JRuby 1.9 mode.
 
 [Build Status]: http://travis-ci.org/site5/lumberg
 [Build Icon]: https://secure.travis-ci.org/site5/lumberg.png?branch=master
+
+
+## cPanel Version Targets
+
+* cPanel 11.4x: _v2.0.0_
+* cPanel 11.3x: _v2.0.0.pre10_
+* cPanel 11.2x: _v1.1.1_
 
 
 ## Install
@@ -134,7 +140,6 @@ p "Found user '#{acct[:user]}' with domain '#{acct[:domain]}'"
 Found user 'newuser' with domain 'newuser.com'
 ```
 
-
 Suspending an account is simple and the reason for suspension is optional.
 
 ```ruby
@@ -222,12 +227,6 @@ correspond to cPanel API modules. cPanel API module coverage is currently
 incomplete and we're seeking contributions. Check out [Extending
 Lumberg::Cpanel](#extending-lumbergcpanel) for details on how you can help.
 
-#### cPanel 11.3x vs 11.4x
-
-Prefer Lumberg _v2.0.0.pre10_ if you're running cPanel 11.3x.
-
-We're targeting cPanel 11.4x from Lumberg _v2.0.0.pre11_ and above.
-
 #### Email example
 
 ```ruby
@@ -248,8 +247,8 @@ email.add_forwarder(
   fwdopt:   "fwd",
   fwdemail: "dest@other-domain.com"
 )
-
 ```
+
 
 ## Contributing
 
@@ -336,6 +335,7 @@ email.add_forwarder(
      other parameters.
 
 ### Sanitizing VCR cassettes
+
 All HTTP interactions are recorded using VCR and FakeWeb. Please be sure to remove
 sensitive data from your cassettes. A Rake task is provided for this purpose:
 ```
@@ -348,13 +348,13 @@ information still present (check URLs, authorization params, etc.).
 
 * Fork the project.
 * Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
+* Add tests for it. This is important so we don't break it in a
   future version unintentionally.
 * Commit, do not mess with Rakefile, version, or history.
   (if you want to have your own version, that is fine but bump version in a
-  commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+  commit by itself we can ignore when we pull)
+* Send us a pull request. Bonus points for topic branches.
 
 ## Copyright
 
-Copyright (c) 2012-2014 Site5.com. See LICENSE for details.
+Copyright (c) 2015 WWWH, LLC. See LICENSE for details.
