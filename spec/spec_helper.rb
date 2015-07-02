@@ -34,6 +34,7 @@ RSpec.configure do |c|
     else
       @whm_hash = 'iscool'
       @whm_host = 'myhost.com'
+      Resolv.stub(:getaddress).with(@whm_host).and_return('11.22.33.44')
     end
   end
 end
