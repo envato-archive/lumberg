@@ -296,7 +296,7 @@ module Lumberg
       end
 
       def format_hash(hash)
-        raise Lumberg::WhmArgumentError.new("Missing WHM hash") unless hash.is_a?(String)
+        raise Lumberg::WhmArgumentError.new("Missing WHM hash for #{@host}") unless hash.is_a?(String)
         hash.gsub(/\n|\s/, '')
       end
 
