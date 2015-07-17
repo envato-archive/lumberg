@@ -1,6 +1,5 @@
 $:.unshift(File.dirname(__FILE__))
 
-# External Libs
 require 'openssl'
 require 'json'
 require 'uri'
@@ -9,7 +8,6 @@ require 'faraday_middleware'
 require 'logger'
 require 'resolv'
 
-# Internal Libs
 require 'lumberg/format_whm'
 require 'lumberg/version'
 require 'lumberg/exceptions'
@@ -19,32 +17,32 @@ require 'lumberg/cpanel'
 require 'lumberg/whostmgr'
 
 module Lumberg
-
   extend self
 
   attr_accessor :configuration
 
+  # Gets the current path
+  #
+  # Returns the path (really)
   def base_path
     File.dirname(__FILE__)
   end
 
   self.configuration ||= Lumberg::Config.new
 
-   # Specificy the config via block
-   #
-   # ==== Attributes
-   #
-   # * +debug+ - Set to true to log debug info to $stderr, or a file path
-   #
-   # ==== Example
-   #
-   #   Lumberg.config do |c|
-   #     c.dubug "path/to/file.log"
-   #   end
-   def config
-     yield self.configuration if block_given?
-     self.configuration.options
-   end
-
+  # Sets the config via block
+  #
+  # debug - Set to true to log information to $stderr or a file path
+  #
+  # Examples
+  #   Lumberg.config do |c|
+  #     c.debug "path/to/file.log"
+  #   end
+  #
+  # Returns config options
+  def config
+    yield self.configuration if block_given?
+    self.configuration.options
+  end
 end
 
