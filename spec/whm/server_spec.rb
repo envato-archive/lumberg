@@ -43,8 +43,22 @@ module Lumberg
         expect do
           Whm::Server.new(host: "nxdomain.tld", hash: "")
         end.to raise_error(
-         Lumberg::WhmArgumentError, "Unable to resolve nxdomain.tld"
+          Lumberg::WhmArgumentError, "Unable to resolve nxdomain.tld"
         )
+      end
+
+      it "raises message for connection failed" do
+        VCR.turn_off!
+        stub_request(:get, "#{@url_base}/version").to_timeout
+
+        expect do
+          @whm = Whm::Server.new(@login)
+          @whm.version
+        end.to raise_error(
+          Lumberg::WhmConnectionError, "#{@login[:host]} is either unavailable or is not currently accepting requests. Please try again in a few minutes."
+        )
+
+        VCR.turn_on!
       end
     end
 
