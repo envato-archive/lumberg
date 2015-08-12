@@ -58,13 +58,13 @@ module Lumberg
         @ssl_verify ||= false
         @ssl        = options.delete(:ssl)
         @host       = options.delete(:host)
+        validate_server_host
+
         @hash       = format_hash(options.delete(:hash))
         @user       = (options.has_key?(:user) ? options.delete(:user) : 'root')
         @basic_auth = options.delete(:basic_auth)
         @timeout    = options.delete(:timeout)
         @whostmgr   = options.delete(:whostmgr)
-
-        validate_server_host
 
         @base_url = format_url(options)
       end
@@ -257,6 +257,11 @@ module Lumberg
         end.get(function).body
         @force_response_type = nil
         @response
+
+      rescue Faraday::Error::ConnectionFailed, Faraday::TimeoutError
+        raise Lumberg::WhmConnectionError.new(
+          "#{@host} is either unavailable or is not currently accepting requests. Please try again in a few minutes."
+        )
       end
 
       def format_query(hash)
