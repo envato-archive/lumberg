@@ -164,6 +164,7 @@ module Lumberg
 
           before(:each) do
             Net::HTTP.stub(:new) { net_http }
+            JSON.stub(:parse) { { } }
           end
 
           it "sets HTTP timeout when assigned" do

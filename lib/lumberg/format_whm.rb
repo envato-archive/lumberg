@@ -26,7 +26,15 @@ module Lumberg
                env[:body]
              end
 
-      env[:body] = format_response body
+      if body =~ /cPanel operations have been temporarily suspended/
+        raise Lumberg::WhmConnectionError.new(body)
+      end
+
+      if @type == :whostmgr || response_type(body) == :whostmgr
+        env[:body] = format_response body
+      else
+        env[:body] = format_response JSON.parse(body)
+      end
     end
 
     def response_values(env)
