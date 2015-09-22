@@ -251,7 +251,6 @@ module Lumberg
           c.request :url_encoded
           c.response :format_whm, @force_response_type, @response_key, @boolean_params
           c.response :logger, create_logger_instance
-          c.response :json unless @force_response_type == :whostmgr
           c.adapter :net_http
           c.options[:timeout] = timeout if timeout
         end.get(function).body
