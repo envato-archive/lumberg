@@ -15,7 +15,7 @@ module Lumberg
 
       encoding = encoding.to_s.downcase if encoding
 
-      body = case encoding
+      uncompressed_body = case encoding
              when 'gzip'
                env[:response_headers].delete('content-encoding')
                Zlib::GzipReader.new(StringIO.new(env[:body])).read
@@ -26,14 +26,16 @@ module Lumberg
                env[:body]
              end
 
-      if body =~ /cPanel operations have been temporarily suspended/
-        raise Lumberg::WhmConnectionError.new(body)
-      end
-
-      if @type == :whostmgr || response_type(body) == :whostmgr
-        env[:body] = format_response body
+      env[:body] = if @type == :whostmgr
+        format_response(uncompressed_body)
       else
-        env[:body] = format_response JSON.parse(body)
+        begin
+          parsed_body = JSON.parse(uncompressed_body)
+          format_response(parsed_body)
+        rescue JSON::ParserError
+          # In some error cases, cpanel doesn't return JSON :smdh:
+          raise Lumberg::WhmConnectionError, uncompressed_body
+        end
       end
     end
 
@@ -59,7 +61,7 @@ module Lumberg
         message = response['error']
       when :xfer
         success, message, params = format_xfer_response(response)
-      else
+      when :unknown
         message = "Unknown error occurred #{response.inspect}"
       end
 
