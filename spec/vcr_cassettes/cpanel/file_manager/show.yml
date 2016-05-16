@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=viewfile&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir=&file=.lastlogin
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=viewfile&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir&file=.lastlogin
     body:
       string: ""
     headers:

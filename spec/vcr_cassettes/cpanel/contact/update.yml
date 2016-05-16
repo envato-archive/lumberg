@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=savecontactinfo&cpanel_jsonapi_module=CustInfo&cpanel_jsonapi_user=lumberg&email=testing@lumberg-test.com&notify_bandwidth_limit=1&notify_disk_limit=&notify_email_quota_limit=
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=savecontactinfo&cpanel_jsonapi_module=CustInfo&cpanel_jsonapi_user=lumberg&email=testing@lumberg-test.com&notify_bandwidth_limit=1&notify_disk_limit&notify_email_quota_limit
     body:
       string: ""
     headers:
