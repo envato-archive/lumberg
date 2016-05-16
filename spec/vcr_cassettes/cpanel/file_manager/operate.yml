@@ -3,7 +3,8 @@ recorded_with: VCR 2.0.1
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=fileop&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&destfiles=.someotherfile&doubledecode=&op=copy&sourcefiles=.shouldneverexist
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=fileop&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&destfiles=.someotherfile&doubledecode&op=copy&sourcefiles=.shouldneverexist
+         
     body:
       string: ""
     headers:
@@ -40,7 +41,7 @@ http_interactions:
   recorded_at: Wed, 12 Jun 2013 13:16:39 GMT
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=fileop&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&destfiles=sample-last-login.txt&doubledecode=&op=copy&sourcefiles=.lastlogin
+    uri: https://myhost.com:2087/json-api/cpanel?cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=fileop&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&destfiles=sample-last-login.txt&doubledecode&op=copy&sourcefiles=.lastlogin
     body:
       string: ""
     headers:

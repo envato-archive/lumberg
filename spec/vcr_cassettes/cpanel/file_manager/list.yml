@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/cpanel?checkleaf=&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfiles&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir=&filelist=&filepath=&needmime=&showdotfiles=
+    uri: https://myhost.com:2087/json-api/cpanel?checkleaf&cpanel_jsonapi_apiversion=2&cpanel_jsonapi_func=listfiles&cpanel_jsonapi_module=Fileman&cpanel_jsonapi_user=lumberg&dir&filelist&filepath&needmime&showdotfiles
     body:
       string: ""
     headers:
