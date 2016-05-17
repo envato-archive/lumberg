@@ -357,4 +357,4 @@ information still present (check URLs, authorization params, etc.).
 
 ## Copyright
 
-Copyright (c) 2015 WWWH, LLC. See LICENSE for details.
+Copyright (c) 2015-2016 WWWH, LLC. See LICENSE for details.
