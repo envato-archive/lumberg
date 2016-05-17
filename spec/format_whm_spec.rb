@@ -54,9 +54,9 @@ describe Lumberg::FormatWhm do
     end
   end
 
-  context "API unavailable" do
+  context "non-JSON response" do
     it "raises a Lumberg::WhmConnectionError" do
-      env = { body: "cPanel operations have been temporarily suspended", response_headers: { foo: "bar" } }
+      env = { body: "<HTML>Not JSON, for some stupid reason</HTML>", response_headers: { foo: "bar" } }
 
       expect { subject.on_complete(env) }.to raise_error(Lumberg::WhmConnectionError)
     end
