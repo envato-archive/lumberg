@@ -9,8 +9,8 @@ beta-ish. Please report any issues you find. :)
 
 Confirmed to work with ruby 2.1.3, 2.2.0, 2.3.1 and JRuby 1.9 mode.
 
-[Build Status]: http://travis-ci.org/site5/lumberg
-[Build Icon]: https://secure.travis-ci.org/site5/lumberg.png?branch=master
+[Build Status]: https://travis-ci.org/site5/lumberg
+[Build Icon]: https://travis-ci.org/site5/lumberg.svg?branch=master
 
 
 ## cPanel Version Targets
