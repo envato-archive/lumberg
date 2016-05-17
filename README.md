@@ -7,7 +7,7 @@ beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
 
-Confirmed to work with ruby 1.9.3, 2.0.0, 2.1.3, 2.2.0 and JRuby 1.9 mode.
+Confirmed to work with ruby 2.1.3, 2.2.0, 2.3.1 and JRuby 1.9 mode.
 
 [Build Status]: http://travis-ci.org/site5/lumberg
 [Build Icon]: https://secure.travis-ci.org/site5/lumberg.png?branch=master
@@ -357,4 +357,4 @@ information still present (check URLs, authorization params, etc.).
 
 ## Copyright
 
-Copyright (c) 2015 WWWH, LLC. See LICENSE for details.
+Copyright (c) 2015-2016 WWWH, LLC. See LICENSE for details.
