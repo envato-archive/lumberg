@@ -216,6 +216,18 @@ module Lumberg
         request
       end
 
+      # Public: Checks if OS has SNI support.
+      #
+      # Returns Hash API Response.
+      def is_sni_supported
+        req_params = { response_key: 'metadata' }.merge(:"api.version" => 1)
+        response   = perform_request('is_sni_supported', req_params)
+
+        response[:success] = response[:params][:reason] == 'OK'
+
+        response
+      end
+
       def account
         @account ||= Account.new(server: self)
       end
