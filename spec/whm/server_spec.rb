@@ -392,7 +392,7 @@ module Lumberg
       use_vcr_cassette  'whm/server/lookup_nameserver_ip'
 
       it 'performs a NS lookup for the given host name' do
-        result = @whm.lookup_nameserver_ip(host: 'site5.com')
+        result = @whm.lookup_nameserver_ip(host: 'pressed.com')
 
         result[:params][:ip].should =~ Resolv::IPv4::Regex
       end

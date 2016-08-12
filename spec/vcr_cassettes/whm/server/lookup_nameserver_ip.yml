@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://myhost.com:2087/json-api/lookupnsip?api.version=1&host=site5.com
+    uri: https://myhost.com:2087/json-api/lookupnsip?api.version=1&host=pressed.com
     body:
       encoding: US-ASCII
       string: ''

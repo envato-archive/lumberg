@@ -7,8 +7,8 @@ Gem::Specification.new do |s|
   s.version     = Lumberg::VERSION
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Justin Mazzi"]
-  s.email       = ["jmazzi@site5.com"]
-  s.homepage    = ""
+  s.email       = ["justin@pressed.net"]
+  s.homepage    = "https://github.com/pressednet/lumberg"
   s.summary     = %q{Ruby library for the WHM & cPanel API}
   s.description = %q{Ruby library for the WHM & cPanel API; It's not a half day or anything like that}
   s.license     = 'MIT'
