@@ -5,12 +5,12 @@
 Ruby library for the WHM & cPanel API. It is currently what we consider to be
 beta-ish. Please report any issues you find. :)
 
-[RDoc](http://rdoc.info/github/site5/lumberg/master/frames)
+[RDoc](http://rdoc.info/github/pressednet/lumberg/master/frames)
 
 Confirmed to work with ruby 2.1.3, 2.2.0, 2.3.1 and JRuby 1.9 mode.
 
-[Build Status]: https://travis-ci.org/site5/lumberg
-[Build Icon]: https://travis-ci.org/site5/lumberg.svg?branch=master
+[Build Status]: https://travis-ci.org/pressednet/lumberg
+[Build Icon]: https://travis-ci.org/pressednet/lumberg.svg?branch=master
 
 
 ## cPanel Version Targets
@@ -357,4 +357,4 @@ information still present (check URLs, authorization params, etc.).
 
 ## Copyright
 
-Copyright (c) 2015-2016 WWWH, LLC. See LICENSE for details.
+Copyright (c) 2015-2016 Pressed, LLC. See LICENSE for details.
