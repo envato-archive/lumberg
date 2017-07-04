@@ -83,6 +83,19 @@ module Lumberg
       end
     end
 
+
+    describe "#get_nameserver_config" do
+      use_vcr_cassette "whm/dns/get_nameserver_config"
+
+      it "returns the nameservers" do
+        result = @dns.get_nameserver_config("api.version".to_sym => 1)
+        nameservers = result[:params][:nameservers]
+        nameservers.size.should == 2
+        nameservers.should be_include('ns1.example.com')
+        nameservers.should be_include('ns2.example.com')
+      end
+    end
+
     describe "#dumpzone" do
       use_vcr_cassette "whm/dns/dumpzone"
 

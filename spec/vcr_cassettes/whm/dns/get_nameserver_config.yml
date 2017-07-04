@@ -1,0 +1,29 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://myhost.com:2087/json-api/get_nameserver_config?api.version=1
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - WHM root:iscool
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - cpsrvd/11.28.64
+      Transfer-Encoding:
+      - chunked
+      Content-Type:
+      - text/plain
+    body:
+      encoding: UTF-8
+      string: ! '{"data":{"nameservers": ["ns1.example.com", "ns2.example.com"]},"metadata":{"result":1,"reason":"OK","version":1,"command":"get_nameserver_config"}}'
+    http_version: '1.1'
+  recorded_at: Tue, 04 Jul 2017 11:32:20 GMT
+recorded_with: VCR 2.9.3
+...
