@@ -52,6 +52,15 @@ module Lumberg
         server.perform_request('getzonerecord', options)
       end
 
+
+      # Retrieves the default nameservers
+      #
+      # ==== Required
+      #  * <tt>:"api.version".to_sym</tt> - PENDING
+      def get_nameserver_config(options = {})
+        server.perform_request('get_nameserver_config', options.merge(response_key: 'data'))
+      end
+
       # Displays the DNS zone configuration for a specific domain
       #
       # ==== Required
