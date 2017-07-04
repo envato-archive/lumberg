@@ -52,7 +52,6 @@ module Lumberg
         server.perform_request('getzonerecord', options)
       end
 
-
       # Retrieves the default nameservers
       #
       # ==== Required
