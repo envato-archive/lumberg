@@ -7,7 +7,7 @@ beta-ish. Please report any issues you find. :)
 
 [RDoc](http://rdoc.info/github/pressednet/lumberg/master/frames)
 
-Confirmed to work with ruby 2.1.3, 2.2.0, 2.3.1 and JRuby 1.9 mode.
+Confirmed to work with Ruby 2.2, 2.3, 2.4, and 2.5.
 
 [Build Status]: https://travis-ci.org/pressednet/lumberg
 [Build Icon]: https://travis-ci.org/pressednet/lumberg.svg?branch=master
